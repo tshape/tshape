@@ -1,0 +1,1 @@
+!coverage.py: This is a private format, don't read it directly!{"arcs": {"/app/app/wsgi.py": [], "/app/app/__init__.py": [], "/app/app/settings/__init__.py": [], "/app/app/settings/prod.py": [], "/app/app/urls.py": [], "/app/app/settings/base.py": [], "/app/app/settings/dev.py": []}}
