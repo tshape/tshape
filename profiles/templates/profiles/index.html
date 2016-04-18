@@ -1,9 +1,20 @@
-<html>
-<body>
-<h1>Profiles</h1>
-{% load staticfiles %}
-<script src="{% static "js/underscore-min.js" %}"></script>
-<script src="{% static "js/angular.min.js" %}"></script>
-<script src="{% static "js/angular-resource.min.js" %}"></script>
-</body>
-</html>
+{% extends "profiles/base.html" %}
+{% load i18n %}
+{% block content %}
+<div class="container content" ng-app="ProfileApp">
+
+	<h1>Profiles</h1>
+	<div ng-controller="AppController">
+		<div class="panel" ng-repeat="post in posts">
+		{%verbatim%}
+			<h3 class="panel-title">{{ post.title }} <small>{{ post.author.username }}</small></h3>
+			<p class="well">{{ post.body }}</p>
+		{%endverbatim%}
+		</div>
+	</div>
+
+</div>
+
+{% endblock content %}
+{% block extra_javascript %}
+{% endblock extra_javascript %}

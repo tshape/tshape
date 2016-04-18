@@ -1,6 +1,6 @@
 var app;
 
-app = angular.module('example.app.static', []);
+app = angular.module('ProfileApp', []);
 
 app.controller('AppController', [
   '$scope', '$http', function($scope, $http) {
