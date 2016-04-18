@@ -1,16 +1,17 @@
 PYTHON = /usr/local/bin/python
+DOCKER = /usr/local/bin/docker
 
 docker-bash:
 	docker-compose run web bash
 
 docker-clean:
-	docker rm -v $(docker ps -a -q)
 	docker rmi $(docker images | grep "^<none>" | awk "{print $3}")
+	docker rm $(docker ps -a -q) -v
 
 docker-run:
 	docker-compose up
 
-
+# ____________________________________________________________
 # Must be in docker bash before running the following commands:
 
 clean:
@@ -20,6 +21,8 @@ clean:
 
 clean-tox:
 	rm -rf .tox
+
+# ____________________________________________________________
 
 db-flush:
 	$(PYTHON) manage.py flush
@@ -51,3 +54,13 @@ syncdb:
 
 update:
 	pip install --upgrade -r requirements.text
+
+
+# docker commands:
+# bind port to local - docker run -p 0.0.0.0:8000:8000 tshape_web
+# example run cmds - docker exec -it tshape_web python manage.py migrate
+#                  -  docker-compose run web django-admin.py startproject app .
+#                  - docker run python manage.py migrate tshape_web
+# docker machine - docker-machine create -d virtualbox dev;
+#                - eval "$(docker-machine env dev)"
+#                - docker-machine ip tshape_web
