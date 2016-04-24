@@ -4,9 +4,15 @@ DOCKER = /usr/local/bin/docker
 docker-bash:
 	docker-compose run web bash
 
+docker-build:
+	docker-compose build
+
 docker-clean:
 	docker rmi $(docker images | grep "^<none>" | awk "{print $3}")
 	docker rm $(docker ps -a -q) -v
+
+docker-pg:
+	docker-compose run db bash
 
 docker-run:
 	docker-compose up
@@ -22,17 +28,18 @@ clean:
 clean-tox:
 	rm -rf .tox
 
-# ____________________________________________________________
-
 db-flush:
 	$(PYTHON) manage.py flush
 
 db-seed:
-	$(PYTHON) manage.py shell < seed_db.py
+	$(PYTHON) manage.py shell < tests/db/seed_db.py
 
-db-migrate:
-	$(PYTHON) manage.py makemigrations
-	$(PYTHON) manage.py migrate
+db-shell:
+	psql -h 192.168.99.100 -p 5432 -U postgres postgres
+
+db-migrate: # include app=app_name
+	$(PYTHON) manage.py makemigrations $(app)
+	$(PYTHON) manage.py migrate $(app)
 
 env:
 	pyvenv env && ln -s env/bin/activate activate
