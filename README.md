@@ -8,7 +8,12 @@ git clone https://github.com/angieellis/tshape.git
 #### Start
 - Open Kitematic application
 - Click on "DOCKER CLI" in lower left corner
-- Enter "make docker-run" in terminal
+- navigate to project root
+- `make docker-build`
+- `make docker-run` 
+
+does not work
+
 
 #### Common Docker Commands
 *Recreate and start containers:*
