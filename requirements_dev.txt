@@ -3,3 +3,4 @@ psycopg2
 tox
 ipython
 fake-factory
+django-extensions
