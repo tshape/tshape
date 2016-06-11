@@ -18,7 +18,7 @@
       },
       dist: {
         files: { 
-        'css/style.css': 'scss/style.scss'
+        'profiles/static/css/style.css': 'profiles/static/css/style.scss'
         }
       }
     },
@@ -45,22 +45,12 @@
     },
 
     watch: {
-      grunt: { files: ['Gruntfile.js'] },
-      js: {
-        files: [
-          jsApp
-        ],
-        tasks: ['jshint', 'uglify']
+      grunt: {
+        files: ['Gruntfile.js']
       },
       scss: {
-        files: 'scss/**/*.scss',
+        files: 'profiles/static/css/*.scss',
         tasks: ['sass'],
-      },
-      css: {
-        files: 'css/*.css',
-        options: {
-          livereload: true
-        }
       }
     }
     
