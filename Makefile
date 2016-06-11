@@ -16,6 +16,10 @@ docker-clean:
 	docker rmi $(docker images | grep "^<none>" | awk "{print $3}")
 	docker rm $(docker ps -a -q) -v
 
+# starts db container only
+# docker-db:
+	# docker-compose run db
+
 # gets the ip address of the running docker container
 docker-ip:
 	docker-machine ip
@@ -24,13 +28,17 @@ docker-ip:
 docker-postgres:
 	docker-compose run db psql -h 192.168.99.100 -p 5432 -U postgres postgres
 
+# forces the containers to be re-built and starts them
+docker-recreate:
+	docker-compose up --force-recreate
+
 # starts the containers and the application
 docker-run:
 	docker-compose up
 
-# forces the containers to be re-built and starts them
-docker-recreate:
-	docker-compose up --force-recreate
+# starts web container only
+# docker-web:
+	# docker-compose run web
 
 # ____________________________________________________________
 # Must be in docker bash before running the following commands:
