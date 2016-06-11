@@ -1,22 +1,30 @@
 PYTHON = /usr/local/bin/python
 DOCKER = /usr/local/bin/docker
 
+# runs the web and db containers and starts bash
 docker-bash:
 	docker-compose run web bash
 
+# rebuilds the container images
 docker-build:
 	docker-compose build
 
+# cleans up old docker containers and images
+# run this occasionally to remove garbage
+# must copy and paste the commands into terminal
 docker-clean:
 	docker rmi $(docker images | grep "^<none>" | awk "{print $3}")
 	docker rm $(docker ps -a -q) -v
 
+# runs the postgres container and brings up the postgres shell
 docker-postgres:
 	docker-compose run db psql -h 192.168.99.100 -p 5432 -U postgres postgres
 
+# starts the containers and the application
 docker-run:
 	docker-compose up
 
+# forces the containers to be re-built and starts them
 docker-recreate:
 	docker-compose up --force-recreate
 
