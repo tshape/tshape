@@ -16,6 +16,10 @@ docker-clean:
 	docker rmi $(docker images | grep "^<none>" | awk "{print $3}")
 	docker rm $(docker ps -a -q) -v
 
+# gets the ip address of the running docker container
+docker-ip:
+	docker-machine ip
+
 # runs the postgres container and brings up the postgres shell
 docker-postgres:
 	docker-compose run db psql -h 192.168.99.100 -p 5432 -U postgres postgres
