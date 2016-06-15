@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'profiles',
+    'home',
     'django_extensions',
 ]
 
