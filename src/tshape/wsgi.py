@@ -9,8 +9,14 @@ https://docs.djangoproject.com/en/1.9/howto/deployment/wsgi/
 
 import os
 
+import dotenv
+
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.settings.base")
+
+dotenv.read_dotenv(
+    os.path.join(os.path.dirname(os.path.dirname(__file__)), '.ENV'))
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "tshape.settings.base")
 
 application = get_wsgi_application()
