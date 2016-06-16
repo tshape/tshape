@@ -16,6 +16,10 @@ docker-clean:
 	docker rmi $(docker images | grep "^<none>" | awk "{print $3}")
 	docker rm $(docker ps -a -q) -v
 
+# shortcut for running django management command
+docker-cmd: # include cmd=cmd_name
+	docker exec -it tshape_web_1 python manage.py $(cmd)
+
 # starts db container only
 # docker-db:
 	# docker-compose run db
