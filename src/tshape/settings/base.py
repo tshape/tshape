@@ -21,7 +21,7 @@ SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = "fqrrb438h=i28c(j4orbm&f95#4(p$i^9=10-@%$o1es&cl@ha"
+#SECRET_KEY="fqrrb438h=i28c(j4orbm&f95#4(p$i^9=10-@%$o1es&cl@ha"
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -61,7 +61,9 @@ ROOT_URLCONF = 'tshape.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            '/templates/'
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

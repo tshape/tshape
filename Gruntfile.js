@@ -4,7 +4,7 @@
 
   // array of custom javascript files to include.
   var jsApp = [
-    'js/scripts.js',
+    'src/tshape/static/js/scripts.js',
   ];
 
   grunt.initConfig({
@@ -18,7 +18,7 @@
       },
       dist: {
         files: { 
-        'profiles/static/css/style.css': 'profiles/static/css/style.scss'
+        'src/tshape/static/css/style.css': 'src/tshape/static/scss/style.scss'
         }
       }
     },
@@ -39,7 +39,7 @@
       },
       dist: {
         files: {
-          'js/app.min.js': [jsApp]
+          'src/tshape/static/js/app.min.js': [jsApp]
         }
       }
     },
@@ -49,7 +49,7 @@
         files: ['Gruntfile.js']
       },
       scss: {
-        files: 'profiles/static/css/*.scss',
+        files: 'src/tshape/static/**/*.scss',
         tasks: ['sass'],
       }
     }

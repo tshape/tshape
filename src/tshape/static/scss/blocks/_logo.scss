@@ -7,16 +7,20 @@
   display: block;
   float: left;
   margin: 10px 0 10px 0;
+  height: 34px;
+  line-height: 32px;
+  padding-left: 40px;
+  font-size: 18px;
   img {
     display: none;
   }
   @media #{$medium-up} {
-    background-image: url("../images/logo.jpg");
-    background-size: 30px 30px;
+    background-image: url("../images/logo-tshape.png");
+    background-size: 30px 34px;
   }
   @media #{$small-only} {
-    background-image: url("../images/logo-mobile.jpg");
-    background-size: 30px 30px;
+    background-image: url("../../images/logo-tshape.png");
+    background-size: 30px 34px;
   }
   a {
     padding-left: 40px;
