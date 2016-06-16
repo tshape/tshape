@@ -4,4 +4,4 @@ tox
 ipython
 fake-factory
 django-extensions
-django-dotenv
+python-dotenv

@@ -6,7 +6,9 @@ import dotenv
 
 
 if __name__ == "__main__":
-    dotenv.read_dotenv()
+    dotenv_path = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '.ENV')
+    dotenv.load_dotenv(dotenv_path)
 
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "tshape.settings.base")
 
