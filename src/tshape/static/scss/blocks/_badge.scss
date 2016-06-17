@@ -1,0 +1,36 @@
+// ==========================================================================
+// Badges
+// ==========================================================================
+.badge {
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  font-weight: 400;
+  text-align: left;
+  padding: 4px 10px 6px 10px;
+  font-size: 13px;
+  background-color: lighten($secondary-color, 10%);
+  color: #FFF;
+  border-radius: 3px;
+  &:link, &:visited {
+    color: #FFF;
+  }
+  &:hover, &:focus {
+    background-color: $secondary-color;
+    color: #FFF;
+    text-decoration: none;
+  }
+  &.active {
+    background-color: darken($secondary-color, 20%);
+    color: #FFF;
+  }
+  &.empty {
+    background: none;
+    border: 1px dashed #CCC;
+    color: #999;
+    &:hover {
+      background-color: #EAEAEA;
+      color: #999;
+    }
+  }
+}

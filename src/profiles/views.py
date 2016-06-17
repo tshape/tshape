@@ -6,6 +6,10 @@ def index(request):
     template = loader.get_template('profiles/index.html')
     return HttpResponse(template.render(request))
 
+def new(request):
+    template = loader.get_template('profiles/new.html')
+    return HttpResponse(template.render(request))
+
 def skillsets(request):
     template = loader.get_template('profiles/skillsets.html')
     return HttpResponse(template.render(request))
