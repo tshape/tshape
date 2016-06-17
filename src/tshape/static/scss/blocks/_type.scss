@@ -49,7 +49,7 @@ h3	{
 	line-height: 26px;
 	font-weight: 700;
 	color: $base-font-color;
-	margin-bottom: $leading;
+	margin-bottom: 10px;
 }
 h4	{
 	font-family: $custom-font;
@@ -76,7 +76,7 @@ h6	{
 // List
 ul	 				{ color: $base-font-color; margin: 10px 0 30px 0; list-style: disc; padding: 0 0 0 14px }
 ol 					{ color: $base-font-color; margin: 0 0 20px 0; list-style: decimal; }
-li 					{ color: $base-font-color; margin: 0 0 7px 0px; list-style-type: disc; padding: 0;}
+li 					{ color: $base-font-color; margin: 0 0 7px 0px;  padding: 0;}
 
 // Emphasis
 strong 				{ font-weight: bold; }

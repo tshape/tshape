@@ -3291,23 +3291,6 @@ body.body-header-fixed {
   margin-top: 58px;
 }
 
-/* line 22, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_header.scss */
-.header-profile {
-  background-color: #FFF;
-  min-height: auto;
-  width: 100%;
-  padding: 10px 0 10px 0;
-  border-bottom: 1px solid #CCC;
-  margin-bottom: 20px;
-}
-
-/* line 29, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_header.scss */
-.header-profile__heading {
-  float: left;
-  font-size: 20px;
-  line-height: 32px;
-}
-
 /* line 7, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_type.scss */
 p {
   color: #333;
@@ -3363,7 +3346,7 @@ h3 {
   line-height: 26px;
   font-weight: 700;
   color: #333;
-  margin-bottom: 24px;
+  margin-bottom: 10px;
 }
 
 /* line 54, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_type.scss */
@@ -3412,7 +3395,6 @@ ol {
 li {
   color: #333;
   margin: 0 0 7px 0px;
-  list-style-type: disc;
   padding: 0;
 }
 
@@ -4543,15 +4525,96 @@ ul.index li.heading, ul.index li h3 {
   list-style: none;
   margin: 0;
   padding: 0;
-  margin-bottom: 30px;
 }
 
-/* line 6, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_skillsets.scss */
+/* line 5, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_skillsets.scss */
 .skillsets li {
   list-style: none;
   margin-right: 10px;
   padding: 0;
   display: inline-block;
+}
+
+/* line 1, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_preview.scss */
+.preview {
+  display: none;
+  border-bottom: 1px solid #CCC;
+  padding-bottom: 30px;
+}
+
+/* line 5, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_preview.scss */
+.preview.open {
+  display: block;
+}
+
+/* line 1, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_strip.scss */
+.strip {
+  border-bottom: 1px solid #CCC;
+  padding: 10px 0 10px 0;
+}
+
+/* line 5, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_strip.scss */
+.strip--section {
+  margin-bottom: 20px;
+}
+
+/* line 1, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_my-profile-heading.scss */
+.my-profile-heading {
+  float: left;
+  font-size: 20px;
+  line-height: 32px;
+}
+
+/* line 4, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_badge.scss */
+.badge {
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  font-weight: 400;
+  text-align: left;
+  padding: 4px 10px 6px 10px;
+  font-size: 13px;
+  background-color: #8cea88;
+  color: #FFF;
+  border-radius: 3px;
+}
+
+/* line 15, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_badge.scss */
+.badge:link, .badge:visited {
+  color: #FFF;
+}
+
+/* line 18, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_badge.scss */
+.badge:hover, .badge:focus {
+  background-color: #62E35C;
+  color: #FFF;
+  text-decoration: none;
+}
+
+/* line 23, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_badge.scss */
+.badge.active {
+  background-color: #27b920;
+  color: #FFF;
+}
+
+/* line 27, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_badge.scss */
+.badge.empty {
+  background: none;
+  border: 1px dashed #CCC;
+  color: #999;
+}
+
+/* line 31, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_badge.scss */
+.badge.empty:hover {
+  background-color: #EAEAEA;
+  color: #999;
+}
+
+/* line 2, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_section-profile.scss */
+body.section-profile h1 {
+  margin: 20px 0 10px 0;
+  font-size: 32px;
+  line-height: 50px;
 }
 
 /* line 2, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
@@ -4561,28 +4624,11 @@ body.page-homepage h1 {
 }
 
 /* line 6, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
-body.page-homepage .hero {
-  background-image: url("/assets/images/processed/unsplash/large-1024/6.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  position: relative;
-  z-index: 1;
+body.page-homepage .welcome {
+  text-align: center;
 }
 
-/* line 12, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
-body.page-homepage .hero h1 {
-  color: #FFF;
-  font-size: 40px;
-  margin-top: 100px;
-  text-shadow: 0 0 0 #000;
-}
-
-/* line 18, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
-body.page-homepage .hero p {
-  color: #FFF;
-}
-
-/* line 22, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
+/* line 9, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
 body.page-homepage .strip {
   background: #EAEAEA;
 }
@@ -4596,187 +4642,6 @@ body.page-homepage .strip:before, body.page-homepage .strip:after {
 /* line 230, /Users/rob/Projects/tshape/src/tshape/static/scss/foundation/components/_global.scss */
 body.page-homepage .strip:after {
   clear: both;
-}
-
-/* line 26, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
-body.page-homepage .punchline {
-  background-color: #1839D6;
-  padding: 30px;
-  width: 80%;
-  height: 200px;
-  margin-top: 300px;
-}
-
-@media only screen and (max-width: 767px) {
-  /* line 26, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
-  body.page-homepage .punchline {
-    width: calc(80% - 20px);
-    margin-top: 200px;
-  }
-}
-
-/* line 37, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
-body.page-homepage .punchline h4 {
-  margin: 0;
-  margin-bottom: 10px;
-  color: #FFF;
-  font-weight: 300;
-}
-
-/* line 43, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
-body.page-homepage .punchline h2 {
-  margin: 0;
-  color: #FFF;
-  font-size: 30px;
-  font-weight: 100;
-  line-height: 42px;
-}
-
-@media only screen and (max-width: 767px) {
-  /* line 43, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
-  body.page-homepage .punchline h2 {
-    margin: 0;
-    color: #FFF;
-    font-size: 28px;
-    font-weight: 200;
-    line-height: 36px;
-  }
-}
-
-/* line 58, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
-body.page-homepage .punchline-right {
-  background-color: #1839D6;
-  padding: 40px;
-  width: 200px;
-  height: 200px;
-  float: right;
-  margin-top: 100px;
-}
-
-/* line 65, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
-body.page-homepage .punchline-right h2 {
-  margin: 0;
-  color: #FFF;
-  font-size: 22px;
-  font-weight: 200;
-}
-
-/* line 73, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
-body.page-homepage .features .feature {
-  min-height: 300px;
-}
-
-@media only screen and (max-width: 767px) {
-  /* line 73, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
-  body.page-homepage .features .feature {
-    min-height: auto;
-    padding-right: 40px;
-    padding-bottom: 40px;
-  }
-}
-
-/* line 80, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
-body.page-homepage .features .feature .line {
-  width: 80%;
-  border-top: 4px solid #1839D6;
-  margin-bottom: 15px;
-}
-
-/* line 85, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
-body.page-homepage .features .feature p {
-  width: 80%;
-}
-
-/* line 88, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
-body.page-homepage .features .feature a {
-  text-decoration: none;
-}
-
-/* line 93, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
-body.page-homepage .human {
-  position: relative;
-  background-color: #FFF;
-  background-image: url("/assets/images/processed/1024/person2.jpg");
-  background-position: top right;
-  background-size: contain;
-}
-
-@media only screen and (max-width: 767px) {
-  /* line 93, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
-  body.page-homepage .human {
-    background-size: contain;
-    padding-top: 140px;
-  }
-}
-
-/* line 104, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
-body.page-homepage .human h4 {
-  display: inline-block;
-  margin-top: 30px;
-  font-weight: 300;
-  margin-bottom: 0;
-  background-color: #FFF;
-}
-
-@media only screen and (max-width: 767px) {
-  /* line 104, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
-  body.page-homepage .human h4 {
-    background-color: initial;
-  }
-}
-
-/* line 114, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
-body.page-homepage .human h3 {
-  display: inline-block;
-  margin-top: 5px;
-  background-color: #FFF;
-}
-
-@media only screen and (max-width: 767px) {
-  /* line 114, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
-  body.page-homepage .human h3 {
-    background-color: initial;
-  }
-}
-
-/* line 122, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
-body.page-homepage .human p {
-  display: inline-block;
-  padding: 2px 0;
-}
-
-@media only screen and (max-width: 767px) {
-  /* line 122, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
-  body.page-homepage .human p {
-    background-color: #FFF;
-    padding: 6px;
-  }
-}
-
-/* line 129, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
-body.page-homepage .human p span {
-  background-color: #FFF;
-  display: inline;
-  padding: 0.45rem 0.45rem 0.45rem 0;
-  /* Needs prefixing */
-  -webkit-box-decoration-break: clone;
-}
-
-/* line 137, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
-body.page-homepage .human .caption {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
-
-@media only screen and (max-width: 767px) {
-  /* line 137, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
-  body.page-homepage .human .caption {
-    top: 0;
-    right: 0;
-    width: 220px;
-    padding-right: 100px;
-  }
 }
 
 /* Slider */

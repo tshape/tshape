@@ -1,13 +1,18 @@
 {% extends "tshape/base.html" %}
-{% block body_class %}profile-skillsets-javascript{% endblock %}
+{% block page_class %}page-profile-skillsets-javascript{% endblock %}
+{% block section_class %}section-profile{% endblock %}
 {% load i18n %}
 {% block content %}
-{% include "profiles/_header-profile.html" %}
-<div class="header-profile">
+{% include "profiles/_subheader.html" %}
+{% include "profiles/_preview.html" %}
+
+<div class="strip">
 	<div class="row">
 		<div class="column small-12">
+			<a class="button right" href="/profile/skillsets/">Edit Skillsets</a>
 			<ul class="skillsets skillsets--added">
-				<li><a href='/profile/skillsets/javascript/' class='button secondary'>Javascript</a></li>
+				<li><a href='/profile/skillsets/javascript/' class='badge active'>Javascript</a></li>
+				<li><a href='/profile/skillsets/python/' class='badge'>Python</a></li>
 			</ul>
 		</div>
 	</div>
@@ -15,8 +20,39 @@
 
 <div class="row ">
 	<div class="column small-12">
-		<h3>Javascript Skills</h3>
-
+		<h1>Javascript Skills</h1>
+		<div class="row">
+			<div class="columns small-6">
+				<h4>Your Skills</h4>
+				<ol>
+					<li>can write an iterertive loop in javascript</li>
+					<li>can write an ajax request and manipulate an object in the response</li>
+					<li>closures</li>
+					<li>callbacks</li>
+					<li>advanced design patterns</li>
+					<li>lskdjfas</li>
+					<li>asd</li>
+					<li>sadflkjasfd sadf as sa sd</li>
+					<li>ksksdf dsss</li>
+					<li>has built a popular open source library</li>
+				</ol>
+			</div>
+			<div class="columns small-6">
+				<h4>Verified Skills</h4>
+				<ol>
+					<li>can write an iterertive loop in javascript</li>
+					<li>can write an ajax request and manipulate an object in the response</li>
+					<li>closures</li>
+					<li>callbacks</li>
+					<li>advanced design patterns</li>
+					<li>lskdjfas</li>
+					<li>asd</li>
+					<li>sadflkjasfd sadf as sa sd</li>
+					<li>ksksdf dsss</li>
+					<li>has built a popular open source library</li>
+				</ol>
+			</div>
+		</div>
 	</div>
 </div>
 {% endblock content %}

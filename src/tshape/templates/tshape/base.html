@@ -10,7 +10,7 @@
     <script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
     <script src="{% static 'js/foundation.min.js' %}"></script>
 
-<body class="page-{% block body_class %}homepage{% endblock body_class %}">
+<body class="{% block section_class %}section{% endblock section_class %} {% block page_class %}page{% endblock page_class %}">
 {% include "tshape/header.html" %}
 {% block content %}{% endblock content %}
 {% block extra_javascript %}{% endblock extra_javascript %}

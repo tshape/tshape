@@ -1,10 +1,14 @@
 {% extends "tshape/base.html" %}
+{% block page_class %}page-homepage{% endblock %}
+{% block section_class %}section-hompage{% endblock %}
 {% load i18n %}
 {% block content %}
 <div class="row ">
     <div class="column small-12">
-        <h1>Welcome to TShape</h1>
-
+        <div class="welcome">
+            <h1>Welcome to TShape</h1>
+            <a class="button large center" href="/profile/new/">Create My TShape</a>
+        </div>
     </div>
 </div>
 
