@@ -1,7 +1,9 @@
 from django.db import models
 
+from tshape.models import BaseModel
 
-class Skillset(models.Model):
+
+class Skillset(BaseModel):
 
     name = models.CharField(max_length=280)
     description = models.TextField()
