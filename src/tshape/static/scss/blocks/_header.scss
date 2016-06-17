@@ -4,7 +4,7 @@
 $header-height: 58px;
 
 .header {
-  background-color: #FFF;
+  background-color: #DEE0DD;
   min-height: $header-height;
   width: 100%;
   border-bottom: 1px solid #CCC;
@@ -17,4 +17,18 @@ $header-height: 58px;
 
 body.body-header-fixed {
   margin-top: $header-height;
+}
+
+.header-profile {
+  background-color: #FFF;
+  min-height: auto;
+  width: 100%;
+  padding: 10px 0 10px 0;
+  border-bottom: 1px solid #CCC;
+  margin-bottom: 20px;
+  &__heading {
+    float: left;
+    font-size: 20px;
+    line-height: 32px;
+  }
 }

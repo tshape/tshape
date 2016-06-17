@@ -1,0 +1,61 @@
+{% extends "tshape/base.html" %}
+{% block body_class %}profile-skillsets{% endblock %}
+{% load i18n %}
+{% block content %}
+{% include "profiles/_header-profile.html" %}
+
+<div class="row">
+	<div class="column small-12">
+		<h2>Skillsets</h2>
+		<ul class="skillsets skillsets--added">
+			<li><a class="button empty" href="#">Add a skillset</a></li>
+		</ul>
+	</div>
+</div>
+
+<div class="row ">
+	<div class="column small-12">
+		<h3>Verified Skillsets</h3>
+		<ul class="skillsets">
+			<li><a id="add-skillset-javascript" href="#">Javascript</a></li>
+			<li>Angular JS</li>
+			<li>React</li>
+			<li>Python</li>
+			<li>Ruby</li>
+			<li>C++</li>
+			<li>PHP</li>
+			<li>Algorithms</li>
+		</ul>
+	</div>
+</div>
+
+<div class="row ">
+	<div class="column small-12">
+		<h3>Trending User Created Skillsets</h3>
+		<ul class="skillsets">
+			<li>methlab</li>
+			<li>react js</li>
+			<li>flux</li>
+			<li>php7</li>
+		</ul>
+	</div>
+</div>
+
+<div class="row ">
+	<div class="column small-12">
+		<h3>My Custom Skillsets</h3>
+		<ul class="skillsets">
+			<li>Mat Lab</li>
+		</ul>
+	</div>
+</div>
+
+<div class="row ">
+	<div class="column small-12">
+		<a class="button disabled" href="#">Add Custom Skillset</a>
+	</div>
+</div>
+
+{% endblock content %}
+{% block extra_javascript %}
+{% endblock extra_javascript %}

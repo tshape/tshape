@@ -2230,8 +2230,8 @@ th.hide-for-touch {
 
 /* line 44, /Users/rob/Projects/tshape/src/tshape/static/scss/foundation/components/_tooltips.scss */
 .has-tip:hover, .has-tip:focus {
-  border-bottom: dotted 1px #16334e;
-  color: #3171AE;
+  border-bottom: dotted 1px #0b1a60;
+  color: #1839D6;
 }
 
 /* line 50, /Users/rob/Projects/tshape/src/tshape/static/scss/foundation/components/_tooltips.scss */
@@ -2291,8 +2291,8 @@ th.hide-for-touch {
 
 /* line 95, /Users/rob/Projects/tshape/src/tshape/static/scss/foundation/components/_tooltips.scss */
 .tooltip.opened {
-  border-bottom: dotted 1px #16334e !important;
-  color: #3171AE !important;
+  border-bottom: dotted 1px #0b1a60 !important;
+  color: #1839D6 !important;
 }
 
 /* line 101, /Users/rob/Projects/tshape/src/tshape/static/scss/foundation/components/_tooltips.scss */
@@ -2590,7 +2590,7 @@ th.hide-for-touch {
   float: left;
   margin: 10px 0 10px 0;
   height: 34px;
-  line-height: 32px;
+  line-height: 36px;
   padding-left: 40px;
   font-size: 18px;
 }
@@ -2618,23 +2618,23 @@ th.hide-for-touch {
 
 /* line 25, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_logo.scss */
 .logo__image a {
-  padding-left: 40px;
-  line-height: 30px;
-  font-size: 22px;
-  font-weight: 700;
-  font-family: "Open Sans", "helvetica", "arial";
-  text-decoration: none;
   color: #333;
-  text-transform: uppercase;
+  text-decoration: none;
 }
 
-/* line 37, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_logo.scss */
+/* line 28, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_logo.scss */
+.logo__image a:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+/* line 35, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_logo.scss */
 .logo__text {
   margin: 10px 0 10px 0;
   float: left;
 }
 
-/* line 40, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_logo.scss */
+/* line 38, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_logo.scss */
 .logo__text a {
   line-height: 36px;
   font-size: 22px;
@@ -2646,13 +2646,11 @@ th.hide-for-touch {
 
 /* line 4, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_menu.scss */
 ul.menu {
-  padding: 18px 0 18px 0;
+  padding: 14px 0 14px 0;
   margin: 0;
-  margin-right: 80px;
   font-family: "Open Sans", "helvetica", "arial";
   line-height: 30px;
   font-size: 14px;
-  line-height: 22px;
   font-weight: 600;
   vertical-align: middle;
   border-bottom: none;
@@ -2661,7 +2659,7 @@ ul.menu {
   text-transform: uppercase;
 }
 
-/* line 18, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_menu.scss */
+/* line 16, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_menu.scss */
 ul.menu li {
   float: left;
   display: block;
@@ -2670,61 +2668,61 @@ ul.menu li {
   padding: 0;
 }
 
-/* line 25, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_menu.scss */
+/* line 22, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_menu.scss */
 ul.menu li:first-child a {
   padding-left: 0;
 }
 
-/* line 28, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_menu.scss */
+/* line 25, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_menu.scss */
 ul.menu li a {
   display: block;
   background: none;
-  color: #3171AE;
+  color: #1839D6;
   text-decoration: none;
   padding: 0 10px 0 10px;
 }
 
-/* line 34, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_menu.scss */
+/* line 31, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_menu.scss */
 ul.menu li a:hover {
-  color: #3171AE;
+  color: #1839D6;
   text-decoration: underline;
 }
 
-/* line 38, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_menu.scss */
+/* line 35, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_menu.scss */
 ul.menu li a.active {
-  color: #3171AE;
+  color: #1839D6;
   text-decoration: underline;
 }
 
-/* line 44, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_menu.scss */
+/* line 41, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_menu.scss */
 ul.menu li span {
   padding: 10px 18px;
   display: block;
   background: none;
-  color: #3171AE;
+  color: #1839D6;
   cursor: context-menu;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
-  /* line 44, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_menu.scss */
+  /* line 41, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_menu.scss */
   ul.menu li span {
     padding: 2px 6px;
     font-size: 13px;
   }
 }
 
-/* line 57, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_menu.scss */
+/* line 54, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_menu.scss */
 ul.menu li.expanded ul {
   padding: 14px 7px;
   margin: 0;
 }
 
-/* line 61, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_menu.scss */
+/* line 58, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_menu.scss */
 ul.menu li.expanded ul li {
   text-transform: capitalize;
 }
 
-/* line 63, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_menu.scss */
+/* line 60, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_menu.scss */
 ul.menu li.expanded ul li a {
   margin: 0 0 7px 0;
   padding: 5px 10px;
@@ -2733,12 +2731,12 @@ ul.menu li.expanded ul li a {
   color: #ccc;
 }
 
-/* line 69, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_menu.scss */
+/* line 66, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_menu.scss */
 ul.menu li.expanded ul li a:hover {
   color: #fff;
 }
 
-/* line 77, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_menu.scss */
+/* line 74, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_menu.scss */
 ul.menu li.expanded ul ul li a {
   text-indent: 20px;
 }
@@ -2752,43 +2750,61 @@ ul.menu li.expanded ul ul li a {
   text-align: left;
   padding: 5px 11px 7px 11px;
   font-size: 14px;
-  margin-top: 18px;
-  background: #3171AE;
+  background: #1839D6;
 }
 
-/* line 14, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
+/* line 13, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
 .button:link, .button:visited {
   color: #FFF;
 }
 
-/* line 17, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
+/* line 16, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
 .button:hover, .button:focus {
-  background-color: #265786;
+  background-color: #132da8;
   text-decoration: none;
 }
 
-/* line 22, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
+/* line 21, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
 .button.secondary {
-  background-color: #1B96D4;
+  background-color: #62E35C;
 }
 
-/* line 24, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
+/* line 23, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
 .button.secondary:link, .button.secondary:visited {
   color: #FFF;
 }
 
-/* line 27, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
+/* line 26, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
 .button.secondary:hover, .button.secondary:focus {
-  background-color: #1576a7;
+  background-color: #38dc30;
   text-decoration: none;
 }
 
-/* line 32, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
-.button.cancel {
-  background-color: #6e706f;
+/* line 31, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
+.button.empty {
+  background: none;
+  border: 1px dashed #CCC;
+  color: #999;
 }
 
-/* line 36, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
+/* line 35, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
+.button.empty:hover {
+  background-color: #EAEAEA;
+  border-color: #333;
+}
+
+/* line 40, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
+.button.disabled {
+  background-color: #DDD;
+  color: #999;
+}
+
+/* line 43, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
+.button.disabled:hover {
+  background-color: #DDD;
+}
+
+/* line 48, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
 .button.full {
   padding: 11px 15px 10px 15px;
   display: block;
@@ -2796,37 +2812,37 @@ ul.menu li.expanded ul ul li a {
   text-align: center;
 }
 
-/* line 42, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
+/* line 54, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
 .button.small {
   padding: 6px 11px 5px 11px;
 }
 
-/* line 45, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
+/* line 57, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
 .button.medium {
   padding: 11px 15px 10px 15px;
 }
 
-/* line 48, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
+/* line 60, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
 .button.large {
   padding: 16px 20px 15px 20px;
 }
 
-/* line 52, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
+/* line 64, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
 .button.align-left {
   text-align: left;
 }
 
-/* line 55, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
+/* line 67, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
 .button.center, .button.align-center {
   text-align: center;
 }
 
-/* line 59, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
+/* line 71, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
 .button.button-back, .button.back {
   padding-left: 34px;
 }
 
-/* line 61, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
+/* line 73, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
 .button.button-back:after, .button.back:after {
   position: absolute;
   content: "\f104";
@@ -2841,12 +2857,12 @@ ul.menu li.expanded ul ul li a {
   line-height: 20px;
 }
 
-/* line 75, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
+/* line 87, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
 .button.arrow {
   padding-right: 34px;
 }
 
-/* line 77, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
+/* line 89, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
 .button.arrow:after {
   position: absolute;
   content: "\f105";
@@ -2861,12 +2877,12 @@ ul.menu li.expanded ul ul li a {
   line-height: 20px;
 }
 
-/* line 91, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
+/* line 103, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
 .button.button-external, .button.external {
   padding-right: 40px;
 }
 
-/* line 93, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
+/* line 105, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
 .button.button-external:after, .button.external:after {
   position: absolute;
   content: "\f08e";
@@ -2881,18 +2897,18 @@ ul.menu li.expanded ul ul li a {
   line-height: 20px;
 }
 
-/* line 108, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
+/* line 120, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
 .button.button-right, .button.right {
   float: right;
 }
 
-/* line 111, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
+/* line 123, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
 .button.button-left, .button.left {
   float: left;
 }
 
 @media only screen and (max-width: 767px) {
-  /* line 114, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
+  /* line 126, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
   .button.full-on-mobile {
     float: none;
     display: block;
@@ -2901,17 +2917,17 @@ ul.menu li.expanded ul ul li a {
   }
 }
 
-/* line 122, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
+/* line 134, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
 .button.no-margin {
   margin: 0;
 }
 
-/* line 125, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
+/* line 137, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
 .button.no-bottom-margin, .button.no-margin-bottom {
   margin-bottom: 0;
 }
 
-/* line 129, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
+/* line 141, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_buttons.scss */
 .button .fa {
   margin-left: 8px;
 }
@@ -2922,7 +2938,7 @@ ul.menu li.expanded ul ul li a {
   top: 0;
   left: 0;
   z-index: 2000;
-  background: #3171AE;
+  background: #1839D6;
   outline: none;
 }
 
@@ -2933,7 +2949,7 @@ ul.menu li.expanded ul ul li a {
 
 /* line 24, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_push-menu.scss */
 .pushmenu {
-  background: #3171AE;
+  background: #1839D6;
   font-family: "Open Sans", "helvetica", "arial";
   width: 540px;
   left: -540px;
@@ -2997,7 +3013,7 @@ ul.menu li.expanded ul ul li a {
 
 /* line 66, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_push-menu.scss */
 .pushmenu ul li.heading, .pushmenu ul li h3 {
-  color: #1b3d5e;
+  color: #0e217a;
   font-size: 16px;
   font-family: "Open Sans", "helvetica", "arial";
   margin: 8px 0 0 0;
@@ -3257,7 +3273,7 @@ select:focus {
 
 /* line 6, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_header.scss */
 .header {
-  background-color: #FFF;
+  background-color: #DEE0DD;
   min-height: 58px;
   width: 100%;
   border-bottom: 1px solid #CCC;
@@ -3275,6 +3291,23 @@ body.body-header-fixed {
   margin-top: 58px;
 }
 
+/* line 22, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_header.scss */
+.header-profile {
+  background-color: #FFF;
+  min-height: auto;
+  width: 100%;
+  padding: 10px 0 10px 0;
+  border-bottom: 1px solid #CCC;
+  margin-bottom: 20px;
+}
+
+/* line 29, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_header.scss */
+.header-profile__heading {
+  float: left;
+  font-size: 20px;
+  line-height: 32px;
+}
+
 /* line 7, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_type.scss */
 p {
   color: #333;
@@ -3287,13 +3320,13 @@ p {
 
 /* line 17, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_type.scss */
 a {
-  color: #3171AE;
+  color: #1839D6;
   text-decoration: underline;
 }
 
 /* line 20, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_type.scss */
 a:hover {
-  color: #1b3d5e;
+  color: #0e217a;
 }
 
 /* line 25, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_type.scss */
@@ -3398,7 +3431,7 @@ blockquote, .blockquote {
   margin: 0 0 20px 0;
   padding: 14px;
   background: #f2f2f2;
-  color: #3171AE;
+  color: #1839D6;
   font-size: 18px;
   line-height: 1.5;
   font-weight: 200;
@@ -3777,7 +3810,7 @@ table th[class*="col-"] {
 
 /* line 34, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_panel.scss */
 .panel.panel--glow:hover {
-  background-color: #3171AE;
+  background-color: #1839D6;
 }
 
 /* line 36, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_panel.scss */
@@ -3826,7 +3859,7 @@ table th[class*="col-"] {
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-  color: #1B96D4;
+  color: #62E35C;
 }
 
 /* line 14, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_well.scss */
@@ -3837,7 +3870,7 @@ table th[class*="col-"] {
 
 /* line 18, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_well.scss */
 .well.well-primary {
-  background: #3171AE;
+  background: #1839D6;
 }
 
 /* line 24, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_well.scss */
@@ -4402,7 +4435,7 @@ body.modal-open {
 
 /* line 140, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_modal.scss */
 .reveal-modal.reveal-modal--blue .reveal-modal__header {
-  background: #3171AE;
+  background: #1839D6;
   height: 30px;
 }
 
@@ -4451,7 +4484,7 @@ body.modal-open {
 /* line 1, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_caption.scss */
 .caption {
   background-color: #FFF;
-  border-right: 20px solid #1B96D4;
+  border-right: 20px solid #62E35C;
   opacity: 0.8;
   padding: 20px;
   padding-right: 150px;
@@ -4492,10 +4525,33 @@ ul.index li a:hover {
 
 /* line 22, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_index.scss */
 ul.index li.heading, ul.index li h3 {
-  color: #1b3d5e;
+  color: #0e217a;
   font-size: 16px;
   font-family: "Open Sans", "helvetica", "arial";
   margin: 8px 0 0 0;
+}
+
+/* line 1, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_new-profile.scss */
+.new-profile {
+  border: 1px dashed #CCC;
+  padding: 50px;
+  text-align: center;
+}
+
+/* line 1, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_skillsets.scss */
+.skillsets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+/* line 6, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_skillsets.scss */
+.skillsets li {
+  list-style: none;
+  margin-right: 10px;
+  padding: 0;
+  display: inline-block;
 }
 
 /* line 2, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
@@ -4544,7 +4600,7 @@ body.page-homepage .strip:after {
 
 /* line 26, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
 body.page-homepage .punchline {
-  background-color: #3171AE;
+  background-color: #1839D6;
   padding: 30px;
   width: 80%;
   height: 200px;
@@ -4589,7 +4645,7 @@ body.page-homepage .punchline h2 {
 
 /* line 58, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
 body.page-homepage .punchline-right {
-  background-color: #3171AE;
+  background-color: #1839D6;
   padding: 40px;
   width: 200px;
   height: 200px;
@@ -4622,7 +4678,7 @@ body.page-homepage .features .feature {
 /* line 80, /Users/rob/Projects/tshape/src/tshape/static/scss/pages/_page-homepage.scss */
 body.page-homepage .features .feature .line {
   width: 80%;
-  border-top: 4px solid #3171AE;
+  border-top: 4px solid #1839D6;
   margin-bottom: 15px;
 }
 
@@ -4788,7 +4844,7 @@ body.page-homepage .human .caption {
   font-family: "slick";
   font-size: 20px;
   line-height: 1;
-  color: #3171AE;
+  color: #1839D6;
   opacity: 0.75;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

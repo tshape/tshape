@@ -9,7 +9,6 @@
   text-align: left;
   padding: 5px 11px 7px 11px;
   font-size: 14px;
-  margin-top: 18px;
   background: $primary-color;
   &:link, &:visited {
     color: #FFF;
@@ -29,8 +28,21 @@
       text-decoration: none;
     }
   }
-  &.cancel {
-    background-color: #6e706f;
+  &.empty {
+    background: none;
+    border: 1px dashed #CCC;
+    color: #999;
+    &:hover {
+      background-color: #EAEAEA;
+      border-color: #333;
+    }
+  }
+  &.disabled {
+    background-color: #DDD;
+    color: #999;
+    &:hover {
+      background-color: #DDD;
+    }
   }
   // Sizes
   &.full {
