@@ -13,6 +13,8 @@
 @import "foundation/components/tooltips";
 
 // Blocks
+@import "blocks/tshape";
+@import "blocks/slider";
 @import "blocks/logo";
 @import "blocks/menu";
 @import "blocks/buttons";
@@ -36,7 +38,9 @@
 // Layout
 @import "pages/page-homepage";
 
-// Vendor
+// Modules
+@import "../modules/slick/slick-theme";
+@import "../modules/slick/slick";
 
 // Font
 @import url(http://fonts.googleapis.com/css?family=Lora:400,700|Open+Sans:400,700|Roboto:400,700);

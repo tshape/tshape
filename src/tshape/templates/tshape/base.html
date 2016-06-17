@@ -4,9 +4,12 @@
 
     {% load staticfiles %}
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'modules/slick/slick.css' %}" rel="stylesheet">
+    <link href="{% static 'modules/slick/slick-theme.css' %}" rel="stylesheet">
     <script src="{% static 'js/underscore-min.js' %}"></script>
     <script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
     <script src="{% static 'js/foundation.min.js' %}"></script>
+
 <body class="page-homepage">
 <div class="header">
     <div class="row">
@@ -20,6 +23,8 @@
 </div>
 {% block content %}{% endblock content %}
 {% block extra_javascript %}{% endblock extra_javascript %}
+    <script src="{% static 'modules/slick/slick.min.js' %}"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
 </body>
 
 </html>
