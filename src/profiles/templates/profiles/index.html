@@ -1,18 +1,15 @@
-{% extends "profiles/base.html" %}
+{% extends "tshape/base.html" %}
+{% block body_class %}profile{% endblock %}
 {% load i18n %}
 {% block content %}
-<div class="container content" ng-app="ProfileApp">
-
-	<h1>Profiles</h1>
-	<div ng-controller="AppController">
-		<div class="panel" ng-repeat="post in posts">
-		{%verbatim%}
-			<h3 class="panel-title">{{ post.title }} <small>{{ post.author.username }}</small></h3>
-			<p class="well">{{ post.body }}</p>
-		{%endverbatim%}
+<div class="row ">
+	<div class="column small-12">
+		<h1>Profile</h1>
+		<h2>Hi, let's create your first Tshape profile.</h2>
+		<div class="new-profile">
+			<a href="/profile/skillsets/">Create Profile</a>
 		</div>
 	</div>
-
 </div>
 
 {% endblock content %}

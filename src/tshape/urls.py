@@ -20,7 +20,8 @@ from . import views
 
 
 urlpatterns = [
-    url(r'^profiles/', include('profiles.urls')),
+    url(r'^profile/', include('profiles.urls')),
+    #url(r'^profiles/', include('profiles.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='index'),
 ]
