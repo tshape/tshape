@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.contrib.auth.views import login, logout
 
 from . import views
 
@@ -23,5 +24,7 @@ urlpatterns = [
     url(r'^profile/', include('profiles.urls')),
     #url(r'^profiles/', include('profiles.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^login/$', login),
+    url(r'^logout/$', logout),
     url(r'^$', views.index, name='index'),
 ]
