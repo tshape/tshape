@@ -97,6 +97,8 @@ DATABASES = {
 
 LOGIN_REDIRECT_URL = '/'
 
+AUTHENTICATION_BACKENDS = ['tshape.auth.UserAuth']
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators

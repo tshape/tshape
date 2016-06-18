@@ -1,0 +1,15 @@
+{% extends "tshape/base.html" %}
+
+{% block content %}
+
+    {% if form.errors %}
+        <p>Please fill in all he required fields</p>
+    {% endif %}
+
+    <form action='' method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Sign Up">
+    </form>
+
+{% endblock %}
