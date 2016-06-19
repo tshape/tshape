@@ -2415,7 +2415,12 @@ th.hide-for-touch {
   margin-bottom: 10px;
 }
 
-/* line 54, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+/* line 46, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape .tshape__panel--middle {
+  margin-top: 30px;
+}
+
+/* line 57, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
 .tshape__skillset {
   float: left;
   width: 40px;
@@ -2423,12 +2428,12 @@ th.hide-for-touch {
   text-align: center;
 }
 
-/* line 60, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+/* line 63, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
 .tshape__skillset:nth-child(1) .tshape__skill {
   background: blue;
 }
 
-/* line 54, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+/* line 57, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
 .tshape__skillset {
   float: left;
   width: 40px;
@@ -2436,12 +2441,12 @@ th.hide-for-touch {
   text-align: center;
 }
 
-/* line 60, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+/* line 63, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
 .tshape__skillset:nth-child(2) .tshape__skill {
-  background: #0c1ceb;
+  background: #0711f3;
 }
 
-/* line 54, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+/* line 57, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
 .tshape__skillset {
   float: left;
   width: 40px;
@@ -2449,12 +2454,12 @@ th.hide-for-touch {
   text-align: center;
 }
 
-/* line 60, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+/* line 63, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
 .tshape__skillset:nth-child(3) .tshape__skill {
-  background: #1839d6;
+  background: #0f22e7;
 }
 
-/* line 54, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+/* line 57, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
 .tshape__skillset {
   float: left;
   width: 40px;
@@ -2462,12 +2467,38 @@ th.hide-for-touch {
   text-align: center;
 }
 
-/* line 60, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+/* line 63, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
 .tshape__skillset:nth-child(4) .tshape__skill {
+  background: #1633da;
+}
+
+/* line 57, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape__skillset {
+  float: left;
+  width: 40px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* line 63, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape__skillset:nth-child(5) .tshape__skill {
+  background: #1d44ce;
+}
+
+/* line 57, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape__skillset {
+  float: left;
+  width: 40px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* line 63, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape__skillset:nth-child(6) .tshape__skill {
   background: #2555c2;
 }
 
-/* line 54, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+/* line 57, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
 .tshape__skillset {
   float: left;
   width: 40px;
@@ -2475,38 +2506,64 @@ th.hide-for-touch {
   text-align: center;
 }
 
-/* line 60, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
-.tshape__skillset:nth-child(5) .tshape__skill {
-  background: #3171ae;
-}
-
-/* line 54, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
-.tshape__skillset {
-  float: left;
-  width: 40px;
-  margin-right: 10px;
-  text-align: center;
-}
-
-/* line 60, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
-.tshape__skillset:nth-child(6) .tshape__skill {
-  background: #3d8e99;
-}
-
-/* line 54, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
-.tshape__skillset {
-  float: left;
-  width: 40px;
-  margin-right: 10px;
-  text-align: center;
-}
-
-/* line 60, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+/* line 63, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
 .tshape__skillset:nth-child(7) .tshape__skill {
+  background: #2c66b6;
+}
+
+/* line 57, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape__skillset {
+  float: left;
+  width: 40px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* line 63, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape__skillset:nth-child(8) .tshape__skill {
+  background: #3377aa;
+}
+
+/* line 57, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape__skillset {
+  float: left;
+  width: 40px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* line 63, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape__skillset:nth-child(9) .tshape__skill {
+  background: #3b889d;
+}
+
+/* line 57, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape__skillset {
+  float: left;
+  width: 40px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* line 63, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape__skillset:nth-child(10) .tshape__skill {
+  background: #429991;
+}
+
+/* line 57, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape__skillset {
+  float: left;
+  width: 40px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* line 63, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape__skillset:nth-child(11) .tshape__skill {
   background: #49aa85;
 }
 
-/* line 54, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+/* line 57, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
 .tshape__skillset {
   float: left;
   width: 40px;
@@ -2514,12 +2571,12 @@ th.hide-for-touch {
   text-align: center;
 }
 
-/* line 60, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
-.tshape__skillset:nth-child(8) .tshape__skill {
-  background: #56c671;
+/* line 63, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape__skillset:nth-child(12) .tshape__skill {
+  background: #51bb79;
 }
 
-/* line 54, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+/* line 57, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
 .tshape__skillset {
   float: left;
   width: 40px;
@@ -2527,12 +2584,12 @@ th.hide-for-touch {
   text-align: center;
 }
 
-/* line 60, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
-.tshape__skillset:nth-child(9) .tshape__skill {
-  background: #62e35c;
+/* line 63, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape__skillset:nth-child(13) .tshape__skill {
+  background: #58cc6d;
 }
 
-/* line 54, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+/* line 57, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
 .tshape__skillset {
   float: left;
   width: 40px;
@@ -2540,9 +2597,135 @@ th.hide-for-touch {
   text-align: center;
 }
 
-/* line 60, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
-.tshape__skillset:nth-child(10) .tshape__skill {
+/* line 63, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape__skillset:nth-child(14) .tshape__skill {
+  background: #5fdd60;
+}
+
+/* line 57, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape__skillset {
+  float: left;
+  width: 40px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* line 63, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape__skillset:nth-child(15) .tshape__skill {
+  background: #67ee54;
+}
+
+/* line 57, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape__skillset {
+  float: left;
+  width: 40px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* line 63, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape__skillset:nth-child(16) .tshape__skill {
   background: #6eff48;
+}
+
+/* line 70, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape__mask {
+  width: 800px;
+  margin: 0 auto;
+  background: #EAEAEA;
+  overflow-x: scroll;
+}
+
+/* line 229, /Users/rob/Projects/tshape/src/tshape/static/scss/foundation/components/_global.scss */
+.tshape__mask:before, .tshape__mask:after {
+  content: " ";
+  display: table;
+}
+
+/* line 230, /Users/rob/Projects/tshape/src/tshape/static/scss/foundation/components/_global.scss */
+.tshape__mask:after {
+  clear: both;
+}
+
+/* line 77, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape--fixed {
+  width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* line 229, /Users/rob/Projects/tshape/src/tshape/static/scss/foundation/components/_global.scss */
+.tshape--fixed:before, .tshape--fixed:after {
+  content: " ";
+  display: table;
+}
+
+/* line 230, /Users/rob/Projects/tshape/src/tshape/static/scss/foundation/components/_global.scss */
+.tshape--fixed:after {
+  clear: both;
+}
+
+/* line 82, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape--fixed .tshape__header {
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+/* line 86, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape--fixed .tshape__role {
+  margin-bottom: 3px;
+}
+
+/* line 89, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape--fixed .tshape__user {
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* line 229, /Users/rob/Projects/tshape/src/tshape/static/scss/foundation/components/_global.scss */
+.tshape--fixed .tshape__middle:before, .tshape--fixed .tshape__middle:after {
+  content: " ";
+  display: table;
+}
+
+/* line 230, /Users/rob/Projects/tshape/src/tshape/static/scss/foundation/components/_global.scss */
+.tshape--fixed .tshape__middle:after {
+  clear: both;
+}
+
+/* line 97, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape--fixed .tshape__skillset {
+  float: left;
+  width: 40px;
+  margin-right: 0;
+  text-align: center;
+}
+
+/* line 102, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape--fixed .tshape__skillset:last-child {
+  margin-right: 0;
+}
+
+/* line 106, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape--fixed .tshape__skillset-heading {
+  text-align: left;
+  transform: rotate(270deg);
+  width: 80px;
+  transform-origin: left top 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+
+/* line 116, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_tshape.scss */
+.tshape--fixed .tshape__skill {
+  width: 40px;
+  height: 40px;
+  background: green;
+  margin-bottom: 0px;
+  border: 1px solid #FFF;
 }
 
 /* line 1, /Users/rob/Projects/tshape/src/tshape/static/scss/blocks/_slider.scss */
