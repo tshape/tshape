@@ -1,6 +1,7 @@
 import random
 
 from django.contrib.auth.models import User
+from django.core.management.base import BaseCommand
 from faker import Faker
 
 from profiles.models import Profile
@@ -11,23 +12,19 @@ faker = Faker()
 faker.seed(10)
 
 
-def seed_db():
-    add_skillsets()
-    add_skills()
-    add_users()
-    add_profiles()
-    add_profile_skillsets()
+class Command(BaseCommand):
 
+    help = 'Seed the database with fake data'
 
-def get_parsed_address():
-    address = faker.address().split(" ")
-    zipcode = address[-1]
-    state = address[-2]
-    city = address[-3].split("\n")
-    street = city[0]
-    city = city[-1].replace(",", "")
-    street = ' '.join(address[0:-3]) + ' ' + street
-    return street, city, state, zipcode
+    def handle(self, *args, **options):
+        add_skillsets()
+        add_skills()
+        add_users()
+        add_profiles()
+        add_profile_skillsets()
+
+        self.stdout.write(
+            self.style.SUCCESS('Successfully seeded the database!'))
 
 
 def add_skillsets():
@@ -45,18 +42,22 @@ def add_skills():
     skillsets = Skillset.objects.all()
     for skillset in skillsets:
         for x in range(10):
-            Skill.objects.create(skillset=skillset, name=faker.company(),
+            Skill.objects.create(skillset_id=skillset, name=faker.company(),
                                  description=faker.text(),
                                  verified=True)
         for x in range(10):
-            Skill.objects.create(skillset=skillset, name=faker.company(),
+            Skill.objects.create(skillset_id=skillset, name=faker.company(),
                                  description=faker.text(),
                                  verified=False)
 
 
 def add_users():
     for x in range(20):
-        User.objects.create(username=faker.email(), password=faker.password())
+        email = faker.email()
+        try:
+            User.objects.create(username=email, email=email, password=faker.password())
+        except Exception as e:
+            print(e)
 
 
 def add_profiles():
@@ -71,12 +72,8 @@ def add_profile_skillsets():
     profiles = Profile.objects.all()
     skillsets = Skillset.objects.all()
     for profile in profiles:
-        profile_skillsets = random.sample(skillsets, 8)
+        profile_skillsets = random.sample(set(skillsets), 8)
         for profile_skillset in profile_skillsets:
-            profile_skills = random.sample(profile_skillset.skills, 10)
-            profile.skills.add(profile_skills)
+            profile_skills = random.sample(set(profile_skillset.skills.all()), 10)
+            profile.skills.add(*profile_skills)
             profile.save()
-
-
-if __name__ == "__main__":
-    seed_db()

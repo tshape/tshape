@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 from skillsets.models import Skillset
 from tshape.models import BaseModel
@@ -6,14 +7,22 @@ from tshape.models import BaseModel
 
 class Skill(BaseModel):
 
-    name = models.CharField(max_length=280)
-    description = models.TextField()
-    verified = models.BooleanField(null=False, default=False)
+    class Meta:
+        db_table = 'skills'
+        ordering = ('name',)
+        verbose_name = _('skill')
+        verbose_name_plural = _('skills')
+
+    name = models.CharField(
+        _('name'), null=False, unique=True, max_length=280,
+        error_messages={
+            'unique': _("A user with that email already exists."),
+        })
+    description = models.TextField(_('description'))
+    verified = models.BooleanField(_('verified'), null=False, default=False)
     skillset_id = models.ForeignKey(
-        Skillset, on_delete=models.CASCADE, null=False)
+        Skillset, verbose_name=_('skillset id'),
+        related_name='skills', on_delete=models.CASCADE, null=False)
 
     def __str__(self):
         return self.name
-
-    class Meta:
-        db_table = "skills"

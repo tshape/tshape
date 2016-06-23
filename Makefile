@@ -50,7 +50,7 @@ docker-run:
 clean:
 	rm -rf build
 	rm -rf *~*
-	find . -name '*.pyc|__pycache__|\.cache' -exec rm {} \;
+	find . | grep -E "(__pycache__|\.pyc)" | xargs rm -rf
 
 clean-tox:
 	rm -rf .tox
