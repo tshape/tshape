@@ -1,4 +1,4 @@
-from django.contrib.auth import get_backends, login, logout
+from django.contrib.auth import authenticate, get_backends, login, logout
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
@@ -24,11 +24,8 @@ class LoginView(FormView):
             login(self.request, user)
             return HttpResponseRedirect(self.success_url)
         else:
-            # form = UserLoginForm(self.request.POST)
+            # different action needed here for inactive users
             return render_to_response(self.template_name, {'form': form})
-
-    def form_invalid(self, form):
-        return render_to_response(self.template_name, {'form': form})
 
 
 class LogoutView(RedirectView):
@@ -43,13 +40,14 @@ class LogoutView(RedirectView):
 class SignupView(CreateView):
 
     form_class = UserCreateForm
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('profiles:new')
     template_name = 'users/signup.html'
 
     def form_valid(self, form):
         form.save()
         email = form.cleaned_data['email']
         password = form.cleaned_data['password1']
+        get_backends()
         user = authenticate(email=email, password=password)
         login(self.request, user)
         return super(SignupView, self).form_valid(form)
