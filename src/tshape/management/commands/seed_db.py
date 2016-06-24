@@ -1,12 +1,12 @@
 import random
 
-from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand
 from faker import Faker
 
 from profiles.models import Profile
 from skills.models import Skill
 from skillsets.models import Skillset
+from users.models import User
 
 faker = Faker()
 faker.seed(10)
@@ -42,20 +42,26 @@ def add_skills():
     skillsets = Skillset.objects.all()
     for skillset in skillsets:
         for x in range(10):
-            Skill.objects.create(skillset_id=skillset, name=faker.company(),
-                                 description=faker.text(),
-                                 verified=True)
+            try:
+                Skill.objects.create(skillset_id=skillset, name=faker.company(),
+                                     description=faker.text(),
+                                     verified=True)
+            except:
+                pass
         for x in range(10):
-            Skill.objects.create(skillset_id=skillset, name=faker.company(),
-                                 description=faker.text(),
-                                 verified=False)
+            try:
+                Skill.objects.create(skillset_id=skillset, name=faker.company(),
+                                     description=faker.text(),
+                                     verified=False)
+            except:
+                pass
 
 
 def add_users():
     for x in range(20):
         email = faker.email()
         try:
-            User.objects.create(username=email, email=email, password=faker.password())
+            User.objects.create(email=email, password=faker.password())
         except Exception as e:
             print(e)
 
