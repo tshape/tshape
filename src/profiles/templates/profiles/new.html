@@ -1,4 +1,4 @@
-{% extends "tshape/base.html" %}
+{% extends "base.html" %}
 {% block page_class %}page-profile-new{% endblock %}
 {% block section_class %}section-profile{% endblock %}
 {% load i18n %}
@@ -8,6 +8,10 @@
 		<h2 style="text-align: center; margin-top: 40px;">Hi, let's create your first Tshape.</h2>
 		<div class="new-profile">
 			<a href="/profile/skillsets/">Create Profile</a>
+            <form action="" method="post">{% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Create" />
+            </form>
 		</div>
 	</div>
 </div>

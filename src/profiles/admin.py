@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Profile
+from profiles.models import Profile
 
 
 class ProfileInline(admin.StackedInline):

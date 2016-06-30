@@ -8,9 +8,9 @@ from .models import User
 
 class UserLoginForm(AuthenticationForm):
 
-    email = forms.EmailField(label=_('E-mail'), max_length=75)
+    email = forms.EmailField(label=_('E-mail'), max_length=75, required=True)
     password = forms.CharField(
-        widget=forms.PasswordInput, required=True)
+        widget=forms.PasswordInput, label=_('Password'), required=True)
 
     def __init__(self, *args, **kwargs):
         super(UserLoginForm, self).__init__(*args, **kwargs)
@@ -35,4 +35,4 @@ class UserCreateForm(UserCreationForm):
         model = User
         fields = ('email', 'password1', 'password2')
 
-    email = forms.EmailField(required=True)
+    email = forms.EmailField(label=_('E-mail'), max_length=75, required=True)

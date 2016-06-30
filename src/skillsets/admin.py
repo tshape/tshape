@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Skillset
+from skillsets.models import Skillset
 
 
 admin.site.register(Skillset)

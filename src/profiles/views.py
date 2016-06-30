@@ -1,19 +1,73 @@
-from django.http import HttpResponse
-from django.template import loader
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.list import ListView
+from rest_framework import viewsets
+
+from profiles.forms import ProfileForm
+from profiles.models import Profile
+from profiles.serializers import ProfileSerializer
+from tshape.utils import render_response, PKContextMixin
 
 
-def index(request):
-    template = loader.get_template('profiles/index.html')
-    return HttpResponse(template.render(request))
+class ProfileCreateView(CreateView):
 
-def new(request):
-    template = loader.get_template('profiles/new.html')
-    return HttpResponse(template.render(request))
+    form_class = ProfileForm
+    template_name = 'profiles/new.html'
 
-def skillsets(request):
-    template = loader.get_template('profiles/skillsets.html')
-    return HttpResponse(template.render(request))
+    def get(self, request, *args, **kwargs):
+        user = self.request.user
+        if hasattr(user, 'profile'):
+            return HttpResponseRedirect(
+                reverse('profiles:detail', kwargs={'profile_id': user.id}))
+        else:
+            context = {'form': self.form_class(user=user)}
+            return render_response(request, context)
+            # return render(request, context=context)
 
-def skill(request):
-    template = loader.get_template('profiles/skill.html')
-    return HttpResponse(template.render(request))
+    def form_valid(self, form, *args, **kwargs):
+        profile = form.save(commit=False)
+        profile.user = self.request.user
+        profile.save()
+        return reverse('profiles:detail',
+                       kwargs={'profile_id': profile.user_id})
+
+
+class ProfileDetailView(PKContextMixin, DetailView):
+
+    model = Profile
+    template_name = 'profiles/detail.html'
+
+    def get_object(self, *args, **kwargs):
+        profile_id = self.kwargs.get('profile_id')
+        return Profile.objects.get(pk=profile_id)
+
+
+class ProfileListView(ListView):
+
+    model = Profile
+    template_name = 'profiles/list.html'
+
+
+class ProfileUpdateView(PKContextMixin, UpdateView):
+
+    form_class = ProfileForm
+    template_name = 'profiles/edit.html'
+
+    def get_object(self, *args, **kwargs):
+        profile_id = self.kwargs.get('profile_id')
+        return Profile.objects.get(pk=profile_id)
+
+    def form_valid(self, form, *args, **kwargs):
+        profile = form.save()
+        return reverse('profiles:detail',
+                       kwargs={'profile_id': profile.user_id})
+
+
+class ProfileViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    This viewset automatically provides `list` and `detail` actions.
+    """
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer

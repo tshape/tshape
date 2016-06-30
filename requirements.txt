@@ -3,3 +3,5 @@ psycopg2
 ipython
 django-extensions
 python-dotenv
+djangorestframework
+drf-nested-routers

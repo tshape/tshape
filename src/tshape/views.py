@@ -13,4 +13,4 @@ class LoggedInMixin(object):
 
 @require_http_methods(["GET", "POST"])
 def index(request):
-    return render(request, "tshape/index.html")
+    return render(request, "index.html")

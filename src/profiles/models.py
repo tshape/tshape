@@ -19,9 +19,10 @@ class Profile(BaseModel):
                                 on_delete=models.CASCADE, primary_key=True)
     first_name = models.CharField(_('first name'), max_length=30)
     last_name = models.CharField(_('last name'), max_length=50)
-    title = models.CharField(_('title'), max_length=280)
-    description = models.TextField(_('description'))
-    years_experience = models.IntegerField(_('years of experience'), null=True)
+    title = models.CharField(_('title'), max_length=280, blank=True)
+    description = models.TextField(_('description'), blank=True)
+    years_experience = models.IntegerField(
+        _('years of experience'), null=True, blank=True)
     skills = models.ManyToManyField(Skill, verbose_name=_('skills'))
     skillsets = models.ManyToManyField(Skillset, verbose_name=_('skillsets'))
 

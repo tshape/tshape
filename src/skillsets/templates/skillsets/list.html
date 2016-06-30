@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+    <h1>Skillsets</h1>
+    <ul>
+    {% for skillset in object_list %}
+        <li>{{ skillset.name }} - {{ skillset.description }}</li>
+    {% empty %}
+        <li>No skillsets yet.</li>
+    {% endfor %}
+    </ul>
+{% endblock content %}
+
+{% block extra_javascript %}
+{% endblock extra_javascript %}

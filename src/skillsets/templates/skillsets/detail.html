@@ -1,4 +1,4 @@
-{% extends "tshape/base.html" %}
+{% extends "base.html" %}
 {% block page_class %}page-profile-skillsets{% endblock %}
 {% block section_class %}section-profile{% endblock %}
 {% load i18n %}
@@ -9,7 +9,7 @@
 <div class="strip">
 	<div class="row">
 		<div class="column small-12">
-			<a class="button right" href="/profile/skillsets/">Edit Skillsets</a>
+            <a class="button right" href="{% url 'profiles:skillsets:edit-all' profile_id %}">Edit Skillsets</a>
 			<ul class="skillsets skillsets--added">
 				<li><a class="badge empty" href="#">Add Skillset</a></li>
 			</ul>

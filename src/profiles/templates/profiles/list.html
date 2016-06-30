@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block page_class %}page-profile-new{% endblock %}
+{% block section_class %}section-profile{% endblock %}
+{% load i18n %}
+
+{% block content %}
+<div class="row ">
+    <div class="column small-12">
+        <h1>Profiles</h1>
+        <ul>
+        {% for profile in object_list %}
+            <li>{{ profile.title }} - {{ profile.first_name }} {{ profile.last_name }}</li>
+        {% empty %}
+            <li>No profiles yet.</li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock content %}
+
+{% block extra_javascript %}
+{% endblock extra_javascript %}

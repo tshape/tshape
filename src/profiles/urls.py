@@ -1,13 +1,15 @@
-from django.conf.urls import url
+from django.conf.urls import include, url
 
-from . import views
+from profiles.views import (ProfileCreateView, ProfileDetailView,
+                            ProfileListView, ProfileUpdateView)
 
 
 app_name = 'profiles'
 
 urlpatterns = [
-    url(r'skillsets/javascript', views.skill, name='skill'),
-    url(r'skillsets', views.skillsets, name='skillsets'),
-    url(r'new', views.new, name='new'),
-    url(r'^', views.index, name='index')
+    url(r'^(?P<profile_id>\d+)/skillsets/', include('skillsets.urls')),
+    url(r'^(?P<profile_id>\d+)/edit/$', ProfileUpdateView.as_view(), name='edit'),
+    url(r'^(?P<profile_id>\d+)/$', ProfileDetailView.as_view(), name='detail'),
+    url(r'^new/$', ProfileCreateView.as_view(), name='new'),
+    url(r'^$', ProfileListView.as_view(), name='list'),
 ]

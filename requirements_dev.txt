@@ -5,3 +5,6 @@ ipython
 fake-factory
 django-extensions
 python-dotenv
+django-template-repl
+djangorestframework
+drf-nested-routers
