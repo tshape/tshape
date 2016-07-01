@@ -31,23 +31,30 @@ router.register(r'skills', skill_views.SkillViewSet)
 router.register(r'skillsets', skillset_views.SkillsetViewSet)
 router.register(r'users', user_views.UserViewSet)
 
+skillsets_router = routers.NestedSimpleRouter(
+    router, r'skillsets', lookup='skillset')
+skillsets_router.register(r'skills', skill_views.SkillViewSet)
+
 profiles_router = routers.NestedSimpleRouter(
     router, r'profiles', lookup='profile')
 profiles_router.register(r'skills', skill_views.SkillViewSet)
 profiles_router.register(r'skillsets', skillset_views.SkillsetViewSet)
 
-skillsets_router = routers.NestedSimpleRouter(
-    profiles_router, r'skillsets', lookup='skillset')
-skillsets_router.register(r'skills', skill_views.SkillViewSet)
+profile_skillsets_router = routers.NestedSimpleRouter(
+    profiles_router, r'skillsets', lookup='profile-skillset')
+profile_skillsets_router.register(r'skills', skill_views.SkillViewSet)
 
 
 # The API URLs are now determined automatically by the router.
 # Additionally, we include the login URLs for the browsable API.
 urlpatterns = [
+    # api routes
     url(r'^api/', include(router.urls)),
-    url(r'^api/', include(profiles_router.urls)),
     url(r'^api/', include(skillsets_router.urls)),
+    url(r'^api/', include(profiles_router.urls)),
+    url(r'^api/', include(profile_skillsets_router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    # regular routes
     url(r'^profile/', include('profiles.urls'), name='profiles'),
     url(r'^skillsets/', include('skillsets.urls'), name='skillsets'),
     url(r'^admin/', admin.site.urls),
