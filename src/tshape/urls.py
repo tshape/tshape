@@ -20,7 +20,7 @@ from rest_framework_nested import routers
 from profiles import views as profile_views
 from skills import views as skill_views
 from skillsets import views as skillset_views
-from tshape import views
+from tshape.views import IndexView
 from users import views as user_views
 
 
@@ -41,7 +41,7 @@ profiles_router.register(r'skills', skill_views.SkillViewSet)
 profiles_router.register(r'skillsets', skillset_views.SkillsetViewSet)
 
 profile_skillsets_router = routers.NestedSimpleRouter(
-    profiles_router, r'skillsets', lookup='profile-skillset')
+    profiles_router, r'skillsets', lookup='skillset')
 profile_skillsets_router.register(r'skills', skill_views.SkillViewSet)
 
 
@@ -61,5 +61,5 @@ urlpatterns = [
     url(r'^login/$', user_views.LoginView.as_view(), name='login'),
     url(r'^logout/$', user_views.LogoutView.as_view(), name='logout'),
     url(r'^signup/$', user_views.SignupView.as_view(), name='signup'),
-    url(r'^$', views.index, name='index'),
+    url(r'^$', IndexView.as_view(), name='index'),
 ]

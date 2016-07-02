@@ -22,6 +22,11 @@
 		<h1>Skillsets</h1>
 		<h3>Verified Skillsets</h3>
 		<ul class="skillsets">
+			{% for skill in user.skills %}
+				{% if skill.verified %}
+					<li>{{ skill.name }}</li>
+				{% endif %}
+			{% endfor %}
 			<li><a id="add-skillset-javascript" href="#">Javascript</a></li>
 			<li>Angular JS</li>
 			<li>React</li>

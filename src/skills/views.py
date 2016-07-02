@@ -32,6 +32,16 @@ class SkillListView(ListView):
     model = Skill
     template_name = 'skills/list.html'
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(SkillListView, self).get_context_data(*args, **kwargs)
+        context.update(self.kwargs)
+        # profile_id = self.kwargs.get('profile_id')
+        # skillset_id = self.kwargs.get('skillset_id')
+        # skillsets = Profile.objects.get(pk=profile_id).skillsets()
+        # skills = [skill for skill in skillsets if skillset.id == skillset_id]
+        context['object_list'] = Skills.objects.filter(skillset_id=self.kwar)
+        return context
+
 
 class SkillUpdateView(UpdateView):
 

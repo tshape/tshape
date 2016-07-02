@@ -25,6 +25,9 @@
 			<div class="columns small-6">
 				<h4>Your Skills</h4>
 				<ol>
+					{% for skill in object_list %}
+						<li>{{ skill.name }}</li>
+					{% endfor %}
 					<li>can write an iterertive loop in javascript</li>
 					<li>can write an ajax request and manipulate an object in the response</li>
 					<li>closures</li>
@@ -40,6 +43,11 @@
 			<div class="columns small-6">
 				<h4>Verified Skills</h4>
 				<ol>
+					{% for skill in object_list %}
+						{% if skill.verified %}
+							<li>{{ skill.name }}</li>
+						{% endif %}
+					{% endfor %}
 					<li>can write an iterertive loop in javascript</li>
 					<li>can write an ajax request and manipulate an object in the response</li>
 					<li>closures</li>

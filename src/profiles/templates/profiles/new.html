@@ -7,7 +7,7 @@
 	<div class="column small-12">
 		<h2 style="text-align: center; margin-top: 40px;">Hi, let's create your first Tshape.</h2>
 		<div class="new-profile">
-			<a href="/profile/skillsets/">Create Profile</a>
+			<a href="{% url 'profiles:new' user.id %">Create Profile</a>
             <form action="" method="post">{% csrf_token %}
                 {{ form.as_p }}
                 <input type="submit" value="Create" />

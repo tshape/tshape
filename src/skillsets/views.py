@@ -2,7 +2,6 @@ from django.core.urlresolvers import reverse
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
-# from rest_framework import authentication, permissions
 from rest_framework import viewsets
 
 from profiles.models import Profile
@@ -28,6 +27,13 @@ class SkillsetDetailView(DetailView):
 
     model = Skillset
     template_name = 'skillsets/detail.html'
+    fields = ['skillsets', 'skills']
+
+    def get_object(self, *args, **kwargs):
+        profile_id = self.kwargs.get('profile_id')
+        if profile_id:
+            return Profile.objects.get(pk=profile_id)
+        return None
 
 
 class SkillsetListView(PKContextMixin, ListView):
@@ -46,13 +52,14 @@ class SkillsetUpdateView(UpdateView):
         return reverse('skillsets:detail', kwargs={'pk': skillset.id})
 
 
-# class ProfileSkillsetsUpdateView(PKContextMixin, UpdateView):
+class ProfileSkillsetsUpdateView(PKContextMixin, UpdateView):
 
-#     template_name = 'skillsets/edit.html'
+    template_name = 'skillsets/edit.html'
+    fields = ['skillsets', 'skills']
 
-#     def get_object(self, *args, **kwargs):
-#         profile_id = self.kwargs.get('profile_id')
-#         return Profile.objects.get(pk=profile_id)
+    def get_object(self, *args, **kwargs):
+        profile_id = self.kwargs.get('profile_id')
+        return Profile.objects.get(pk=profile_id)
 
 
 class SkillsetViewSet(viewsets.ReadOnlyModelViewSet):
