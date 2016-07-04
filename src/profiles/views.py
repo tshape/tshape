@@ -37,11 +37,14 @@ class ProfileDetailView(PKContextMixin, DetailView):
     model = Profile
     template_name = 'profiles/detail.html'
 
-    def get_object(self, profile_id, *args, **kwargs):
-        # profile_id = self.kwargs.get('profile_id')
-        # if profile_id:
-        return Profile.objects.get(pk=profile_id)
-        # return None
+    def get_object(self, *args, **kwargs):
+        profile_id = self.kwargs.get('profile_id')
+        if profile_id:
+            return Profile.objects.get(pk=profile_id)
+        user = self.request.user
+        print(user)
+        return HttpResponseRedirect(
+            reverse('profiles:new', kwargs={'profile_id': user.id}))
 
 
 class ProfileListView(ListView):

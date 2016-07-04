@@ -3,10 +3,8 @@
         <div class="column small-12">
             <div class="logo__image"><a href="/">TShape</a></div>
             <ul class="menu">
-                {% if profile_id %}
-                    <li><a href="{% url 'profiles:detail' profile_id %}">Profile</a></li>
-                {% endif %}
                 {% if user.is_authenticated %}
+                    <li><a href="{% url 'profiles:detail' user.id %}">Profile</a></li>
                     {{ user }}
                     <li><a href="{% url 'django.contrib.auth.views.logout' %}">Logout</a></li>
                 {% else %}
