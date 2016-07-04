@@ -40,11 +40,12 @@ class LoginView(FormView):
 
 class LogoutView(RedirectView):
 
-    url = reverse_lazy('index')
+    success_url = reverse_lazy('index')
 
     def get(self, request, *args, **kwargs):
         logout(request)
-        return super(LogoutView, self).get(request, *args, **kwargs)
+        print(request.__dict__)
+        return HttpResponseRedirect(self.success_url)
 
 
 class SignupView(CreateView):

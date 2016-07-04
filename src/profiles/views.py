@@ -1,5 +1,6 @@
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
@@ -8,7 +9,7 @@ from rest_framework import viewsets
 from profiles.forms import ProfileForm
 from profiles.models import Profile
 from profiles.serializers import ProfileSerializer
-from tshape.utils import render_response, PKContextMixin
+from tshape.utils import PKContextMixin
 
 
 class ProfileCreateView(CreateView):
@@ -21,10 +22,7 @@ class ProfileCreateView(CreateView):
         if hasattr(user, 'profile'):
             return HttpResponseRedirect(
                 reverse('profiles:detail', kwargs={'profile_id': user.id}))
-        else:
-            context = {'form': self.form_class(user=user)}
-            return render_response(request, context)
-            # return render(request, context=context)
+        return super(ProfileCreateView, self).get(request, *args, **kwargs)
 
     def form_valid(self, form, *args, **kwargs):
         profile = form.save(commit=False)
@@ -39,9 +37,11 @@ class ProfileDetailView(PKContextMixin, DetailView):
     model = Profile
     template_name = 'profiles/detail.html'
 
-    def get_object(self, *args, **kwargs):
-        profile_id = self.kwargs.get('profile_id')
+    def get_object(self, profile_id, *args, **kwargs):
+        # profile_id = self.kwargs.get('profile_id')
+        # if profile_id:
         return Profile.objects.get(pk=profile_id)
+        # return None
 
 
 class ProfileListView(ListView):

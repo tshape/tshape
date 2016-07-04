@@ -6,9 +6,9 @@
                 {% if profile_id %}
                     <li><a href="{% url 'profiles:detail' profile_id %}">Profile</a></li>
                 {% endif %}
-                {% if user %}
+                {% if user.is_authenticated %}
                     {{ user }}
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    <li><a href="{% url 'django.contrib.auth.views.logout' %}">Logout</a></li>
                 {% else %}
                     <li><a href="{% url 'signup' %}">Register</a></li>
                     <li><a href="{% url 'login' %}">Login</a></li>

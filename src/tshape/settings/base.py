@@ -99,6 +99,10 @@ DATABASES = {
 
 # User auth
 
+LOGIN_URL = '/login'
+
+LOGOUT_URL = '/logout'
+
 LOGIN_REDIRECT_URL = '/'
 
 AUTHENTICATION_BACKENDS = [
