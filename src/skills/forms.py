@@ -1,9 +1,9 @@
-from django.forms import ModelForm
+from django import forms
 
 from skills.models import Skill
 
 
-class SkillForm(ModelForm):
+class SkillForm(forms.ModelForm):
 
     class Meta:
         model = Skill

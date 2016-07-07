@@ -56,7 +56,7 @@ urlpatterns = [
     url(r'^api/', include(profile_skillsets_router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     # regular routes
-    url(r'^profile/', include('profiles.urls'), name='profiles'),
+    url(r'^profiles/', include('profiles.urls', namespace='profiles')),
     url(r'^skillsets/', include('skillsets.urls'), name='skillsets'),
     url(r'^admin/', admin.site.urls),
     url(r'^login/', user_views.LoginView.as_view(), name='login'),

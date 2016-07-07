@@ -1,8 +1,6 @@
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import UpdateView
 from django.views.generic.list import ListView
 from rest_framework import viewsets
 
@@ -10,26 +8,6 @@ from profiles.forms import ProfileForm
 from profiles.models import Profile
 from profiles.serializers import ProfileSerializer
 from tshape.utils import PKContextMixin
-
-
-class ProfileCreateView(CreateView):
-
-    form_class = ProfileForm
-    template_name = 'profiles/new.html'
-
-    def get(self, request, *args, **kwargs):
-        user = self.request.user
-        if hasattr(user, 'profile'):
-            return HttpResponseRedirect(
-                reverse('profiles:detail', kwargs={'profile_id': user.id}))
-        return super(ProfileCreateView, self).get(request, *args, **kwargs)
-
-    def form_valid(self, form, *args, **kwargs):
-        profile = form.save(commit=False)
-        profile.user = self.request.user
-        profile.save()
-        return reverse('profiles:detail',
-                       kwargs={'profile_id': profile.user_id})
 
 
 class ProfileDetailView(PKContextMixin, DetailView):
@@ -41,10 +19,7 @@ class ProfileDetailView(PKContextMixin, DetailView):
         profile_id = self.kwargs.get('profile_id')
         if profile_id:
             return Profile.objects.get(pk=profile_id)
-        user = self.request.user
-        print(user)
-        return HttpResponseRedirect(
-            reverse('profiles:new', kwargs={'profile_id': user.id}))
+        return self.request.user.profile
 
 
 class ProfileListView(ListView):
@@ -63,9 +38,13 @@ class ProfileUpdateView(PKContextMixin, UpdateView):
         return Profile.objects.get(pk=profile_id)
 
     def form_valid(self, form, *args, **kwargs):
-        profile = form.save()
+        form.save()
+        return super(ProfileUpdateView, self).form_valid(form, *args, **kwargs)
+        # return self.get_success_url(profile)
+
+    def get_success_url(self, *args, **kwargs):
         return reverse('profiles:detail',
-                       kwargs={'profile_id': profile.user_id})
+                       kwargs={'profile_id': self.request.user.id})
 
 
 class ProfileViewSet(viewsets.ReadOnlyModelViewSet):

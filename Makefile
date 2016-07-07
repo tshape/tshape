@@ -56,18 +56,18 @@ clean-tox:
 	rm -rf .tox
 
 db-flush:
-	$(PYTHON) manage.py flush
+	$(PYTHON) src/manage.py flush
 
 db-migrate: # include app=app_name
-	$(PYTHON) manage.py makemigrations $(app)
-	$(PYTHON) manage.py migrate $(app)
+	$(PYTHON) src/manage.py makemigrations $(app)
+	$(PYTHON) src/manage.py migrate $(app)
 
 db-reset:
-	$(PYTHON) manage.py reset_db
-	$(PYTHON) manage.py syncdb
+	$(PYTHON) src/manage.py reset_db
+	$(PYTHON) src/manage.py syncdb
 
 db-seed:
-	$(PYTHON) manage.py shell < tests/db/seed_db.py
+	$(PYTHON) src/manage.py shell < tests/db/seed_db.py
 
 db-shell:
 	psql -h 192.168.99.100 -p 5432 -U postgres postgres
@@ -79,16 +79,16 @@ requirements:
 	pip install -r requirements.text
 
 run:
-	$(PYTHON) manage.py runserver 0.0.0.0:8000
+	$(PYTHON) src/manage.py runserver 0.0.0.0:8000
 
 ssl:
-	$(PYTHON) manage.py runsslserver 0.0.0.0:9000
+	$(PYTHON) src/manage.py runsslserver 0.0.0.0:9000
 
 shell:
-	$(PYTHON) manage.py shell
+	$(PYTHON) src/manage.py shell
 
 syncdb:
-	$(PYTHON) manage.py syncdb --noinput
+	$(PYTHON) src/manage.py syncdb --noinput
 
 update:
 	pip install --upgrade -r requirements.text

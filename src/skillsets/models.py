@@ -19,6 +19,7 @@ class Skillset(BaseModel):
         })
     description = models.TextField(_('description'))
     verified = models.BooleanField(_('verified'), null=False, default=False)
+    weight = models.IntegerField(_('weight'), null=False, default=0)
 
     def __str__(self):
         return self.name

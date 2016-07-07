@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.views.generic import CreateView, FormView, RedirectView
 from rest_framework import viewsets
 
+from profiles.models import Profile
 from users.forms import UserLoginForm, UserCreateForm
 from users.models import User
 from users.serializers import UserSerializer
@@ -26,16 +27,13 @@ class LoginView(FormView):
             login(self.request, user)
             context = {'profile_id': user.id}
             return HttpResponseRedirect(
-                reverse(self.get_success_method(user), kwargs=context))
+                reverse(self.get_success_url(user), kwargs=context))
         else:
             # different action needed here for inactive users
             return render(self.request, self.template_name, {'form': form})
 
-    def get_success_method(self, user, *args, **kwargs):
-        if hasattr(user, 'profile'):
-            return 'profiles:detail'
-        else:
-            return 'profiles:new'
+    def get_success_url(self, user, *args, **kwargs):
+        return reverse_lazy('profiles:detail', kwargs={'profile_id': user.id})
 
 
 class LogoutView(RedirectView):
@@ -44,14 +42,12 @@ class LogoutView(RedirectView):
 
     def get(self, request, *args, **kwargs):
         logout(request)
-        print(request.__dict__)
         return HttpResponseRedirect(self.success_url)
 
 
 class SignupView(CreateView):
 
     form_class = UserCreateForm
-    success_url = reverse_lazy('profiles:new')
     template_name = 'users/signup.html'
 
     def form_valid(self, form):
@@ -61,7 +57,10 @@ class SignupView(CreateView):
         get_backends()
         user = authenticate(email=email, password=password)
         login(self.request, user)
-        return super(SignupView, self).form_valid(form)
+        return HttpResponseRedirect(self.get_success_url(user))
+
+    def get_success_url(self, user, *args, **kwargs):
+        return reverse_lazy('profiles:detail', kwargs={'profile_id': user.id})
 
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
