@@ -11,6 +11,18 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
 
+class UserManager(models.Manager):
+
+    def create(self, *args, **kwargs):
+        user = User(**kwargs)
+        user.save()
+        profile = Profile(
+            user=user,
+        )
+        profile.save()
+        return user
+
+
 class User(AbstractBaseUser, PermissionsMixin):
 
     class Meta(object):
@@ -72,8 +84,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.email
 
 
-@receiver(post_save, sender=User)
-def create_related_profile(sender, instance, **kwargs):
-    from profiles.models import Profile
-    if not hasattr(instance, 'profile'):
-        Profile.objects.create(user=instance)
+# @receiver(post_save, sender=User)
+# def create_related_profile(sender, instance, **kwargs):
+#     from profiles.models import Profile
+#     if not hasattr(instance, 'profile'):
+#         Profile.objects.create(user=instance)

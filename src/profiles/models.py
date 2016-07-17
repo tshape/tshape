@@ -23,8 +23,8 @@ class Profile(BaseModel):
     description = models.TextField(_('description'), blank=True)
     years_experience = models.IntegerField(
         _('years of experience'), null=True, blank=True)
-    # skills = models.ManyToManyField(Skill, verbose_name=_('skills'))
-    # skillsets = models.ManyToManyField(Skillset, verbose_name=_('skillsets'))
+    skills = models.ManyToManyField(Skill, verbose_name=_('skills'))
+    skillsets = models.ManyToManyField(Skillset, verbose_name=_('skillsets'))
 
     def __str__(self):
         return '{} {}'.format(self.first_name, self.last_name)

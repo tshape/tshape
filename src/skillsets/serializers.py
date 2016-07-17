@@ -8,3 +8,4 @@ class SkillsetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Skillset
         fields = ('id', 'name', 'description', 'verified')
+        read_only_fields = ('id')

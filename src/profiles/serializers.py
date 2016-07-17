@@ -17,4 +17,13 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ('user', 'first_name', 'last_name', 'title', 'description',
-                  'years_experience', 'skills', 'skillsets')
+                  'years_experience', 'skills', 'skillsets')  # , 'skill_ids', 'skillset_ids')
+
+
+class ProfileCreateUpdateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Profile
+        fields = ('user_id', 'first_name', 'last_name', 'title', 'description',
+                  'years_experience', 'skill_ids', 'skillset_ids')
+        read_only_fields = ('user_id')
