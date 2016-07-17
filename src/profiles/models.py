@@ -23,8 +23,30 @@ class Profile(BaseModel):
     description = models.TextField(_('description'), blank=True)
     years_experience = models.IntegerField(
         _('years of experience'), null=True, blank=True)
-    skills = models.ManyToManyField(Skill, verbose_name=_('skills'))
-    skillsets = models.ManyToManyField(Skillset, verbose_name=_('skillsets'))
+    # skills = models.ManyToManyField(Skill, verbose_name=_('skills'))
+    # skillsets = models.ManyToManyField(Skillset, verbose_name=_('skillsets'))
 
     def __str__(self):
         return '{} {}'.format(self.first_name, self.last_name)
+
+
+# class ProfileSkillset(BaseModel):
+
+#     class Meta:
+#         db_table = 'profiles_skillsets'
+
+#     profile = models.ForeignKey(Profile, verbose_name=_('profile'),
+#                                 on_delete=models.CASCADE, primary_key=True)
+#     skillset = models.ForeignKey(Skillset, verbose_name=_('skillset'),
+#                                  on_delete=models.CASCADE, primary_key=True)
+
+
+# class ProfileSkill(BaseModel):
+
+#     class Meta:
+#         db_table = 'profiles_skills'
+
+#     profile = models.ForeignKey(Profile, verbose_name=_('profile'),
+#                                 on_delete=models.CASCADE, primary_key=True)
+#     skill = models.ForeignKey(Skill, verbose_name=_('skill'),
+#                               on_delete=models.CASCADE, primary_key=True)

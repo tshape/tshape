@@ -63,9 +63,9 @@ class SignupView(CreateView):
         return reverse_lazy('profiles:detail', kwargs={'profile_id': user.id})
 
 
-class UserViewSet(viewsets.ReadOnlyModelViewSet):
+class UserViewSet(viewsets.ModelViewSet):
     """
-    This viewset automatically provides `list` and `detail` actions.
+    A simple ViewSet for viewing and editing users.
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer

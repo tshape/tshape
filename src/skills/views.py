@@ -40,10 +40,6 @@ class SkillListView(ListView):
     def get_context_data(self, *args, **kwargs):
         context = super(SkillListView, self).get_context_data(*args, **kwargs)
         context.update(self.kwargs)
-        # profile_id = self.kwargs.get('profile_id')
-        # skillset_id = self.kwargs.get('skillset_id')
-        # skillsets = Profile.objects.get(pk=profile_id).skillsets()
-        # skills = [skill for skill in skillsets if skillset.id == skillset_id]
         context['object_list'] = Skill.objects.filter(skillset_id=self.kwar)
         return context
 
@@ -89,9 +85,9 @@ class MultipleSkillsUpdateView(UpdateView):
             'skills:list', kwargs={'profile_id': self.request.user.id})
 
 
-class SkillViewSet(viewsets.ReadOnlyModelViewSet):
+class SkillViewSet(viewsets.ModelViewSet):
     """
-    This viewset automatically provides `list` and `detail` actions.
+    A simple ViewSet for viewing and editing skills.
     """
     queryset = Skill.objects.all()
     serializer_class = SkillSerializer

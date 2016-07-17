@@ -40,16 +40,16 @@ class ProfileUpdateView(PKContextMixin, UpdateView):
     def form_valid(self, form, *args, **kwargs):
         form.save()
         return super(ProfileUpdateView, self).form_valid(form, *args, **kwargs)
-        # return self.get_success_url(profile)
 
     def get_success_url(self, *args, **kwargs):
         return reverse('profiles:detail',
                        kwargs={'profile_id': self.request.user.id})
 
 
-class ProfileViewSet(viewsets.ReadOnlyModelViewSet):
+class ProfileViewSet(viewsets.ModelViewSet):
     """
-    This viewset automatically provides `list` and `detail` actions.
+    A simple ViewSet for viewing and editing profiles.
     """
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
+    # permission_classes = [IsAccountAdminOrReadOnly]

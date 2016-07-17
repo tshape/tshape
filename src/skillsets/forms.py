@@ -8,6 +8,3 @@ class SkillsetForm(forms.ModelForm):
     class Meta:
         model = Skillset
         fields = '__all__'
-
-
-SkillsetFormSet = forms.modelformset_factory(Skillset, form=SkillsetForm)
