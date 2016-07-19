@@ -26,4 +26,4 @@ class ProfileCreateUpdateSerializer(serializers.ModelSerializer):
         model = Profile
         fields = ('user_id', 'first_name', 'last_name', 'title', 'description',
                   'years_experience', 'skill_ids', 'skillset_ids')
-        read_only_fields = ('user_id')
+        read_only_fields = ('user_id',)
