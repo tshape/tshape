@@ -25,9 +25,7 @@ class LoginView(FormView):
         user = form.cleaned_data['user']
         if user.is_active:
             login(self.request, user)
-            context = {'profile_id': user.id}
-            return HttpResponseRedirect(
-                reverse(self.get_success_url(user), kwargs=context))
+            return HttpResponseRedirect(self.get_success_url(user))
         else:
             # different action needed here for inactive users
             return render(self.request, self.template_name, {'form': form})
