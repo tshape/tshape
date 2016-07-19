@@ -7,10 +7,9 @@ from rest_framework import viewsets
 from profiles.forms import ProfileForm
 from profiles.models import Profile
 from profiles.serializers import ProfileSerializer
-from tshape.utils import PKContextMixin
 
 
-class ProfileDetailView(PKContextMixin, DetailView):
+class ProfileDetailView(DetailView):
 
     model = Profile
     template_name = 'profiles/detail.html'
@@ -28,7 +27,7 @@ class ProfileListView(ListView):
     template_name = 'profiles/list.html'
 
 
-class ProfileUpdateView(PKContextMixin, UpdateView):
+class ProfileUpdateView(UpdateView):
 
     form_class = ProfileForm
     template_name = 'profiles/edit.html'
