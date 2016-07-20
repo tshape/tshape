@@ -69,9 +69,11 @@ def add_users():
 def add_profiles():
     users = User.objects.all()
     for user in users:
-        Profile.objects.create(user=user, title=faker.job(),
-                               description=faker.text(),
-                               years_experience=random.randrange(1, 10))
+        profile = user.profile
+        profile.title = faker.job()
+        profile.description = faker.text()
+        profile.years_experience = random.randrange(1, 10)
+        profile.save()
 
 
 def add_profile_skillsets():

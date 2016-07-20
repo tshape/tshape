@@ -67,3 +67,26 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    # def create(self, request, *args, **kwargs):
+    #     data = request.DATA
+
+    #     # note: transaction.atomic was introduced in Django 1.6
+    #     with transaction.atomic():
+    #         user = User(
+    #             email=data['email'],
+    #             password=data['password']
+    #         )
+    #         user.clean()
+    #         user.save()
+
+    #         UserProfile.objects.create(
+    #             user=user,
+    #             name=data['profile']['name']
+    #         )
+
+    #     serializer = UserSerializer(user)
+    #     headers = self.get_success_headers(serializer.data)
+
+    #     return Response(serializer.data, status=status.HTTP_201_CREATED,
+    #                     headers=headers)

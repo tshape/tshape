@@ -26,14 +26,3 @@ class Skill(BaseModel):
 
     def __str__(self):
         return self.name
-
-
-# class SkillsetSkill(BaseModel):
-
-#     class Meta:
-#         db_table = 'skillsets_skills'
-
-#     skillset = models.ForeignKey(Skillset, verbose_name=_('skillset'),
-#                                  on_delete=models.CASCADE, primary_key=True)
-#     skill = models.ForeignKey(Skill, verbose_name=_('skill'),
-#                               on_delete=models.CASCADE, primary_key=True)

@@ -2,19 +2,26 @@ from __future__ import unicode_literals
 
 from django.core import validators
 from django.core.mail import send_mail
-from django.contrib.auth.models import (AbstractBaseUser, PermissionsMixin,
-                                        UserManager)
+from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager,
+                                        PermissionsMixin)
 from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
+from profiles.models import Profile
 
-class UserManager(models.Manager):
 
-    def create(self, *args, **kwargs):
-        user = User(**kwargs)
+class UserManager(BaseUserManager):
+
+    def create(self, email, password=None, *args, **kwargs):
+        """
+        Creates and saves a User with the given email, date of
+        birth and password.
+        """
+        if not email:
+            raise ValueError('Users must have an email address')
+        user = self.model(email=email, **kwargs)
+        user.set_password(password)
         user.save()
         profile = Profile(
             user=user,
@@ -82,10 +89,3 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
-
-
-# @receiver(post_save, sender=User)
-# def create_related_profile(sender, instance, **kwargs):
-#     from profiles.models import Profile
-#     if not hasattr(instance, 'profile'):
-#         Profile.objects.create(user=instance)

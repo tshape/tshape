@@ -1,12 +1,18 @@
 from django.core.urlresolvers import reverse
+from django.db import transaction
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView
 from django.views.generic.list import ListView
-from rest_framework import viewsets
+from rest_framework import viewsets, status
+from rest_framework.decorators import detail_route
+from rest_framework.response import Response
 
 from profiles.forms import ProfileForm
 from profiles.models import Profile
 from profiles.serializers import ProfileSerializer
+from skills.models import Skill
+from skillsets.models import Skillset
+from users.models import User
 
 
 class ProfileDetailView(DetailView):
@@ -52,3 +58,36 @@ class ProfileViewSet(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
     # permission_classes = [IsAccountAdminOrReadOnly]
+
+    def update(self, request, *args, **kwargs):
+        data = request.DATA
+        profile = Profile.objects.get(pk=data['user_id'])
+
+        with transaction.atomic():
+            profile.first_name = data.get('first_name', profile.first_name)
+            profile.last_name = data.get('last_name', profile.last_name)
+            profile.title = data.get('title', profile.title)
+            profile.description = data.get('description', profile.description)
+            profile.years_experience = data(
+                'years_experience', profile.years_experience)
+            profile.full_clean()
+            profile.save()
+
+            if data.get('skillsets'):
+                profile.skillsets = Skillset.objects.get(
+                    pk__in=[data['skillsets']])
+
+            if data.get('skills'):
+                profile.skills = Skill.objects.get(pk__in=[data['skills']])
+            profile.save()
+
+        serializer = self.serializer_class(profile, partial=True)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED,
+                        headers=headers)
+
+    # def partial_update(self, request, pk=None):
+    #     pass
+
+    # def destroy(self, request, pk=None):
+    #     pass

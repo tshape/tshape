@@ -11,19 +11,16 @@ class ProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer(many=False)
     skills = SkillSerializer(many=True)
     skillsets = SkillsetSerializer(many=True)
-    # skill_ids = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-    # skillset_ids = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
     class Meta:
         model = Profile
-        fields = ('user', 'first_name', 'last_name', 'title', 'description',
-                  'years_experience', 'skills', 'skillsets')  # , 'skill_ids', 'skillset_ids')
+        fields = ('user', 'first_name', 'last_name', 'title',
+                  'description', 'years_experience', 'skills', 'skillsets')
+        read_only_fields = ('user')
 
-
-class ProfileCreateUpdateSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Profile
-        fields = ('user_id', 'first_name', 'last_name', 'title', 'description',
-                  'years_experience', 'skill_ids', 'skillset_ids')
-        read_only_fields = ('user_id',)
+    # def __init__(self, *args, **kwargs):
+    #     print(self)
+    #     print(self.__dict__)
+    #     print(args)
+    #     print(kwargs)
+    #     self.user_id = self.user.id
