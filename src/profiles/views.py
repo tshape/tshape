@@ -60,7 +60,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
     # permission_classes = [IsAccountAdminOrReadOnly]
 
     def update(self, request, *args, **kwargs):
-        data = request.DATA
+        data = request.data
         profile = Profile.objects.get(pk=data['user_id'])
 
         with transaction.atomic():

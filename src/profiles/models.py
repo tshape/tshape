@@ -26,9 +26,5 @@ class Profile(BaseModel):
     skills = models.ManyToManyField(Skill, verbose_name=_('skills'))
     skillsets = models.ManyToManyField(Skillset, verbose_name=_('skillsets'))
 
-    @property
-    def user_id(self):
-        return self.user.id
-
     def __str__(self):
         return '{} {}'.format(self.first_name, self.last_name)
