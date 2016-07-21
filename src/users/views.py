@@ -1,14 +1,14 @@
 from django.contrib.auth import authenticate, get_backends, login, logout
-from django.core.urlresolvers import reverse_lazy, reverse
+from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import CreateView, FormView, RedirectView
 from rest_framework import viewsets
 
-from profiles.models import Profile
+from tshape.utils import MultiSerializerViewSetMixin
 from users.forms import UserLoginForm, UserCreateForm
 from users.models import User
-from users.serializers import UserSerializer
+from users.serializers import UserSerializer, UserUpdateSerializer
 
 
 class LoginView(FormView):
@@ -61,32 +61,14 @@ class SignupView(CreateView):
         return reverse_lazy('profiles:detail', kwargs={'profile_id': user.id})
 
 
-class UserViewSet(viewsets.ModelViewSet):
+class UserViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
     """
     A simple ViewSet for viewing and editing users.
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
-    # def create(self, request, *args, **kwargs):
-    #     data = request.DATA
-
-    #     # note: transaction.atomic was introduced in Django 1.6
-    #     with transaction.atomic():
-    #         user = User(
-    #             email=data['email'],
-    #             password=data['password']
-    #         )
-    #         user.clean()
-    #         user.save()
-
-    #         UserProfile.objects.create(
-    #             user=user,
-    #             name=data['profile']['name']
-    #         )
-
-    #     serializer = UserSerializer(user)
-    #     headers = self.get_success_headers(serializer.data)
-
-    #     return Response(serializer.data, status=status.HTTP_201_CREATED,
-    #                     headers=headers)
+    serializer_action_classes = {
+        'update': UserUpdateSerializer,
+        'partial_update': UserUpdateSerializer,
+        'destroy': UserUpdateSerializer
+    }

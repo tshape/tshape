@@ -4,14 +4,14 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView
 from django.views.generic.list import ListView
 from rest_framework import viewsets, status
-from rest_framework.decorators import detail_route
 from rest_framework.response import Response
 
 from profiles.forms import ProfileForm
 from profiles.models import Profile
-from profiles.serializers import ProfileSerializer
+from profiles.serializers import ProfileSerializer, ProfileUpdateSerializer
 from skills.models import Skill
 from skillsets.models import Skillset
+from tshape.utils import MultiSerializerViewSetMixin
 from users.models import User
 
 
@@ -51,26 +51,32 @@ class ProfileUpdateView(UpdateView):
                        kwargs={'profile_id': self.request.user.id})
 
 
-class ProfileViewSet(viewsets.ModelViewSet):
+class ProfileViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
     """
     A simple ViewSet for viewing and editing profiles.
     """
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
+    serializer_action_classes = {
+       'update': ProfileUpdateSerializer,
+       'partial_update': ProfileUpdateSerializer,
+       'destroy': ProfileUpdateSerializer
+    }
     # permission_classes = [IsAccountAdminOrReadOnly]
 
     def update(self, request, *args, **kwargs):
         data = request.data
-        profile = Profile.objects.get(pk=data['user_id'])
+        user_id = kwargs.get('pk')
+        profile = Profile.objects.get(pk=user_id)
 
         with transaction.atomic():
             profile.first_name = data.get('first_name', profile.first_name)
             profile.last_name = data.get('last_name', profile.last_name)
             profile.title = data.get('title', profile.title)
             profile.description = data.get('description', profile.description)
-            profile.years_experience = data(
+            profile.years_experience = data.get(
                 'years_experience', profile.years_experience)
-            profile.full_clean()
+            profile.clean()
             profile.save()
 
             if data.get('skillsets'):
@@ -81,13 +87,10 @@ class ProfileViewSet(viewsets.ModelViewSet):
                 profile.skills = Skill.objects.get(pk__in=[data['skills']])
             profile.save()
 
-        serializer = self.serializer_class(profile, partial=True)
+        serializer = ProfileUpdateSerializer(profile, partial=True)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED,
                         headers=headers)
 
     # def partial_update(self, request, pk=None):
-    #     pass
-
-    # def destroy(self, request, pk=None):
     #     pass

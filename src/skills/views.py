@@ -7,7 +7,8 @@ from rest_framework import viewsets
 from profiles.models import Profile
 from skills.forms import SkillForm
 from skills.models import Skill
-from skills.serializers import SkillSerializer
+from skills.serializers import SkillSerializer, SkillUpdateSerializer
+from tshape.utils import MultiSerializerViewSetMixin
 
 
 class SkillCreateView(CreateView):
@@ -85,9 +86,14 @@ class MultipleSkillsUpdateView(UpdateView):
             'skills:list', kwargs={'profile_id': self.request.user.id})
 
 
-class SkillViewSet(viewsets.ModelViewSet):
+class SkillViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
     """
     A simple ViewSet for viewing and editing skills.
     """
     queryset = Skill.objects.all()
     serializer_class = SkillSerializer
+    serializer_action_classes = {
+       'update': SkillUpdateSerializer,
+       'partial_update': SkillUpdateSerializer,
+       'destroy': SkillUpdateSerializer
+    }
