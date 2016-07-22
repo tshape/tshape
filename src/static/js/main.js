@@ -11,10 +11,9 @@ var Profile = React.createClass({
       dataType: 'json',
       cache: false,
       success: function(response) {
-        console.log(response);
+        console.log("profiles/:id/skillsets/ API Call:", response);
         this.setState({
-          skillsets: response[0].skillsets,
-          profileName: response[0].profileName
+          skillsets: response
         });
       }.bind(this),
       error: function(xhr, status, err) {
@@ -22,14 +21,51 @@ var Profile = React.createClass({
       }.bind(this)
     });
   },
-  render: function() {
-    var skillset = this.state.skillsets.map(function(obj) {
-      return <Skillset skillset={obj} /> 
+  handleSkillsetSubmit: function(skillset) {
+    console.log(skillset);
+    var csrfToken = Cookies.get('csrftoken');
+    $.ajax({
+      url: "http://dev.tshape.com:8000/api/skillsets/",
+      dataType: 'json',
+      type: 'POST',
+        headers: {
+        'X-CSRFToken': csrfToken
+      },
+      data: skillset,
+      success: function(data) {
+        this.setState({data: data});
+        console.log(data);
+        var updatedSkillsets = this.state.skillsets;
+        console.log(updatedSkillsets);
+        updatedSkillsets.push(data);
+        console.log(updatedSkillsets);
+        this.setState({skillsets: updatedSkillsets});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
     });
+  },
+  render: function() {
+    // var skillset = this.state.skillsets.map(function(obj) {
+    //   return <Skillset skillset={obj} /> 
+    // });
     return (
-      <div className="profile">
-        {this.state.profileName}
-        {skillset}
+      <div className="tshape">
+        <div className="tshape__header">
+            <h2 className="tshape__role">UI Engineer</h2>
+            <h3 className="tshape__user">Robert Austin</h3>
+            <div className="tshape__badges">
+                <span className="tshape__github"><a href="#"><i className="fa fa-github" aria-hidden="true"></i></a></span>
+                <span className="tshape__linkedin"><a href="#"><i className="fa fa-linkedin-square" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+        <div className="tshape__middle">
+          {this.state.skillsets.map(function(obj) {
+            return <Skillset skillset={obj} key={obj.id} /> 
+          })};
+        </div>
+        <SkillsetForm onSkillsetSubmit={this.handleSkillsetSubmit} />
       </div>
     );
   }
@@ -37,58 +73,82 @@ var Profile = React.createClass({
 
 var Skillset = React.createClass({
     render() {
-      var skill = this.props.skillset.skills.map(function(obj) {
-        return <Skill skill={obj} /> 
-      });
+      // var skill = this.props.skillset.skills.map(function(obj) {
+      //   return <Skill skill={obj} /> 
+      // });
       return (
-          <div>
-          {this.props.skillset.name}
-          {skill}
-          </div>
+        <div className="tshape__skillset" id={this.props.skillset.id}>
+          <div className="tshape__skillset-heading">{this.props.skillset.name}</div>
+          <div className="tshape__skill"></div>
+        </div>
       );
     }
 });
 
 var Skill = React.createClass({
     render: function(){
-        return <li>{this.props.skill.description}</li>;
+      // {this.props.skill.description}
+        return <li>skill</li>;
     }
 });
 
-var SkillSetForm = React.createClass({
+var SkillsetForm = React.createClass({
   getInitialState: function() {
-    return {author: '', text: ''};
+    return {
+      name: '', 
+      description: ''
+    };
   },
-  handleAuthorChange: function(e) {
-    this.setState({author: e.target.value});
+  handleNameFieldChange: function(e) {
+    this.setState({name: e.target.value});
   },
-  handleTextChange: function(e) {
-    this.setState({text: e.target.value});
+  handleDescriptionFieldChange: function(e) {
+    this.setState({description: e.target.value});
   },
   handleSubmit: function(e) {
     e.preventDefault();
-    var author = this.state.author.trim();
-    var text = this.state.text.trim();
-    if (!text || !author) {
+    var name = this.state.name.trim();
+    var description = this.state.description.trim();
+    if (!name || !description) {
       return;
     }
-    // TODO: send request to the server
-    this.setState({author: '', text: ''});
+    this.props.onSkillsetSubmit({name: name, description: description});
+    this.setState({name: '', description: ''});
+  },
+  sendFormData: function () {
+    var formData = {
+      name: React.findDOMNode(this.refs.name).value,
+      description: React.findDOMNode(this.refs.description).value
+    }
+    $.ajax({
+      url: this.props.url,
+      dataType: 'json',
+      type: 'POST',
+      data: formData,
+      success: function(data) {
+        this.setState({data: data});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
   },
   render: function() {
     return (
       <form className="commentForm" onSubmit={this.handleSubmit}>
         <input
           type="text"
-          placeholder="Your name"
-          value={this.state.author}
-          onChange={this.handleAuthorChange}
+          ref="name"
+          placeholder="Skillset Name"
+          value={this.state.name}
+          onChange={this.handleNameFieldChange}
         />
         <input
           type="text"
-          placeholder="Say something..."
-          value={this.state.text}
-          onChange={this.handleTextChange}
+          ref="description"
+          placeholder="Skillset Description"
+          value={this.state.description}
+          onChange={this.handleDescriptionFieldChange}
         />
         <input type="submit" value="Post" />
       </form>
@@ -98,6 +158,6 @@ var SkillSetForm = React.createClass({
 
 
 ReactDOM.render(
-  <Profile url="http://localhost:9000/profiles" welcomeMsg="test" />,
-  document.getElementById('container')
+<Profile url="http://dev.tshape.com:8000/api/profiles/1/skillsets/" />,
+  document.getElementById('tshape')
 );
