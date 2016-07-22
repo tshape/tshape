@@ -7,7 +7,8 @@ from rest_framework import viewsets
 from profiles.models import Profile
 from skillsets.forms import SkillsetForm
 from skillsets.models import Skillset
-from skillsets.serializers import SkillsetSerializer
+from skillsets.serializers import SkillsetSerializer, SkillsetUpdateSerializer
+from tshape.utils import MultiSerializerViewSetMixin
 
 
 class SkillsetCreateView(CreateView):
@@ -75,9 +76,14 @@ class SkillsetUpdateView(UpdateView):
             'pk': skillset.id, 'profile_id': self.request.user.id})
 
 
-class SkillsetViewSet(viewsets.ModelViewSet):
+class SkillsetViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
     """
     A simple ViewSet for viewing and editing skillsets.
     """
     queryset = Skillset.objects.all()
     serializer_class = SkillsetSerializer
+    serializer_action_classes = {
+       'update': SkillsetUpdateSerializer,
+       'partial_update': SkillsetUpdateSerializer,
+       'destroy': SkillsetUpdateSerializer
+    }
