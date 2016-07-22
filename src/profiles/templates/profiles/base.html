@@ -4,20 +4,20 @@
 
     {% load staticfiles %}
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
-    <link href="{% static 'modules/slick/slick.css' %}" rel="stylesheet">
-    <link href="{% static 'modules/slick/slick-theme.css' %}" rel="stylesheet">
     <script src="{% static 'js/underscore-min.js' %}"></script>
     <script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
-    <script src="{% static 'js/foundation.min.js' %}"></script>
     <script src="{% static 'js/jscookie.js' %}"></script>
+    <script src="{% static 'js/foundation.min.js' %}"></script>
+    <script src="{% static 'js/react.js' %}"></script>
+    <script src="{% static 'js/react-dom.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
 
 <body class="{% block section_class %}section{% endblock section_class %} {% block page_class %}page{% endblock page_class %}">
+<h1>Profiles Base</h1>
 {% include "header.html" %}
 {% block content %}{% endblock content %}
 {% block extra_javascript %}{% endblock extra_javascript %}
-    <script src="{% static 'modules/slick/slick.min.js' %}"></script>
-    <script src="{% static 'js/scripts.js' %}"></script>
-    <script src="{% static 'js/tshape.js' %}"></script>
+    <script type="text/babel" src="{% static 'js/main.js' %}"></script>
 </body>
 
 </html>
