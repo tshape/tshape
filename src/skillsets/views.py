@@ -1,10 +1,13 @@
 from django.core.urlresolvers import reverse
+from django.db import transaction
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
-from rest_framework import viewsets
+from rest_framework import viewsets, status
+from rest_framework.response import Response
 
 from profiles.models import Profile
+from skills.models import Skill
 from skillsets.forms import SkillsetForm
 from skillsets.models import Skillset
 from skillsets.serializers import SkillsetSerializer, SkillsetUpdateSerializer
@@ -87,3 +90,22 @@ class SkillsetViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
        'partial_update': SkillsetUpdateSerializer,
        'destroy': SkillsetUpdateSerializer
     }
+
+    def update(self, request, *args, **kwargs):
+        data = request.data
+        skillset_id = kwargs.get('pk')
+        skillset = Skillset.objects.get(pk=skillset_id)
+
+        with transaction.atomic():
+            skills = data.pop('skills', None)
+            if skills:
+                sids = [skill['id'] for skill in skills]
+                skillset.skills.set(Skill.objects.filter(id__in=sids))
+
+        serializer = SkillsetUpdateSerializer(
+            skillset, data=data, partial=True)
+        if serializer.is_valid(data):
+            serializer.update(skillset, data)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED,
+                        headers=headers)

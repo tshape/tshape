@@ -33,32 +33,48 @@ def add_skillsets():
         'Objective C', 'Swift', 'Algorithms', 'Data Structures',
         'Machine Learning', 'SQL', 'NOSQL', 'Big Data'
     ]
-    for x in range(len(skillsets)):
-        Skillset.objects.create(name=skillsets[x], description=faker.text(),
-                                verified=bool(random.getrandbits(1)))
+    try:
+        Skillset.objects.bulk_create([
+            Skillset(name=skillsets[i], description=faker.text(),
+                     verified=bool(random.getrandbits(1)))
+            for i in range(len(skillsets))
+            ])
+    except:
+        print('error creating skillsets')
 
 
 def add_skills():
     skillsets = Skillset.objects.all()
-    for skillset in skillsets:
-        for x in range(10):
-            try:
-                Skill.objects.create(skillset_id=skillset, name=faker.company(),
-                                     description=faker.text(),
-                                     verified=True)
-            except:
-                pass
-        for x in range(10):
-            try:
-                Skill.objects.create(skillset_id=skillset, name=faker.company(),
-                                     description=faker.text(),
-                                     verified=False)
-            except:
-                pass
+    slice_index = int(len(skillsets) / 2)
+    skills = []
+    try:
+        for skillset in skillsets[:slice_index]:
+            skills.extend([
+                Skill(skillset=skillset, name=faker.company(),
+                      description=faker.text(), verified=True)
+                for i in range(10)
+                ])
+    except Exception as e:
+        print('error creating verified skills!')
+        print(e)
+    try:
+        for skillset in skillsets[slice_index:]:
+            skills.extend([
+                Skill(skillset=skillset, name=faker.company(),
+                      description=faker.text(), verified=False)
+                for i in range(10)
+                ])
+    except Exception as e:
+        print('error creating unverified skills!')
+        print(e)
+    try:
+        Skill.objects.bulk_create(skills)
+    except Exception as e:
+        print('error with skills bulk create')
+        print(e)
 
 
 def add_users():
-    for x in range(20):
         email = faker.email()
         try:
             User.objects.create(email=email, password=faker.password())
@@ -67,6 +83,7 @@ def add_users():
 
 
 def add_profiles():
+    # figure out how to do a bulk update here
     users = User.objects.all()
     for user in users:
         profile = user.profile
@@ -77,11 +94,13 @@ def add_profiles():
 
 
 def add_profile_skillsets():
+    # figure out how to do a bulk update here
     profiles = Profile.objects.all()
     skillsets = Skillset.objects.all()
     for profile in profiles:
         profile_skillsets = random.sample(set(skillsets), 8)
-        for profile_skillset in profile_skillsets:
-            profile_skills = random.sample(set(profile_skillset.skills.all()), 10)
-            profile.skills.add(*profile_skills)
-            profile.save()
+        profile.skillsets.set(profile_skillsets)
+        skills = []
+        for skillset in profile_skillsets:
+            skills.extend(random.sample(set(skillset.skills.all()), 10))
+        profile.skills.set(skills)

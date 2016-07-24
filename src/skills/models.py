@@ -20,8 +20,8 @@ class Skill(BaseModel):
         })
     description = models.TextField(_('description'))
     verified = models.BooleanField(_('verified'), null=False, default=False)
-    skillset_id = models.ForeignKey(
-        Skillset, verbose_name=_('skillset id'),
+    skillset = models.ForeignKey(
+        Skillset, verbose_name=_('skillset'),
         related_name='skills', on_delete=models.CASCADE, null=False)
 
     def __str__(self):

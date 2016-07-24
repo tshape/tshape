@@ -21,5 +21,9 @@ class Skillset(BaseModel):
     verified = models.BooleanField(_('verified'), null=False, default=False)
     weight = models.IntegerField(_('weight'), null=False, default=0)
 
+    @property
+    def skill_ids(self):
+        return [skill.id for skill in self.skills.all()]
+
     def __str__(self):
         return self.name

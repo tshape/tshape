@@ -12,7 +12,6 @@ from profiles.serializers import ProfileSerializer, ProfileUpdateSerializer
 from skills.models import Skill
 from skillsets.models import Skillset
 from tshape.utils import MultiSerializerViewSetMixin
-from users.models import User
 
 
 class ProfileDetailView(DetailView):
@@ -70,27 +69,22 @@ class ProfileViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
         profile = Profile.objects.get(pk=user_id)
 
         with transaction.atomic():
-            profile.first_name = data.get('first_name', profile.first_name)
-            profile.last_name = data.get('last_name', profile.last_name)
-            profile.title = data.get('title', profile.title)
-            profile.description = data.get('description', profile.description)
-            profile.years_experience = data.get(
-                'years_experience', profile.years_experience)
-            profile.clean()
-            profile.save()
+            skillsets = data.pop('skillsets', None)
+            if skillsets:
+                ss_ids = [skillset['id'] for skillset in skillsets]
+                profile.skillsets.set(Skillset.objects.filter(id__in=ss_ids))
 
-            if data.get('skillsets'):
-                profile.skillsets = Skillset.objects.get(
-                    pk__in=[data['skillsets']])
+            skills = data.pop('skills', None)
+            if skills:
+                s_ids = [skill['id'] for skill in skills]
+                profile.skills.set(Skill.objects.filter(id__in=s_ids))
 
-            if data.get('skills'):
-                profile.skills = Skill.objects.get(pk__in=[data['skills']])
-            profile.save()
-
-        serializer = ProfileUpdateSerializer(profile, partial=True)
+        serializer = ProfileUpdateSerializer(profile, data=data, partial=True)
+        if serializer.is_valid(data):
+            serializer.save()
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED,
                         headers=headers)
 
     # def partial_update(self, request, pk=None):
-    #     pass
+        # pass
