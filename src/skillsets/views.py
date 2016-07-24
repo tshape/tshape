@@ -86,7 +86,7 @@ class SkillsetViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
     queryset = Skillset.objects.all()
     serializer_class = SkillsetSerializer
     serializer_action_classes = {
-        'update': SkillsetUpdateSerializer,
+        'retrieve': SkillsetUpdateSerializer,
         'partial_update': SkillsetUpdateSerializer,
         'destroy': SkillsetUpdateSerializer
     }
