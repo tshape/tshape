@@ -12,7 +12,7 @@ class SkillsetSerializer(serializers.ModelSerializer):
                   'weight', 'skills')
         read_only_fields = ('id', 'skills')
 
-    skills = SkillNestedSerializer(many=True, required=False)
+    # skills = SkillNestedSerializer(many=True, required=False)
 
 
 class SkillsetUpdateSerializer(serializers.ModelSerializer):
