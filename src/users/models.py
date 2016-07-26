@@ -9,6 +9,7 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
 from profiles.models import Profile
+from tshape.models import BaseModel
 
 
 class UserManager(BaseUserManager):
@@ -32,7 +33,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
 
-    class Meta(object):
+    class Meta:
         abstract = False
         db_table = 'users'
         app_label = 'users'

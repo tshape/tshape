@@ -90,6 +90,9 @@ shell:
 syncdb:
 	$(PYTHON) src/manage.py syncdb --noinput
 
+test:
+	docker-compose -f docker-compose.yml -f docker-compose.debug.yml up
+
 update:
 	pip install --upgrade -r requirements.text
 

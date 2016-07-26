@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -26,6 +27,15 @@ class Profile(BaseModel):
         _('years of experience'), null=True, blank=True)
     skills = models.ManyToManyField(Skill, verbose_name=_('skills'))
     skillsets = models.ManyToManyField(Skillset, verbose_name=_('skillsets'))
+
+    def clean(self):
+        if skills:
+            orphaned_skills = any(skill.skillset_id not in self.skillset_ids
+                                  for skill in self.skills)
+            if orphaned_skills:
+                raise ValidationError(
+                    {'skills': _('Corresponding skillset must be attached to profile before skill.')})
+            # raise ValidationError({'skills': _('User cannot have more than 10 skills for a one skillset')}) if any([skill.skillset_id not in self.skillset_ids for skill in self.skills])
 
     @property
     def skillset_ids(self):

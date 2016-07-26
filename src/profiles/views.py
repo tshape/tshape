@@ -78,7 +78,6 @@ class ProfileViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
             if skills:
                 s_ids = [skill['id'] for skill in skills]
                 p_skills = Skill.objects.filter(id__in=s_ids)
-                # return error if any skills passed are not associated with skillsets
                 profile.skills.set([skill for skill in p_skills if
                                     skill.skillset_id in profile.skillset_ids])
 
