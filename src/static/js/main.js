@@ -18,7 +18,7 @@ var Profile = React.createClass({
       dataType: 'json',
       cache: false,
       success: function(response) {
-        console.log("profiles/:id/skillsets/ API Call:", response);
+        console.log("profiles/:id/ API Call:", response);
         this.setState({
           skillsets: response.skillsets,
           skills: response.skills
@@ -29,24 +29,29 @@ var Profile = React.createClass({
       }.bind(this)
     });
   },
-  handleSkillsetPut: function(skillset) {
-    console.log("handleSkillsetPut", skillset);
-    console.log("handleSkillsetPut", skillset.id);
+  handleSkillsetPut: function(skillset, skillsets) {
+    console.log("handleSkillsetPut Skillset", skillset);
+    console.log("handleSkillsetPut Skillsets", skillsets);
     var csrfToken = Cookies.get('csrftoken');
+    // var data = JSON.stringify({"skillsets": [{"id": skillset.id}]});
+    var data = JSON.stringify({"skillsets": skillsets});
+    console.log("handleSkillsetPut Skillsets JSON Stringify", data);
     $.ajax({
-      url: profileApi,
-      dataType: 'json',
-      type: 'PUT',
-        headers: {
-        'X-CSRFToken': csrfToken
+      url: "http://dev.tshape.com:8000/api/profiles/1/",
+      method: "PUT",
+      headers: {
+        'X-CSRFToken': csrfToken,
+        "content-type": "application/json"
       },
-      data: {"skillsets": [{"id": skillset.id}]},
+      data: data,
       success: function(data) {
         var items = this.state.skillsets;
-        items.push(data);
+        items.push(skillset);
         this.setState({
           skillsets: items
         });
+
+        // Flatten children
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
@@ -71,7 +76,7 @@ var Profile = React.createClass({
         this.setState({
           skillsets: items
         });
-        this.handleSkillsetPut(data);
+        this.handleSkillsetPut(data, items);
       }.bind(this),
       error: function(xhr, status, err) {
         console.error("handleSkillsetCreate AJAX error", this.props.url, status, err.toString());
