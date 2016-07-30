@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import BaseModel
+from tshape.models import BaseModel
 
 
 class BaseModelAdmin(admin.ModelAdmin):

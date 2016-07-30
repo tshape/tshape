@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from .settings import *
+from tshape.settings import *
 
 DEBUG = True
 

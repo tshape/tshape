@@ -15,7 +15,7 @@ class Skillset(BaseModel):
     name = models.CharField(
         _('name'), null=False, unique=True, max_length=280,
         error_messages={
-            'unique': _("A user with that email already exists."),
+            'unique': _('A skillset with that name already exists.'),
         })
     description = models.TextField(_('description'))
     verified = models.BooleanField(_('verified'), null=False, default=False)

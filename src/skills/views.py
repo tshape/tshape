@@ -1,8 +1,10 @@
 from django.core.urlresolvers import reverse
+from django.shortcuts import get_object_or_404
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
 from rest_framework import viewsets
+from rest_framework.response import Response
 
 from profiles.models import Profile
 from skills.forms import SkillForm
@@ -93,7 +95,24 @@ class SkillViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
     queryset = Skill.objects.all()
     serializer_class = SkillSerializer
     serializer_action_classes = {
-       'update': SkillUpdateSerializer,
-       'partial_update': SkillUpdateSerializer,
-       'destroy': SkillUpdateSerializer
+        'list': SkillSerializer,
+        'retrieve': SkillUpdateSerializer,
+        'update': SkillUpdateSerializer,
+        'partial_update': SkillUpdateSerializer,
+        'destroy': SkillUpdateSerializer
     }
+
+    def list(self, request, *args, **kwargs):
+        profile_id = self.kwargs.get('profile_pk')
+        profile = get_object_or_404(Profile, pk=profile_id)
+        serializer_type = self.get_serializer_class()
+        serializer = serializer_type(profile.skills, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None, *args, **kwargs):
+        profile_id = self.kwargs.get('profile_pk')
+        profile = get_object_or_404(Profile, pk=profile_id)
+        skill = get_object_or_404(profile.skills, pk=pk)
+        serializer_type = self.get_serializer_class()
+        serializer = serializer_type(skill)
+        return Response(serializer.data)
