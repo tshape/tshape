@@ -69,17 +69,15 @@ class ProfileViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
         profile = Profile.objects.get(pk=user_id)
 
         with transaction.atomic():
-            skillsets = data.pop('skillsets', None)
-            if skillsets:
-                ss_ids = [skillset['id'] for skillset in skillsets]
-                profile.skillsets.set(Skillset.objects.filter(id__in=ss_ids))
+            skillset_ids = data.pop('skillset_ids', None)
+            if skillset_ids:
+                profile.skillsets.set(
+                    Skillset.objects.filter(id__in=skillset_ids))
 
-            skills = data.pop('skills', None)
-            if skills:
-                s_ids = [skill['id'] for skill in skills]
-                p_skills = Skill.objects.filter(id__in=s_ids)
-                profile.skills.set(p_skills)
-                # skill for skill in p_skills if skill.skillset_id in profile.skillset_ids])
+            skill_ids = data.pop('skill_ids', None)
+            if skill_ids:
+                profile.skills.set(
+                    Skill.objects.filter(id__in=skill_ids))
 
         serializer_type = self.get_serializer_class()
         serializer = serializer_type(profile, data=data, partial=True)
@@ -88,6 +86,3 @@ class ProfileViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED,
                         headers=headers)
-
-    # def partial_update(self, request, pk=None):
-        # pass
