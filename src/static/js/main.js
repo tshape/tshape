@@ -136,7 +136,8 @@ var Profile = React.createClass({
   },
   render: function() {
     console.log("Profile:render - skillsets", this.state.skillsets);
-    var skills = console.log(this.state.skills);
+    var skills = this.state.skills
+    console.log(skills);
     return (
       <div className="tshape">
         <div className="tshape__header">
@@ -149,9 +150,8 @@ var Profile = React.createClass({
         </div>
         <div className="tshape__middle">
           {this.state.skillsets.map(function(obj) {
-            console.log(obj.id);
-            console.log(_.filter(skills, { 'skillset_id': obj.id }));
-            return <Skillset skillset={obj}  key={obj.id} /> 
+            var skill = _.filter(skills, { 'skillset_id': obj.id });
+            return <Skillset skillset={obj} skill={skill} key={obj.id} /> 
           })}
         </div>
         <SkillsetForm onSkillsetSubmit={this.handleSkillsetCreate} />
@@ -189,25 +189,20 @@ var Skill = React.createClass({
 var SkillsetForm = React.createClass({
   getInitialState: function() {
     return {
-      name: '', 
-      description: ''
+      name: ''
     };
   },
   handleNameFieldChange: function(e) {
     this.setState({name: e.target.value});
   },
-  handleDescriptionFieldChange: function(e) {
-    this.setState({description: e.target.value});
-  },
   handleSubmit: function(e) {
     e.preventDefault();
     var name = this.state.name.trim();
-    var description = this.state.description.trim();
-    if (!name || !description) {
+    if (!name) {
       return;
     }
-    this.props.onSkillsetSubmit({name: name, description: description});
-    this.setState({name: '', description: ''});
+    this.props.onSkillsetSubmit({name: name});
+    this.setState({name: ''});
   },
   render: function() {
     return (
@@ -218,13 +213,6 @@ var SkillsetForm = React.createClass({
           placeholder="Skillset Name"
           value={this.state.name}
           onChange={this.handleNameFieldChange}
-        />
-        <input
-          type="text"
-          ref="description"
-          placeholder="Skillset Description"
-          value={this.state.description}
-          onChange={this.handleDescriptionFieldChange}
         />
         <input type="submit" value="Post" />
       </form>
