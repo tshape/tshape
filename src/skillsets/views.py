@@ -1,5 +1,6 @@
 from django.core.urlresolvers import reverse
 from django.db import transaction
+from django.shortcuts import get_object_or_404
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
@@ -86,10 +87,27 @@ class SkillsetViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
     queryset = Skillset.objects.all()
     serializer_class = SkillsetSerializer
     serializer_action_classes = {
+        'list': SkillsetSerializer,
         'retrieve': SkillsetUpdateSerializer,
+        'update': SkillsetUpdateSerializer,
         'partial_update': SkillsetUpdateSerializer,
         'destroy': SkillsetUpdateSerializer
     }
+
+    def list(self, request, *args, **kwargs):
+        profile_id = self.kwargs.get('profile_pk')
+        profile = get_object_or_404(Profile, pk=profile_id)
+        serializer_type = self.get_serializer_class()
+        serializer = serializer_type(profile.skillsets, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None, *args, **kwargs):
+        profile_id = self.kwargs.get('profile_pk')
+        profile = get_object_or_404(Profile, pk=profile_id)
+        skillset = get_object_or_404(profile.skillsets, pk=pk)
+        serializer_type = self.get_serializer_class()
+        serializer = serializer_type(skillset)
+        return Response(serializer.data)
 
     def update(self, request, *args, **kwargs):
         data = request.data
@@ -102,8 +120,8 @@ class SkillsetViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
                 sids = [skill['id'] for skill in skills]
                 skillset.skills.set(Skill.objects.filter(id__in=sids))
 
-        serializer = SkillsetUpdateSerializer(
-            skillset, data=data, partial=True)
+        serializer_type = self.get_serializer_class()
+        serializer = serializer_type(skillset, data=data, partial=True)
         if serializer.is_valid(data):
             serializer.update(skillset, data)
         headers = self.get_success_headers(serializer.data)

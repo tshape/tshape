@@ -78,10 +78,11 @@ class ProfileViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
             if skills:
                 s_ids = [skill['id'] for skill in skills]
                 p_skills = Skill.objects.filter(id__in=s_ids)
-                profile.skills.set([skill for skill in p_skills if
-                                    skill.skillset_id in profile.skillset_ids])
+                profile.skills.set(p_skills)
+                # skill for skill in p_skills if skill.skillset_id in profile.skillset_ids])
 
-        serializer = ProfileUpdateSerializer(profile, data=data, partial=True)
+        serializer_type = self.get_serializer_class()
+        serializer = serializer_type(profile, data=data, partial=True)
         if serializer.is_valid(data):
             serializer.save()
         headers = self.get_success_headers(serializer.data)
