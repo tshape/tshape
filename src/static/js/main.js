@@ -1,10 +1,24 @@
 var pathArray = window.location.pathname.split( '/' );
 var userId = pathArray[2];
 var profileApi = "http://dev.tshape.com:8000/api/profiles/" + userId + "/";
+var csrfToken = Cookies.get('csrftoken');
+var allSkillsets = [];
+console.log("User ID:", userId);
 
-console.log(userId);
-console.log(profileApi);
+// Store all skillsets in an array
+$.ajax({
+  url: "http://dev.tshape.com:8000/api/skillsets/",
+  dataType: 'json',
+  success: function(response) {
+    allSkillsets = response; 
 
+  }.bind(this),
+  error: function(xhr, status, err) {
+    console.error(this.props.url, status, err.toString());
+  }.bind(this)
+});
+
+// React App
 var Profile = React.createClass({
   getInitialState: function() {
     return {
@@ -13,7 +27,7 @@ var Profile = React.createClass({
     };
   },
   componentDidMount: function() {
-     $.ajax({
+    $.ajax({
       url: this.props.url,
       dataType: 'json',
       cache: false,
@@ -29,15 +43,20 @@ var Profile = React.createClass({
       }.bind(this)
     });
   },
-  handleSkillsetPut: function(skillset, skillsets) {
-    console.log("handleSkillsetPut Skillset", skillset);
-    console.log("handleSkillsetPut Skillsets", skillsets);
-    var csrfToken = Cookies.get('csrftoken');
-    // var data = JSON.stringify({"skillsets": [{"id": skillset.id}]});
-    var data = JSON.stringify({"skillsets": skillsets});
-    console.log("handleSkillsetPut Skillsets JSON Stringify", data);
+  handleSkillsetPut: function(skillset) {
+    console.log("handleSkillsetPut", skillset);
+
+    var items = this.state.skillsets;
+    items.push(skillset);
+
+    // Update React state
+    this.setState({
+      skillsets: items
+    });
+
+    var data = JSON.stringify({"skillsets": items});
     $.ajax({
-      url: "http://dev.tshape.com:8000/api/profiles/1/",
+      url: profileApi,
       method: "PUT",
       headers: {
         'X-CSRFToken': csrfToken,
@@ -45,13 +64,7 @@ var Profile = React.createClass({
       },
       data: data,
       success: function(data) {
-        var items = this.state.skillsets;
-        items.push(skillset);
-        this.setState({
-          skillsets: items
-        });
-
-        // Flatten children
+        console.log("handleSkillsetPut AJAX Success", data);
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
@@ -60,63 +73,70 @@ var Profile = React.createClass({
   },
   handleSkillsetCreate: function(skillset) {
     console.log("handleSkillsetCreate", skillset);
-    var csrfToken = Cookies.get('csrftoken');
-    $.ajax({
-      url: "http://dev.tshape.com:8000/api/skillsets/",
-      dataType: 'json',
-      type: 'POST',
-        headers: {
-        'X-CSRFToken': csrfToken
-      },
-      data: skillset,
-      success: function(data) {
-        console.log("handleSkillsetCreate AJAC success", data);
-        var items = this.state.skillsets;
-        items.push(data);
-        this.setState({
-          skillsets: items
-        });
-        this.handleSkillsetPut(data, items);
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error("handleSkillsetCreate AJAX error", this.props.url, status, err.toString());
-      }.bind(this)
-    });
+
+    var newSkillset = _.find(allSkillsets, { 'name': skillset.name})
+    console.log(newSkillset);
+
+    // Check if the skillset the user is attempting to add already exists
+    if (newSkillset) {
+      console.log("Skillset already exists! Adding to Profile");
+      this.handleSkillsetPut(newSkillset);
+    } else {
+      console.log("Skillset does not exist! Adding to All Skillsets and Profile");
+      $.ajax({
+        url: "http://dev.tshape.com:8000/api/skillsets/",
+        dataType: 'json',
+        type: 'POST',
+          headers: {
+          'X-CSRFToken': csrfToken
+        },
+        data: skillset,
+        success: function(data) {
+          console.log("handleSkillsetCreate AJAX success", data);
+          this.handleSkillsetPut(data);
+        }.bind(this),
+        error: function(xhr, status, err) {
+          console.error("handleSkillsetCreate AJAX error", this.props.url, status, err.toString());
+        }.bind(this)
+      });
+    }
   },
-  handleSkillsetDelete: function(skillset) {
-    console.log("handleSkillsetDelete", skillset);
-    var csrfToken = Cookies.get('csrftoken');
+  handleSkillsetRemove: function(skillset) {
+    console.log("handleSkillsetRemove", skillset);
+
+    // Remove the skillset from skillsets array
+    var items = this.state.skillsets.filter(function(item){
+      return skillset.id !== item.id;
+    });
+
+    // Update React state
+    this.setState({
+      skillsets: items
+    });
+
+    // Prepare skillset array for sending
+    items = JSON.stringify({"skillsets": items});
+
+    // POST new skillsets object to API
     $.ajax({
-      url: "http://dev.tshape.com:8000/api/skillsets/",
-      dataType: 'json',
-      type: 'POST',
-        headers: {
-        'X-CSRFToken': csrfToken
+      url: profileApi,
+      method: "PUT",
+      headers: {
+        'X-CSRFToken': csrfToken,
+        "content-type": "application/json"
       },
-      data: skillset.id,
+      data: items,
       success: function(data) {
-        var items = this.state.skillsets.filter(function(item){
-          return skillset.id !== item.id;
-        });
-        this.setState({
-          skillsets: items
-        });
+        console.log("handleSkillsetRemove AJAX Success", data);
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
       }.bind(this)
     });
   },
-  remove: function(skillset) {
-    var items = this.state.skillsets.filter(function(item){
-      return skillset.id !== item.id;
-    });
-    this.setState({
-      skillsets: items
-    });
-  },
   render: function() {
     console.log("Profile:render - skillsets", this.state.skillsets);
+    var skills = console.log(this.state.skills);
     return (
       <div className="tshape">
         <div className="tshape__header">
@@ -129,14 +149,16 @@ var Profile = React.createClass({
         </div>
         <div className="tshape__middle">
           {this.state.skillsets.map(function(obj) {
-            return <Skillset skillset={obj} key={obj.id} /> 
+            console.log(obj.id);
+            console.log(_.filter(skills, { 'skillset_id': obj.id }));
+            return <Skillset skillset={obj}  key={obj.id} /> 
           })}
         </div>
         <SkillsetForm onSkillsetSubmit={this.handleSkillsetCreate} />
         <div className="skillsetlist">
           <h3>Skillset List</h3>
           <ul>
-            return <SkillsetListItems skillsets={this.state.skillsets} onRemove={this.handleSkillsetDelete} />
+            return <SkillsetListItems skillsets={this.state.skillsets} onRemove={this.handleSkillsetRemove} />
           </ul>
         </div>
       </div>
@@ -145,10 +167,8 @@ var Profile = React.createClass({
 });
 
 var Skillset = React.createClass({
-    render() {
-      // var skill = this.props.skillset.skills.map(function(obj) {
-      //   return <Skill skill={obj} /> 
-      // });
+    render: function(){
+       console.log(this.props.skills);
       return (
         <div className="tshape__skillset" id={this.props.skillset.id}>
           <div className="tshape__skillset-heading">{this.props.skillset.name}</div>
@@ -160,8 +180,9 @@ var Skillset = React.createClass({
 
 var Skill = React.createClass({
     render: function(){
-      // {this.props.skill.description}
-        return <li>skill</li>;
+      <div className="tshape__skill" id={this.props.skill.id}>
+        <div className="tshape__skillname">{this.props.skill.name}</div>
+      </div>
     }
 });
 
