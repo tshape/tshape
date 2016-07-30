@@ -96,16 +96,22 @@ class SkillsetViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         profile_id = self.kwargs.get('profile_pk')
-        profile = get_object_or_404(Profile, pk=profile_id)
         serializer_type = self.get_serializer_class()
-        serializer = serializer_type(profile.skillsets, many=True)
+        if profile_id:
+            profile = get_object_or_404(Profile, pk=profile_id)
+            serializer = serializer_type(profile.skillsets, many=True)
+        else:
+            serializer = serializer_type(Skillset.objects.all(), many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None, *args, **kwargs):
         profile_id = self.kwargs.get('profile_pk')
-        profile = get_object_or_404(Profile, pk=profile_id)
-        skillset = get_object_or_404(profile.skillsets, pk=pk)
         serializer_type = self.get_serializer_class()
+        if profile_id:
+            profile = get_object_or_404(Profile, pk=profile_id)
+            skillset = get_object_or_404(profile.skillsets, pk=pk)
+        else:
+            skillset = Skillset.objects.get(pk=pk)
         serializer = serializer_type(skillset)
         return Response(serializer.data)
 
