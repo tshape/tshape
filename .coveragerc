@@ -1,5 +1,18 @@
 [run]
-# omit = /*
+omit =
+    .git
+    .tox/*
+    _build/*
+    _templates/*
+    design/*
+    doc/*
+    env/*
+    tmp/*
+    */migrations/*
+    */static/*
+    */templates/*
+    __pycache__/*
+    *.pyc
 branch = True
 
 [report]

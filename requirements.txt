@@ -5,3 +5,5 @@ django-extensions
 python-dotenv
 djangorestframework
 drf-nested-routers
+graphene[django]
+Sphinx
