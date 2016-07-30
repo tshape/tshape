@@ -97,6 +97,7 @@ class SkillsetViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
     def list(self, request, *args, **kwargs):
         profile_id = self.kwargs.get('profile_pk')
         serializer_type = self.get_serializer_class()
+        # TODO: add better method for this!
         if profile_id:
             profile = get_object_or_404(Profile, pk=profile_id)
             serializer = serializer_type(profile.skillsets, many=True)
@@ -107,6 +108,7 @@ class SkillsetViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
     def retrieve(self, request, pk=None, *args, **kwargs):
         profile_id = self.kwargs.get('profile_pk')
         serializer_type = self.get_serializer_class()
+        # TODO: add better method for this!
         if profile_id:
             profile = get_object_or_404(Profile, pk=profile_id)
             skillset = get_object_or_404(profile.skillsets, pk=pk)
