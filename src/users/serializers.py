@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from profiles.serializers import ProfileListSerializer
 from users.models import User
 
 
@@ -8,8 +9,10 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'email', 'is_staff', 'is_active', 'date_joined',
-                  'first_name', 'last_name')
-        read_only_fields = ('id', 'date_joined')
+                  'first_name', 'last_name', 'profile')
+        read_only_fields = ('id', 'date_joined', 'profile')
+
+    profile = ProfileListSerializer(required=False)
 
 
 class UserUpdateSerializer(serializers.ModelSerializer):

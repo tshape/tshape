@@ -8,9 +8,44 @@ from rest_framework.response import Response
 
 from profiles.forms import ProfileForm
 from profiles.models import Profile
-from profiles.serializers import ProfileSerializer
+from profiles.serializers import ProfileSerializer, ProfileListSerializer
 from skills.models import Skill
 from skillsets.models import Skillset
+from tshape.utils import MultiSerializerViewSetMixin
+
+
+class ProfileViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
+    """
+    A simple ViewSet for viewing and editing profiles.
+    """
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+    # permission_classes = [IsAccountAdminOrReadOnly]
+    serializer_action_classes = {
+        'list': ProfileListSerializer,
+    }
+
+    def update(self, request, pk=None, *args, **kwargs):
+        data = request.data
+        profile = Profile.objects.get(pk=pk)
+
+        with transaction.atomic():
+            skillset_ids = data.pop('skillset_ids', None)
+            if skillset_ids:
+                profile.skillsets.set(
+                    Skillset.objects.filter(id__in=skillset_ids))
+
+            skill_ids = data.pop('skill_ids', None)
+            if skill_ids:
+                profile.skills.set(Skill.objects.filter(id__in=skill_ids))
+
+        serializer_type = self.get_serializer_class()
+        serializer = serializer_type(profile, data=data, partial=True)
+        if serializer.is_valid(data):
+            serializer.save()
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK,
+                        headers=headers)
 
 
 class ProfileDetailView(DetailView):
@@ -47,45 +82,3 @@ class ProfileUpdateView(UpdateView):
     def get_success_url(self, *args, **kwargs):
         return reverse('profiles:detail',
                        kwargs={'profile_id': self.request.user.id})
-
-
-class ProfileViewSet(viewsets.ModelViewSet):
-    """
-    A simple ViewSet for viewing and editing profiles.
-    """
-    queryset = Profile.objects.all()
-    serializer_class = ProfileSerializer
-    # permission_classes = [IsAccountAdminOrReadOnly]
-
-    def update(self, request, pk=None, *args, **kwargs):
-        data = request.data
-        profile = Profile.objects.get(pk=pk)
-
-        with transaction.atomic():
-            skillsets = data.pop('skillsets', None)
-            if skillsets:
-                ss_ids = [skillset['id'] for skillset in skillsets]
-                profile.skillsets.set(Skillset.objects.filter(id__in=ss_ids))
-
-            skills = data.pop('skills', None)
-            if skills:
-                s_ids = [skill['id'] for skill in skills]
-                p_skills = Skill.objects.filter(id__in=s_ids)
-                profile.skills.set(p_skills)
-
-            # skillset_ids = data.pop('skillset_ids', None)
-            # if skillset_ids:
-            #     profile.skillsets.set(
-            #         Skillset.objects.filter(id__in=skillset_ids))
-
-            # skill_ids = data.pop('skill_ids', None)
-            # if skill_ids:
-            #     profile.skills.set(Skill.objects.filter(id__in=skill_ids))
-
-        serializer_type = self.get_serializer_class()
-        serializer = serializer_type(profile, data=data, partial=True)
-        if serializer.is_valid(data):
-            serializer.save()
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_200_OK,
-                        headers=headers)

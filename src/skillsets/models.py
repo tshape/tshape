@@ -17,7 +17,7 @@ class Skillset(BaseModel):
         error_messages={
             'unique': _('A skillset with that name already exists.'),
         })
-    description = models.TextField(_('description'))
+    description = models.TextField(_('description'), default='')
     verified = models.BooleanField(_('verified'), null=False, default=False)
     weight = models.IntegerField(_('weight'), null=False, default=0)
 

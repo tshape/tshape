@@ -1,8 +1,6 @@
 from rest_framework import serializers
 
 from profiles.models import Profile
-from skills.serializers import SkillNestedSerializer
-from skillsets.serializers import SkillsetNestedSerializer
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -10,8 +8,9 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ('user_id', 'first_name', 'last_name', 'title',
-                  'description', 'years_experience', 'skillsets', 'skills')
-        read_only_fields = ('user_id', 'skillsets', 'skills')
+                  'description', 'years_experience', 'skillset_ids',
+                  'skill_ids')
+        read_only_fields = ('user_id')
 
     user_id = serializers.PrimaryKeyRelatedField(
         many=False, read_only=True)
@@ -20,24 +19,20 @@ class ProfileSerializer(serializers.ModelSerializer):
     title = serializers.CharField(required=False)
     description = serializers.CharField(required=False)
     years_experience = serializers.IntegerField(required=False)
-    skillsets = SkillsetNestedSerializer(many=True, required=False)
-    skills = SkillNestedSerializer(many=True, required=False)
 
 
-# class ProfileUpdateSerializer(serializers.ModelSerializer):
+class ProfileListSerializer(serializers.ModelSerializer):
 
-#     class Meta:
-#         model = Profile
-#         fields = ('user_id', 'first_name', 'last_name', 'title',
-#                   'description', 'years_experience', 'skillsets', 'skills')
-#         read_only_fields = ('user_id', 'skillsets', 'skills')
+    class Meta:
+        model = Profile
+        fields = ('user_id', 'first_name', 'last_name', 'title',
+                  'description', 'years_experience')
+        read_only_fields = ('user_id')
 
-#     user_id = serializers.PrimaryKeyRelatedField(
-#         many=False, read_only=True, required=False)
-#     first_name = serializers.CharField(required=False)
-#     last_name = serializers.CharField(required=False)
-#     title = serializers.CharField(required=False)
-#     description = serializers.CharField(required=False)
-#     years_experience = serializers.IntegerField(required=False)
-#     skillsets = SkillsetNestedSerializer(many=True, required=False)
-#     skills = SkillNestedSerializer(many=True, required=False)
+    user_id = serializers.PrimaryKeyRelatedField(
+        many=False, read_only=True, required=False)
+    first_name = serializers.CharField(required=False)
+    last_name = serializers.CharField(required=False)
+    title = serializers.CharField(required=False)
+    description = serializers.CharField(required=False)
+    years_experience = serializers.IntegerField(required=False)

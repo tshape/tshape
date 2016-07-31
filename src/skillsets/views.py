@@ -92,26 +92,32 @@ class SkillsetViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
         'destroy': SkillsetUpdateSerializer
     }
 
-    def list(self, request, *args, **kwargs):
+    def get_queryset(self):
         profile_id = self.kwargs.get('profile_pk')
         if profile_id:
-            skillsets = get_object_or_404(Profile, pk=profile_id).skillsets
-        else:
-            skillsets = Skillset.objects.all()
-        serializer_type = self.get_serializer_class()
-        serializer = serializer_type(skillsets, many=True)
-        return Response(serializer.data)
+            return get_object_or_404(Profile, pk=profile_id).skillsets.all()
+        return super(SkillsetViewSet, self).get_queryset()
 
-    def retrieve(self, request, pk=None, *args, **kwargs):
-        profile_id = self.kwargs.get('profile_pk')
-        if profile_id:
-            profile = get_object_or_404(Profile, pk=profile_id)
-            skillset = get_object_or_404(profile.skillsets, pk=pk)
-        else:
-            skillset = Skillset.objects.get(pk=pk)
-        serializer_type = self.get_serializer_class()
-        serializer = serializer_type(skillset)
-        return Response(serializer.data)
+    # def list(self, request, *args, **kwargs):
+    #     profile_id = self.kwargs.get('profile_pk')
+    #     if profile_id:
+    #         skillsets = get_object_or_404(Profile, pk=profile_id).skillsets
+    #     else:
+    #         skillsets = Skillset.objects.all()
+    #     serializer_type = self.get_serializer_class()
+    #     serializer = serializer_type(skillsets, many=True)
+    #     return ResAponse(serializer.data)
+
+    # def retrieve(self, request, pk=None, *args, **kwargs):
+    #     profile_id = self.kwargs.get('profile_pk')
+    #     if profile_id:
+    #         profile = get_object_or_404(Profile, pk=profile_id)
+    #         skillset = get_object_or_404(profile.skillsets, pk=pk)
+    #     else:
+    #         skillset = Skillset.objects.get(pk=pk)
+    #     serializer_type = self.get_serializer_class()
+    #     serializer = serializer_type(skillset)
+    #     return Response(serializer.data)
 
     # def update(self, request, *args, **kwargs):
     #     data = request.data

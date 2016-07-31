@@ -104,43 +104,45 @@ class SkillViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
         'destroy': SkillUpdateSerializer
     }
 
+    def get_queryset(self):
+        profile_id = self.kwargs.get('profile_pk')
+        skillset_id = self.kwargs.get('skillset_pk')
+        if profile_id:
+            return get_object_or_404(Profile, pk=profile_id).skills.all()
+        elif skillset_id:
+            return get_object_or_404(Skillset, pk=skillset_id).skills.all()
+        else:
+            return super(SkillViewSet, self).get_queryset()
+
     def create(self, request, *args, **kwargs):
-        data = request.data
-        data['skillset_id'] = self.kwargs.get('skillset_pk')
-        with transaction.atomic():
-            skill = Skill(**data)
-            skill.clean()
-            skill.save()
-        serializer_type = self.get_serializer_class()
-        serializer = serializer_type(skill)
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED,
-                        headers=headers)
+        if self.kwargs.get('skillset_pk'):
+            request.data['skillset_id'] = self.kwargs.get('skillset_pk')
+        return super(SkillViewSet, self).create(request, *args, **kwargs)
 
-    def list(self, request, *args, **kwargs):
-        profile_id = self.kwargs.get('profile_pk')
-        skillset_id = self.kwargs.get('skillset_pk')
-        if profile_id:
-            skills = get_object_or_404(Profile, pk=profile_id).skills
-        elif skillset_id:
-            skills = get_object_or_404(Skillset, pk=skillset_id).skills
-        else:
-            skills = Skill.objects.all()
-        serializer_type = self.get_serializer_class()
-        serializer = serializer_type(skills, many=True)
-        return Response(serializer.data)
+    # def list(self, request, *args, **kwargs):
+    #     profile_id = self.kwargs.get('profile_pk')
+    #     skillset_id = self.kwargs.get('skillset_pk')
+    #     if profile_id:
+    #         skills = get_object_or_404(Profile, pk=profile_id).skills
+    #     elif skillset_id:
+    #         skills = get_object_or_404(Skillset, pk=skillset_id).skills
+    #     else:
+    #         skills = Skill.objects.all()
+    #     serializer_type = self.get_serializer_class()
+    #     serializer = serializer_type(skills, many=True)
+    #     return Response(serializer.data)
 
-    def retrieve(self, request, pk=None, *args, **kwargs):
-        profile_id = self.kwargs.get('profile_pk')
-        skillset_id = self.kwargs.get('skillset_pk')
-        if profile_id:
-            profile = get_object_or_404(Profile, pk=profile_id)
-            skill = get_object_or_404(profile.skills, pk=pk)
-        elif skillset_id:
-            skillset = get_object_or_404(Skillset, pk=skillset_id)
-            skill = get_object_or_404(skillset.skills, pk=pk)
-        else:
-            skill = get_object_or_404(Skill, pk=pk)
-        serializer_type = self.get_serializer_class()
-        serializer = serializer_type(skill)
-        return Response(serializer.data)
+    # def retrieve(self, request, pk=None, *args, **kwargs):
+    #     profile_id = self.kwargs.get('profile_pk')
+    #     skillset_id = self.kwargs.get('skillset_pk')
+    #     if profile_id:
+    #         profile = get_object_or_404(Profile, pk=profile_id)
+    #         skill = get_object_or_404(profile.skills, pk=pk)
+    #     elif skillset_id:
+    #         skillset = get_object_or_404(Skillset, pk=skillset_id)
+    #         skill = get_object_or_404(skillset.skills, pk=pk)
+    #     else:
+    #         skill = get_object_or_404(Skill, pk=pk)
+    #     serializer_type = self.get_serializer_class()
+    #     serializer = serializer_type(skill)
+    #     return Response(serializer.data)
