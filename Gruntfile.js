@@ -18,7 +18,7 @@
       },
       dist: {
         files: { 
-        'src/tshape/static/css/style.css': 'src/tshape/static/scss/style.scss'
+        'src/static/css/style.css': 'src/static/scss/style.scss'
         }
       }
     },
@@ -49,7 +49,7 @@
         files: ['Gruntfile.js']
       },
       scss: {
-        files: 'src/tshape/static/**/*.scss',
+        files: 'src/static/**/*.scss',
         tasks: ['sass'],
       }
     }
