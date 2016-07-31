@@ -10,7 +10,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         fields = ('user_id', 'first_name', 'last_name', 'title',
                   'description', 'years_experience', 'skillset_ids',
                   'skill_ids')
-        read_only_fields = ('user_id')
+        read_only_fields = ('user_id',)
 
     user_id = serializers.PrimaryKeyRelatedField(
         many=False, read_only=True)
@@ -27,7 +27,7 @@ class ProfileListSerializer(serializers.ModelSerializer):
         model = Profile
         fields = ('user_id', 'first_name', 'last_name', 'title',
                   'description', 'years_experience')
-        read_only_fields = ('user_id')
+        read_only_fields = ('user_id',)
 
     user_id = serializers.PrimaryKeyRelatedField(
         many=False, read_only=True, required=False)
