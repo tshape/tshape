@@ -1,14 +1,12 @@
 from django.core.urlresolvers import reverse
-from django.db import transaction
 from django.shortcuts import get_object_or_404
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
-from rest_framework import viewsets, status
+from rest_framework import viewsets
 from rest_framework.response import Response
 
 from profiles.models import Profile
-from skills.models import Skill
 from skillsets.forms import SkillsetForm
 from skillsets.models import Skillset
 from skillsets.serializers import SkillsetSerializer, SkillsetUpdateSerializer
@@ -96,40 +94,40 @@ class SkillsetViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         profile_id = self.kwargs.get('profile_pk')
-        serializer_type = self.get_serializer_class()
         if profile_id:
-            profile = get_object_or_404(Profile, pk=profile_id)
-            serializer = serializer_type(profile.skillsets, many=True)
+            skillsets = get_object_or_404(Profile, pk=profile_id).skillsets
         else:
-            serializer = serializer_type(Skillset.objects.all(), many=True)
+            skillsets = Skillset.objects.all()
+        serializer_type = self.get_serializer_class()
+        serializer = serializer_type(skillsets, many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None, *args, **kwargs):
         profile_id = self.kwargs.get('profile_pk')
-        serializer_type = self.get_serializer_class()
         if profile_id:
             profile = get_object_or_404(Profile, pk=profile_id)
             skillset = get_object_or_404(profile.skillsets, pk=pk)
         else:
             skillset = Skillset.objects.get(pk=pk)
+        serializer_type = self.get_serializer_class()
         serializer = serializer_type(skillset)
         return Response(serializer.data)
 
-    def update(self, request, *args, **kwargs):
-        data = request.data
-        skillset_id = kwargs.get('pk')
-        skillset = Skillset.objects.get(pk=skillset_id)
+    # def update(self, request, *args, **kwargs):
+    #     data = request.data
+    #     skillset_id = kwargs.get('pk')
+    #     skillset = Skillset.objects.get(pk=skillset_id)
 
-        with transaction.atomic():
-            skills = data.pop('skills', None)
-            if skills:
-                sids = [skill['id'] for skill in skills]
-                skillset.skills.set(Skill.objects.filter(id__in=sids))
+    #     with transaction.atomic():
+    #         skills = data.pop('skills', None)
+    #         if skills:
+    #             sids = [skill['id'] for skill in skills]
+    #             skillset.skills.set(Skill.objects.filter(id__in=sids))
 
-        serializer_type = self.get_serializer_class()
-        serializer = serializer_type(skillset, data=data, partial=True)
-        if serializer.is_valid(data):
-            serializer.update(skillset, data)
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED,
-                        headers=headers)
+    #     serializer_type = self.get_serializer_class()
+    #     serializer = serializer_type(skillset, data=data, partial=True)
+    #     if serializer.is_valid(data):
+    #         serializer.update(skillset, data)
+    #     headers = self.get_success_headers(serializer.data)
+    #     return Response(serializer.data, status=status.HTTP_200_OK,
+    #                     headers=headers)

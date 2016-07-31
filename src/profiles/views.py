@@ -8,10 +8,9 @@ from rest_framework.response import Response
 
 from profiles.forms import ProfileForm
 from profiles.models import Profile
-from profiles.serializers import ProfileSerializer, ProfileUpdateSerializer
+from profiles.serializers import ProfileSerializer
 from skills.models import Skill
 from skillsets.models import Skillset
-from tshape.utils import MultiSerializerViewSetMixin
 
 
 class ProfileDetailView(DetailView):
@@ -50,23 +49,17 @@ class ProfileUpdateView(UpdateView):
                        kwargs={'profile_id': self.request.user.id})
 
 
-class ProfileViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
+class ProfileViewSet(viewsets.ModelViewSet):
     """
     A simple ViewSet for viewing and editing profiles.
     """
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
-    serializer_action_classes = {
-       'update': ProfileUpdateSerializer,
-       'partial_update': ProfileUpdateSerializer,
-       'destroy': ProfileUpdateSerializer
-    }
     # permission_classes = [IsAccountAdminOrReadOnly]
 
-    def update(self, request, *args, **kwargs):
+    def update(self, request, pk=None, *args, **kwargs):
         data = request.data
-        user_id = kwargs.get('pk')
-        profile = Profile.objects.get(pk=user_id)
+        profile = Profile.objects.get(pk=pk)
 
         with transaction.atomic():
             skillsets = data.pop('skillsets', None)
@@ -79,15 +72,20 @@ class ProfileViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
                 s_ids = [skill['id'] for skill in skills]
                 p_skills = Skill.objects.filter(id__in=s_ids)
                 profile.skills.set(p_skills)
-                # skill for skill in p_skills if skill.skillset_id in profile.skillset_ids])
+
+            # skillset_ids = data.pop('skillset_ids', None)
+            # if skillset_ids:
+            #     profile.skillsets.set(
+            #         Skillset.objects.filter(id__in=skillset_ids))
+
+            # skill_ids = data.pop('skill_ids', None)
+            # if skill_ids:
+            #     profile.skills.set(Skill.objects.filter(id__in=skill_ids))
 
         serializer_type = self.get_serializer_class()
         serializer = serializer_type(profile, data=data, partial=True)
         if serializer.is_valid(data):
             serializer.save()
         headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED,
+        return Response(serializer.data, status=status.HTTP_200_OK,
                         headers=headers)
-
-    # def partial_update(self, request, pk=None):
-        # pass
