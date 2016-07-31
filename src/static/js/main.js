@@ -32,7 +32,6 @@ var Profile = React.createClass({
     };
   },
   componentDidMount: function() {
-    
     $.ajax({
       url: this.props.url,
       dataType: 'json',
@@ -48,7 +47,6 @@ var Profile = React.createClass({
         console.error(this.props.url, status, err.toString());
       }.bind(this)
     });
-
     // Store all skills & skillsets in state
     $.ajax({
       url: "http://dev.tshape.com:8000/api/skills/",
@@ -81,16 +79,16 @@ var Profile = React.createClass({
   handleSkillsetPut: function(skillset) {
     console.log("handleSkillsetPut", skillset);
 
-    var items = this.state.skillsets;
-    items.push(skillset);
+    var newSkillsets = this.state.skillsets;
+    newSkillsets.push(skillset);
 
     // Update React state
     this.setState({
       activeSkillsetId: skillset.id,
-      skillsets: items
+      skillsets: newSkillsets
     });
 
-    var data = JSON.stringify({"skillsets": items});
+    var data = JSON.stringify({"skillsets": newSkillsets});
     $.ajax({
       url: profileApi,
       method: "PUT",
@@ -139,17 +137,17 @@ var Profile = React.createClass({
     console.log("handleSkillsetRemove", skillset);
 
     // Remove the skillset from skillsets array
-    var items = this.state.skillsets.filter(function(item){
+    var newSkillsets = this.state.skillsets.filter(function(item){
       return skillset.id !== item.id;
     });
 
     // Update React state
     this.setState({
-      skillsets: items
+      skillsets: newSkillsets
     });
 
     // Prepare skillset array for sending
-    items = JSON.stringify({"skillsets": items});
+    var data = JSON.stringify({"skillsets": newSkillsets});
 
     // POST new skillsets object to API
     $.ajax({
@@ -159,7 +157,7 @@ var Profile = React.createClass({
         'X-CSRFToken': csrfToken,
         "content-type": "application/json"
       },
-      data: items,
+      data: data,
       success: function(data) {
         console.log("handleSkillsetRemove AJAX Success", data);
       }.bind(this),
@@ -301,10 +299,11 @@ var Profile = React.createClass({
           <hr />
           <h2>Add Skills</h2>
           <div className="skills">
-              <ul>
-                <ListSkills skills={this.state.skills} allSkills={this.state.allSkills} skillsetId={this.state.activeSkillsetId} onRemove={this.handleSkillRemove} />
-                <AddSkill onSkillSubmit={this.handleSkillCreate} skillsets={this.state.skillsets} />
-              </ul>
+              <h3>My Skills</h3>
+              <ListMySkills skills={this.state.skills} allSkills={this.state.allSkills} skillsetId={this.state.activeSkillsetId} />
+              <h3>All Skills</h3>
+              <ListAllSkills skills={this.state.skills} allSkills={this.state.allSkills} skillsetId={this.state.activeSkillsetId} onRemove={this.handleSkillRemove} />
+              <AddSkill onSkillSubmit={this.handleSkillCreate} skillsets={this.state.skillsets} />
           </div>
         </div>
       </div>
@@ -455,38 +454,6 @@ var ListMySkillsets = React.createClass({
   }
 });
 
-var ListSkills = React.createClass({
-  remove: function(item) {
-    return function(e) {
-      e.preventDefault();
-      return this.props.onRemove(item);
-    }.bind(this);
-  },
-  render: function() {
-    var items = this.props.allSkills.filter(function(item, i) {
-      if (this.props.skillsetId !== null && this.props.skillsetId === item.skillset_id) {
-        return true;
-      }
-    }.bind(this))
-
-    items = items.map(function(item, i) {
-       return (
-          <li className="skillset__item skillset__item--tag" key={i} >
-            <span>{item.name}</span>
-          </li>
-        );
-    })
-    console.log(items);
-    if (this.props.skillsetId === null) {
-      return <p>Please select a Skillset first</p>
-    } else if (items.length) {
-      return <ul>{items}</ul>
-    } else {
-      return <p>You need to add skills to this skillset</p>
-    }
-  }
-});
-
 var ListAllSkillsets = React.createClass({
   add: function(item) {
     return function(e) {
@@ -517,6 +484,75 @@ var ListAllSkillsets = React.createClass({
       }
     }.bind(this));
     return <ul>{items}</ul>;
+  }
+});
+
+var ListMySkills = React.createClass({
+  setActive: function(item) {
+    return function(e) {
+      e.preventDefault();
+      return this.props.setActive(item);
+    }.bind(this);
+  },
+  remove: function(item) {
+    return function(e) {
+      e.preventDefault();
+      return this.props.onRemove(item);
+    }.bind(this);
+  },
+  render: function() {
+    var items = this.props.skills.filter(function(item, i) {
+      if (this.props.skillsetId !== null && this.props.skillsetId === item.skillset_id) {
+        return true;
+      }
+    }.bind(this))
+
+    items = items.map(function(item, i) {
+      return (
+        <li className="skillset__item skillset__item--tag" key={i} >
+          <span>{item.name}</span>
+        </li>
+      );
+    })
+    if (this.props.skillsetId === null) {
+      return <p>Please select a Skillset first</p>
+    } else if (items.length) {
+      return <ul>{items}</ul>
+    } else {
+      return <p>You need to add skills to this skillset</p>
+    }
+  }
+});
+
+var ListAllSkills = React.createClass({
+  remove: function(item) {
+    return function(e) {
+      e.preventDefault();
+      return this.props.onRemove(item);
+    }.bind(this);
+  },
+  render: function() {
+    var items = this.props.allSkills.filter(function(item, i) {
+      if (this.props.skillsetId !== null && this.props.skillsetId === item.skillset_id) {
+        return true;
+      }
+    }.bind(this))
+
+    items = items.map(function(item, i) {
+       return (
+          <li className="skillset__item skillset__item--tag" key={i} >
+            <span>{item.name}</span>
+          </li>
+        );
+    })
+    console.log(items);
+    if (this.props.skillsetId === null) {
+      return <p>Please select a Skillset first</p>
+    } else if (items.length) {
+      return <ul>{items}</ul>
+    } else {
+      return <p>You need to add skills to this skillset</p>
+    }
   }
 });
 
