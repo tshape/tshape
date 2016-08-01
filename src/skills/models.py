@@ -18,7 +18,7 @@ class Skill(BaseModel):
         error_messages={
             'unique': _('A skill with that name already exists.'),
         })
-    description = models.TextField(_('description'))
+    description = models.TextField(_('description'), default='')
     verified = models.BooleanField(_('verified'), null=False, default=False)
     skillset = models.ForeignKey(
         Skillset, verbose_name=_('skillset'),

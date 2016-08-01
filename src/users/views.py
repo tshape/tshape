@@ -11,6 +11,19 @@ from users.models import User
 from users.serializers import UserSerializer, UserUpdateSerializer
 
 
+class UserViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
+    """
+    A simple ViewSet for viewing and editing users.
+    """
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    serializer_action_classes = {
+        'update': UserUpdateSerializer,
+        'partial_update': UserUpdateSerializer,
+        'destroy': UserUpdateSerializer
+    }
+
+
 class LoginView(FormView):
 
     form_class = UserLoginForm
@@ -59,16 +72,3 @@ class SignupView(CreateView):
 
     def get_success_url(self, user, *args, **kwargs):
         return reverse_lazy('profiles:detail', kwargs={'profile_id': user.id})
-
-
-class UserViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
-    """
-    A simple ViewSet for viewing and editing users.
-    """
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    serializer_action_classes = {
-        'update': UserUpdateSerializer,
-        'partial_update': UserUpdateSerializer,
-        'destroy': UserUpdateSerializer
-    }

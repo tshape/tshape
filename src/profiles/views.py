@@ -24,6 +24,7 @@ class ProfileViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
     serializer_action_classes = {
         'list': ProfileListSerializer,
     }
+    http_method_names = ['get', 'head', 'put', 'delete']
 
     def update(self, request, pk=None, *args, **kwargs):
         data = request.data

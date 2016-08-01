@@ -14,7 +14,6 @@ class SkillSerializer(serializers.ModelSerializer):
     skillset_id = serializers.IntegerField()
     name = serializers.CharField(validators=[
         UniqueValidator(queryset=Skill.objects.all())])
-    description = serializers.CharField(required=False)
 
 
 class SkillUpdateSerializer(serializers.ModelSerializer):
@@ -28,7 +27,6 @@ class SkillUpdateSerializer(serializers.ModelSerializer):
         many=False, read_only=True)
     name = serializers.CharField(required=False, validators=[
         UniqueValidator(queryset=Skill.objects.all())])
-    description = serializers.CharField(required=False)
     verified = serializers.BooleanField(required=False)
 
 
@@ -44,5 +42,4 @@ class SkillNestedSerializer(serializers.ModelSerializer):
         many=False, read_only=True)
     name = serializers.CharField(required=False, validators=[
         UniqueValidator(queryset=Skill.objects.all())])
-    description = serializers.CharField(required=False)
     verified = serializers.BooleanField(required=False)

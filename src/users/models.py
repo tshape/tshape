@@ -72,8 +72,8 @@ class User(AbstractBaseUser, PermissionsMixin):
                     'active. Unselect this instead of deleting accounts.')
     )
     date_joined = models.DateTimeField(_('Date Joined'), default=timezone.now)
-    first_name = models.CharField(_('first name'), max_length=30)
-    last_name = models.CharField(_('last name'), max_length=50)
+    first_name = models.CharField(_('first name'), max_length=30, null=True)
+    last_name = models.CharField(_('last name'), max_length=50, null=True)
 
     objects = UserManager()
 

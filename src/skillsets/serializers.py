@@ -14,7 +14,6 @@ class SkillsetSerializer(serializers.ModelSerializer):
 
     name = serializers.CharField(validators=[
         UniqueValidator(queryset=Skillset.objects.all())])
-    description = serializers.CharField(required=False)
     skill_ids = serializers.ListField(
         child=serializers.IntegerField(), required=False)
 
@@ -29,7 +28,6 @@ class SkillsetUpdateSerializer(serializers.ModelSerializer):
 
     name = serializers.CharField(required=False, validators=[
         UniqueValidator(queryset=Skillset.objects.all())])
-    description = serializers.CharField(required=False)
     verified = serializers.BooleanField(required=False)
     weight = serializers.IntegerField(required=False)
     skill_ids = serializers.ListField(
@@ -45,6 +43,5 @@ class SkillsetNestedSerializer(serializers.ModelSerializer):
             'id', 'name', 'description', 'verified', 'weight')
 
     name = serializers.CharField(required=False)
-    description = serializers.CharField(required=False)
     verified = serializers.BooleanField(required=False)
     weight = serializers.IntegerField(required=False)
