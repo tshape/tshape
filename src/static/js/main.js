@@ -26,10 +26,8 @@ var Profile = React.createClass({
     };
   },
   createTshape: function() {
-    console.log("Creating Tshape");
-    console.log(profile);
+    console.log("Creating Tshape...");
     for (var i = 0; i < profile.skillset_ids.length; i++) { 
-      console.log(profile.skillset_ids[i]);
       _.forEach(mySkillsets, function(skillsetValue, skillsetKey) {
         if (skillsetValue.id === profile.skillset_ids[i]) {
           delete skillsetValue.skill_ids; 
@@ -60,15 +58,15 @@ var Profile = React.createClass({
     $.when(ajaxProfile(), ajaxMySkills(), ajaxMySkillsets(), ajaxAllSkills(), ajaxAllSkillsets()).done(function(a1,a2,a3,a4,a5) {
       console.log("API Calls Complete");
 
-      console.log(a1[0]);
+      // console.log("API Response > ajaxProfile", a1[0]);
       profile = a1[0];
-      console.log(a2[0]);
+      // console.log("API Response > ajaxMySkills", a2[0]);
       mySkills = a2[0];
-      console.log(a3[0]);
+      // console.log(a3[0]);
       mySkillsets = a3[0];
-      console.log(a4[0]);
+      // console.log(a4[0]);
       allSkills = a4[0];
-      console.log(a5[0]);
+      // console.log(a5[0]);
       allSkillsets = a5[0];
 
       this.createTshape();
@@ -145,26 +143,75 @@ var Profile = React.createClass({
       });
     }
   },
-  handleSkillsetPut: function(skillset) {
+  handleSkillsetCreate: function(skillset) {
+    console.log("handleSkillsetCreate", skillset);
+
+    // Check if the skillset the user is attempting to add already exists
+    var newSkillset = _.find(this.state.allSkillsets, { 'name': skillset.name})
+
+    // If the skillset already exists, go straight to the PUT function
+    if (newSkillset) {
+      console.log("Skillset already exists! Adding to Profile");
+      this.handleSkillsetPut(newSkillset, true);
+    } else {
+      // If the skillset does not exist, POST the skillset to the API
+      // On success this will return a new skillset object with a valid ID
+      console.log("Skillset does not exist! Adding to All Skillsets and Profile");
+      $.ajax({
+        url: "http://dev.tshape.com:8000/api/skillsets/",
+        dataType: 'json',
+        type: 'POST',
+          headers: {
+          'X-CSRFToken': csrfToken
+        },
+        data: skillset,
+        success: function(data) {
+          console.log("handleSkillsetCreate AJAX success", data);
+          this.handleSkillsetPut(data, false);
+        }.bind(this),
+        error: function(xhr, status, err) {
+          console.error("handleSkillsetCreate AJAX error", this.props.url, status, err.toString());
+        }.bind(this)
+      });
+    }
+  },
+  parseMySkillsetIds: function(mySkillsets) {
+    
+  },
+  handleSkillsetPut: function(skillset, existingSkillset) {
     console.log("handleSkillsetPut", skillset);
     delete skillset.skill_ids;
-    tshape.push(skillset);
-    skillsets.push(skillset);
+    skillset.skills = [];
 
-    this.setState({
-      tshape: tshape,
-      skillsets: skillsets
+    // Update the tshape and allSkillset Arrays    
+    var newTshape = this.state.tshape;
+    newTshape.push(skillset);
+    console.log("handleSkillsetPut > newTshape", newTshape);
+
+    if (!existingSkillset) {
+      var newAllSkillsets = this.state.allSkillsets
+      newAllSkillsets.push(skillset);
+      // Update the React state
+      this.setState({
+        allSkillsets: newAllSkillsets
+      });
+    };
+
+    var mySkillsetIds = []
+    _.forEach(newTshape, function(value) {
+      mySkillsetIds.push(value.id);
     });
 
+    this.setState({
+      tshape: newTshape
+    });
     
-    console.log("asda", this.state.skillsets);
-    this.state.skillsets.push(skillset)
-    console.log("asdads", this.state.skillsets);
-    newSkillsets.push(skillset);
 
- 
+    console.log("PUT skillsets", mySkillsetIds);
+    // PUT the new skillset to the users profile via the API
+    // The API accepts this format: {"skillset_ids": [1,2,3]}
+    var data = JSON.stringify({"skillset_ids": mySkillsetIds});
 
-    var data = JSON.stringify({"skillsets": newSkillsets});
     $.ajax({
       url: profileApi,
       method: "PUT",
@@ -181,49 +228,32 @@ var Profile = React.createClass({
       }.bind(this)
     });
   },
-  handleSkillsetCreate: function(skillset) {
-    console.log("handleSkillsetCreate", skillset);
-    var newSkillset = _.find(this.state.allSkillsets, { 'name': skillset.name})
-
-    // Check if the skillset the user is attempting to add already exists
-    if (newSkillset) {
-      console.log("Skillset already exists! Adding to Profile");
-      this.handleSkillsetPut(newSkillset);
-    } else {
-      console.log("Skillset does not exist! Adding to All Skillsets and Profile");
-      $.ajax({
-        url: "http://dev.tshape.com:8000/api/skillsets/",
-        dataType: 'json',
-        type: 'POST',
-          headers: {
-          'X-CSRFToken': csrfToken
-        },
-        data: skillset,
-        success: function(data) {
-          console.log("handleSkillsetCreate AJAX success", data);
-          this.handleSkillsetPut(data);
-        }.bind(this),
-        error: function(xhr, status, err) {
-          console.error("handleSkillsetCreate AJAX error", this.props.url, status, err.toString());
-        }.bind(this)
-      });
-    }
-  },
+  
   handleSkillsetRemove: function(skillset) {
     console.log("handleSkillsetRemove", skillset);
 
-    // Remove the skillset from skillsets array
-    var newSkillsets = this.state.skillsets.filter(function(item){
+    var newTshape = this.state.tshape;
+    newTshape = newTshape.filter(function(item){
       return skillset.id !== item.id;
     });
 
-    // Update React state
+    var mySkillsetIds = []
+    _.forEach(newTshape, function(value) {
+      mySkillsetIds.push(value.id);
+    });
+
+    var newAllSkillsets = this.state.allSkillsets
+
     this.setState({
-      skillsets: newSkillsets
+      tshape: newTshape,
+      allSkillsets: newAllSkillsets
     });
 
     // Prepare skillset array for sending
-    var data = JSON.stringify({"skillsets": newSkillsets});
+    console.log("PUT skillsets", mySkillsetIds);
+    // PUT the new skillset to the users profile via the API
+    // The API accepts this format: {"skillset_ids": [1,2,3]}
+    var data = JSON.stringify({"skillset_ids": mySkillsetIds});
 
     // POST new skillsets object to API
     $.ajax({
@@ -244,15 +274,6 @@ var Profile = React.createClass({
   },
   handleSkillCreate: function(skill) {
     console.log("handleSkillCreate", skill);
-
-    // var newSkill = _.find(allSkills, { 'name': skill.name})
-    // console.log(newSkill);
-
-    // Check if the skill the user is attempting to add already exists
-    // if (newSkill) {
-    //   console.log("Skill already exists! Adding to Profile");
-    //   this.handleSkillsetPut(newSkill);
-    // } 
 
     var data = JSON.stringify({"name": skill.name, "description": skill.description});
 
@@ -341,7 +362,7 @@ var Profile = React.createClass({
     });
   },
   render: function() {
-    console.log("Profile:render - skillsets", this.state.skillsets);
+    // console.log("Profile:render - skillsets", this.state.skillsets);
     var skills = this.state.skills;
     return (
       <div>
@@ -355,9 +376,8 @@ var Profile = React.createClass({
               </div>
           </div>
           <div className="tshape__middle">
-            {this.state.skillsets.map(function(obj) {
-              var skillsInSkillset = _.filter(skills, { 'skillset_id': obj.id });
-              return <Skillset skillset={obj} skills={skillsInSkillset} key={obj.id} /> 
+            {this.state.tshape.map(function(obj, i) {
+              return <Skillset skillset={obj} key={i} /> 
             })}
           </div>
         </div>
@@ -366,9 +386,9 @@ var Profile = React.createClass({
           <h2>Add Skillsets</h2>
           <div className="skillsets">
             <h3>My Skillsets</h3>
-            <ListMySkillsets skillsets={this.state.skillsets} setActive={this.setActiveSkillsetId} onRemove={this.handleSkillsetRemove} />
+            <ListMySkillsets skillsets={this.state.tshape} setActive={this.setActiveSkillsetId} onRemove={this.handleSkillsetRemove} />
             <h3>All Skillsets</h3>
-            <ListAllSkillsets mySkillsets={this.state.skillsets} allSkillsets={this.state.allSkillsets} onAdd={this.handleSkillsetCreate} onRemove={this.handleSkillsetRemove} />
+            <ListAllSkillsets skillsets={this.state.tshape} allSkillsets={this.state.allSkillsets} onAdd={this.handleSkillsetCreate} onRemove={this.handleSkillsetRemove} />
             <h3>Add Custom Skillset</h3>
             <AddSkillset onSkillsetSubmit={this.handleSkillsetCreate} />
           </div>
@@ -392,7 +412,7 @@ var Skillset = React.createClass({
       return (
         <div className="tshape__skillset" id={this.props.skillset.id}>
           <div className="tshape__skillset-heading">{this.props.skillset.name}</div>
-          {this.props.skills.map(function(obj) {
+          {this.props.skillset.skills.map(function(obj) {
             return <Skill skill={obj} key={obj.id}  />
           })}
         </div>
@@ -545,9 +565,9 @@ var ListAllSkillsets = React.createClass({
   },
   render: function() {
     var items = this.props.allSkillsets.map(function(item, i) {
-      if (_.some(this.props.mySkillsets, { 'id': item.id })) {
+      if (_.some(this.props.skillsets, { 'id': item.id })) {
         return (
-          <li className="skillset__item skillset__item--assigned" key={i}>
+          <li className="skillset__item skillset__item--assigned" key={"all-skillsets-item-" + i}>
             <span>{item.name}</span>
           </li>
         );
@@ -609,6 +629,7 @@ var ListAllSkills = React.createClass({
     }.bind(this);
   },
   render: function() {
+
     var items = this.props.allSkills.filter(function(item, i) {
       if (this.props.skillsetId !== null && this.props.skillsetId === item.skillset_id) {
         return true;
@@ -622,7 +643,6 @@ var ListAllSkills = React.createClass({
           </li>
         );
     })
-    console.log(items);
     if (this.props.skillsetId === null) {
       return <p>Please select a Skillset first</p>
     } else if (items.length) {
