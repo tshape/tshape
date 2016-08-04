@@ -16,7 +16,7 @@ console.log("User ID:", userId);
 var Profile = React.createClass({
   getInitialState: function() {
     return {
-      activeSkillsetId: null,
+      activeSkillset: null,
       skillsets: [],
       skills: [],
       allSkillsets: [],
@@ -355,10 +355,10 @@ var Profile = React.createClass({
       }.bind(this)
     });
   },
-  setActiveSkillsetId: function(skillset) {
-    console.log("setActiveSkillsetId", skillset);
+  setActiveSkillset: function(skillset) {
+    console.log("setActiveSkillset", skillset);
     this.setState({
-      activeSkillsetId: skillset.id
+      activeSkillset: skillset
     });
   },
   render: function() {
@@ -386,7 +386,7 @@ var Profile = React.createClass({
           <h2>Add Skillsets</h2>
           <div className="skillsets">
             <h3>My Skillsets</h3>
-            <ListMySkillsets skillsets={this.state.tshape} setActive={this.setActiveSkillsetId} onRemove={this.handleSkillsetRemove} />
+            <ListMySkillsets skillsets={this.state.tshape} setActiveSkillset={this.setActiveSkillset} onRemove={this.handleSkillsetRemove} />
             <h3>All Skillsets</h3>
             <ListAllSkillsets skillsets={this.state.tshape} allSkillsets={this.state.allSkillsets} onAdd={this.handleSkillsetCreate} onRemove={this.handleSkillsetRemove} />
             <h3>Add Custom Skillset</h3>
@@ -395,10 +395,10 @@ var Profile = React.createClass({
           <hr />
           <h2>Add Skills</h2>
           <div className="skills">
-              <h3>My Skills</h3>
-              <ListMySkills skills={this.state.skills} allSkills={this.state.allSkills} skillsetId={this.state.activeSkillsetId} onRemove={this.handleSkillRemove} />
+              
+              <ListMySkills skillsets={this.state.tshape} allSkills={this.state.allSkills} activeSkillset={this.state.activeSkillset} onRemove={this.handleSkillRemove} />
               <h3>All Skills</h3>
-              <ListAllSkills skills={this.state.skills} allSkills={this.state.allSkills} skillsetId={this.state.activeSkillsetId} onRemove={this.handleSkillRemove} />
+              <ListAllSkills skillsets={this.state.tshape} allSkills={this.state.allSkills} activeSkillset={this.state.activeSkillset} onRemove={this.handleSkillRemove} />
               <AddSkill onSkillSubmit={this.handleSkillCreate} skillsets={this.state.skillsets} />
           </div>
         </div>
@@ -527,7 +527,7 @@ var ListMySkillsets = React.createClass({
   setActive: function(item) {
     return function(e) {
       e.preventDefault();
-      return this.props.setActive(item);
+      return this.props.setActiveSkillset(item);
     }.bind(this);
   },
   remove: function(item) {
@@ -597,27 +597,22 @@ var ListMySkills = React.createClass({
     }.bind(this);
   },
   render: function() {
-    var items = this.props.skills.filter(function(item, i) {
-      if (this.props.skillsetId !== null && this.props.skillsetId === item.skillset_id) {
-        return true;
-      }
-    }.bind(this))
-
-    items = items.map(function(item, i) {
-      return (
-        <li className="skill__item" key={i} >
-          <span>{item.name}</span>
-           <a href data-id={item.id} className="skill__link skill__link--remove" onClick={this.remove(item)}>X</a>
-        </li>
-      );
-    }.bind(this))
-    if (this.props.skillsetId === null) {
+    if (this.props.activeSkillset === null) {
       return <p>Please select a Skillset first</p>
-    } else if (items.length) {
-      return <ul>{items}</ul>
+    } else if (this.props.activeSkillset.skills.length === 0) {
+      return <p>This skillset currently has no skills</p>
+    
     } else {
-      return <p>You need to add skills to this skillset</p>
+      var items = this.props.activeSkillset.skills.map(function(item, i) {
+        return (
+          <li className="skill__item" key={i} >
+            <span>{item.name}</span>
+             <a href data-id={item.id} className="skill__link skill__link--remove" onClick={this.remove(item)}>X</a>
+          </li>
+        );
+      }.bind(this))
     }
+    return <div>{items}</div>;
   }
 });
 
