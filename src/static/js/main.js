@@ -16,7 +16,7 @@ console.log("User ID:", userId);
 var Profile = React.createClass({
   getInitialState: function() {
     return {
-      activeSkillset: null,
+      activeSkillset: {"id": null},
       skillsets: [],
       skills: [],
       allSkillsets: [],
@@ -275,19 +275,20 @@ var Profile = React.createClass({
   handleSkillCreate: function(skill) {
     console.log("handleSkillCreate", skill);
 
-    var data = JSON.stringify({"name": skill.name, "description": skill.description});
+    var data = JSON.stringify({"name": skill.name, "skillset_id": skill.skillset_id});
 
     $.ajax({
       url: "http://dev.tshape.com:8000/api/skills/",
       dataType: 'json',
       type: 'POST',
         headers: {
-        'X-CSRFToken': csrfToken
+        'X-CSRFToken': csrfToken,
+        "content-type": "application/json"
       },
       data: data,
       success: function(data) {
         console.log("handleSkillCreate AJAX success", data);
-        this.handleSkillsetPut(data);
+        this.handleSkillPut(data);
       }.bind(this),
       error: function(xhr, status, err) {
         console.error("handleSkillCreate AJAX error", this.props.url, status, err.toString());
@@ -296,16 +297,34 @@ var Profile = React.createClass({
   },
   handleSkillPut: function(skill) {
     console.log("handleSkillPut", skill);
+    var newTshape = this.state.tshape;
 
-    var items = this.state.skills;
-    items.push(skill);
-
-    // Update React state
-    this.setState({
-      skills: items
+    _.forEach(newTshape, function(skillset) {
+      if (skill.skillset_id !== null && skill.skillset_id  === skillset.id) {
+        skillset.skills.push(skill);
+      }
     });
 
-    var data = JSON.stringify({"skills": items});
+    this.setState({
+      tshape: newTshape
+    });
+
+    var newAllSkills = this.state.allSkills
+    newAllSkills.push(skill);
+
+    this.setState({
+      allSkills: newAllSkills
+    });
+
+    var mySkillIds = []
+    _.forEach(newTshape, function(skillsetItem) {
+      _.forEach(skillsetItem.skills, function(skillItem) {
+        mySkillIds.push(skillItem.id);
+      });
+    });
+    
+    var data = JSON.stringify({"skill_ids": mySkillIds});
+    console.log("handleSkillPut skill_ids", mySkillIds)
     $.ajax({
       url: profileApi,
       method: "PUT",
@@ -362,7 +381,6 @@ var Profile = React.createClass({
     });
   },
   render: function() {
-    // console.log("Profile:render - skillsets", this.state.skillsets);
     var skills = this.state.skills;
     return (
       <div>
@@ -377,8 +395,8 @@ var Profile = React.createClass({
           </div>
           <div className="tshape__middle">
             {this.state.tshape.map(function(obj, i) {
-              return <Skillset skillset={obj} key={i} /> 
-            })}
+              return <Skillset isActive={this.state.activeSkillset.id === obj.id ? "active" : "inactive" } skillset={obj} key={i} /> 
+            }.bind(this))}
           </div>
         </div>
         <div>
@@ -386,7 +404,7 @@ var Profile = React.createClass({
           <h2>Add Skillsets</h2>
           <div className="skillsets">
             <h3>My Skillsets</h3>
-            <ListMySkillsets skillsets={this.state.tshape} setActiveSkillset={this.setActiveSkillset} onRemove={this.handleSkillsetRemove} />
+            <ListMySkillsets skillsets={this.state.tshape} activeSkillset={this.state.activeSkillset} setActiveSkillset={this.setActiveSkillset} onRemove={this.handleSkillsetRemove} />
             <h3>All Skillsets</h3>
             <ListAllSkillsets skillsets={this.state.tshape} allSkillsets={this.state.allSkillsets} onAdd={this.handleSkillsetCreate} onRemove={this.handleSkillsetRemove} />
             <h3>Add Custom Skillset</h3>
@@ -395,11 +413,10 @@ var Profile = React.createClass({
           <hr />
           <h2>Add Skills</h2>
           <div className="skills">
-              
               <ListMySkills skillsets={this.state.tshape} allSkills={this.state.allSkills} activeSkillset={this.state.activeSkillset} onRemove={this.handleSkillRemove} />
               <h3>All Skills</h3>
               <ListAllSkills skillsets={this.state.tshape} allSkills={this.state.allSkills} activeSkillset={this.state.activeSkillset} onRemove={this.handleSkillRemove} />
-              <AddSkill onSkillSubmit={this.handleSkillCreate} skillsets={this.state.skillsets} />
+              <AddSkill skillsets={this.state.skillsets} onSkillSubmit={this.handleSkillCreate} activeSkillset={this.state.activeSkillset}/>
           </div>
         </div>
       </div>
@@ -410,7 +427,7 @@ var Profile = React.createClass({
 var Skillset = React.createClass({
     render: function(){
       return (
-        <div className="tshape__skillset" id={this.props.skillset.id}>
+        <div className={"tshape__skillset " + this.props.isActive} id={this.props.skillset.id}>
           <div className="tshape__skillset-heading">{this.props.skillset.name}</div>
           {this.props.skillset.skills.map(function(obj) {
             return <Skill skill={obj} key={obj.id}  />
@@ -468,8 +485,7 @@ var AddSkill = React.createClass({
   getInitialState: function() {
     return {
       skillset_id: '',
-      name: '',
-      description: ''
+      name: ''
     };
   },
   handleSkillNameFieldChange: function(e) {
@@ -484,14 +500,13 @@ var AddSkill = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault();
     var name = this.state.name.trim();
-    var description = this.state.description;
-    var skillset_id = this.state.skillset_id;
+    var skillset_id = this.props.activeSkillset.id;
 
-    if (!name || !skillset_id || !description) {
+    if (!name || !skillset_id) {
       return;
     }
-    this.props.onSkillSubmit({name: name, description: description, skillset_id: skillset_id});
-    this.setState({name: '', skillset_id: '', description: ''});
+    this.props.onSkillSubmit({name: name, skillset_id: skillset_id});
+    this.setState({name: '', skillset_id: ''});
   },
   render: function() {
     return (
@@ -502,20 +517,6 @@ var AddSkill = React.createClass({
           placeholder="Skill Name"
           value={this.state.name}
           onChange={this.handleSkillNameFieldChange}
-        />
-        <input
-          type="text"
-          ref="description"
-          placeholder="Skill Description"
-          value={this.state.description}
-          onChange={this.handleSkillDescriptionFieldChange}
-        />
-       <input
-          type="text"
-          ref="skillset_id"
-          placeholder="Skillset ID"
-          value={this.state.skillset_id}
-          onChange={this.handleSkillsetIdFieldChange}
         />
         <input type="submit" value="Post" />
       </form>
@@ -539,7 +540,7 @@ var ListMySkillsets = React.createClass({
   render: function() {
     var items = this.props.skillsets.map(function(item, i) {
       return (
-        <li className="skillset__item skillset__item--tag" key={i} onClick={this.setActive(item)}>
+        <li className={"skillset__item skillset__item--tag " + (this.props.activeSkillset.id === item.id ? "active" : "inactive") } key={i} onClick={this.setActive(item)}>
           <span>{item.name}</span>
           <a href data-id={item.id} className="remove-filter" onClick={this.remove(item)}>remove</a>
         </li>
@@ -597,15 +598,14 @@ var ListMySkills = React.createClass({
     }.bind(this);
   },
   render: function() {
-    if (this.props.activeSkillset === null) {
+    if (this.props.activeSkillset.id === null) {
       return <p>Please select a Skillset first</p>
     } else if (this.props.activeSkillset.skills.length === 0) {
       return <p>This skillset currently has no skills</p>
-    
     } else {
       var items = this.props.activeSkillset.skills.map(function(item, i) {
         return (
-          <li className="skill__item" key={i} >
+          <li className="skill__item skill__item--tag " key={i} >
             <span>{item.name}</span>
              <a href data-id={item.id} className="skill__link skill__link--remove" onClick={this.remove(item)}>X</a>
           </li>
@@ -624,26 +624,22 @@ var ListAllSkills = React.createClass({
     }.bind(this);
   },
   render: function() {
-
     var items = this.props.allSkills.filter(function(item, i) {
-      if (this.props.skillsetId !== null && this.props.skillsetId === item.skillset_id) {
+      if (this.props.activeSkillset.id !== null && this.props.activeSkillset.id === item.skillset_id) {
         return true;
       }
     }.bind(this))
-
     items = items.map(function(item, i) {
        return (
-          <li className="skillset__item skillset__item--tag" key={i} >
-            <span>{item.name}</span>
+          <li className="skill__item skill__item--unassigned" key={i}>
+            <a href data-id={item.id} className="skill__link">{item.name}</a>
           </li>
         );
     })
-    if (this.props.skillsetId === null) {
-      return <p>Please select a Skillset first</p>
-    } else if (items.length) {
-      return <ul>{items}</ul>
+    if (items.length === 0) {
+      return <p>This skillset currently has no all skills</p>
     } else {
-      return <p>You need to add skills to this skillset</p>
+      return <ul>{items}</ul>
     }
   }
 });
