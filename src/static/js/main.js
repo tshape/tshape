@@ -9,6 +9,13 @@ var allSkills = [];
 var mySkillsets = [];
 var mySkills = [];
 var tshape = [];
+var hashMap = {
+  "107": { "name": "Java" },
+  "801": { "name": "Poo" },
+  "666": { "name": "Life" }
+};
+var allSkillsetsHash = {};   
+var mySkillsetsHash = {};
 
 console.log("User ID:", userId);
 
@@ -23,6 +30,9 @@ var Profile = React.createClass({
       allSkills: [],
       tshape: [],
       profileName: null,
+      hashMap: hashMap,
+      mySkillsetsHash: {},
+      allSkillsetsHash: {}
     };
   },
   createTshape: function() {
@@ -43,15 +53,29 @@ var Profile = React.createClass({
     }
     console.log(tshape);
 
+    //Create mySkillsetshash 
+    _.forEach(mySkillsets, function(v, k) {
+      mySkillsetsHash[v.id] = v;
+    });
+
+    //Create allSkillsetshash 
+    _.forEach(allSkillsets, function(v, k) {
+      allSkillsetsHash[v.id] = v;
+      mySkillsetsHash[v.id] ? v.active = true : v.active = false;
+    });
+
+    console.log(allSkillsetsHash);
+
     // Update React state
     this.setState({
       tshape: tshape,
       mySkillsets: mySkillsets,
       mySkills: mySkills,
+      mySkillsetsHash: mySkillsetsHash,
       allSkillsets: allSkillsets,
       allSkills: allSkills,
+      allSkillsetsHash: allSkillsetsHash
     });
-
   },
   componentDidMount: function() {
     
@@ -146,17 +170,13 @@ var Profile = React.createClass({
   handleSkillsetCreate: function(skillset) {
     console.log("handleSkillsetCreate", skillset);
 
-    // Check if the skillset the user is attempting to add already exists
-    var newSkillset = _.find(this.state.allSkillsets, { 'name': skillset.name})
-
     // If the skillset already exists, go straight to the PUT function
-    if (newSkillset) {
+    if (allSkillsetsHash[skillset.id]) {
       console.log("Skillset already exists! Adding to Profile");
-      this.handleSkillsetPut(newSkillset, true);
+      this.handleSkillsetPut(skillset);
     } else {
       // If the skillset does not exist, POST the skillset to the API
       // On success this will return a new skillset object with a valid ID
-      console.log("Skillset does not exist! Adding to All Skillsets and Profile");
       $.ajax({
         url: "http://dev.tshape.com:8000/api/skillsets/",
         dataType: 'json',
@@ -167,7 +187,7 @@ var Profile = React.createClass({
         data: skillset,
         success: function(data) {
           console.log("handleSkillsetCreate AJAX success", data);
-          this.handleSkillsetPut(data, false);
+          this.handleSkillsetPut(data);
         }.bind(this),
         error: function(xhr, status, err) {
           console.error("handleSkillsetCreate AJAX error", this.props.url, status, err.toString());
@@ -175,37 +195,31 @@ var Profile = React.createClass({
       });
     }
   },
-  parseMySkillsetIds: function(mySkillsets) {
-    
-  },
-  handleSkillsetPut: function(skillset, existingSkillset) {
+  handleSkillsetPut: function(skillset) {
     console.log("handleSkillsetPut", skillset);
-    delete skillset.skill_ids;
-    skillset.skills = [];
 
-    // Update the tshape and allSkillset Arrays    
-    var newTshape = this.state.tshape;
-    newTshape.push(skillset);
-    console.log("handleSkillsetPut > newTshape", newTshape);
-
-    if (!existingSkillset) {
-      var newAllSkillsets = this.state.allSkillsets
-      newAllSkillsets.push(skillset);
-      // Update the React state
+    if (mySkillsetsHash[skillset.id]) {
+      // do nothing.
+    } else {
+      // add the skillset to mySkillsetsHash
+      mySkillsetsHash[skillset.id] = skillset
+      // add a skills array to the skillset
+      mySkillsetsHash[skillset.id].skills = [];
+      // update react state
       this.setState({
-        allSkillsets: newAllSkillsets
+        mySkillsetsHash: mySkillsetsHash
       });
-    };
-
-    var mySkillsetIds = []
-    _.forEach(newTshape, function(value) {
-      mySkillsetIds.push(value.id);
-    });
-
-    this.setState({
-      tshape: newTshape
-    });
-    
+      console.log("me", this.state.mySkillSetHash)
+      // set an active flag on the skillset in allSkillsetsHash
+      allSkillsetsHash[skillset.id].active = true;
+      this.setState({
+        allSkillsetsHash: allSkillsetsHash
+      });
+      // Generate an array of skillset ID's to PUT to API
+      var mySkillsetIds = Object.keys(this.state.mySkillsetsHash).map(function(value, key) {
+        return mySkillsetsHash[value].id
+      });
+    }
 
     console.log("PUT skillsets", mySkillsetIds);
     // PUT the new skillset to the users profile via the API
@@ -228,31 +242,23 @@ var Profile = React.createClass({
       }.bind(this)
     });
   },
-  
   handleSkillsetRemove: function(skillset) {
     console.log("handleSkillsetRemove", skillset);
 
-    var newTshape = this.state.tshape;
-    newTshape = newTshape.filter(function(item){
-      return skillset.id !== item.id;
-    });
-
-    var mySkillsetIds = []
-    _.forEach(newTshape, function(value) {
-      mySkillsetIds.push(value.id);
-    });
-
-    var newAllSkillsets = this.state.allSkillsets
-
+    delete mySkillsetsHash[skillset.id]
     this.setState({
-      tshape: newTshape,
-      allSkillsets: newAllSkillsets
+      mySkillsetsHash: mySkillsetsHash
     });
 
-    // Prepare skillset array for sending
-    console.log("PUT skillsets", mySkillsetIds);
-    // PUT the new skillset to the users profile via the API
-    // The API accepts this format: {"skillset_ids": [1,2,3]}
+    allSkillsetsHash[skillset.id].active = false;
+    this.setState({
+      allSkillsetsHash: allSkillsetsHash
+    });
+
+    var mySkillsetIds = Object.keys(this.state.mySkillsetsHash).map(function(value, key) {
+      return mySkillsetsHash[value].id
+    });
+
     var data = JSON.stringify({"skillset_ids": mySkillsetIds});
 
     // POST new skillsets object to API
@@ -424,8 +430,8 @@ var Profile = React.createClass({
               </div>
           </div>
           <div className="tshape__middle">
-            {this.state.tshape.map(function(obj, i) {
-              return <Skillset isActive={this.state.activeSkillset.id === obj.id ? "active" : "inactive" } skillset={obj} key={i} /> 
+            {Object.keys(this.state.mySkillsetsHash).map(function(value, key) {
+              return <SkillsetTshape key={key} skillset={this.state.mySkillsetsHash[value]} isActive={this.state.activeSkillset.id === value.id ? "active" : "inactive" } />
             }.bind(this))}
           </div>
         </div>
@@ -434,9 +440,13 @@ var Profile = React.createClass({
           <h2>Add Skillsets</h2>
           <div className="skillsets">
             <h3>My Skillsets</h3>
-            <ListMySkillsets skillsets={this.state.tshape} activeSkillset={this.state.activeSkillset} setActiveSkillset={this.setActiveSkillset} onRemove={this.handleSkillsetRemove} />
+            {Object.keys(this.state.mySkillsetsHash).map(function(value, key) {
+              return <MySkillsetItem skillset={this.state.mySkillsetsHash[value]} key={key} activeSkillset={this.state.activeSkillset} setActiveSkillset={this.setActiveSkillset} onRemove={this.handleSkillsetRemove} />
+            }.bind(this))}
             <h3>All Skillsets</h3>
-            <ListAllSkillsets skillsets={this.state.tshape} allSkillsets={this.state.allSkillsets} onAdd={this.handleSkillsetCreate} onRemove={this.handleSkillsetRemove} />
+            {Object.keys(this.state.allSkillsetsHash).map(function(value, key) {
+              return <AllSkillsetItem skillset={this.state.allSkillsetsHash[value]} key={key} onAdd={this.handleSkillsetCreate} />
+            }.bind(this))};
             <h3>Add Custom Skillset</h3>
             <AddSkillset onSkillsetSubmit={this.handleSkillsetCreate} />
           </div>
@@ -454,33 +464,64 @@ var Profile = React.createClass({
   }
 });
 
-var Skillset = React.createClass({
+var MySkillsetItem = React.createClass({
+  setActive: function(item) {
+    return function(e) {
+      e.preventDefault();
+      return this.props.setActiveSkillset(item);
+    }.bind(this);
+  },
+  remove: function(item) {
+    return function(e) {
+      e.preventDefault();
+      return this.props.onRemove(item);
+    }.bind(this);
+  },
+  render: function() {
+    return (
+      <li className={"skillset__item skillset__item--tag " + (this.props.activeSkillset.id === this.props.skillset.id ? "active" : "inactive") } onClick={this.setActive(this.props.skillset)}>
+        <span>{this.props.skillset.name}</span>
+        <a href="#" onClick={this.remove(this.props.skillset)}>remove</a>
+      </li>
+    )
+  }
+});
+var AllSkillsetItem = React.createClass({
+  add: function(item) {
+    return function(e) {
+      e.preventDefault();
+      return this.props.onAdd(item);
+    }.bind(this);
+  },
+  render: function() {
+    if (this.props.skillset.active) {
+      return (
+        <li className={"skillset__item"} >
+          <span>{this.props.skillset.name}</span>
+        </li>
+      )
+    } else {
+      return (
+        <li className={"skillset__item"}>
+          <a href="#" className="skillset__link" onClick={this.add(this.props.skillset)}>{this.props.skillset.name}</a>
+        </li>
+      )
+    }
+  }
+});
+var SkillsetTshape = React.createClass({
     render: function(){
       return (
         <div className={"tshape__skillset " + this.props.isActive} id={this.props.skillset.id}>
           <div className="tshape__skillset-heading">{this.props.skillset.name}</div>
-          {this.props.skillset.skills.map(function(obj) {
-            return <Skill skill={obj} key={obj.id}  />
+          {this.props.skillset.skills.map(function(value, key) {
+            return <SkillTshape key={key} skill={value} />
           })}
         </div>
       );
     }
 });
-
-var Skillset = React.createClass({
-    render: function(){
-      return (
-        <div className={"tshape__skillset " + this.props.isActive} id={this.props.skillset.id}>
-          <div className="tshape__skillset-heading">{this.props.skillset.name}</div>
-          {this.props.skillset.skills.map(function(obj) {
-            return <Skill skill={obj} key={obj.id}  />
-          })}
-        </div>
-      );
-    }
-});
-
-var Skill = React.createClass({
+var SkillTshape = React.createClass({
     render: function(){
       return (
         <div className="tshape__skill" id={this.props.skill.id}>
@@ -489,7 +530,6 @@ var Skill = React.createClass({
       );
     }
 });
-
 var AddSkillset = React.createClass({
   getInitialState: function() {
     return {
@@ -523,7 +563,6 @@ var AddSkillset = React.createClass({
     );
   }
 });
-
 var AddSkill = React.createClass({
   getInitialState: function() {
     return {
@@ -566,7 +605,6 @@ var AddSkill = React.createClass({
     );
   }
 });
-
 var ListMySkillsets = React.createClass({
   setActive: function(item) {
     return function(e) {
@@ -593,7 +631,6 @@ var ListMySkillsets = React.createClass({
     return <ul>{items}</ul>;
   }
 });
-
 var ListAllSkillsets = React.createClass({
   add: function(item) {
     return function(e) {
@@ -626,7 +663,6 @@ var ListAllSkillsets = React.createClass({
     return <ul>{items}</ul>;
   }
 });
-
 var ListMySkills = React.createClass({
   setActive: function(item) {
     return function(e) {
@@ -658,7 +694,6 @@ var ListMySkills = React.createClass({
     return <div>{items}</div>;
   }
 });
-
 var ListAllSkills = React.createClass({
   add: function(item) {
     return function(e) {
