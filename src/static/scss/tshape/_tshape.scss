@@ -1,0 +1,123 @@
+.tshape {
+  //width: 490px;
+  margin: 0 auto;
+  @include clearfix;
+  text-align:center;
+  .tshape__header {
+    text-align: center;
+    margin-bottom: 100px;
+  }
+  .tshape__role {
+    margin-bottom: 3px;
+  }
+  .tshape__user {
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .tshape__middle {
+    @include clearfix;
+  }
+  .tshape__skillset {
+    float: left;
+    width: 9%;
+    margin-right: 1%;
+    text-align: center;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  .tshape__skillset-heading {
+    text-align: left;
+    transform: rotate(270deg);
+    width: 80px;
+    transform-origin: left top 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+  }
+  .tshape__skill {
+    //width: 40px;
+    min-height: 20px;
+    background: green;
+    margin-bottom: 10px;
+  }
+  .tshape__panel--middle {
+    margin-top: 30px;
+  }
+  $color-1: #6EFF48;
+  $color-2: blue;
+
+  $steps: 16;
+
+  @for $i from 0 to $steps {
+    .tshape__skillset {
+      float: left;
+      width: 40px;
+      margin-right: 10px;
+      text-align: center;
+      &:nth-child(#{$i + 1}) {
+        .tshape__skill {
+          background: mix($color-1, $color-2, percentage($i / ($steps - 1)));
+        }
+      }
+    }
+  }
+}
+
+
+.tshape__mask {
+  width: 800px;
+  margin: 0 auto;
+  @include clearfix;
+  background: #EAEAEA;
+  overflow-x: scroll;
+}
+.tshape--fixed {
+  width: 600px;
+  margin: 0 auto;
+  @include clearfix;
+  text-align:center;
+  .tshape__header {
+    text-align: center;
+    margin-bottom: 100px;
+  }
+  .tshape__role {
+    margin-bottom: 3px;
+  }
+  .tshape__user {
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .tshape__middle {
+    @include clearfix;
+  }
+  .tshape__skillset {
+    float: left;
+    width: 40px;
+    margin-right: 0;
+    text-align: center;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  .tshape__skillset-heading {
+    text-align: left;
+    transform: rotate(270deg);
+    width: 80px;
+    transform-origin: left top 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+  }
+  .tshape__skill {
+    width: 40px;
+    height: 40px;
+    background: green;
+    margin-bottom: 0px;
+    border: 1px solid #FFF;
+  }
+}

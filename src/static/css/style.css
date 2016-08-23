@@ -1,9 +1,9 @@
 @charset "UTF-8";
 /* Setup */
-@import url(http://fonts.googleapis.com/css?family=Lora:400,700|Open+Sans:400,700|Roboto:400,700);
+@import url(http://fonts.googleapis.com/css?family=Lato:200,400,700|Open+Sans:400,700|Roboto:400,700);
 /* line 28, /Users/rob/Projects/tshape/src/static/scss/_settings.scss */
 body {
-  font-family: "Open Sans", "helvetica", "arial";
+  font-family: "Lato", "Open Sans", "helvetica", "arial";
   font-size: 15px;
   color: #333;
 }
@@ -1530,1204 +1530,6 @@ select {
   }
 }
 
-/* line 172, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_reveal.scss */
-.reveal-modal-bg {
-  background: #000000;
-  background: rgba(0, 0, 0, 0.45);
-  bottom: 0;
-  display: none;
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 1004;
-  left: 0;
-}
-
-/* line 174, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_reveal.scss */
-.reveal-modal {
-  border-radius: 3px;
-  display: none;
-  position: absolute;
-  top: 0;
-  visibility: hidden;
-  width: 100%;
-  z-index: 1005;
-  left: 0;
-  background-color: #FFFFFF;
-  padding: 1.875rem;
-  border: solid 1px #666666;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-}
-
-@media only screen and (max-width: 767px) {
-  /* line 174, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_reveal.scss */
-  .reveal-modal {
-    min-height: 100vh;
-  }
-}
-
-/* line 89, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_reveal.scss */
-.reveal-modal .column, .reveal-modal .columns {
-  min-width: 0;
-}
-
-/* line 92, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_reveal.scss */
-.reveal-modal > :first-child {
-  margin-top: 0;
-}
-
-/* line 94, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_reveal.scss */
-.reveal-modal > :last-child {
-  margin-bottom: 0;
-}
-
-@media only screen and (min-width: 768px) {
-  /* line 174, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_reveal.scss */
-  .reveal-modal {
-    left: 0;
-    margin: 0 auto;
-    max-width: 62.5rem;
-    right: 0;
-    width: 80%;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  /* line 174, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_reveal.scss */
-  .reveal-modal {
-    top: 6.25rem;
-  }
-}
-
-/* line 185, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_reveal.scss */
-.reveal-modal.radius {
-  box-shadow: none;
-  border-radius: 3px;
-}
-
-/* line 186, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_reveal.scss */
-.reveal-modal.round {
-  box-shadow: none;
-  border-radius: 1000px;
-}
-
-/* line 187, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_reveal.scss */
-.reveal-modal.collapse {
-  padding: 0;
-  box-shadow: none;
-}
-
-@media only screen and (min-width: 768px) {
-  /* line 188, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_reveal.scss */
-  .reveal-modal.tiny {
-    left: 0;
-    margin: 0 auto;
-    max-width: 62.5rem;
-    right: 0;
-    width: 30%;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  /* line 189, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_reveal.scss */
-  .reveal-modal.small {
-    left: 0;
-    margin: 0 auto;
-    max-width: 62.5rem;
-    right: 0;
-    width: 40%;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  /* line 190, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_reveal.scss */
-  .reveal-modal.medium {
-    left: 0;
-    margin: 0 auto;
-    max-width: 62.5rem;
-    right: 0;
-    width: 60%;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  /* line 191, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_reveal.scss */
-  .reveal-modal.large {
-    left: 0;
-    margin: 0 auto;
-    max-width: 62.5rem;
-    right: 0;
-    width: 70%;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  /* line 192, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_reveal.scss */
-  .reveal-modal.xlarge {
-    left: 0;
-    margin: 0 auto;
-    max-width: 62.5rem;
-    right: 0;
-    width: 95%;
-  }
-}
-
-/* line 193, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_reveal.scss */
-.reveal-modal.full {
-  height: 100vh;
-  height: 100%;
-  left: 0;
-  margin-left: 0 !important;
-  max-width: none !important;
-  min-height: 100vh;
-  top: 0;
-}
-
-@media only screen and (min-width: 768px) {
-  /* line 193, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_reveal.scss */
-  .reveal-modal.full {
-    left: 0;
-    margin: 0 auto;
-    max-width: 62.5rem;
-    right: 0;
-    width: 100%;
-  }
-}
-
-/* line 205, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_reveal.scss */
-.reveal-modal.toback {
-  z-index: 1003;
-}
-
-/* line 209, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_reveal.scss */
-.reveal-modal .close-reveal-modal {
-  color: #AAAAAA;
-  cursor: pointer;
-  font-size: 2.5rem;
-  font-weight: bold;
-  line-height: 1;
-  position: absolute;
-  top: 0.625rem;
-  right: 1.375rem;
-}
-
-/* small displays */
-@media only screen {
-  /* line 244, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  .show-for-small-only, .show-for-small-up, .show-for-small, .show-for-small-down, .hide-for-medium-only, .hide-for-medium-up, .hide-for-medium, .show-for-medium-down, .hide-for-large-only, .hide-for-large-up, .hide-for-large, .show-for-large-down, .hide-for-xlarge-only, .hide-for-xlarge-up, .hide-for-xlarge, .show-for-xlarge-down, .hide-for-xxlarge-only, .hide-for-xxlarge-up, .hide-for-xxlarge, .show-for-xxlarge-down {
-    display: inherit !important;
-  }
-  /* line 247, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  .hide-for-small-only, .hide-for-small-up, .hide-for-small, .hide-for-small-down, .show-for-medium-only, .show-for-medium-up, .show-for-medium, .hide-for-medium-down, .show-for-large-only, .show-for-large-up, .show-for-large, .hide-for-large-down, .show-for-xlarge-only, .show-for-xlarge-up, .show-for-xlarge, .hide-for-xlarge-down, .show-for-xxlarge-only, .show-for-xxlarge-up, .show-for-xxlarge, .hide-for-xxlarge-down {
-    display: none !important;
-  }
-  /* line 251, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  .visible-for-small-only, .visible-for-small-up, .visible-for-small, .visible-for-small-down, .hidden-for-medium-only, .hidden-for-medium-up, .hidden-for-medium, .visible-for-medium-down, .hidden-for-large-only, .hidden-for-large-up, .hidden-for-large, .visible-for-large-down, .hidden-for-xlarge-only, .hidden-for-xlarge-up, .hidden-for-xlarge, .visible-for-xlarge-down, .hidden-for-xxlarge-only, .hidden-for-xxlarge-up, .hidden-for-xxlarge, .visible-for-xxlarge-down {
-    position: static !important;
-    height: auto;
-    width: auto;
-    overflow: visible;
-    clip: auto;
-  }
-  /* line 254, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  .hidden-for-small-only, .hidden-for-small-up, .hidden-for-small, .hidden-for-small-down, .visible-for-medium-only, .visible-for-medium-up, .visible-for-medium, .hidden-for-medium-down, .visible-for-large-only, .visible-for-large-up, .visible-for-large, .hidden-for-large-down, .visible-for-xlarge-only, .visible-for-xlarge-up, .visible-for-xlarge, .hidden-for-xlarge-down, .visible-for-xxlarge-only, .visible-for-xxlarge-up, .visible-for-xxlarge, .hidden-for-xxlarge-down {
-    clip: rect(1px, 1px, 1px, 1px);
-    height: 1px;
-    overflow: hidden;
-    position: absolute !important;
-    width: 1px;
-  }
-  /* line 259, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  table.show-for-small-only, table.show-for-small-up, table.show-for-small, table.show-for-small-down, table.hide-for-medium-only, table.hide-for-medium-up, table.hide-for-medium, table.show-for-medium-down, table.hide-for-large-only, table.hide-for-large-up, table.hide-for-large, table.show-for-large-down, table.hide-for-xlarge-only, table.hide-for-xlarge-up, table.hide-for-xlarge, table.show-for-xlarge-down, table.hide-for-xxlarge-only, table.hide-for-xxlarge-up, table.hide-for-xxlarge, table.show-for-xxlarge-down {
-    display: table !important;
-  }
-  /* line 262, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  thead.show-for-small-only, thead.show-for-small-up, thead.show-for-small, thead.show-for-small-down, thead.hide-for-medium-only, thead.hide-for-medium-up, thead.hide-for-medium, thead.show-for-medium-down, thead.hide-for-large-only, thead.hide-for-large-up, thead.hide-for-large, thead.show-for-large-down, thead.hide-for-xlarge-only, thead.hide-for-xlarge-up, thead.hide-for-xlarge, thead.show-for-xlarge-down, thead.hide-for-xxlarge-only, thead.hide-for-xxlarge-up, thead.hide-for-xxlarge, thead.show-for-xxlarge-down {
-    display: table-header-group !important;
-  }
-  /* line 265, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  tbody.show-for-small-only, tbody.show-for-small-up, tbody.show-for-small, tbody.show-for-small-down, tbody.hide-for-medium-only, tbody.hide-for-medium-up, tbody.hide-for-medium, tbody.show-for-medium-down, tbody.hide-for-large-only, tbody.hide-for-large-up, tbody.hide-for-large, tbody.show-for-large-down, tbody.hide-for-xlarge-only, tbody.hide-for-xlarge-up, tbody.hide-for-xlarge, tbody.show-for-xlarge-down, tbody.hide-for-xxlarge-only, tbody.hide-for-xxlarge-up, tbody.hide-for-xxlarge, tbody.show-for-xxlarge-down {
-    display: table-row-group !important;
-  }
-  /* line 268, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  tr.show-for-small-only, tr.show-for-small-up, tr.show-for-small, tr.show-for-small-down, tr.hide-for-medium-only, tr.hide-for-medium-up, tr.hide-for-medium, tr.show-for-medium-down, tr.hide-for-large-only, tr.hide-for-large-up, tr.hide-for-large, tr.show-for-large-down, tr.hide-for-xlarge-only, tr.hide-for-xlarge-up, tr.hide-for-xlarge, tr.show-for-xlarge-down, tr.hide-for-xxlarge-only, tr.hide-for-xxlarge-up, tr.hide-for-xxlarge, tr.show-for-xxlarge-down {
-    display: table-row;
-  }
-  /* line 271, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  th.show-for-small-only, td.show-for-small-only, th.show-for-small-up, td.show-for-small-up, th.show-for-small, td.show-for-small, th.show-for-small-down, td.show-for-small-down, th.hide-for-medium-only, td.hide-for-medium-only, th.hide-for-medium-up, td.hide-for-medium-up, th.hide-for-medium, td.hide-for-medium, th.show-for-medium-down, td.show-for-medium-down, th.hide-for-large-only, td.hide-for-large-only, th.hide-for-large-up, td.hide-for-large-up, th.hide-for-large, td.hide-for-large, th.show-for-large-down, td.show-for-large-down, th.hide-for-xlarge-only, td.hide-for-xlarge-only, th.hide-for-xlarge-up, td.hide-for-xlarge-up, th.hide-for-xlarge, td.hide-for-xlarge, th.show-for-xlarge-down, td.show-for-xlarge-down, th.hide-for-xxlarge-only, td.hide-for-xxlarge-only, th.hide-for-xxlarge-up, td.hide-for-xxlarge-up, th.hide-for-xxlarge, td.hide-for-xxlarge, th.show-for-xxlarge-down, td.show-for-xxlarge-down {
-    display: table-cell !important;
-  }
-}
-
-/* medium displays */
-@media only screen and (min-width: 768px) {
-  /* line 244, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  .hide-for-small-only, .show-for-small-up, .hide-for-small, .hide-for-small-down, .show-for-medium-only, .show-for-medium-up, .show-for-medium, .show-for-medium-down, .hide-for-large-only, .hide-for-large-up, .hide-for-large, .show-for-large-down, .hide-for-xlarge-only, .hide-for-xlarge-up, .hide-for-xlarge, .show-for-xlarge-down, .hide-for-xxlarge-only, .hide-for-xxlarge-up, .hide-for-xxlarge, .show-for-xxlarge-down {
-    display: inherit !important;
-  }
-  /* line 247, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  .show-for-small-only, .hide-for-small-up, .show-for-small, .show-for-small-down, .hide-for-medium-only, .hide-for-medium-up, .hide-for-medium, .hide-for-medium-down, .show-for-large-only, .show-for-large-up, .show-for-large, .hide-for-large-down, .show-for-xlarge-only, .show-for-xlarge-up, .show-for-xlarge, .hide-for-xlarge-down, .show-for-xxlarge-only, .show-for-xxlarge-up, .show-for-xxlarge, .hide-for-xxlarge-down {
-    display: none !important;
-  }
-  /* line 251, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  .hidden-for-small-only, .visible-for-small-up, .hidden-for-small, .hidden-for-small-down, .visible-for-medium-only, .visible-for-medium-up, .visible-for-medium, .visible-for-medium-down, .hidden-for-large-only, .hidden-for-large-up, .hidden-for-large, .visible-for-large-down, .hidden-for-xlarge-only, .hidden-for-xlarge-up, .hidden-for-xlarge, .visible-for-xlarge-down, .hidden-for-xxlarge-only, .hidden-for-xxlarge-up, .hidden-for-xxlarge, .visible-for-xxlarge-down {
-    position: static !important;
-    height: auto;
-    width: auto;
-    overflow: visible;
-    clip: auto;
-  }
-  /* line 254, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  .visible-for-small-only, .hidden-for-small-up, .visible-for-small, .visible-for-small-down, .hidden-for-medium-only, .hidden-for-medium-up, .hidden-for-medium, .hidden-for-medium-down, .visible-for-large-only, .visible-for-large-up, .visible-for-large, .hidden-for-large-down, .visible-for-xlarge-only, .visible-for-xlarge-up, .visible-for-xlarge, .hidden-for-xlarge-down, .visible-for-xxlarge-only, .visible-for-xxlarge-up, .visible-for-xxlarge, .hidden-for-xxlarge-down {
-    clip: rect(1px, 1px, 1px, 1px);
-    height: 1px;
-    overflow: hidden;
-    position: absolute !important;
-    width: 1px;
-  }
-  /* line 259, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  table.hide-for-small-only, table.show-for-small-up, table.hide-for-small, table.hide-for-small-down, table.show-for-medium-only, table.show-for-medium-up, table.show-for-medium, table.show-for-medium-down, table.hide-for-large-only, table.hide-for-large-up, table.hide-for-large, table.show-for-large-down, table.hide-for-xlarge-only, table.hide-for-xlarge-up, table.hide-for-xlarge, table.show-for-xlarge-down, table.hide-for-xxlarge-only, table.hide-for-xxlarge-up, table.hide-for-xxlarge, table.show-for-xxlarge-down {
-    display: table !important;
-  }
-  /* line 262, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  thead.hide-for-small-only, thead.show-for-small-up, thead.hide-for-small, thead.hide-for-small-down, thead.show-for-medium-only, thead.show-for-medium-up, thead.show-for-medium, thead.show-for-medium-down, thead.hide-for-large-only, thead.hide-for-large-up, thead.hide-for-large, thead.show-for-large-down, thead.hide-for-xlarge-only, thead.hide-for-xlarge-up, thead.hide-for-xlarge, thead.show-for-xlarge-down, thead.hide-for-xxlarge-only, thead.hide-for-xxlarge-up, thead.hide-for-xxlarge, thead.show-for-xxlarge-down {
-    display: table-header-group !important;
-  }
-  /* line 265, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  tbody.hide-for-small-only, tbody.show-for-small-up, tbody.hide-for-small, tbody.hide-for-small-down, tbody.show-for-medium-only, tbody.show-for-medium-up, tbody.show-for-medium, tbody.show-for-medium-down, tbody.hide-for-large-only, tbody.hide-for-large-up, tbody.hide-for-large, tbody.show-for-large-down, tbody.hide-for-xlarge-only, tbody.hide-for-xlarge-up, tbody.hide-for-xlarge, tbody.show-for-xlarge-down, tbody.hide-for-xxlarge-only, tbody.hide-for-xxlarge-up, tbody.hide-for-xxlarge, tbody.show-for-xxlarge-down {
-    display: table-row-group !important;
-  }
-  /* line 268, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  tr.hide-for-small-only, tr.show-for-small-up, tr.hide-for-small, tr.hide-for-small-down, tr.show-for-medium-only, tr.show-for-medium-up, tr.show-for-medium, tr.show-for-medium-down, tr.hide-for-large-only, tr.hide-for-large-up, tr.hide-for-large, tr.show-for-large-down, tr.hide-for-xlarge-only, tr.hide-for-xlarge-up, tr.hide-for-xlarge, tr.show-for-xlarge-down, tr.hide-for-xxlarge-only, tr.hide-for-xxlarge-up, tr.hide-for-xxlarge, tr.show-for-xxlarge-down {
-    display: table-row;
-  }
-  /* line 271, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  th.hide-for-small-only, td.hide-for-small-only, th.show-for-small-up, td.show-for-small-up, th.hide-for-small, td.hide-for-small, th.hide-for-small-down, td.hide-for-small-down, th.show-for-medium-only, td.show-for-medium-only, th.show-for-medium-up, td.show-for-medium-up, th.show-for-medium, td.show-for-medium, th.show-for-medium-down, td.show-for-medium-down, th.hide-for-large-only, td.hide-for-large-only, th.hide-for-large-up, td.hide-for-large-up, th.hide-for-large, td.hide-for-large, th.show-for-large-down, td.show-for-large-down, th.hide-for-xlarge-only, td.hide-for-xlarge-only, th.hide-for-xlarge-up, td.hide-for-xlarge-up, th.hide-for-xlarge, td.hide-for-xlarge, th.show-for-xlarge-down, td.show-for-xlarge-down, th.hide-for-xxlarge-only, td.hide-for-xxlarge-only, th.hide-for-xxlarge-up, td.hide-for-xxlarge-up, th.hide-for-xxlarge, td.hide-for-xxlarge, th.show-for-xxlarge-down, td.show-for-xxlarge-down {
-    display: table-cell !important;
-  }
-}
-
-/* large displays */
-@media only screen and (min-width: 1025px) {
-  /* line 244, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  .hide-for-small-only, .show-for-small-up, .hide-for-small, .hide-for-small-down, .hide-for-medium-only, .show-for-medium-up, .hide-for-medium, .hide-for-medium-down, .show-for-large-only, .show-for-large-up, .show-for-large, .show-for-large-down, .hide-for-xlarge-only, .hide-for-xlarge-up, .hide-for-xlarge, .show-for-xlarge-down, .hide-for-xxlarge-only, .hide-for-xxlarge-up, .hide-for-xxlarge, .show-for-xxlarge-down {
-    display: inherit !important;
-  }
-  /* line 247, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  .show-for-small-only, .hide-for-small-up, .show-for-small, .show-for-small-down, .show-for-medium-only, .hide-for-medium-up, .show-for-medium, .show-for-medium-down, .hide-for-large-only, .hide-for-large-up, .hide-for-large, .hide-for-large-down, .show-for-xlarge-only, .show-for-xlarge-up, .show-for-xlarge, .hide-for-xlarge-down, .show-for-xxlarge-only, .show-for-xxlarge-up, .show-for-xxlarge, .hide-for-xxlarge-down {
-    display: none !important;
-  }
-  /* line 251, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  .hidden-for-small-only, .visible-for-small-up, .hidden-for-small, .hidden-for-small-down, .hidden-for-medium-only, .visible-for-medium-up, .hidden-for-medium, .hidden-for-medium-down, .visible-for-large-only, .visible-for-large-up, .visible-for-large, .visible-for-large-down, .hidden-for-xlarge-only, .hidden-for-xlarge-up, .hidden-for-xlarge, .visible-for-xlarge-down, .hidden-for-xxlarge-only, .hidden-for-xxlarge-up, .hidden-for-xxlarge, .visible-for-xxlarge-down {
-    position: static !important;
-    height: auto;
-    width: auto;
-    overflow: visible;
-    clip: auto;
-  }
-  /* line 254, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  .visible-for-small-only, .hidden-for-small-up, .visible-for-small, .visible-for-small-down, .visible-for-medium-only, .hidden-for-medium-up, .visible-for-medium, .visible-for-medium-down, .hidden-for-large-only, .hidden-for-large-up, .hidden-for-large, .hidden-for-large-down, .visible-for-xlarge-only, .visible-for-xlarge-up, .visible-for-xlarge, .hidden-for-xlarge-down, .visible-for-xxlarge-only, .visible-for-xxlarge-up, .visible-for-xxlarge, .hidden-for-xxlarge-down {
-    clip: rect(1px, 1px, 1px, 1px);
-    height: 1px;
-    overflow: hidden;
-    position: absolute !important;
-    width: 1px;
-  }
-  /* line 259, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  table.hide-for-small-only, table.show-for-small-up, table.hide-for-small, table.hide-for-small-down, table.hide-for-medium-only, table.show-for-medium-up, table.hide-for-medium, table.hide-for-medium-down, table.show-for-large-only, table.show-for-large-up, table.show-for-large, table.show-for-large-down, table.hide-for-xlarge-only, table.hide-for-xlarge-up, table.hide-for-xlarge, table.show-for-xlarge-down, table.hide-for-xxlarge-only, table.hide-for-xxlarge-up, table.hide-for-xxlarge, table.show-for-xxlarge-down {
-    display: table !important;
-  }
-  /* line 262, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  thead.hide-for-small-only, thead.show-for-small-up, thead.hide-for-small, thead.hide-for-small-down, thead.hide-for-medium-only, thead.show-for-medium-up, thead.hide-for-medium, thead.hide-for-medium-down, thead.show-for-large-only, thead.show-for-large-up, thead.show-for-large, thead.show-for-large-down, thead.hide-for-xlarge-only, thead.hide-for-xlarge-up, thead.hide-for-xlarge, thead.show-for-xlarge-down, thead.hide-for-xxlarge-only, thead.hide-for-xxlarge-up, thead.hide-for-xxlarge, thead.show-for-xxlarge-down {
-    display: table-header-group !important;
-  }
-  /* line 265, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  tbody.hide-for-small-only, tbody.show-for-small-up, tbody.hide-for-small, tbody.hide-for-small-down, tbody.hide-for-medium-only, tbody.show-for-medium-up, tbody.hide-for-medium, tbody.hide-for-medium-down, tbody.show-for-large-only, tbody.show-for-large-up, tbody.show-for-large, tbody.show-for-large-down, tbody.hide-for-xlarge-only, tbody.hide-for-xlarge-up, tbody.hide-for-xlarge, tbody.show-for-xlarge-down, tbody.hide-for-xxlarge-only, tbody.hide-for-xxlarge-up, tbody.hide-for-xxlarge, tbody.show-for-xxlarge-down {
-    display: table-row-group !important;
-  }
-  /* line 268, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  tr.hide-for-small-only, tr.show-for-small-up, tr.hide-for-small, tr.hide-for-small-down, tr.hide-for-medium-only, tr.show-for-medium-up, tr.hide-for-medium, tr.hide-for-medium-down, tr.show-for-large-only, tr.show-for-large-up, tr.show-for-large, tr.show-for-large-down, tr.hide-for-xlarge-only, tr.hide-for-xlarge-up, tr.hide-for-xlarge, tr.show-for-xlarge-down, tr.hide-for-xxlarge-only, tr.hide-for-xxlarge-up, tr.hide-for-xxlarge, tr.show-for-xxlarge-down {
-    display: table-row;
-  }
-  /* line 271, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  th.hide-for-small-only, td.hide-for-small-only, th.show-for-small-up, td.show-for-small-up, th.hide-for-small, td.hide-for-small, th.hide-for-small-down, td.hide-for-small-down, th.hide-for-medium-only, td.hide-for-medium-only, th.show-for-medium-up, td.show-for-medium-up, th.hide-for-medium, td.hide-for-medium, th.hide-for-medium-down, td.hide-for-medium-down, th.show-for-large-only, td.show-for-large-only, th.show-for-large-up, td.show-for-large-up, th.show-for-large, td.show-for-large, th.show-for-large-down, td.show-for-large-down, th.hide-for-xlarge-only, td.hide-for-xlarge-only, th.hide-for-xlarge-up, td.hide-for-xlarge-up, th.hide-for-xlarge, td.hide-for-xlarge, th.show-for-xlarge-down, td.show-for-xlarge-down, th.hide-for-xxlarge-only, td.hide-for-xxlarge-only, th.hide-for-xxlarge-up, td.hide-for-xxlarge-up, th.hide-for-xxlarge, td.hide-for-xxlarge, th.show-for-xxlarge-down, td.show-for-xxlarge-down {
-    display: table-cell !important;
-  }
-}
-
-/* xlarge displays */
-@media only screen and (min-width: 1441px) {
-  /* line 244, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  .hide-for-small-only, .show-for-small-up, .hide-for-small, .hide-for-small-down, .hide-for-medium-only, .show-for-medium-up, .hide-for-medium, .hide-for-medium-down, .hide-for-large-only, .show-for-large-up, .hide-for-large, .hide-for-large-down, .show-for-xlarge-only, .show-for-xlarge-up, .show-for-xlarge, .show-for-xlarge-down, .hide-for-xxlarge-only, .hide-for-xxlarge-up, .hide-for-xxlarge, .show-for-xxlarge-down {
-    display: inherit !important;
-  }
-  /* line 247, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  .show-for-small-only, .hide-for-small-up, .show-for-small, .show-for-small-down, .show-for-medium-only, .hide-for-medium-up, .show-for-medium, .show-for-medium-down, .show-for-large-only, .hide-for-large-up, .show-for-large, .show-for-large-down, .hide-for-xlarge-only, .hide-for-xlarge-up, .hide-for-xlarge, .hide-for-xlarge-down, .show-for-xxlarge-only, .show-for-xxlarge-up, .show-for-xxlarge, .hide-for-xxlarge-down {
-    display: none !important;
-  }
-  /* line 251, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  .hidden-for-small-only, .visible-for-small-up, .hidden-for-small, .hidden-for-small-down, .hidden-for-medium-only, .visible-for-medium-up, .hidden-for-medium, .hidden-for-medium-down, .hidden-for-large-only, .visible-for-large-up, .hidden-for-large, .hidden-for-large-down, .visible-for-xlarge-only, .visible-for-xlarge-up, .visible-for-xlarge, .visible-for-xlarge-down, .hidden-for-xxlarge-only, .hidden-for-xxlarge-up, .hidden-for-xxlarge, .visible-for-xxlarge-down {
-    position: static !important;
-    height: auto;
-    width: auto;
-    overflow: visible;
-    clip: auto;
-  }
-  /* line 254, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  .visible-for-small-only, .hidden-for-small-up, .visible-for-small, .visible-for-small-down, .visible-for-medium-only, .hidden-for-medium-up, .visible-for-medium, .visible-for-medium-down, .visible-for-large-only, .hidden-for-large-up, .visible-for-large, .visible-for-large-down, .hidden-for-xlarge-only, .hidden-for-xlarge-up, .hidden-for-xlarge, .hidden-for-xlarge-down, .visible-for-xxlarge-only, .visible-for-xxlarge-up, .visible-for-xxlarge, .hidden-for-xxlarge-down {
-    clip: rect(1px, 1px, 1px, 1px);
-    height: 1px;
-    overflow: hidden;
-    position: absolute !important;
-    width: 1px;
-  }
-  /* line 259, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  table.hide-for-small-only, table.show-for-small-up, table.hide-for-small, table.hide-for-small-down, table.hide-for-medium-only, table.show-for-medium-up, table.hide-for-medium, table.hide-for-medium-down, table.hide-for-large-only, table.show-for-large-up, table.hide-for-large, table.hide-for-large-down, table.show-for-xlarge-only, table.show-for-xlarge-up, table.show-for-xlarge, table.show-for-xlarge-down, table.hide-for-xxlarge-only, table.hide-for-xxlarge-up, table.hide-for-xxlarge, table.show-for-xxlarge-down {
-    display: table !important;
-  }
-  /* line 262, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  thead.hide-for-small-only, thead.show-for-small-up, thead.hide-for-small, thead.hide-for-small-down, thead.hide-for-medium-only, thead.show-for-medium-up, thead.hide-for-medium, thead.hide-for-medium-down, thead.hide-for-large-only, thead.show-for-large-up, thead.hide-for-large, thead.hide-for-large-down, thead.show-for-xlarge-only, thead.show-for-xlarge-up, thead.show-for-xlarge, thead.show-for-xlarge-down, thead.hide-for-xxlarge-only, thead.hide-for-xxlarge-up, thead.hide-for-xxlarge, thead.show-for-xxlarge-down {
-    display: table-header-group !important;
-  }
-  /* line 265, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  tbody.hide-for-small-only, tbody.show-for-small-up, tbody.hide-for-small, tbody.hide-for-small-down, tbody.hide-for-medium-only, tbody.show-for-medium-up, tbody.hide-for-medium, tbody.hide-for-medium-down, tbody.hide-for-large-only, tbody.show-for-large-up, tbody.hide-for-large, tbody.hide-for-large-down, tbody.show-for-xlarge-only, tbody.show-for-xlarge-up, tbody.show-for-xlarge, tbody.show-for-xlarge-down, tbody.hide-for-xxlarge-only, tbody.hide-for-xxlarge-up, tbody.hide-for-xxlarge, tbody.show-for-xxlarge-down {
-    display: table-row-group !important;
-  }
-  /* line 268, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  tr.hide-for-small-only, tr.show-for-small-up, tr.hide-for-small, tr.hide-for-small-down, tr.hide-for-medium-only, tr.show-for-medium-up, tr.hide-for-medium, tr.hide-for-medium-down, tr.hide-for-large-only, tr.show-for-large-up, tr.hide-for-large, tr.hide-for-large-down, tr.show-for-xlarge-only, tr.show-for-xlarge-up, tr.show-for-xlarge, tr.show-for-xlarge-down, tr.hide-for-xxlarge-only, tr.hide-for-xxlarge-up, tr.hide-for-xxlarge, tr.show-for-xxlarge-down {
-    display: table-row;
-  }
-  /* line 271, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  th.hide-for-small-only, td.hide-for-small-only, th.show-for-small-up, td.show-for-small-up, th.hide-for-small, td.hide-for-small, th.hide-for-small-down, td.hide-for-small-down, th.hide-for-medium-only, td.hide-for-medium-only, th.show-for-medium-up, td.show-for-medium-up, th.hide-for-medium, td.hide-for-medium, th.hide-for-medium-down, td.hide-for-medium-down, th.hide-for-large-only, td.hide-for-large-only, th.show-for-large-up, td.show-for-large-up, th.hide-for-large, td.hide-for-large, th.hide-for-large-down, td.hide-for-large-down, th.show-for-xlarge-only, td.show-for-xlarge-only, th.show-for-xlarge-up, td.show-for-xlarge-up, th.show-for-xlarge, td.show-for-xlarge, th.show-for-xlarge-down, td.show-for-xlarge-down, th.hide-for-xxlarge-only, td.hide-for-xxlarge-only, th.hide-for-xxlarge-up, td.hide-for-xxlarge-up, th.hide-for-xxlarge, td.hide-for-xxlarge, th.show-for-xxlarge-down, td.show-for-xxlarge-down {
-    display: table-cell !important;
-  }
-}
-
-/* xxlarge displays */
-@media only screen and (min-width: 120.0625em) {
-  /* line 244, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  .hide-for-small-only, .show-for-small-up, .hide-for-small, .hide-for-small-down, .hide-for-medium-only, .show-for-medium-up, .hide-for-medium, .hide-for-medium-down, .hide-for-large-only, .show-for-large-up, .hide-for-large, .hide-for-large-down, .hide-for-xlarge-only, .show-for-xlarge-up, .hide-for-xlarge, .hide-for-xlarge-down, .show-for-xxlarge-only, .show-for-xxlarge-up, .show-for-xxlarge, .show-for-xxlarge-down {
-    display: inherit !important;
-  }
-  /* line 247, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  .show-for-small-only, .hide-for-small-up, .show-for-small, .show-for-small-down, .show-for-medium-only, .hide-for-medium-up, .show-for-medium, .show-for-medium-down, .show-for-large-only, .hide-for-large-up, .show-for-large, .show-for-large-down, .show-for-xlarge-only, .hide-for-xlarge-up, .show-for-xlarge, .show-for-xlarge-down, .hide-for-xxlarge-only, .hide-for-xxlarge-up, .hide-for-xxlarge, .hide-for-xxlarge-down {
-    display: none !important;
-  }
-  /* line 251, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  .hidden-for-small-only, .visible-for-small-up, .hidden-for-small, .hidden-for-small-down, .hidden-for-medium-only, .visible-for-medium-up, .hidden-for-medium, .hidden-for-medium-down, .hidden-for-large-only, .visible-for-large-up, .hidden-for-large, .hidden-for-large-down, .hidden-for-xlarge-only, .visible-for-xlarge-up, .hidden-for-xlarge, .hidden-for-xlarge-down, .visible-for-xxlarge-only, .visible-for-xxlarge-up, .visible-for-xxlarge, .visible-for-xxlarge-down {
-    position: static !important;
-    height: auto;
-    width: auto;
-    overflow: visible;
-    clip: auto;
-  }
-  /* line 254, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  .visible-for-small-only, .hidden-for-small-up, .visible-for-small, .visible-for-small-down, .visible-for-medium-only, .hidden-for-medium-up, .visible-for-medium, .visible-for-medium-down, .visible-for-large-only, .hidden-for-large-up, .visible-for-large, .visible-for-large-down, .visible-for-xlarge-only, .hidden-for-xlarge-up, .visible-for-xlarge, .visible-for-xlarge-down, .hidden-for-xxlarge-only, .hidden-for-xxlarge-up, .hidden-for-xxlarge, .hidden-for-xxlarge-down {
-    clip: rect(1px, 1px, 1px, 1px);
-    height: 1px;
-    overflow: hidden;
-    position: absolute !important;
-    width: 1px;
-  }
-  /* line 259, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  table.hide-for-small-only, table.show-for-small-up, table.hide-for-small, table.hide-for-small-down, table.hide-for-medium-only, table.show-for-medium-up, table.hide-for-medium, table.hide-for-medium-down, table.hide-for-large-only, table.show-for-large-up, table.hide-for-large, table.hide-for-large-down, table.hide-for-xlarge-only, table.show-for-xlarge-up, table.hide-for-xlarge, table.hide-for-xlarge-down, table.show-for-xxlarge-only, table.show-for-xxlarge-up, table.show-for-xxlarge, table.show-for-xxlarge-down {
-    display: table !important;
-  }
-  /* line 262, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  thead.hide-for-small-only, thead.show-for-small-up, thead.hide-for-small, thead.hide-for-small-down, thead.hide-for-medium-only, thead.show-for-medium-up, thead.hide-for-medium, thead.hide-for-medium-down, thead.hide-for-large-only, thead.show-for-large-up, thead.hide-for-large, thead.hide-for-large-down, thead.hide-for-xlarge-only, thead.show-for-xlarge-up, thead.hide-for-xlarge, thead.hide-for-xlarge-down, thead.show-for-xxlarge-only, thead.show-for-xxlarge-up, thead.show-for-xxlarge, thead.show-for-xxlarge-down {
-    display: table-header-group !important;
-  }
-  /* line 265, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  tbody.hide-for-small-only, tbody.show-for-small-up, tbody.hide-for-small, tbody.hide-for-small-down, tbody.hide-for-medium-only, tbody.show-for-medium-up, tbody.hide-for-medium, tbody.hide-for-medium-down, tbody.hide-for-large-only, tbody.show-for-large-up, tbody.hide-for-large, tbody.hide-for-large-down, tbody.hide-for-xlarge-only, tbody.show-for-xlarge-up, tbody.hide-for-xlarge, tbody.hide-for-xlarge-down, tbody.show-for-xxlarge-only, tbody.show-for-xxlarge-up, tbody.show-for-xxlarge, tbody.show-for-xxlarge-down {
-    display: table-row-group !important;
-  }
-  /* line 268, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  tr.hide-for-small-only, tr.show-for-small-up, tr.hide-for-small, tr.hide-for-small-down, tr.hide-for-medium-only, tr.show-for-medium-up, tr.hide-for-medium, tr.hide-for-medium-down, tr.hide-for-large-only, tr.show-for-large-up, tr.hide-for-large, tr.hide-for-large-down, tr.hide-for-xlarge-only, tr.show-for-xlarge-up, tr.hide-for-xlarge, tr.hide-for-xlarge-down, tr.show-for-xxlarge-only, tr.show-for-xxlarge-up, tr.show-for-xxlarge, tr.show-for-xxlarge-down {
-    display: table-row;
-  }
-  /* line 271, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  th.hide-for-small-only, td.hide-for-small-only, th.show-for-small-up, td.show-for-small-up, th.hide-for-small, td.hide-for-small, th.hide-for-small-down, td.hide-for-small-down, th.hide-for-medium-only, td.hide-for-medium-only, th.show-for-medium-up, td.show-for-medium-up, th.hide-for-medium, td.hide-for-medium, th.hide-for-medium-down, td.hide-for-medium-down, th.hide-for-large-only, td.hide-for-large-only, th.show-for-large-up, td.show-for-large-up, th.hide-for-large, td.hide-for-large, th.hide-for-large-down, td.hide-for-large-down, th.hide-for-xlarge-only, td.hide-for-xlarge-only, th.show-for-xlarge-up, td.show-for-xlarge-up, th.hide-for-xlarge, td.hide-for-xlarge, th.hide-for-xlarge-down, td.hide-for-xlarge-down, th.show-for-xxlarge-only, td.show-for-xxlarge-only, th.show-for-xxlarge-up, td.show-for-xxlarge-up, th.show-for-xxlarge, td.show-for-xxlarge, th.show-for-xxlarge-down, td.show-for-xxlarge-down {
-    display: table-cell !important;
-  }
-}
-
-/* Orientation targeting */
-/* line 285, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-.show-for-landscape,
-.hide-for-portrait {
-  display: inherit !important;
-}
-
-/* line 287, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-.hide-for-landscape,
-.show-for-portrait {
-  display: none !important;
-}
-
-/* Specific visibility for tables */
-/* line 292, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-table.hide-for-landscape, table.show-for-portrait {
-  display: table !important;
-}
-
-/* line 296, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-thead.hide-for-landscape, thead.show-for-portrait {
-  display: table-header-group !important;
-}
-
-/* line 300, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-tbody.hide-for-landscape, tbody.show-for-portrait {
-  display: table-row-group !important;
-}
-
-/* line 304, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-tr.hide-for-landscape, tr.show-for-portrait {
-  display: table-row !important;
-}
-
-/* line 309, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-td.hide-for-landscape, td.show-for-portrait,
-th.hide-for-landscape,
-th.show-for-portrait {
-  display: table-cell !important;
-}
-
-@media (orientation: landscape) {
-  /* line 314, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  .show-for-landscape,
-  .hide-for-portrait {
-    display: inherit !important;
-  }
-  /* line 316, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  .hide-for-landscape,
-  .show-for-portrait {
-    display: none !important;
-  }
-  /* Specific visibility for tables */
-  /* line 321, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  table.show-for-landscape, table.hide-for-portrait {
-    display: table !important;
-  }
-  /* line 325, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  thead.show-for-landscape, thead.hide-for-portrait {
-    display: table-header-group !important;
-  }
-  /* line 329, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  tbody.show-for-landscape, tbody.hide-for-portrait {
-    display: table-row-group !important;
-  }
-  /* line 333, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  tr.show-for-landscape, tr.hide-for-portrait {
-    display: table-row !important;
-  }
-  /* line 338, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  td.show-for-landscape, td.hide-for-portrait,
-  th.show-for-landscape,
-  th.hide-for-portrait {
-    display: table-cell !important;
-  }
-}
-
-@media (orientation: portrait) {
-  /* line 344, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  .show-for-portrait,
-  .hide-for-landscape {
-    display: inherit !important;
-  }
-  /* line 346, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  .hide-for-portrait,
-  .show-for-landscape {
-    display: none !important;
-  }
-  /* Specific visibility for tables */
-  /* line 351, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  table.show-for-portrait, table.hide-for-landscape {
-    display: table !important;
-  }
-  /* line 355, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  thead.show-for-portrait, thead.hide-for-landscape {
-    display: table-header-group !important;
-  }
-  /* line 359, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  tbody.show-for-portrait, tbody.hide-for-landscape {
-    display: table-row-group !important;
-  }
-  /* line 363, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  tr.show-for-portrait, tr.hide-for-landscape {
-    display: table-row !important;
-  }
-  /* line 368, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  td.show-for-portrait, td.hide-for-landscape,
-  th.show-for-portrait,
-  th.hide-for-landscape {
-    display: table-cell !important;
-  }
-}
-
-/* Touch-enabled device targeting */
-/* line 374, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-.show-for-touch {
-  display: none !important;
-}
-
-/* line 375, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-.hide-for-touch {
-  display: inherit !important;
-}
-
-/* line 376, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-.touch .show-for-touch {
-  display: inherit !important;
-}
-
-/* line 377, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-.touch .hide-for-touch {
-  display: none !important;
-}
-
-/* Specific visibility for tables */
-/* line 380, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-table.hide-for-touch {
-  display: table !important;
-}
-
-/* line 381, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-.touch table.show-for-touch {
-  display: table !important;
-}
-
-/* line 382, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-thead.hide-for-touch {
-  display: table-header-group !important;
-}
-
-/* line 383, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-.touch thead.show-for-touch {
-  display: table-header-group !important;
-}
-
-/* line 384, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-tbody.hide-for-touch {
-  display: table-row-group !important;
-}
-
-/* line 385, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-.touch tbody.show-for-touch {
-  display: table-row-group !important;
-}
-
-/* line 386, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-tr.hide-for-touch {
-  display: table-row !important;
-}
-
-/* line 387, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-.touch tr.show-for-touch {
-  display: table-row !important;
-}
-
-/* line 388, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-td.hide-for-touch {
-  display: table-cell !important;
-}
-
-/* line 389, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-.touch td.show-for-touch {
-  display: table-cell !important;
-}
-
-/* line 390, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-th.hide-for-touch {
-  display: table-cell !important;
-}
-
-/* line 391, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-.touch th.show-for-touch {
-  display: table-cell !important;
-}
-
-/* Screen reader-specific classes */
-/* line 394, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-.show-for-sr {
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  overflow: hidden;
-  position: absolute !important;
-  width: 1px;
-}
-
-/* line 397, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-.show-on-focus {
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  overflow: hidden;
-  position: absolute !important;
-  width: 1px;
-}
-
-/* line 400, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-.show-on-focus:focus, .show-on-focus:active {
-  position: static !important;
-  height: auto;
-  width: auto;
-  overflow: visible;
-  clip: auto;
-}
-
-/* Print visibility */
-/* line 408, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-.print-only,
-.show-for-print {
-  display: none !important;
-}
-
-@media print {
-  /* line 411, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  .print-only,
-  .show-for-print {
-    display: block !important;
-  }
-  /* line 413, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  .hide-on-print,
-  .hide-for-print {
-    display: none !important;
-  }
-  /* line 416, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  table.show-for-print {
-    display: table !important;
-  }
-  /* line 417, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  thead.show-for-print {
-    display: table-header-group !important;
-  }
-  /* line 418, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  tbody.show-for-print {
-    display: table-row-group !important;
-  }
-  /* line 419, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  tr.show-for-print {
-    display: table-row !important;
-  }
-  /* line 420, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  td.show-for-print {
-    display: table-cell !important;
-  }
-  /* line 421, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_visibility.scss */
-  th.show-for-print {
-    display: table-cell !important;
-  }
-}
-
-/* Tooltips */
-/* line 38, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_tooltips.scss */
-.has-tip {
-  border-bottom: dotted 1px #CCCCCC;
-  color: #333333;
-  cursor: help;
-  font-weight: bold;
-}
-
-/* line 44, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_tooltips.scss */
-.has-tip:hover, .has-tip:focus {
-  border-bottom: dotted 1px #0b1a60;
-  color: #1839D6;
-}
-
-/* line 50, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_tooltips.scss */
-.has-tip.tip-left, .has-tip.tip-right {
-  float: none !important;
-}
-
-/* line 54, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_tooltips.scss */
-.tooltip {
-  background: #333333;
-  color: #FFFFFF;
-  display: none;
-  font-size: 0.875rem;
-  font-weight: normal;
-  line-height: 1.3;
-  max-width: 300px;
-  padding: 0.75rem;
-  position: absolute;
-  width: 100%;
-  z-index: 1006;
-  left: 50%;
-}
-
-/* line 68, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_tooltips.scss */
-.tooltip > .nub {
-  border: solid 5px;
-  border-color: transparent transparent #333333 transparent;
-  display: block;
-  height: 0;
-  pointer-events: none;
-  position: absolute;
-  top: -10px;
-  width: 0;
-  left: 5px;
-}
-
-/* line 79, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_tooltips.scss */
-.tooltip > .nub.rtl {
-  left: auto;
-  right: 5px;
-}
-
-/* line 85, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_tooltips.scss */
-.tooltip.radius {
-  border-radius: 3px;
-}
-
-/* line 88, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_tooltips.scss */
-.tooltip.round {
-  border-radius: 1000px;
-}
-
-/* line 90, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_tooltips.scss */
-.tooltip.round > .nub {
-  left: 2rem;
-}
-
-/* line 95, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_tooltips.scss */
-.tooltip.opened {
-  border-bottom: dotted 1px #0b1a60 !important;
-  color: #1839D6 !important;
-}
-
-/* line 101, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_tooltips.scss */
-.tap-to-close {
-  color: #777777;
-  display: block;
-  font-size: 0.625rem;
-  font-weight: normal;
-}
-
-@media only screen {
-  /* line 110, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_tooltips.scss */
-  .tooltip > .nub {
-    border-color: transparent transparent #333333 transparent;
-    top: -10px;
-  }
-  /* line 114, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_tooltips.scss */
-  .tooltip.tip-top > .nub {
-    border-color: #333333 transparent transparent transparent;
-    bottom: -10px;
-    top: auto;
-  }
-  /* line 120, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_tooltips.scss */
-  .tooltip.tip-left, .tooltip.tip-right {
-    float: none !important;
-  }
-  /* line 123, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_tooltips.scss */
-  .tooltip.tip-left > .nub {
-    border-color: transparent transparent transparent #333333;
-    left: auto;
-    margin-top: -5px;
-    right: -10px;
-    top: 50%;
-  }
-  /* line 130, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_tooltips.scss */
-  .tooltip.tip-right > .nub {
-    border-color: transparent #333333 transparent transparent;
-    left: -10px;
-    margin-top: -5px;
-    right: auto;
-    top: 50%;
-  }
-}
-
-/* line 1, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape {
-  margin: 0 auto;
-  text-align: center;
-}
-
-/* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-.tshape:before, .tshape:after {
-  content: " ";
-  display: table;
-}
-
-/* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-.tshape:after {
-  clear: both;
-}
-
-/* line 6, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape .tshape__header {
-  text-align: center;
-  margin-bottom: 100px;
-}
-
-/* line 10, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape .tshape__role {
-  margin-bottom: 3px;
-}
-
-/* line 13, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape .tshape__user {
-  margin-bottom: 0;
-  font-size: 14px;
-  line-height: 20px;
-}
-
-/* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-.tshape .tshape__middle:before, .tshape .tshape__middle:after {
-  content: " ";
-  display: table;
-}
-
-/* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-.tshape .tshape__middle:after {
-  clear: both;
-}
-
-/* line 21, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape .tshape__skillset {
-  float: left;
-  width: 9%;
-  margin-right: 1%;
-  text-align: center;
-}
-
-/* line 26, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape .tshape__skillset:last-child {
-  margin-right: 0;
-}
-
-/* line 30, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape .tshape__skillset-heading {
-  text-align: left;
-  transform: rotate(270deg);
-  width: 80px;
-  transform-origin: left top 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 14px;
-}
-
-/* line 40, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape .tshape__skill {
-  min-height: 20px;
-  background: green;
-  margin-bottom: 10px;
-}
-
-/* line 46, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape .tshape__panel--middle {
-  margin-top: 30px;
-}
-
-/* line 57, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset {
-  float: left;
-  width: 40px;
-  margin-right: 10px;
-  text-align: center;
-}
-
-/* line 63, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset:nth-child(1) .tshape__skill {
-  background: blue;
-}
-
-/* line 57, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset {
-  float: left;
-  width: 40px;
-  margin-right: 10px;
-  text-align: center;
-}
-
-/* line 63, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset:nth-child(2) .tshape__skill {
-  background: #0711f3;
-}
-
-/* line 57, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset {
-  float: left;
-  width: 40px;
-  margin-right: 10px;
-  text-align: center;
-}
-
-/* line 63, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset:nth-child(3) .tshape__skill {
-  background: #0f22e7;
-}
-
-/* line 57, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset {
-  float: left;
-  width: 40px;
-  margin-right: 10px;
-  text-align: center;
-}
-
-/* line 63, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset:nth-child(4) .tshape__skill {
-  background: #1633da;
-}
-
-/* line 57, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset {
-  float: left;
-  width: 40px;
-  margin-right: 10px;
-  text-align: center;
-}
-
-/* line 63, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset:nth-child(5) .tshape__skill {
-  background: #1d44ce;
-}
-
-/* line 57, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset {
-  float: left;
-  width: 40px;
-  margin-right: 10px;
-  text-align: center;
-}
-
-/* line 63, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset:nth-child(6) .tshape__skill {
-  background: #2555c2;
-}
-
-/* line 57, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset {
-  float: left;
-  width: 40px;
-  margin-right: 10px;
-  text-align: center;
-}
-
-/* line 63, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset:nth-child(7) .tshape__skill {
-  background: #2c66b6;
-}
-
-/* line 57, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset {
-  float: left;
-  width: 40px;
-  margin-right: 10px;
-  text-align: center;
-}
-
-/* line 63, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset:nth-child(8) .tshape__skill {
-  background: #3377aa;
-}
-
-/* line 57, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset {
-  float: left;
-  width: 40px;
-  margin-right: 10px;
-  text-align: center;
-}
-
-/* line 63, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset:nth-child(9) .tshape__skill {
-  background: #3b889d;
-}
-
-/* line 57, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset {
-  float: left;
-  width: 40px;
-  margin-right: 10px;
-  text-align: center;
-}
-
-/* line 63, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset:nth-child(10) .tshape__skill {
-  background: #429991;
-}
-
-/* line 57, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset {
-  float: left;
-  width: 40px;
-  margin-right: 10px;
-  text-align: center;
-}
-
-/* line 63, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset:nth-child(11) .tshape__skill {
-  background: #49aa85;
-}
-
-/* line 57, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset {
-  float: left;
-  width: 40px;
-  margin-right: 10px;
-  text-align: center;
-}
-
-/* line 63, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset:nth-child(12) .tshape__skill {
-  background: #51bb79;
-}
-
-/* line 57, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset {
-  float: left;
-  width: 40px;
-  margin-right: 10px;
-  text-align: center;
-}
-
-/* line 63, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset:nth-child(13) .tshape__skill {
-  background: #58cc6d;
-}
-
-/* line 57, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset {
-  float: left;
-  width: 40px;
-  margin-right: 10px;
-  text-align: center;
-}
-
-/* line 63, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset:nth-child(14) .tshape__skill {
-  background: #5fdd60;
-}
-
-/* line 57, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset {
-  float: left;
-  width: 40px;
-  margin-right: 10px;
-  text-align: center;
-}
-
-/* line 63, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset:nth-child(15) .tshape__skill {
-  background: #67ee54;
-}
-
-/* line 57, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset {
-  float: left;
-  width: 40px;
-  margin-right: 10px;
-  text-align: center;
-}
-
-/* line 63, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__skillset:nth-child(16) .tshape__skill {
-  background: #6eff48;
-}
-
-/* line 70, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape__mask {
-  width: 800px;
-  margin: 0 auto;
-  background: #EAEAEA;
-  overflow-x: scroll;
-}
-
-/* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-.tshape__mask:before, .tshape__mask:after {
-  content: " ";
-  display: table;
-}
-
-/* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-.tshape__mask:after {
-  clear: both;
-}
-
-/* line 77, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape--fixed {
-  width: 600px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-/* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-.tshape--fixed:before, .tshape--fixed:after {
-  content: " ";
-  display: table;
-}
-
-/* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-.tshape--fixed:after {
-  clear: both;
-}
-
-/* line 82, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape--fixed .tshape__header {
-  text-align: center;
-  margin-bottom: 100px;
-}
-
-/* line 86, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape--fixed .tshape__role {
-  margin-bottom: 3px;
-}
-
-/* line 89, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape--fixed .tshape__user {
-  margin-bottom: 0;
-  font-size: 14px;
-  line-height: 20px;
-}
-
-/* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-.tshape--fixed .tshape__middle:before, .tshape--fixed .tshape__middle:after {
-  content: " ";
-  display: table;
-}
-
-/* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-.tshape--fixed .tshape__middle:after {
-  clear: both;
-}
-
-/* line 97, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape--fixed .tshape__skillset {
-  float: left;
-  width: 40px;
-  margin-right: 0;
-  text-align: center;
-}
-
-/* line 102, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape--fixed .tshape__skillset:last-child {
-  margin-right: 0;
-}
-
-/* line 106, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape--fixed .tshape__skillset-heading {
-  text-align: left;
-  transform: rotate(270deg);
-  width: 80px;
-  transform-origin: left top 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 14px;
-}
-
-/* line 116, /Users/rob/Projects/tshape/src/static/scss/blocks/_tshape.scss */
-.tshape--fixed .tshape__skill {
-  width: 40px;
-  height: 40px;
-  background: green;
-  margin-bottom: 0px;
-  border: 1px solid #FFF;
-}
-
 /* line 1, /Users/rob/Projects/tshape/src/static/scss/blocks/_slider.scss */
 .strip__slider {
   width: 80%;
@@ -2822,7 +1624,7 @@ th.hide-for-touch {
   line-height: 36px;
   font-size: 22px;
   font-weight: 400;
-  font-family: "Open Sans", "helvetica", "arial";
+  font-family: "Lato", "Open Sans", "helvetica", "arial";
   text-decoration: none;
   color: #333;
 }
@@ -2831,7 +1633,7 @@ th.hide-for-touch {
 ul.menu {
   padding: 14px 0 14px 0;
   margin: 0;
-  font-family: "Open Sans", "helvetica", "arial";
+  font-family: "Lato", "Open Sans", "helvetica", "arial";
   line-height: 30px;
   font-size: 14px;
   font-weight: 600;
@@ -2846,7 +1648,7 @@ ul.menu {
 ul.menu li {
   float: left;
   display: block;
-  font-family: "Open Sans", "helvetica", "arial";
+  font-family: "Lato", "Open Sans", "helvetica", "arial";
   margin: 0;
   padding: 0;
 }
@@ -3115,113 +1917,6 @@ ul.menu li.expanded ul ul li a {
   margin-left: 8px;
 }
 
-/* line 6, /Users/rob/Projects/tshape/src/static/scss/blocks/_push-menu.scss */
-.pushmenu__toggle {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2000;
-  background: #1839D6;
-  outline: none;
-}
-
-/* line 20, /Users/rob/Projects/tshape/src/static/scss/blocks/_push-menu.scss */
-.pushmenu.pushmenu-open {
-  left: 0;
-}
-
-/* line 24, /Users/rob/Projects/tshape/src/static/scss/blocks/_push-menu.scss */
-.pushmenu {
-  background: #1839D6;
-  font-family: "Open Sans", "helvetica", "arial";
-  width: 540px;
-  left: -540px;
-  height: 100%;
-  top: 0;
-  z-index: 1000;
-  position: fixed;
-  padding-top: 50px;
-}
-
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-  /* line 24, /Users/rob/Projects/tshape/src/static/scss/blocks/_push-menu.scss */
-  .pushmenu {
-    width: 300px;
-    left: -300px;
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  /* line 24, /Users/rob/Projects/tshape/src/static/scss/blocks/_push-menu.scss */
-  .pushmenu {
-    width: 100%;
-    left: -100%;
-  }
-}
-
-/* line 43, /Users/rob/Projects/tshape/src/static/scss/blocks/_push-menu.scss */
-.pushmenu .pushmenu--menu {
-  padding-left: 75px;
-  margin: 0;
-}
-
-/* line 47, /Users/rob/Projects/tshape/src/static/scss/blocks/_push-menu.scss */
-.pushmenu ul {
-  margin: 0;
-  padding: 0;
-}
-
-/* line 50, /Users/rob/Projects/tshape/src/static/scss/blocks/_push-menu.scss */
-.pushmenu ul li {
-  list-style: none;
-  font-size: 14px;
-  font-family: "Open Sans", "helvetica", "arial";
-  margin: 0;
-  padding: 0;
-}
-
-/* line 56, /Users/rob/Projects/tshape/src/static/scss/blocks/_push-menu.scss */
-.pushmenu ul li a {
-  color: #FFF;
-  font-size: 14px;
-  font-weight: 500;
-  text-decoration: none;
-  margin: 0 0 2px 0;
-}
-
-/* line 62, /Users/rob/Projects/tshape/src/static/scss/blocks/_push-menu.scss */
-.pushmenu ul li a:hover {
-  text-decoration: underline;
-}
-
-/* line 66, /Users/rob/Projects/tshape/src/static/scss/blocks/_push-menu.scss */
-.pushmenu ul li.heading, .pushmenu ul li h3 {
-  color: #0e217a;
-  font-size: 16px;
-  font-family: "Open Sans", "helvetica", "arial";
-  margin: 8px 0 0 0;
-}
-
-/* line 76, /Users/rob/Projects/tshape/src/static/scss/blocks/_push-menu.scss */
-.pushmenu-body {
-  overflow-x: hidden;
-  position: relative;
-  left: 0;
-}
-
-/* line 82, /Users/rob/Projects/tshape/src/static/scss/blocks/_push-menu.scss */
-.pushmenu-body.pushmenu-open {
-  left: 240px;
-}
-
-/*Transition*/
-/* line 87, /Users/rob/Projects/tshape/src/static/scss/blocks/_push-menu.scss */
-.pushmenu, .pushmenu-body {
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
 /* line 3, /Users/rob/Projects/tshape/src/static/scss/blocks/_forms.scss */
 form {
   margin: 0 0 0 0;
@@ -3456,7 +2151,7 @@ select:focus {
 
 /* line 6, /Users/rob/Projects/tshape/src/static/scss/blocks/_header.scss */
 .header {
-  background-color: #DEE0DD;
+  background-color: #FFF;
   min-height: 58px;
   width: 100%;
   border-bottom: 1px solid #CCC;
@@ -3477,7 +2172,7 @@ body.body-header-fixed {
 /* line 7, /Users/rob/Projects/tshape/src/static/scss/blocks/_type.scss */
 p {
   color: #333;
-  font-family: "Open Sans", "helvetica", "arial";
+  font-family: "Lato", "Open Sans", "helvetica", "arial";
   font-size: 15px;
   line-height: 24px;
   margin: 0;
@@ -3504,7 +2199,7 @@ img {
 
 /* line 30, /Users/rob/Projects/tshape/src/static/scss/blocks/_type.scss */
 h1 {
-  font-family: "Open Sans", "helvetica", "arial";
+  font-family: "Lato", "Open Sans", "helvetica", "arial";
   font-size: 56px;
   line-height: 66px;
   font-weight: 300;
@@ -3514,7 +2209,7 @@ h1 {
 
 /* line 38, /Users/rob/Projects/tshape/src/static/scss/blocks/_type.scss */
 h2 {
-  font-family: "Open Sans", "helvetica", "arial";
+  font-family: "Lato", "Open Sans", "helvetica", "arial";
   font-size: 26px;
   line-height: 32px;
   font-weight: 500;
@@ -3524,7 +2219,7 @@ h2 {
 
 /* line 46, /Users/rob/Projects/tshape/src/static/scss/blocks/_type.scss */
 h3 {
-  font-family: "Open Sans", "helvetica", "arial";
+  font-family: "Lato", "Open Sans", "helvetica", "arial";
   font-size: 20px;
   line-height: 26px;
   font-weight: 700;
@@ -3534,7 +2229,7 @@ h3 {
 
 /* line 54, /Users/rob/Projects/tshape/src/static/scss/blocks/_type.scss */
 h4 {
-  font-family: "Open Sans", "helvetica", "arial";
+  font-family: "Lato", "Open Sans", "helvetica", "arial";
   font-size: 16px;
   font-weight: 700;
   color: #333;
@@ -3543,7 +2238,7 @@ h4 {
 
 /* line 61, /Users/rob/Projects/tshape/src/static/scss/blocks/_type.scss */
 h5 {
-  font-family: "Open Sans", "helvetica", "arial";
+  font-family: "Lato", "Open Sans", "helvetica", "arial";
   font-size: 12px;
   font-weight: 700;
   color: #333;
@@ -3552,7 +2247,7 @@ h5 {
 
 /* line 68, /Users/rob/Projects/tshape/src/static/scss/blocks/_type.scss */
 h6 {
-  font-family: "Open Sans", "helvetica", "arial";
+  font-family: "Lato", "Open Sans", "helvetica", "arial";
   font-size: 11px;
   font-weight: 700;
   color: #333;
@@ -3746,971 +2441,25 @@ hr, .hr {
   padding-left: 0;
 }
 
-/* line 13, /Users/rob/Projects/tshape/src/static/scss/blocks/_tables.scss */
-table {
-  background-color: transparent;
-}
-
-/* line 16, /Users/rob/Projects/tshape/src/static/scss/blocks/_tables.scss */
-caption {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  color: #CCC;
-  text-align: left;
-}
-
-/* line 22, /Users/rob/Projects/tshape/src/static/scss/blocks/_tables.scss */
-th {
-  text-align: left;
-}
-
-/* line 29, /Users/rob/Projects/tshape/src/static/scss/blocks/_tables.scss */
-.table {
-  width: 100%;
-  max-width: 100%;
-  margin-bottom: 20px;
-}
-
-/* line 38, /Users/rob/Projects/tshape/src/static/scss/blocks/_tables.scss */
-.table > thead > tr > th,
-.table > thead > tr > td,
-.table > tbody > tr > th,
-.table > tbody > tr > td,
-.table > tfoot > tr > th,
-.table > tfoot > tr > td {
-  padding: 8px;
-  line-height: 24px;
-  vertical-align: top;
-  border-top: 1px solid #ddd;
-}
-
-/* line 48, /Users/rob/Projects/tshape/src/static/scss/blocks/_tables.scss */
-.table > thead > tr > th {
-  vertical-align: bottom;
-  border-bottom: 2px solid #ddd;
-}
-
-/* line 57, /Users/rob/Projects/tshape/src/static/scss/blocks/_tables.scss */
-.table > caption + thead > tr:first-child > th,
-.table > caption + thead > tr:first-child > td,
-.table > colgroup + thead > tr:first-child > th,
-.table > colgroup + thead > tr:first-child > td,
-.table > thead:first-child > tr:first-child > th,
-.table > thead:first-child > tr:first-child > td {
-  border-top: 0;
-}
-
-/* line 64, /Users/rob/Projects/tshape/src/static/scss/blocks/_tables.scss */
-.table > tbody + tbody {
-  border-top: 2px solid #ddd;
-}
-
-/* line 69, /Users/rob/Projects/tshape/src/static/scss/blocks/_tables.scss */
-.table .table {
-  background-color: #FFF;
-}
-
-/* line 82, /Users/rob/Projects/tshape/src/static/scss/blocks/_tables.scss */
-.table-condensed > thead > tr > th,
-.table-condensed > thead > tr > td,
-.table-condensed > tbody > tr > th,
-.table-condensed > tbody > tr > td,
-.table-condensed > tfoot > tr > th,
-.table-condensed > tfoot > tr > td {
-  padding: 5px;
-}
-
-/* line 95, /Users/rob/Projects/tshape/src/static/scss/blocks/_tables.scss */
-.table-bordered {
-  border: 1px solid #ddd;
-}
-
-/* line 101, /Users/rob/Projects/tshape/src/static/scss/blocks/_tables.scss */
-.table-bordered > thead > tr > th,
-.table-bordered > thead > tr > td,
-.table-bordered > tbody > tr > th,
-.table-bordered > tbody > tr > td,
-.table-bordered > tfoot > tr > th,
-.table-bordered > tfoot > tr > td {
-  border: 1px solid #ddd;
-}
-
-/* line 108, /Users/rob/Projects/tshape/src/static/scss/blocks/_tables.scss */
-.table-bordered > thead > tr > th,
-.table-bordered > thead > tr > td {
-  border-bottom-width: 2px;
-}
-
-/* line 121, /Users/rob/Projects/tshape/src/static/scss/blocks/_tables.scss */
-.table-striped > tbody > tr:nth-of-type(odd) {
-  background-color: #f9f9f9;
-}
-
-/* line 132, /Users/rob/Projects/tshape/src/static/scss/blocks/_tables.scss */
-.table-hover > tbody > tr:hover {
-  background-color: #f5f5f5;
-}
-
-/* line 142, /Users/rob/Projects/tshape/src/static/scss/blocks/_tables.scss */
-table col[class*="col-"] {
-  position: static;
-  float: none;
-  display: table-column;
-}
-
-/* line 150, /Users/rob/Projects/tshape/src/static/scss/blocks/_tables.scss */
-table td[class*="col-"],
-table th[class*="col-"] {
-  position: static;
-  float: none;
-  display: table-cell;
-}
-
-/* line 165, /Users/rob/Projects/tshape/src/static/scss/blocks/_tables.scss */
-.table-responsive {
-  overflow-x: auto;
-  min-height: 0.01%;
-}
-
-@media only screen and (max-width: 767px) {
-  /* line 165, /Users/rob/Projects/tshape/src/static/scss/blocks/_tables.scss */
-  .table-responsive {
-    width: 100%;
-    margin-bottom: 20px;
-    overflow-y: hidden;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
-    border: 1px solid #ddd;
-  }
-  /* line 177, /Users/rob/Projects/tshape/src/static/scss/blocks/_tables.scss */
-  .table-responsive > .table {
-    margin-bottom: 0;
-  }
-  /* line 185, /Users/rob/Projects/tshape/src/static/scss/blocks/_tables.scss */
-  .table-responsive > .table > thead > tr > th,
-  .table-responsive > .table > thead > tr > td,
-  .table-responsive > .table > tbody > tr > th,
-  .table-responsive > .table > tbody > tr > td,
-  .table-responsive > .table > tfoot > tr > th,
-  .table-responsive > .table > tfoot > tr > td {
-    white-space: nowrap;
-  }
-  /* line 194, /Users/rob/Projects/tshape/src/static/scss/blocks/_tables.scss */
-  .table-responsive > .table-bordered {
-    border: 0;
-  }
-  /* line 202, /Users/rob/Projects/tshape/src/static/scss/blocks/_tables.scss */
-  .table-responsive > .table-bordered > thead > tr > th:first-child,
-  .table-responsive > .table-bordered > thead > tr > td:first-child,
-  .table-responsive > .table-bordered > tbody > tr > th:first-child,
-  .table-responsive > .table-bordered > tbody > tr > td:first-child,
-  .table-responsive > .table-bordered > tfoot > tr > th:first-child,
-  .table-responsive > .table-bordered > tfoot > tr > td:first-child {
-    border-left: 0;
-  }
-  /* line 206, /Users/rob/Projects/tshape/src/static/scss/blocks/_tables.scss */
-  .table-responsive > .table-bordered > thead > tr > th:last-child,
-  .table-responsive > .table-bordered > thead > tr > td:last-child,
-  .table-responsive > .table-bordered > tbody > tr > th:last-child,
-  .table-responsive > .table-bordered > tbody > tr > td:last-child,
-  .table-responsive > .table-bordered > tfoot > tr > th:last-child,
-  .table-responsive > .table-bordered > tfoot > tr > td:last-child {
-    border-right: 0;
-  }
-  /* line 219, /Users/rob/Projects/tshape/src/static/scss/blocks/_tables.scss */
-  .table-responsive > .table-bordered > tbody > tr:last-child > th,
-  .table-responsive > .table-bordered > tbody > tr:last-child > td,
-  .table-responsive > .table-bordered > tfoot > tr:last-child > th,
-  .table-responsive > .table-bordered > tfoot > tr:last-child > td {
-    border-bottom: 0;
-  }
-}
-
-/* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_panel.scss */
-.panel {
-  position: relative;
-}
-
-/* line 6, /Users/rob/Projects/tshape/src/static/scss/blocks/_panel.scss */
-.panel.panel--spine {
-  padding-left: 80px;
-}
-
-/* line 8, /Users/rob/Projects/tshape/src/static/scss/blocks/_panel.scss */
-.panel.panel--spine .panel__image {
-  position: absolute;
-  top: 0px;
-  left: 30px;
-}
-
-/* line 14, /Users/rob/Projects/tshape/src/static/scss/blocks/_panel.scss */
-.panel.panel--border-left {
-  border-left: 1px solid #CCC;
-}
-
-/* line 17, /Users/rob/Projects/tshape/src/static/scss/blocks/_panel.scss */
-.panel.panel--border {
-  border-style: solid;
-  border-width: 1px;
-  border-color: #d8d8d8;
-}
-
-/* line 22, /Users/rob/Projects/tshape/src/static/scss/blocks/_panel.scss */
-.panel.panel--background {
-  background-position: bottom right;
-  background-repeat: no-repeat;
-}
-
-/* line 26, /Users/rob/Projects/tshape/src/static/scss/blocks/_panel.scss */
-.panel.panel--solid {
-  background-color: #E5E5E5;
-  padding: 1.25rem;
-}
-
-/* line 30, /Users/rob/Projects/tshape/src/static/scss/blocks/_panel.scss */
-.panel.panel--glow {
-  cursor: pointer;
-  transition: background-color 300ms ease-out, 0.2s 300ms ease-out, ease-in-out 300ms ease-out;
-  padding: 1.25rem;
-}
-
-/* line 34, /Users/rob/Projects/tshape/src/static/scss/blocks/_panel.scss */
-.panel.panel--glow:hover {
-  background-color: #1839D6;
-}
-
-/* line 36, /Users/rob/Projects/tshape/src/static/scss/blocks/_panel.scss */
-.panel.panel--glow:hover h1, .panel.panel--glow:hover h2, .panel.panel--glow:hover h3, .panel.panel--glow:hover h4, .panel.panel--glow:hover h5, .panel.panel--glow:hover p {
-  color: #FFF;
-}
-
-/* line 40, /Users/rob/Projects/tshape/src/static/scss/blocks/_panel.scss */
-.panel.panel--glow h1, .panel.panel--glow h2, .panel.panel--glow h3, .panel.panel--glow h4, .panel.panel--glow h5, .panel.panel--glow p {
-  transition: color 300ms ease-out, 0.2s 300ms ease-out, ease-in-out 300ms ease-out;
-}
-
-/* line 45, /Users/rob/Projects/tshape/src/static/scss/blocks/_panel.scss */
-.panel .panel__title.panel__title--small {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-/* line 52, /Users/rob/Projects/tshape/src/static/scss/blocks/_panel.scss */
-.panel ul {
-  list-style-position: inside;
-}
-
-/* line 55, /Users/rob/Projects/tshape/src/static/scss/blocks/_panel.scss */
-.panel .panel__wrapper-link {
-  display: block;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-indent: -99999em;
-}
-
-/* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_well.scss */
-.well {
-  min-height: 20px;
-  padding: 12px;
-  margin-bottom: 20px;
-  background-color: #EAEAEA;
-  border: 1px solid #eee;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-  color: #62E35C;
-}
-
-/* line 14, /Users/rob/Projects/tshape/src/static/scss/blocks/_well.scss */
-.well blockquote {
-  border-color: #ddd;
-  border-color: rgba(0, 0, 0, 0.15);
-}
-
-/* line 18, /Users/rob/Projects/tshape/src/static/scss/blocks/_well.scss */
-.well.well-primary {
-  background: #1839D6;
-}
-
-/* line 24, /Users/rob/Projects/tshape/src/static/scss/blocks/_well.scss */
-.well-large {
-  padding: 24px;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  border-radius: 6px;
-}
-
-/* line 28, /Users/rob/Projects/tshape/src/static/scss/blocks/_well.scss */
-.well-small {
-  padding: 9px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-}
-
-/* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_pattern.scss */
-.row.display {
-  background: #eee;
-  font-size: 11px;
-  margin-bottom: 10px;
-  line-height: 2rem;
-  border: solid 1px #c6c6c6;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
-
-/* line 13, /Users/rob/Projects/tshape/src/static/scss/blocks/_pattern.scss */
-.row.display .columns:nth-child(2), .row.display .columns.small-centered, .row.display .columns.large-centered {
-  background: #e1e1e1;
-}
-
-/* line 16, /Users/rob/Projects/tshape/src/static/scss/blocks/_pattern.scss */
-.row.display .columns.color-end {
-  background: #d4d4d4;
-}
-
-/* line 19, /Users/rob/Projects/tshape/src/static/scss/blocks/_pattern.scss */
-.row.display-end {
-  background: #fff;
-  font-size: 11px;
-  margin-bottom: 10px;
-  line-height: 2rem;
-  border: solid 1px #c6c6c6;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
-
-/* line 27, /Users/rob/Projects/tshape/src/static/scss/blocks/_pattern.scss */
-.row.display-end .columns {
-  background: #e1e1e1;
-  border-left: 1px solid #c6c6c6;
-}
-
-/* line 30, /Users/rob/Projects/tshape/src/static/scss/blocks/_pattern.scss */
-.row.display-end .columns.color-end {
-  background: #d4d4d4;
-}
-
-/* line 38, /Users/rob/Projects/tshape/src/static/scss/blocks/_pattern.scss */
-.docs__html, .docs__rendered {
-  text-transform: uppercase;
-  font-size: 12px;
-  line-height: 16px;
-  margin-bottom: 0;
-  font-weight: 800;
-}
-
-/* line 9, /Users/rob/Projects/tshape/src/static/scss/blocks/_poster.scss */
-.poster {
-  padding-top: 0.9375rem;
-  padding-bottom: 0.9375rem;
-}
-
-/* line 12, /Users/rob/Projects/tshape/src/static/scss/blocks/_poster.scss */
-.poster .poster-inner {
-  position: relative;
-}
-
-/* line 15, /Users/rob/Projects/tshape/src/static/scss/blocks/_poster.scss */
-.poster .poster-overlay {
-  position: absolute;
-  padding: 10px 10px 10px 20px;
-  background: black;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-  width: 100%;
-  box-sizing: border-box;
-  vertical-align: bottom;
-  min-height: 92px;
-}
-
-/* line 26, /Users/rob/Projects/tshape/src/static/scss/blocks/_poster.scss */
-.poster .poster-overlay h3, .poster .poster-overlay h3.poster-title {
-  color: #FFF;
-  font-size: 1rem;
-  line-height: 1rem;
-  margin: 0;
-  display: inline-block;
-  vertical-align: bottom;
-}
-
-/* line 33, /Users/rob/Projects/tshape/src/static/scss/blocks/_poster.scss */
-.poster .poster-overlay h3 a, .poster .poster-overlay h3.poster-title a {
-  color: #00f0ff;
-}
-
-/* line 37, /Users/rob/Projects/tshape/src/static/scss/blocks/_poster.scss */
-.poster .poster-overlay p {
-  color: #999 !important;
-  margin: 10px 0 0 0;
-  display: block;
-  font-size: 0.875rem;
-  line-height: 1rem;
-}
-
-/* line 44, /Users/rob/Projects/tshape/src/static/scss/blocks/_poster.scss */
-.poster .poster-overlay .poster-icon {
-  display: inline-block;
-  margin-left: 10px;
-  vertical-align: bottom;
-}
-
-/* line 50, /Users/rob/Projects/tshape/src/static/scss/blocks/_poster.scss */
-.poster img {
-  width: 100%;
-  height: auto;
-}
-
-/* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-.cards:before, .cards:after {
-  content: " ";
-  display: table;
-}
-
-/* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-.cards:after {
-  clear: both;
-}
-
-/* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-.cards .cards__header:before, .cards .cards__header:after {
-  content: " ";
-  display: table;
-}
-
-/* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-.cards .cards__header:after {
-  clear: both;
-}
-
-/* line 9, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-.cards .cards__title {
-  font-size: 1rem;
-  text-transform: uppercase;
-  margin: 0;
-  margin-top: 14px;
-  float: left;
-}
-
-/* line 16, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-.cards .cards__count {
-  color: #333;
-}
-
-/* line 19, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-.cards .cards__footer {
-  padding-top: 10px;
-  padding-left: 10px;
-  clear: both;
-}
-
-/* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-.cards .cards__footer:before, .cards .cards__footer:after {
-  content: " ";
-  display: table;
-}
-
-/* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-.cards .cards__footer:after {
-  clear: both;
-}
-
-/* line 30, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-.card {
-  padding-top: 0.9375rem;
-  padding-bottom: 0.9375rem;
-}
-
-/* line 33, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-.card:focus {
-  outline: 0;
-}
-
-/* line 36, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-.card .card__inner {
-  background-color: white;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.23);
-}
-
-/* line 40, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-.card .card__header {
-  padding: 0.625rem 0.75rem 0;
-  height: auto;
-  overflow: hidden;
-}
-
-/* line 44, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-.card .card__header h3 {
-  font-size: 1.375rem;
-  font-weight: 200;
-  line-height: 1.5rem;
-  color: #327084;
-  max-height: 3rem;
-  height: 3rem;
-  overflow: hidden;
-  margin: 0;
-}
-
-@media only screen and (min-width: 768px) {
-  /* line 40, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-  .card .card__header {
-    height: 3.75rem;
-  }
-}
-
-/* line 58, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-.card .card__date {
-  padding: 0 0.75rem;
-  height: 1.5625rem;
-  overflow: hidden;
-}
-
-/* line 62, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-.card .card__date h5 {
-  font-size: 0.8125rem;
-  margin: 0;
-}
-
-/* line 67, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-.card .card__body {
-  display: block;
-  /* Fallback for non-webkit */
-  font-size: 15px;
-  line-height: 1.5;
-  height: 67.5px;
-  /* Fallback for non-webkit */
-  overflow: hidden;
-}
-
-@supports (-webkit-line-clamp: 3) {
-  /* line 67, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-  .card .card__body {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    text-overflow: ellipsis;
-    height: auto;
-  }
-}
-
-/* line 70, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-.card .card__image {
-  height: 11.25rem;
-  overflow: hidden;
-}
-
-/* line 73, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-.card .card__image img {
-  min-width: 100%;
-}
-
-/* line 76, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-.card .card__image + .author {
-  border-top: 0;
-}
-
-/* line 80, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-.card .link {
-  padding: 0.5rem 0.75rem 0;
-  height: 3.5625rem;
-  overflow: hidden;
-}
-
-/* line 84, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-.card .link a {
-  font-size: 0.8125rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* line 90, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-.card .link p {
-  font-size: 0.8125rem;
-  margin: 0;
-  font-weight: 200;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* line 99, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-.card .card__author {
-  border-top: 0.0625rem solid #ededed;
-  padding: 0.5rem 0.75rem 0;
-  height: 3.5625rem;
-  overflow: hidden;
-}
-
-/* line 104, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-.card .card__author img {
-  float: left;
-  width: 2.5625rem;
-  border-radius: 50%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-}
-
-/* line 111, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-.card .card__author h5 {
-  font-size: 0.8125rem;
-  margin: 5px 0 0 0;
-  line-height: 1.125rem;
-  margin-left: 3.125rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding-left: 3px;
-}
-
-/* line 121, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-.card .card__author p {
-  font-size: 0.8125rem;
-  margin: 0;
-  line-height: 1.1;
-  margin-left: 3.125rem;
-  font-weight: 200;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding-left: 3px;
-}
-
-/* line 133, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-.card .footer {
-  background-color: #ededed;
-  padding: 0.5rem 0.75rem 0;
-  height: 1.875rem;
-}
-
-/* line 137, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-.card .footer:after {
-  content: '';
-  display: block;
-  clear: both;
-}
-
-/* line 142, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-.card .footer p {
-  font-weight: 200;
-  font-size: 0.8125rem;
-  line-height: 22px;
-  width: 77%;
-  float: left;
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* line 153, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-.card .footer span.likes_icon {
-  margin: 0;
-  display: inline;
-  float: right;
-  line-height: 1;
-  font-size: 0.8125rem;
-}
-
-/* line 159, /Users/rob/Projects/tshape/src/static/scss/blocks/_card.scss */
-.card .footer span.likes_icon:before {
-  height: 14px;
-  width: 14px;
-  margin-right: 4px;
-}
-
-/* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_modal.scss */
-body.modal-open {
-  overflow: hidden;
-}
-
-/* line 8, /Users/rob/Projects/tshape/src/static/scss/blocks/_modal.scss */
-.reveal-modal-bg {
-  position: fixed;
-}
-
-/* line 15, /Users/rob/Projects/tshape/src/static/scss/blocks/_modal.scss */
-.reveal-modal {
-  visibility: hidden;
-  display: none;
-  z-index: 1005;
-  left: 0;
-  right: 0;
-  background-color: #FFFFFF;
-  padding: 0;
-  border: none;
-  border-radius: 0px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-  overflow: hidden;
-  position: fixed;
-}
-
-@media only screen and (max-width: 767px) {
-  /* line 15, /Users/rob/Projects/tshape/src/static/scss/blocks/_modal.scss */
-  .reveal-modal {
-    top: 0vh !important;
-    border: none;
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.4);
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  /* line 15, /Users/rob/Projects/tshape/src/static/scss/blocks/_modal.scss */
-  .reveal-modal {
-    top: 5vh !important;
-    max-width: 1000px;
-  }
-}
-
-@media only screen and (min-width: 1025px) {
-  /* line 15, /Users/rob/Projects/tshape/src/static/scss/blocks/_modal.scss */
-  .reveal-modal {
-    top: 5vh !important;
-  }
-}
-
-/* line 40, /Users/rob/Projects/tshape/src/static/scss/blocks/_modal.scss */
-.reveal-modal .reveal-modal__body {
-  clear: both;
-  padding: 40px;
-  background-color: #F7F7F7;
-  background-image: url("../images/standard/df_pattern2.png");
-  background-position: top right;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 100%;
-  max-height: 80vh;
-  overflow-y: auto;
-}
-
-@media only screen and (max-width: 767px) {
-  /* line 40, /Users/rob/Projects/tshape/src/static/scss/blocks/_modal.scss */
-  .reveal-modal .reveal-modal__body {
-    max-height: 100vh !important;
-    height: 90vh !important;
-  }
-}
-
-@media only screen and (max-width: 767px) and (max-width: 767px) {
-  /* line 54, /Users/rob/Projects/tshape/src/static/scss/blocks/_modal.scss */
-  .reveal-modal .reveal-modal__body iframe {
-    height: 100% !important;
-    width: 100% !important;
-  }
-}
-
-/* line 62, /Users/rob/Projects/tshape/src/static/scss/blocks/_modal.scss */
-.reveal-modal.reveal-modal--no-padding {
-  padding: 0;
-}
-
-/* line 64, /Users/rob/Projects/tshape/src/static/scss/blocks/_modal.scss */
-.reveal-modal.reveal-modal--no-padding .reveal-modal__body {
-  padding: 0;
-}
-
-/* line 68, /Users/rob/Projects/tshape/src/static/scss/blocks/_modal.scss */
-.reveal-modal.reveal-modal--no-border {
-  border: none;
-}
-
-/* line 71, /Users/rob/Projects/tshape/src/static/scss/blocks/_modal.scss */
-.reveal-modal .reveal-modal__header {
-  background-color: #FFFFFF;
-  height: 10vh;
+/* line 1, /Users/rob/Projects/tshape/src/static/scss/blocks/_strip.scss */
+.strip {
   border-bottom: 1px solid #CCC;
-  display: flex;
-  align-items: center;
+  padding: 10px 0 10px 0;
 }
 
-/* line 78, /Users/rob/Projects/tshape/src/static/scss/blocks/_modal.scss */
-.reveal-modal .reveal-modal__logo {
-  width: 177px;
-  height: 80%;
-  background: url("../images/standard/logo-mobile.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  float: left;
-  margin-left: 25px;
+/* line 5, /Users/rob/Projects/tshape/src/static/scss/blocks/_strip.scss */
+.strip--section {
+  margin-bottom: 20px;
 }
 
-@media only screen and (max-width: 767px) {
-  /* line 78, /Users/rob/Projects/tshape/src/static/scss/blocks/_modal.scss */
-  .reveal-modal .reveal-modal__logo {
-    width: 120px;
-    height: 60%;
-    background-position: left;
-  }
-}
-
-/* line 93, /Users/rob/Projects/tshape/src/static/scss/blocks/_modal.scss */
-.reveal-modal .reveal-modal__title {
-  margin-top: 6px;
-  font-size: 25px;
-  line-height: 30px;
-  font-style: normal;
-  float: left;
-  margin-left: 20px;
-}
-
-@media only screen and (max-width: 767px) {
-  /* line 93, /Users/rob/Projects/tshape/src/static/scss/blocks/_modal.scss */
-  .reveal-modal .reveal-modal__title {
-    margin-top: 3px;
-    font-size: 18px;
-    line-height: 26px;
-    margin-left: 14px;
-  }
-}
-
-/* line 107, /Users/rob/Projects/tshape/src/static/scss/blocks/_modal.scss */
-.reveal-modal .reveal-modal__close--black {
-  top: 3%;
-  right: 20px;
-  width: 18px;
-  height: 18px;
-  display: block;
-  text-indent: -9999px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  cursor: pointer;
-}
-
-/* line 119, /Users/rob/Projects/tshape/src/static/scss/blocks/_modal.scss */
-.reveal-modal .reveal-modal__close--white, .reveal-modal.reveal-modal--blue .close-reveal-modal {
-  top: 3%;
-  right: 20px;
-  width: 18px;
-  height: 18px;
-  display: block;
-  text-indent: -9999px;
-  background: url("../images/standard/modal-white-close-button-x.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  cursor: pointer;
-}
-
-/* line 140, /Users/rob/Projects/tshape/src/static/scss/blocks/_modal.scss */
-.reveal-modal.reveal-modal--blue .reveal-modal__header {
-  background: #1839D6;
-  height: 30px;
-}
-
-/* line 143, /Users/rob/Projects/tshape/src/static/scss/blocks/_modal.scss */
-.reveal-modal.reveal-modal--blue .reveal-modal__header .close-reveal-modal {
-  font-size: 14px;
-  line-height: 1;
-  top: 5px;
-  right: 5px;
-}
-
-/* line 150, /Users/rob/Projects/tshape/src/static/scss/blocks/_modal.scss */
-.reveal-modal.reveal-modal--blue .reveal-modal__body {
-  max-height: calc(90vh - 30px);
-}
-
-@media only screen and (max-width: 767px) {
-  /* line 150, /Users/rob/Projects/tshape/src/static/scss/blocks/_modal.scss */
-  .reveal-modal.reveal-modal--blue .reveal-modal__body {
-    max-height: 100vh !important;
-    height: calc(100vh - 30px) !important;
-  }
-}
-
-/* line 167, /Users/rob/Projects/tshape/src/static/scss/blocks/_modal.scss */
-.reveal-modal--responsive-iframe .reveal-modal__body {
-  overflow: hidden;
-}
-
-/* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_base.scss */
-.clear {
-  clear: both;
-}
-
-/* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_hero.scss */
-.hero {
-  height: 500px;
-  background-size: cover;
-  background-position-x: center;
-  background-repeat: none;
-  position: relative;
-  color: #fff;
-  overflow: hidden;
-}
-
-/* line 1, /Users/rob/Projects/tshape/src/static/scss/blocks/_caption.scss */
-.caption {
-  background-color: #FFF;
-  border-right: 20px solid #62E35C;
-  opacity: 0.8;
-  padding: 20px;
-  padding-right: 150px;
-  width: 300px;
-  color: #666;
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 22px;
-}
-
-/* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_index.scss */
-ul.index {
-  padding: 0;
-  margin: 0;
-}
-
-/* line 7, /Users/rob/Projects/tshape/src/static/scss/blocks/_index.scss */
-ul.index li {
-  list-style: none;
-  font-size: 14px;
-  font-family: "Open Sans", "helvetica", "arial";
-  margin: 0;
-  padding: 0;
-}
-
-/* line 13, /Users/rob/Projects/tshape/src/static/scss/blocks/_index.scss */
-ul.index li a {
-  font-size: 14px;
-  font-weight: 500;
-  text-decoration: none;
-  margin: 0 0 2px 0;
-}
-
-/* line 18, /Users/rob/Projects/tshape/src/static/scss/blocks/_index.scss */
-ul.index li a:hover {
-  text-decoration: underline;
-}
-
-/* line 22, /Users/rob/Projects/tshape/src/static/scss/blocks/_index.scss */
-ul.index li.heading, ul.index li h3 {
-  color: #0e217a;
-  font-size: 16px;
-  font-family: "Open Sans", "helvetica", "arial";
-  margin: 8px 0 0 0;
-}
-
-/* line 1, /Users/rob/Projects/tshape/src/static/scss/blocks/_new-profile.scss */
-.new-profile {
-  border: 1px dashed #CCC;
-  padding: 50px;
-  text-align: center;
-}
-
-/* line 2, /Users/rob/Projects/tshape/src/static/scss/blocks/_skillsets.scss */
+/* line 2, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets.scss */
 .skillsets ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-/* line 7, /Users/rob/Projects/tshape/src/static/scss/blocks/_skillsets.scss */
+/* line 7, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets.scss */
 .skillsets li {
   list-style: none;
   margin-right: 10px;
@@ -4718,7 +2467,7 @@ ul.index li.heading, ul.index li h3 {
   display: inline-block;
 }
 
-/* line 14, /Users/rob/Projects/tshape/src/static/scss/blocks/_skillsets.scss */
+/* line 14, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets.scss */
 .skillsets .skillset__item.skillset__item--tag {
   background: #EAEAEA;
   padding: 4px 7px;
@@ -4726,14 +2475,14 @@ ul.index li.heading, ul.index li h3 {
   border: 1px solid #CCC;
 }
 
-/* line 2, /Users/rob/Projects/tshape/src/static/scss/blocks/_skills.scss */
+/* line 2, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
 .skills ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-/* line 7, /Users/rob/Projects/tshape/src/static/scss/blocks/_skills.scss */
+/* line 7, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
 .skills li {
   list-style: none;
   margin-right: 10px;
@@ -4741,12 +2490,648 @@ ul.index li.heading, ul.index li h3 {
   display: inline-block;
 }
 
-/* line 14, /Users/rob/Projects/tshape/src/static/scss/blocks/_skills.scss */
+/* line 14, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
 .skills .skill__item.skill__item--tag {
   background: #EAEAEA;
   padding: 4px 7px;
   border-radius: 2px;
   border: 1px solid #CCC;
+}
+
+/* line 1, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape {
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.tshape:before, .tshape:after {
+  content: " ";
+  display: table;
+}
+
+/* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.tshape:after {
+  clear: both;
+}
+
+/* line 6, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__header {
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+/* line 10, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__role {
+  margin-bottom: 3px;
+}
+
+/* line 13, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__user {
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.tshape .tshape__middle:before, .tshape .tshape__middle:after {
+  content: " ";
+  display: table;
+}
+
+/* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.tshape .tshape__middle:after {
+  clear: both;
+}
+
+/* line 21, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset {
+  float: left;
+  width: 9%;
+  margin-right: 1%;
+  text-align: center;
+}
+
+/* line 26, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset:last-child {
+  margin-right: 0;
+}
+
+/* line 30, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset-heading {
+  text-align: left;
+  transform: rotate(270deg);
+  width: 80px;
+  transform-origin: left top 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+
+/* line 40, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skill {
+  min-height: 20px;
+  background: green;
+  margin-bottom: 10px;
+}
+
+/* line 46, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__panel--middle {
+  margin-top: 30px;
+}
+
+/* line 55, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset {
+  float: left;
+  width: 40px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* line 61, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset:nth-child(1) .tshape__skill {
+  background: blue;
+}
+
+/* line 55, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset {
+  float: left;
+  width: 40px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* line 61, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset:nth-child(2) .tshape__skill {
+  background: #0711f3;
+}
+
+/* line 55, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset {
+  float: left;
+  width: 40px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* line 61, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset:nth-child(3) .tshape__skill {
+  background: #0f22e7;
+}
+
+/* line 55, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset {
+  float: left;
+  width: 40px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* line 61, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset:nth-child(4) .tshape__skill {
+  background: #1633da;
+}
+
+/* line 55, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset {
+  float: left;
+  width: 40px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* line 61, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset:nth-child(5) .tshape__skill {
+  background: #1d44ce;
+}
+
+/* line 55, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset {
+  float: left;
+  width: 40px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* line 61, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset:nth-child(6) .tshape__skill {
+  background: #2555c2;
+}
+
+/* line 55, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset {
+  float: left;
+  width: 40px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* line 61, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset:nth-child(7) .tshape__skill {
+  background: #2c66b6;
+}
+
+/* line 55, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset {
+  float: left;
+  width: 40px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* line 61, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset:nth-child(8) .tshape__skill {
+  background: #3377aa;
+}
+
+/* line 55, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset {
+  float: left;
+  width: 40px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* line 61, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset:nth-child(9) .tshape__skill {
+  background: #3b889d;
+}
+
+/* line 55, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset {
+  float: left;
+  width: 40px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* line 61, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset:nth-child(10) .tshape__skill {
+  background: #429991;
+}
+
+/* line 55, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset {
+  float: left;
+  width: 40px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* line 61, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset:nth-child(11) .tshape__skill {
+  background: #49aa85;
+}
+
+/* line 55, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset {
+  float: left;
+  width: 40px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* line 61, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset:nth-child(12) .tshape__skill {
+  background: #51bb79;
+}
+
+/* line 55, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset {
+  float: left;
+  width: 40px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* line 61, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset:nth-child(13) .tshape__skill {
+  background: #58cc6d;
+}
+
+/* line 55, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset {
+  float: left;
+  width: 40px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* line 61, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset:nth-child(14) .tshape__skill {
+  background: #5fdd60;
+}
+
+/* line 55, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset {
+  float: left;
+  width: 40px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* line 61, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset:nth-child(15) .tshape__skill {
+  background: #67ee54;
+}
+
+/* line 55, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset {
+  float: left;
+  width: 40px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* line 61, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape .tshape__skillset:nth-child(16) .tshape__skill {
+  background: #6eff48;
+}
+
+/* line 70, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape__mask {
+  width: 800px;
+  margin: 0 auto;
+  background: #EAEAEA;
+  overflow-x: scroll;
+}
+
+/* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.tshape__mask:before, .tshape__mask:after {
+  content: " ";
+  display: table;
+}
+
+/* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.tshape__mask:after {
+  clear: both;
+}
+
+/* line 77, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape--fixed {
+  width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.tshape--fixed:before, .tshape--fixed:after {
+  content: " ";
+  display: table;
+}
+
+/* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.tshape--fixed:after {
+  clear: both;
+}
+
+/* line 82, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape--fixed .tshape__header {
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+/* line 86, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape--fixed .tshape__role {
+  margin-bottom: 3px;
+}
+
+/* line 89, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape--fixed .tshape__user {
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.tshape--fixed .tshape__middle:before, .tshape--fixed .tshape__middle:after {
+  content: " ";
+  display: table;
+}
+
+/* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.tshape--fixed .tshape__middle:after {
+  clear: both;
+}
+
+/* line 97, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape--fixed .tshape__skillset {
+  float: left;
+  width: 40px;
+  margin-right: 0;
+  text-align: center;
+}
+
+/* line 102, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape--fixed .tshape__skillset:last-child {
+  margin-right: 0;
+}
+
+/* line 106, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape--fixed .tshape__skillset-heading {
+  text-align: left;
+  transform: rotate(270deg);
+  width: 80px;
+  transform-origin: left top 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+
+/* line 116, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+.tshape--fixed .tshape__skill {
+  width: 40px;
+  height: 40px;
+  background: green;
+  margin-bottom: 0px;
+  border: 1px solid #FFF;
+}
+
+/* line 1, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
+.tshape-horizontal {
+  margin: 0 auto;
+}
+
+/* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.tshape-horizontal:before, .tshape-horizontal:after {
+  content: " ";
+  display: table;
+}
+
+/* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.tshape-horizontal:after {
+  clear: both;
+}
+
+/* line 5, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
+.tshape-horizontal .tshape__header {
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+/* line 9, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
+.tshape-horizontal .tshape__role {
+  margin-bottom: 3px;
+}
+
+/* line 12, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
+.tshape-horizontal .tshape__user {
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.tshape-horizontal .tshape__middle:before, .tshape-horizontal .tshape__middle:after {
+  content: " ";
+  display: table;
+}
+
+/* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.tshape-horizontal .tshape__middle:after {
+  clear: both;
+}
+
+/* line 20, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
+.tshape-horizontal .tshape__skillset {
+  display: block;
+  height: 30px;
+  margin-bottom: 5px;
+}
+
+/* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.tshape-horizontal .tshape__skillset:before, .tshape-horizontal .tshape__skillset:after {
+  content: " ";
+  display: table;
+}
+
+/* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.tshape-horizontal .tshape__skillset:after {
+  clear: both;
+}
+
+/* line 26, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
+.tshape-horizontal .tshape__skillset-heading {
+  float: left;
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  font-size: 15px;
+  line-height: 24px;
+  margin-right: 5px;
+}
+
+/* line 37, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
+.tshape-horizontal .tshape__skill {
+  background: #CCC;
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+  float: left;
+  border-radius: 2px;
+  color: #FFF;
+  text-align: center;
+  font-size: 13px;
+  line-height: 28px;
+}
+
+/* line 49, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
+.tshape-horizontal .tshape__panel--middle {
+  margin-top: 30px;
+}
+
+/* line 60, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
+.tshape-horizontal .tshape__skill:nth-child(1) {
+  background: #ed018d;
+}
+
+/* line 60, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
+.tshape-horizontal .tshape__skill:nth-child(2) {
+  background: #d31b8f;
+}
+
+/* line 60, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
+.tshape-horizontal .tshape__skill:nth-child(3) {
+  background: #ba3591;
+}
+
+/* line 60, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
+.tshape-horizontal .tshape__skill:nth-child(4) {
+  background: #a04f93;
+}
+
+/* line 60, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
+.tshape-horizontal .tshape__skill:nth-child(5) {
+  background: #876995;
+}
+
+/* line 60, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
+.tshape-horizontal .tshape__skill:nth-child(6) {
+  background: #6d8497;
+}
+
+/* line 60, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
+.tshape-horizontal .tshape__skill:nth-child(7) {
+  background: #549e99;
+}
+
+/* line 60, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
+.tshape-horizontal .tshape__skill:nth-child(8) {
+  background: #3ab89b;
+}
+
+/* line 60, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
+.tshape-horizontal .tshape__skill:nth-child(9) {
+  background: #21d29d;
+}
+
+/* line 60, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
+.tshape-horizontal .tshape__skill:nth-child(10) {
+  background: #07ec9f;
+}
+
+/* line 69, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
+.tshape__mask {
+  width: 800px;
+  margin: 0 auto;
+  background: #EAEAEA;
+  overflow-x: scroll;
+}
+
+/* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.tshape__mask:before, .tshape__mask:after {
+  content: " ";
+  display: table;
+}
+
+/* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.tshape__mask:after {
+  clear: both;
+}
+
+/* line 76, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
+.tshape--fixed {
+  width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.tshape--fixed:before, .tshape--fixed:after {
+  content: " ";
+  display: table;
+}
+
+/* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.tshape--fixed:after {
+  clear: both;
+}
+
+/* line 81, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
+.tshape--fixed .tshape__header {
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+/* line 85, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
+.tshape--fixed .tshape__role {
+  margin-bottom: 3px;
+}
+
+/* line 88, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
+.tshape--fixed .tshape__user {
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.tshape--fixed .tshape__middle:before, .tshape--fixed .tshape__middle:after {
+  content: " ";
+  display: table;
+}
+
+/* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.tshape--fixed .tshape__middle:after {
+  clear: both;
+}
+
+/* line 96, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
+.tshape--fixed .tshape__skillset {
+  float: left;
+  width: 40px;
+  margin-right: 0;
+  text-align: center;
+}
+
+/* line 101, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
+.tshape--fixed .tshape__skillset:last-child {
+  margin-right: 0;
+}
+
+/* line 105, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
+.tshape--fixed .tshape__skillset-heading {
+  text-align: left;
+  transform: rotate(270deg);
+  width: 80px;
+  transform-origin: left top 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+
+/* line 115, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
+.tshape--fixed .tshape__skill {
+  width: 40px;
+  height: 40px;
+  background: green;
+  margin-bottom: 0px;
+  border: 1px solid #FFF;
 }
 
 /* line 1, /Users/rob/Projects/tshape/src/static/scss/blocks/_preview.scss */
@@ -4759,69 +3144,6 @@ ul.index li.heading, ul.index li h3 {
 /* line 5, /Users/rob/Projects/tshape/src/static/scss/blocks/_preview.scss */
 .preview.open {
   display: block;
-}
-
-/* line 1, /Users/rob/Projects/tshape/src/static/scss/blocks/_strip.scss */
-.strip {
-  border-bottom: 1px solid #CCC;
-  padding: 10px 0 10px 0;
-}
-
-/* line 5, /Users/rob/Projects/tshape/src/static/scss/blocks/_strip.scss */
-.strip--section {
-  margin-bottom: 20px;
-}
-
-/* line 1, /Users/rob/Projects/tshape/src/static/scss/blocks/_my-profile-heading.scss */
-.my-profile-heading {
-  float: left;
-  font-size: 20px;
-  line-height: 32px;
-}
-
-/* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_badge.scss */
-.badge {
-  display: inline-block;
-  position: relative;
-  text-decoration: none;
-  font-weight: 400;
-  text-align: left;
-  padding: 4px 10px 6px 10px;
-  font-size: 13px;
-  background-color: #8cea88;
-  color: #FFF;
-  border-radius: 3px;
-}
-
-/* line 15, /Users/rob/Projects/tshape/src/static/scss/blocks/_badge.scss */
-.badge:link, .badge:visited {
-  color: #FFF;
-}
-
-/* line 18, /Users/rob/Projects/tshape/src/static/scss/blocks/_badge.scss */
-.badge:hover, .badge:focus {
-  background-color: #62E35C;
-  color: #FFF;
-  text-decoration: none;
-}
-
-/* line 23, /Users/rob/Projects/tshape/src/static/scss/blocks/_badge.scss */
-.badge.active {
-  background-color: #27b920;
-  color: #FFF;
-}
-
-/* line 27, /Users/rob/Projects/tshape/src/static/scss/blocks/_badge.scss */
-.badge.empty {
-  background: none;
-  border: 1px dashed #CCC;
-  color: #999;
-}
-
-/* line 31, /Users/rob/Projects/tshape/src/static/scss/blocks/_badge.scss */
-.badge.empty:hover {
-  background-color: #EAEAEA;
-  color: #999;
 }
 
 /* line 2, /Users/rob/Projects/tshape/src/static/scss/pages/_section-profile.scss */
@@ -8510,3 +6832,5 @@ body:after {
     content: "xlarge - 1441px, 5000px";
   }
 }
+
+/*# sourceMappingURL=style.css.map */

@@ -1,8 +1,7 @@
-.tshape {
+.tshape-horizontal {
   //width: 490px;
   margin: 0 auto;
   @include clearfix;
-  text-align:center;
   .tshape__header {
     text-align: center;
     margin-bottom: 100px;
@@ -19,53 +18,53 @@
     @include clearfix;
   }
   .tshape__skillset {
-    float: left;
-    width: 9%;
-    margin-right: 1%;
-    text-align: center;
-    &:last-child {
-      margin-right: 0;
-    }
+    display: block;
+    height: 30px;
+    margin-bottom: 5px;
+    @include clearfix;
   }
   .tshape__skillset-heading {
-    text-align: left;
-    transform: rotate(270deg);
-    width: 80px;
-    transform-origin: left top 0;
+    float: left;
+    width: 200px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 14px;
+    text-align: left;
+    font-size: 15px;
+    line-height: 24px;
+    margin-right: 5px;
   }
   .tshape__skill {
-    //width: 40px;
-    min-height: 20px;
-    background: green;
-    margin-bottom: 10px;
+    background: #CCC;
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    float: left;
+    border-radius: 2px;
+    color: #FFF;
+    text-align: center;
+    font-size: 13px;
+    line-height: 28px;
   }
   .tshape__panel--middle {
     margin-top: 30px;
   }
-}
+  
+  $color-1: #07EC9F;
+  $color-2: #ED018D;
 
-$color-1: #6EFF48;
-$color-2: blue;
+  $steps: 10;
 
-$steps: 16;
-
-@for $i from 0 to $steps {
-  .tshape__skillset {
-    float: left;
-    width: 40px;
-    margin-right: 10px;
-    text-align: center;
-    &:nth-child(#{$i + 1}) {
-      .tshape__skill {
+  @for $i from 0 to $steps {
+    .tshape__skill {
+      &:nth-child(#{$i + 1}) {
         background: mix($color-1, $color-2, percentage($i / ($steps - 1)));
       }
     }
   }
 }
+
+
 
 .tshape__mask {
   width: 800px;

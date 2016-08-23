@@ -42,8 +42,11 @@ var Profile = React.createClass({
         mySkillsetsHash[v.id].skills = [];
       });
 
+      console.log(mySkillsetsHash);
+
       // Add my skills to mySkillsetsHash
       _.forEach(mySkills, function(v, k) {
+        console.log(v);
         mySkillsetsHash[v.skillset_id].skills.push(v)
       });
 
