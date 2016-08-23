@@ -59,6 +59,11 @@ var Profile = React.createClass({
         allSkillsetsHash[v.skillset_id].skills.push(v)
       });
 
+      // Add active property to allSkillsetsHash
+      _.forEach(mySkillsets, function(v, k) {
+        allSkillsetsHash[v.id].active = true;
+      });
+
       // Create mySkillsHash 
       _.forEach(mySkills, function(v, k) {
         v.active = true;
@@ -150,7 +155,8 @@ var Profile = React.createClass({
     }
   },
   checkIfSkillExists: function(skill) {
-    for (var item in this.state.allSkillsHash) {
+    var allSkills = this.state.allSkillsHash;
+    for (var item in allSkills) {
       if (allSkillsets[item].name === skill.name) {
         return allSkillsets[item];
       }
@@ -158,7 +164,8 @@ var Profile = React.createClass({
     return false;
   },
   checkIfSkillsetExists: function(skillset) {
-    for (var item in this.state.allSkillsetsHash) {
+    var allSkillsets = this.state.allSkillsetsHash;
+    for (var item in allSkillsets) {
       if (allSkillsets[item].name === skillset.name) {
         return allSkillsets[item];
       }
