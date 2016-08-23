@@ -386,9 +386,11 @@ var Profile = React.createClass({
       return skillToRemove.id === skill.id
     })
 
-    _.remove(newAllSkillsetsHash[skill.skillset_id].skills, function(skillToRemove) {
-      return skillToRemove.id === skill.id
-    })
+    _.forEach(newAllSkillsetsHash[skill.skillset_id].skills, function(v, k) {
+      if (v.id === skill.id) {
+        v.active = false;
+      }
+    });
 
     delete newMySkillsHash[skill.id]
     newAllSkillsHash[skill.id] = skill;
@@ -434,64 +436,78 @@ var Profile = React.createClass({
   render: function() {
     return (
       <div>
-        <div className="tshape">
-          <div className="tshape__header">
-              <h2 className="tshape__role">UI Engineer</h2>
-              <h3 className="tshape__user">Robert Austin</h3>
-              <div className="tshape__badges">
-                  <span className="tshape__github"><a href="#"><i className="fa fa-github" aria-hidden="true"></i></a></span>
-                  <span className="tshape__linkedin"><a href="#"><i className="fa fa-linkedin-square" aria-hidden="true"></i></a></span>
+      <div className="strip">
+        <div className="row">
+          <div className="column small-12">
+
+            <div className="tshape-horizontal">
+              <div className="tshape__header">
+                  <h2 className="tshape__role">UI Engineer</h2>
+                  <h3 className="tshape__user">Robert Austin</h3>
+                  <div className="tshape__badges">
+                      <span className="tshape__github"><a href="#"><i className="fa fa-github" aria-hidden="true"></i></a></span>
+                      <span className="tshape__linkedin"><a href="#"><i className="fa fa-linkedin-square" aria-hidden="true"></i></a></span>
+                  </div>
               </div>
-          </div>
-          <div className="tshape__middle">
-            {Object.keys(this.state.mySkillsetsHash).map(function(value, key) {
-              return (
-                <SkillsetTshape 
-                  key={key} 
-                  skillset={this.state.mySkillsetsHash[value]} 
-                  activeSkillset={this.state.activeSkillset} 
-                />
-              )
-            }.bind(this))}
+              <div className="tshape__middle">
+                {Object.keys(this.state.mySkillsetsHash).map(function(value, key) {
+                  return (
+                    <SkillsetTshape 
+                      key={key} 
+                      skillset={this.state.mySkillsetsHash[value]} 
+                      activeSkillset={this.state.activeSkillset} 
+                    />
+                  )
+                }.bind(this))}
+              </div>
+            </div>
+
           </div>
         </div>
-        <div>
-          <hr />
-          <h2>Add Skillsets</h2>
-          <div className="skillsets">
+      </div>
+      <div className="strip">
+        <div className="row">
+          <div className="column small-12">
+            <h2>Add Skillsets</h2>
+            <div className="skillsets">
 
-            <h3>My Skillsets</h3>
-            {Object.keys(this.state.mySkillsetsHash).map(function(value, key) {
-              return (
-                <MySkillsetItem 
-                  key={key} 
-                  skillset={this.state.mySkillsetsHash[value]} 
-                  activeSkillset={this.state.activeSkillset} 
-                  setActiveSkillset={this.setActiveSkillset} 
-                  onRemove={this.handleSkillsetRemove} 
-                />
-              )
-            }.bind(this))}
+              <h3>My Skillsets</h3>
+              {Object.keys(this.state.mySkillsetsHash).map(function(value, key) {
+                return (
+                  <MySkillsetItem 
+                    key={key} 
+                    skillset={this.state.mySkillsetsHash[value]} 
+                    activeSkillset={this.state.activeSkillset} 
+                    setActiveSkillset={this.setActiveSkillset} 
+                    onRemove={this.handleSkillsetRemove} 
+                  />
+                )
+              }.bind(this))}
 
-            <h3>All Skillsets</h3>
-            {Object.keys(this.state.allSkillsetsHash).map(function(value, key) {
-              return (
-                <AllSkillsetItem 
-                  key={key}
-                  skillset={this.state.allSkillsetsHash[value]}  
-                  activeSkillset={this.state.activeSkillset} 
-                  onAdd={this.handleSkillsetCreate} 
-                />
-              )
-            }.bind(this))}
+              <h3>All Skillsets</h3>
+              {Object.keys(this.state.allSkillsetsHash).map(function(value, key) {
+                return (
+                  <AllSkillsetItem 
+                    key={key}
+                    skillset={this.state.allSkillsetsHash[value]}  
+                    activeSkillset={this.state.activeSkillset} 
+                    onAdd={this.handleSkillsetCreate} 
+                  />
+                )
+              }.bind(this))}
 
-            <h3>Add Custom Skillset</h3>
-            <AddSkillset onSkillsetSubmit={this.handleSkillsetCreate} />
+              <h3>Add Custom Skillset</h3>
+              <AddSkillset onSkillsetSubmit={this.handleSkillsetCreate} />
 
+            </div>
           </div>
-          <hr />
-          <h2>Add {this.state.activeSkillset.name} Skills</h2>
-          <div className="skills">
+        </div>
+      </div>
+      <div className="strip">
+        <div className="row">
+          <div className="column small-12">
+            <h2>Add {this.state.activeSkillset.name} Skills</h2>
+            <div className="skills">
               <h3>My {this.state.activeSkillset.name} Skills</h3>
               <MySkillItem 
                 skillsets={this.state.allSkillsetsHash}  
@@ -505,8 +521,10 @@ var Profile = React.createClass({
                 onAdd={this.handleSkillPut} 
               />
               <AddSkill skillsets={this.state.skillsets} onSkillSubmit={this.handleSkillCreate} activeSkillset={this.state.activeSkillset}/>
+            </div>
           </div>
         </div>
+      </div>
       </div>
     );
   }
@@ -528,7 +546,7 @@ var SkillTshape = React.createClass({
     render: function(){
       return (
         <div className="tshape__skill" id={this.props.skill.id}>
-          <div className="tshape__skillname">{this.props.skill.name}</div>
+          <div className="tshape__skillname">{this.props.skill.id}</div>
         </div>
       );
     }
@@ -549,9 +567,9 @@ var MySkillsetItem = React.createClass({
   },
   render: function() {
     return (
-      <li className={"skillset__item skillset__item--tag " + (this.props.activeSkillset.id === this.props.skillset.id ? "active" : "inactive") } onClick={this.setActive(this.props.skillset)}>
+      <li className={"skillset__item skillset__item--tag " + (this.props.activeSkillset.id === this.props.skillset.id ? "selected" : "not-selected") } onClick={this.setActive(this.props.skillset)}>
         <span>{this.props.skillset.name}</span>
-        <a href="#" onClick={this.remove(this.props.skillset)}>remove</a>
+        <a href="#" onClick={this.remove(this.props.skillset)}>X</a>
       </li>
     )
   }
@@ -566,7 +584,7 @@ var AllSkillsetItem = React.createClass({
   render: function() {
     if (this.props.skillset.active) {
       return (
-        <li className={"skillset__item active"}>
+        <li className={"skillset__item active " + (this.props.activeSkillset.id === this.props.skillset.id ? "selected" : "not-selected")}>
           <span>{this.props.skillset.name}</span>
         </li>
       )

@@ -2473,6 +2473,13 @@ hr, .hr {
   padding: 4px 7px;
   border-radius: 2px;
   border: 1px solid #CCC;
+  cursor: pointer;
+}
+
+/* line 21, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets.scss */
+.skillsets .skillset__item.selected {
+  background: #333;
+  color: #FFF;
 }
 
 /* line 2, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
