@@ -42,12 +42,12 @@ var Profile = React.createClass({
         mySkillsetsHash[v.id].skills = [];
       });
 
-      console.log(mySkillsetsHash);
 
       // Add my skills to mySkillsetsHash
       _.forEach(mySkills, function(v, k) {
-        console.log(v);
-        mySkillsetsHash[v.skillset_id].skills.push(v)
+        if (mySkillsetsHash[v.skillset_id]){
+          mySkillsetsHash[v.skillset_id].skills.push(v)
+        }
       });
 
       //Create allSkillsetsHash 
@@ -207,57 +207,67 @@ var Profile = React.createClass({
   handleSkillsetPut: function(skillset) {
     console.log("handleSkillsetPut", skillset);
 
+    var newMySkillsetsHash = this.state.mySkillsetsHash;
+    var newAllSkillsetsHash = this.state.allSkillsetsHash;
+
     if (this.state.mySkillsetsHash[skillset.id]) {
       console.log("Skillset already added to this profile!");
       return false;
-    } else {
-      var newMySkillsetsHash = this.state.mySkillsetsHash;
-      var newAllSkillsetsHash = this.state.allSkillsetsHash;
-
-      // add the skillset to mySkillsetsHash
+    } else if (this.state.allSkillsetsHash[skillset.id]) {
+      // Add to mySkillsets
       newMySkillsetsHash[skillset.id] = skillset
-      // add a skills array to the skillset
       newMySkillsetsHash[skillset.id].skills = [];
-      // update react state
       this.setState({
         mySkillsetsHash: newMySkillsetsHash
       });
-
-
-      // add the skillset to allSkillsetsHash
-      newAllSkillsetsHash[skillset.id] = skillset
-      // set an active flag on the skillset in allSkillsetsHash
+      // Update allSkillsets
       newAllSkillsetsHash[skillset.id].active = true;
       this.setState({
         allSkillsetsHash: newAllSkillsetsHash
       });
-
-      // Generate an array of skillset ID's to PUT to API
-      var mySkillsetIds = Object.keys(this.state.mySkillsetsHash).map(function(value, key) {
-        return newMySkillsetsHash[value].id
+    } else {
+      // Add to mySkillsets
+      newMySkillsetsHash[skillset.id] = skillset
+      newMySkillsetsHash[skillset.id].skills = [];
+      this.setState({
+        mySkillsetsHash: newMySkillsetsHash
       });
-
-      console.log("PUT skillsets", mySkillsetIds);
-      // PUT the new skillset to the users profile via the API
-      // The API accepts this format: {"skillset_ids": [1,2,3]}
-      var data = JSON.stringify({"skillset_ids": mySkillsetIds});
-
-      $.ajax({
-        url: profileApi,
-        method: "PUT",
-        headers: {
-          'X-CSRFToken': csrfToken,
-          "content-type": "application/json"
-        },
-        data: data,
-        success: function(data) {
-          console.log("handleSkillsetPut AJAX Success", data);
-        }.bind(this),
-        error: function(xhr, status, err) {
-          console.error(this.props.url, status, err.toString());
-        }.bind(this)
+      // Add to allSkillsets
+      newAllSkillsetsHash[skillset.id] = skillset
+      newAllSkillsetsHash[skillset.id].skills = [];
+      newAllSkillsetsHash[skillset.id].active = true;
+      this.setState({
+        allSkillsetsHash: newAllSkillsetsHash
       });
     }
+
+    this.setActiveSkillset(skillset);
+
+    // Generate an array of skillset ID's to PUT to API
+    var mySkillsetIds = Object.keys(this.state.mySkillsetsHash).map(function(value, key) {
+      return newMySkillsetsHash[value].id
+    });
+
+    console.log("PUT skillsets", mySkillsetIds);
+    // PUT the new skillset to the users profile via the API
+    // The API accepts this format: {"skillset_ids": [1,2,3]}
+    var data = JSON.stringify({"skillset_ids": mySkillsetIds});
+
+    $.ajax({
+      url: profileApi,
+      method: "PUT",
+      headers: {
+        'X-CSRFToken': csrfToken,
+        "content-type": "application/json"
+      },
+      data: data,
+      success: function(data) {
+        console.log("handleSkillsetPut AJAX Success", data);
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
   },
   handleSkillsetRemove: function(skillset) {
     console.log("handleSkillsetRemove", skillset);
@@ -274,6 +284,8 @@ var Profile = React.createClass({
     this.setState({
       allSkillsetsHash: newAllSkillsetsHash
     });
+
+    this.setActiveSkillset(null);
 
     var mySkillsetIds = Object.keys(this.state.mySkillsetsHash).map(function(value, key) {
       return newMySkillsetsHash[value].id
@@ -323,18 +335,25 @@ var Profile = React.createClass({
   },
   handleSkillPut: function(skill) {
     console.log("handleSkillPut", skill);
-    
+
+    var newMySkillsetsHash = this.state.mySkillsetsHash;
+    var newAllSkillsetsHash = this.state.allSkillsetsHash;
+    var newMySkillsHash = this.state.mySkillsHash;
+    var newAllSkillsHash = this.state.allSkillsHash;
+
+    skill.active = true;
+
     if (this.state.mySkillsHash[skill.id]) {
       console.log("Skill already added to this profile!");
       return false;
+    } else if (this.state.allSkillsHash[skill.id]) {
+      newMySkillsetsHash[skill.skillset_id].skills.push(skill);
+      newMySkillsHash[skill.id] = skill;
+      this.setState({
+        mySkillsetsHash: newMySkillsetsHash,
+        mySkillsHash: newMySkillsHash,
+      });
     } else {
-      var newMySkillsetsHash = this.state.mySkillsetsHash;
-      var newAllSkillsetsHash = this.state.allSkillsetsHash;
-      var newMySkillsHash = this.state.mySkillsHash;
-      var newAllSkillsHash = this.state.allSkillsHash;
-
-      skill.active = true;
-
       // add the skill to mySkillsetsHash
       newMySkillsetsHash[skill.skillset_id].skills.push(skill);
       newAllSkillsetsHash[skill.skillset_id].skills.push(skill);
@@ -347,30 +366,30 @@ var Profile = React.createClass({
         mySkillsHash: newMySkillsHash,
         allSkillsHash: newAllSkillsHash,
       });
-
-      // add the skill to the skill_ids array on profile
-      var newSkillIds = Object.keys(this.state.mySkillsHash).map(function(value, key) {
-        return value
-      })
-      
-      var data = JSON.stringify({"skill_ids": newSkillIds});
-      console.log("handleSkillPut skill_ids", newSkillIds)
-      $.ajax({
-        url: profileApi,
-        method: "PUT",
-        headers: {
-          'X-CSRFToken': csrfToken,
-          "content-type": "application/json"
-        },
-        data: data,
-        success: function(data) {
-          console.log("handleSkillPut AJAX Success", data);
-        }.bind(this),
-        error: function(xhr, status, err) {
-          console.error(this.props.url, status, err.toString());
-        }.bind(this)
-      });
     }
+
+    // add the skill to the skill_ids array on profile
+    var newSkillIds = Object.keys(this.state.mySkillsHash).map(function(value, key) {
+      return value
+    })
+    
+    var data = JSON.stringify({"skill_ids": newSkillIds});
+    console.log("handleSkillPut skill_ids", newSkillIds)
+    $.ajax({
+      url: profileApi,
+      method: "PUT",
+      headers: {
+        'X-CSRFToken': csrfToken,
+        "content-type": "application/json"
+      },
+      data: data,
+      success: function(data) {
+        console.log("handleSkillPut AJAX Success", data);
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
   },
   handleSkillRemove: function(skill) {
     console.log("handleSkillRemove", skill);
@@ -568,7 +587,7 @@ var MySkillsetItem = React.createClass({
   render: function() {
     return (
       <li className={"skillset__item skillset__item--tag " + (this.props.activeSkillset.id === this.props.skillset.id ? "selected" : "not-selected") } onClick={this.setActive(this.props.skillset)}>
-        <span>{this.props.skillset.name}</span>
+        <span>{this.props.skillset.name} | {this.props.skillset.id} | </span>
         <a href="#" onClick={this.remove(this.props.skillset)}>X</a>
       </li>
     )
@@ -653,7 +672,7 @@ var MySkillItem = React.createClass({
       var items = this.props.activeSkillset.skills.map(function(item, i) {
         return (
           <li className="skill__item skill__item--tag" key={i}>
-            <span>{item.name}</span>
+            <span>{item.name} | {item.id} </span>
              <a href="#" className="skill__link skill__link--remove" onClick={this.remove(item)}>X</a>
           </li>
         )
@@ -674,7 +693,7 @@ var AllSkillItem = React.createClass({
   render: function() {
     if (this.props.activeSkillset.id === null) {
       var items = <li>Please select a skillset</li>
-    } else if(this.props.activeSkillset.id !== null && this.props.activeSkillset.skills.length === 0) {
+    } else if(this.props.activeSkillset.id !== null && this.props.skillsets[this.props.activeSkillset.id].skills.length === 0) {
       var items = <li>No all skills</li>
     } else {
       var items = this.props.skillsets[this.props.activeSkillset.id].skills.map(function(item, i) {
@@ -682,6 +701,7 @@ var AllSkillItem = React.createClass({
           return (
             <li className={"skillset__item active"} key={i}>
               <span>{item.name}</span>
+
             </li>
           )
         } else {
