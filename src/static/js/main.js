@@ -11,6 +11,7 @@ var Profile = React.createClass({
     return {
       profile: {},
       activeSkillset: {"id": null},
+      activeSkill: {"id": null},
       mySkillsetsHash: {},
       allSkillsetsHash: {},
       mySkillsHash: {},
@@ -452,6 +453,12 @@ var Profile = React.createClass({
       activeSkillset: skillset
     });
   },
+  setActiveSkill: function(skill) {
+    console.log("setActiveSkill", skill);
+    this.setState({
+      activeSkill: skill
+    });
+  },
   render: function() {
     return (
       <div>
@@ -461,12 +468,29 @@ var Profile = React.createClass({
 
             <div className="tshape-horizontal">
               <div className="tshape__header">
+                  <div className="tshape__avatar"></div>
                   <h2 className="tshape__role">UI Engineer</h2>
                   <h3 className="tshape__user">Robert Austin</h3>
                   <div className="tshape__badges">
                       <span className="tshape__github"><a href="#"><i className="fa fa-github" aria-hidden="true"></i></a></span>
                       <span className="tshape__linkedin"><a href="#"><i className="fa fa-linkedin-square" aria-hidden="true"></i></a></span>
                   </div>
+              </div>
+              <div className="tshape__guide">
+                 <span className="tshape__guide-beginner">Beginner</span>
+                 <span className="tshape__guide-mastery">Mastery</span>
+                 <ul className="tshape__guide-levels">
+                   <li>1</li>
+                   <li>2</li>
+                   <li>3</li>
+                   <li>4</li>
+                   <li>5</li>
+                   <li>6</li>
+                   <li>7</li>
+                   <li>8</li>
+                   <li>9</li>
+                   <li>10</li>
+                </ul>
               </div>
               <div className="tshape__middle">
                 {Object.keys(this.state.mySkillsetsHash).map(function(value, key) {
@@ -475,6 +499,7 @@ var Profile = React.createClass({
                       key={key} 
                       skillset={this.state.mySkillsetsHash[value]} 
                       activeSkillset={this.state.activeSkillset} 
+                      setActiveSkill={this.setActiveSkill} 
                     />
                   )
                 }.bind(this))}
@@ -482,12 +507,16 @@ var Profile = React.createClass({
             </div>
 
           </div>
+          <div className="column small-12">
+            <SkillDescription 
+                activeSkill={this.state.activeSkill} 
+              />
+            </div>
         </div>
       </div>
       <div className="strip">
         <div className="row">
           <div className="column small-12">
-            <h2>Add Skillsets</h2>
             <div className="skillsets">
 
               <h3>My Skillsets</h3>
@@ -550,21 +579,39 @@ var Profile = React.createClass({
 });
 
 var SkillsetTshape = React.createClass({
+    setActive: function(item) {
+      return function(e) {
+        e.preventDefault();
+        return this.props.setActiveSkill(item);
+      }.bind(this);
+    },
     render: function(){
       return (
         <div className={"tshape__skillset " + (this.props.activeSkillset.id === this.props.skillset.id ? "active" : "inactive")} id={this.props.skillset.id}>
           <div className="tshape__skillset-heading">{this.props.skillset.name}</div>
-          {this.props.skillset.skills.map(function(value, key) {
-            return <SkillTshape key={key} skill={value} />
-          })}
+            <div className="tshape__skill-container">
+            {this.props.skillset.skills.map(function(value, key) {
+              return (
+                <div className="tshape__skill" key={key} id={value.id} onClick={this.setActive(value)}>
+                  <div className="tshape__skillname">{value.id}</div>
+                </div>
+              )
+            }.bind(this))}
+          </div>
         </div>
       );
     }
 });
 var SkillTshape = React.createClass({
+    setActive: function(item) {
+      return function(e) {
+        e.preventDefault();
+        return this.props.setActiveSkill(item);
+      }.bind(this);
+    },
     render: function(){
       return (
-        <div className="tshape__skill" id={this.props.skill.id}>
+        <div className="tshape__skill" id={this.props.skill.id} onClick={this.setActive(this.props.skill)}>
           <div className="tshape__skillname">{this.props.skill.id}</div>
         </div>
       );
@@ -760,6 +807,21 @@ var AddSkill = React.createClass({
       </form>
     );
   }
+});
+
+var SkillDescription = React.createClass({
+    render: function(){
+      if (this.props.activeSkill.id === null) {
+        var item = <div>Please select a skill</div>
+      } else {
+        var item = 
+          <div>
+            <div className="skill__description">{this.props.activeSkill.name}</div>
+            <div className="skill__description">{this.props.activeSkill.description}</div>
+          </div>
+      }
+      return <div>{item}</div>
+    }
 });
 
 ReactDOM.render(

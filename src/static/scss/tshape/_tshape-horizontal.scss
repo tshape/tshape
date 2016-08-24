@@ -1,69 +1,156 @@
 .tshape-horizontal {
-  //width: 490px;
-  margin: 0 auto;
+  margin: 30px auto;
+  border: 1px solid #EAEAEA;
+    
+    border-radius: 3px;
   @include clearfix;
   .tshape__header {
-    text-align: center;
-    margin-bottom: 100px;
+    @include clearfix;
+    border-bottom: 1px solid #EAEAEA;
+    margin-bottom: 10px;
+    padding: 10px;
   }
   .tshape__role {
-    margin-bottom: 3px;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 30px;
+    float: left;
+    margin: 0;
+    margin-right: 5px;
   }
   .tshape__user {
-    margin-bottom: 0;
-    font-size: 14px;
-    line-height: 20px;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 30px;
+    float: left;
+    margin: 0;
+    margin-right: 5px;
+    color: #333;
+  }
+  .tshape__avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-image: url("../images/rob.jpg");
+    background-size: contain;
+    float: left;
+    margin-right: 5px;
+  }
+  .tshape__github, .tshape__linkedin {
+    display: none;
+  }
+  .tshape__guide {
+    width: 400px;
+    margin-left: 210px;
+    @include clearfix;
+    .tshape__guide-beginner { 
+      float: left;
+      font-size: 11px;
+      color: #CCC;
+      margin-bottom: 10px;
+      font-weight: 400;
+    }
+    .tshape__guide-mastery { 
+      float: right;
+      font-size: 11px;
+      color: #CCC;
+      margin-bottom: 10px;
+      font-weight: 400;
+    }
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      clear: both;
+      display: block;
+      li {
+        float: left;
+        width: 40px;
+        text-align: center;
+        color: #CCC;
+        font-size: 11px;
+      }
+    }
   }
   .tshape__middle {
     @include clearfix;
+    background-image: url("../images/tshape-grid.png");
+    background-repeat: no-repeat;
+    background-position: 170px 9px;
+    padding: 10px;
   }
   .tshape__skillset {
     display: block;
-    height: 30px;
-    margin-bottom: 5px;
+    height: 40px;
+    margin-bottom: 0px;
     @include clearfix;
   }
+
   .tshape__skillset-heading {
     float: left;
-    width: 200px;
+    width: 210px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: left;
-    font-size: 15px;
-    line-height: 24px;
-    margin-right: 5px;
+    font-size: 14px;
+    line-height: 40px;
+    margin-right: 0px;
+    color: #666;
+    // text-align: right;
+    // padding-right: 60px;
+  }
+  .tshape__skill-container {
+    display: block;
+    @include clearfix;
   }
   .tshape__skill {
     background: #CCC;
-    width: 30px;
-    height: 30px;
-    margin-right: 5px;
+    width: 40px;
+    height: 40px;
+    margin-right: 0px;
     float: left;
-    border-radius: 2px;
+    border-radius: 0px;
     color: #FFF;
     text-align: center;
     font-size: 13px;
-    line-height: 28px;
+    line-height: 40px;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.7;
+    }
   }
   .tshape__panel--middle {
     margin-top: 30px;
   }
   
-  $color-1: #07EC9F;
-  $color-2: #ED018D;
+  // $color-1: #07EC9F;
+  // $color-2: #ED018D;
 
-  $steps: 10;
+  // $steps: 10;
 
-  @for $i from 0 to $steps {
-    .tshape__skill {
-      &:nth-child(#{$i + 1}) {
-        background: mix($color-1, $color-2, percentage($i / ($steps - 1)));
-      }
-    }
+  // @for $i from 0 to $steps {
+  //   .tshape__skill {
+  //     &:nth-child(#{$i + 1}) {
+  //       background: mix($color-1, $color-2, percentage($i / ($steps - 1)));
+  //     }
+  //   }
+  // }
+
+  // Skill Colours
+  .tshape__skill {
+    &:nth-child(1) {background-color: #FCEB9D}
+    &:nth-child(2) {background-color: #FECE90}
+    &:nth-child(3) {background-color: #F8ADA8}
+    &:nth-child(4) {background-color: #E9ADD8}
+    &:nth-child(5) {background-color: #D2A2EA}
+    &:nth-child(6) {background-color: #B5C0E5}
+    &:nth-child(7) {background-color: #B1DDE8}
+    &:nth-child(8) {background-color: #A3E8D8}
+    &:nth-child(9) {background-color: #9AE6B4}
+    &:nth-child(10) {background-color: #ABE686}
   }
 }
-
 
 
 .tshape__mask {
