@@ -1,8 +1,7 @@
 .tshape-horizontal {
   margin: 30px auto;
   border: 1px solid #EAEAEA;
-    
-    border-radius: 3px;
+  border-radius: 3px;
   @include clearfix;
   .tshape__header {
     @include clearfix;

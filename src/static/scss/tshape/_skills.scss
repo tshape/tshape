@@ -38,26 +38,3 @@
 		}
 	}
 } 
-
-.button_example{
-	border:1px solid #CCCCCC;
-	box-shadow: #FEFFFF 0px 1px 1px ; 
-	border-radius: 3px;
-	padding: 10px 10px 10px 10px; 
-	text-decoration:none; 
-	text-shadow: 0px 1px 0 rgba(255,255,255,1);
-	font-weight:bold; 
-	color: #4A4A4A;
- 	background-color: #F7F5F6; 
- 	background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
-}
-
-.button_example:hover{
- border:1px solid #ADADAD;
- background-color: #E0E0E0; background-image: -webkit-gradient(linear, left top, left bottom, from(#E0E0E0), to(#BDBBBC));
- background-image: -webkit-linear-gradient(top, #E0E0E0, #BDBBBC);
- background-image: -moz-linear-gradient(top, #E0E0E0, #BDBBBC);
- background-image: -ms-linear-gradient(top, #E0E0E0, #BDBBBC);
- background-image: -o-linear-gradient(top, #E0E0E0, #BDBBBC);
- background-image: linear-gradient(to bottom, #E0E0E0, #BDBBBC);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#E0E0E0, endColorstr=#BDBBBC);
-}

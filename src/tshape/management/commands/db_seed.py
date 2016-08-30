@@ -50,8 +50,8 @@ def add_skills():
     try:
         for skillset in skillsets[:slice_index]:
             skills.extend([
-                Skill(skillset=skillset, name=faker.company(),
-                      description=faker.text(), verified=True)
+                Skill(skillset=skillset, name=faker.sentence(nb_words=6, variable_nb_words=True),
+                      description=faker.paragraph(nb_sentences=3, variable_nb_sentences=True), verified=True)
                 for i in range(10)
                 ])
     except Exception as e:
@@ -60,8 +60,8 @@ def add_skills():
     try:
         for skillset in skillsets[slice_index:]:
             skills.extend([
-                Skill(skillset=skillset, name=faker.company(),
-                      description=faker.text(), verified=False)
+                Skill(skillset=skillset, name=faker.sentence(nb_words=6, variable_nb_words=True),
+                      description=faker.paragraph(nb_sentences=3, variable_nb_sentences=True), verified=False)
                 for i in range(10)
                 ])
     except Exception as e:
