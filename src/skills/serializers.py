@@ -8,8 +8,9 @@ class SkillSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Skill
-        fields = ('id', 'name', 'description', 'verified', 'skillset_id')
-        read_only_fields = ('id',)
+        fields = ('id', 'name', 'description', 'verified', 'skillset_id',
+                  'created_at', 'updated_at')
+        read_only_fields = ('id', 'created_at', 'updated_at')
 
     skillset_id = serializers.IntegerField()
     name = serializers.CharField(validators=[
@@ -20,8 +21,9 @@ class SkillUpdateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Skill
-        fields = ('id', 'name', 'description', 'verified', 'skillset_id')
-        read_only_fields = ('id', 'skillset_id')
+        fields = ('id', 'name', 'description', 'verified', 'skillset_id',
+                  'created_at', 'updated_at')
+        read_only_fields = ('id', 'skillset_id', 'created_at', 'updated_at')
 
     skillset_id = serializers.PrimaryKeyRelatedField(
         many=False, read_only=True)
@@ -34,9 +36,11 @@ class SkillNestedSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Skill
-        fields = ('id', 'name', 'description', 'verified', 'skillset_id')
+        fields = ('id', 'name', 'description', 'verified', 'skillset_id',
+                  'created_at', 'updated_at')
         read_only_fields = (
-            'id', 'name', 'description', 'verified', 'skillset_id')
+            'id', 'name', 'description', 'verified', 'skillset_id',
+            'created_at', 'updated_at')
 
     skillset_id = serializers.PrimaryKeyRelatedField(
         many=False, read_only=True)

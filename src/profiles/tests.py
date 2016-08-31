@@ -1,4 +1,8 @@
-from django.test import TestCase
+import json
+
+from django.test import TestCase, RequestFactory, Client
+from rest_framework import status
+from rest_framework.test import APITestCase
 
 from profiles.models import Profile
 from skills.models import Skill
@@ -71,3 +75,35 @@ class TestProfileModel(TestCase):
         profile.skills.set([skill])
         self.assertRaisesMessage(profile.save(),
             '{"skills": _("Corresponding skillset must be attached to profile before skill."")}')
+
+
+class TestProfileAPI(TestCase):
+
+    def setUp(self):
+        self.client = Client()
+        self.user_1 = User.objects.create(
+            email='test1@tshape.com', password='try$h1s')
+        self.user_2 = User.objects.create(
+            email='test2@tshape.com', password='try$h1s')
+
+    def test_profile_get(self):
+        response = self.client.get('/api/profiles/')
+        # print(response.__dict__)
+        # print(response.json())
+        # print(response.data)
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        expected = [p.__dict__ for p in Profile.objects.all()]
+        self.assertEqual(data, expected)
+        # self.assertEqual(response)
+
+    # def test_profile_put(self):
+    #     """
+    #     Ensure we can create a new account object.
+    #     """
+    #     url = reverse('account-list')
+    #     data = {'name': 'DabApps'}
+    #     response = self.client.post(url, data, format='json')
+    #     self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+    #     self.assertEqual(Account.objects.count(), 1)
+    #     self.assertEqual(Account.objects.get().name, 'DabApps')

@@ -24,7 +24,7 @@ class Profile(BaseModel):
     title = models.CharField(_('title'), max_length=280, blank=True)
     description = models.TextField(_('description'), blank=True)
     years_experience = models.IntegerField(
-        _('years of experience'), blank=True, default=0)
+        _('years of experience'), blank=True, null=True)
     skills = models.ManyToManyField(Skill, verbose_name=_('skills'))
     skillsets = models.ManyToManyField(Skillset, verbose_name=_('skillsets'))
 

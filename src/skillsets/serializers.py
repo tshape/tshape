@@ -9,8 +9,8 @@ class SkillsetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Skillset
         fields = ('id', 'name', 'description', 'verified',
-                  'weight', 'skill_ids')
-        read_only_fields = ('id', 'skill_ids')
+                  'weight', 'skill_ids', 'created_at', 'updated_at')
+        read_only_fields = ('id', 'skill_ids', 'created_at', 'updated_at')
 
     name = serializers.CharField(validators=[
         UniqueValidator(queryset=Skillset.objects.all())])
@@ -23,8 +23,8 @@ class SkillsetUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Skillset
         fields = ('id', 'name', 'description', 'verified', 'weight',
-                  'skill_ids')
-        read_only_fields = ('id', 'skill_ids')
+                  'skill_ids', 'created_at', 'updated_at')
+        read_only_fields = ('id', 'skill_ids', 'created_at', 'updated_at')
 
     name = serializers.CharField(required=False, validators=[
         UniqueValidator(queryset=Skillset.objects.all())])
@@ -38,9 +38,11 @@ class SkillsetNestedSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Skillset
-        fields = ('id', 'name', 'description', 'verified', 'weight')
+        fields = ('id', 'name', 'description', 'verified', 'weight',
+                  'created_at', 'updated_at')
         read_only_fields = (
-            'id', 'name', 'description', 'verified', 'weight')
+            'id', 'name', 'description', 'verified', 'weight',
+            'created_at', 'updated_at')
 
     name = serializers.CharField(required=False)
     verified = serializers.BooleanField(required=False)

@@ -8,9 +8,10 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'email', 'is_staff', 'is_active',
-                  'date_joined', 'profile')
-        read_only_fields = ('id', 'date_joined', 'profile')
+        fields = ('id', 'email', 'is_staff', 'is_active', 'date_joined',
+                  'profile', 'created_at', 'updated_at')
+        read_only_fields = ('id', 'date_joined', 'profile',
+                            'created_at', 'updated_at')
 
     profile = ProfileListSerializer(required=False)
 
@@ -19,8 +20,9 @@ class UserUpdateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'email', 'is_staff', 'is_active', 'date_joined')
-        read_only_fields = ('id', 'date_joined')
+        fields = ('id', 'email', 'is_staff', 'is_active', 'date_joined',
+                  'created_at', 'updated_at')
+        read_only_fields = ('id', 'date_joined', 'created_at', 'updated_at')
 
     email = serializers.EmailField(required=False)
     is_staff = serializers.BooleanField(required=False)
