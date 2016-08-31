@@ -67,7 +67,7 @@ db-reset:
 	$(PYTHON) src/manage.py syncdb
 
 db-seed:
-	$(PYTHON) src/manage.py shell < tests/db/seed_db.py
+	$(PYTHON) src/manage.py db_seed
 
 db-shell:
 	psql -h 192.168.99.100 -p 5432 -U postgres postgres
@@ -152,8 +152,8 @@ help:
 	@echo "  coverage   to run coverage check of the documentation (if enabled)"
 	@echo "  dummy      to check syntax errors of document sources"
 
-.PHONY: clean
-clean:
+.PHONY: cleanhtml
+cleanhtml:
 	rm -rf $(BUILDDIR)/*
 
 .PHONY: html

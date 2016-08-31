@@ -15,10 +15,7 @@ class Skill(BaseModel):
 
     # TODO: create unique name + skillset
     name = models.CharField(
-        _('name'), null=False, max_length=280,
-        error_messages={
-            'unique': _('A skill with that name already exists.'),
-        })
+        _('name'), null=False, max_length=280)
     description = models.TextField(_('description'), default='')
     verified = models.BooleanField(_('verified'), null=False, default=False)
     weight = models.IntegerField(_('weight'), null=False, default=0)

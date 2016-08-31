@@ -60,8 +60,9 @@ urlpatterns = [
     url(r'^skillsets/', include('skillsets.urls'), name='skillsets'),
     url(r'^admin/', admin.site.urls),
     url(r'^login/', user_views.LoginView.as_view(), name='login'),
-    # url(r'^logout/$', user_views.LogoutView.as_view(), name='logout'),
-    url(r'^logout/$', django.contrib.auth.views.logout, {'next_page': '/'}),
+    url(r'^logout/$', user_views.LogoutView.as_view(), {'next_page': '/'}, name='logout'),
+    # url(r'^logout/$', django.contrib.auth.views.logout, {'next_page': '/'}),
+
     url(r'^signup/$', user_views.SignupView.as_view(), name='signup'),
     url(r'^$', IndexView.as_view(), name='index'),
 ]

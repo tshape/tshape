@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from rest_framework.validators import UniqueValidator
 
 from skills.models import Skill
 
@@ -13,8 +12,6 @@ class SkillSerializer(serializers.ModelSerializer):
         read_only_fields = ('id', 'created_at', 'updated_at')
 
     skillset_id = serializers.IntegerField()
-    name = serializers.CharField(validators=[
-        UniqueValidator(queryset=Skill.objects.all())])
 
 
 class SkillUpdateSerializer(serializers.ModelSerializer):
@@ -27,8 +24,7 @@ class SkillUpdateSerializer(serializers.ModelSerializer):
 
     skillset_id = serializers.PrimaryKeyRelatedField(
         many=False, read_only=True)
-    name = serializers.CharField(required=False, validators=[
-        UniqueValidator(queryset=Skill.objects.all())])
+    name = serializers.CharField(required=False)
     verified = serializers.BooleanField(required=False)
     weight = serializers.IntegerField(required=False)
 
@@ -45,7 +41,6 @@ class SkillNestedSerializer(serializers.ModelSerializer):
 
     skillset_id = serializers.PrimaryKeyRelatedField(
         many=False, read_only=True)
-    name = serializers.CharField(required=False, validators=[
-        UniqueValidator(queryset=Skill.objects.all())])
+    name = serializers.CharField(required=False)
     verified = serializers.BooleanField(required=False)
     weight = serializers.IntegerField(required=False)

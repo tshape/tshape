@@ -36,3 +36,9 @@ class UserCreateForm(UserCreationForm):
         fields = ('email', 'password1', 'password2')
 
     email = forms.EmailField(label=_('E-mail'), max_length=75, required=True)
+
+    def save(self, commit=True):
+        data = dict(self.cleaned_data)
+        data.pop('password2')
+        data['password'] = data.pop('password1')
+        return User.objects.create(**data)
