@@ -46,26 +46,26 @@
   .tshape__panel--middle {
     margin-top: 30px;
   }
-}
+  $color-1: #6EFF48;
+  $color-2: blue;
 
-$color-1: #6EFF48;
-$color-2: blue;
+  $steps: 16;
 
-$steps: 16;
-
-@for $i from 0 to $steps {
-  .tshape__skillset {
-    float: left;
-    width: 40px;
-    margin-right: 10px;
-    text-align: center;
-    &:nth-child(#{$i + 1}) {
-      .tshape__skill {
-        background: mix($color-1, $color-2, percentage($i / ($steps - 1)));
+  @for $i from 0 to $steps {
+    .tshape__skillset {
+      float: left;
+      width: 40px;
+      margin-right: 10px;
+      text-align: center;
+      &:nth-child(#{$i + 1}) {
+        .tshape__skill {
+          background: mix($color-1, $color-2, percentage($i / ($steps - 1)));
+        }
       }
     }
   }
 }
+
 
 .tshape__mask {
   width: 800px;

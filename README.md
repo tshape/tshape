@@ -11,8 +11,14 @@ git clone https://github.com/angieellis/tshape.git
 - navigate to project root
 - `make docker-build`
 - `make docker-run` 
-
-does not work
+- you will probably see errors in the terminal and in Kitematic tshape_db_1 or tshape_web_1 may not be green.
+- shut down the server using ctrl C
+- `make docker-recreate`
+- now lets seed the database. You need to enter the docker bash for this. 
+- `make docker-bash`
+- you must be in the directory app/src
+- `python manage.py db_seed`
+- if the seed does not work you can flush the db using `python manage.py flush`
 
 
 #### Common Docker Commands

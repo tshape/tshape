@@ -1,0 +1,96 @@
+.skillsets {
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	li {
+		list-style: none;
+		margin-right: 10px;
+		padding: 0;
+		display: inline-block;
+		&.skillset__item {
+			&.selected {
+				background-color: #000;
+				color: #FFF;
+			}
+		}
+	} 
+	.skillset__item {
+		&.selected {
+			.skillset__name {
+				color: #ffffff;
+			    background-color: #484848;
+			    background-image: linear-gradient(to bottom, #484848, #000000);
+			    text-shadow: none;
+			    border-color: #000;
+			}
+			.skillset__weight {
+				color: #ffffff;
+			    background-color: #484848;
+			    background-image: linear-gradient(to bottom, #484848, #000000);
+			    text-shadow: none;
+			    border-color: #000;
+			}
+			.skillset__remove {
+				color: #ffffff;
+			    background-color: #484848;
+			    background-image: linear-gradient(to bottom, #484848, #000000);
+			    text-shadow: none;
+			    border-color: #000;
+			}
+		}
+		&.skillset__item--inline{
+			display: inline-block;
+			cursor: pointer;
+			margin: 0 5px 5px 0;
+			font-size: 14px;
+		}
+		&.skillset__item--tag {
+			background: #EAEAEA;
+			padding: 4px 7px;
+			border-radius: 2px;
+			border: 1px solid #CCC;
+			cursor: pointer;
+		}
+		.skillset__name {
+			display: inline-block;
+			border:1px solid #CCCCCC;
+			box-shadow: #FEFFFF 0px 1px 1px ; 
+			padding: 6px;
+			text-decoration:none; 
+			text-shadow: 0px 1px 0 rgba(255,255,255,1);
+			color: #4A4A4A;
+		 	background-color: #F7F5F6; 
+		 	background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
+		}
+		.skillset__weight {
+			display: inline-block;
+			border:1px solid #CCCCCC;
+			border-right: none;
+			box-shadow: #FEFFFF 0px 1px 1px ; 
+			border-top-left-radius: 3px;
+			border-bottom-left-radius: 3px;
+			padding: 6px;
+			text-decoration:none; 
+			text-shadow: 0px 1px 0 rgba(255,255,255,1);
+			color: #4A4A4A;
+		 	background-color: #F7F5F6; 
+		 	background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
+		}
+		.skillset__remove {
+			display: inline-block;
+			border: 1px solid #CCCCCC;
+			border-left: none;
+			box-shadow: #FEFFFF 0px 1px 1px ; 
+			border-top-right-radius: 3px;
+			border-bottom-right-radius: 3px;
+			padding: 6px;
+			text-decoration:none; 
+			text-shadow: 0px 1px 0 rgba(255,255,255,1);
+			color: #4A4A4A;
+		 	background-color: #F7F5F6; 
+		 	background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
+		}
+	}
+} 

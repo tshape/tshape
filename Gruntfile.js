@@ -14,7 +14,7 @@
       options: {
           outputStyle: 'expanded',
           sourceComments: true,
-          sourceMap: false
+          sourceMap: true
       },
       dist: {
         files: { 
