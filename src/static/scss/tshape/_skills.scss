@@ -4,37 +4,79 @@
 		margin: 0;
 		padding: 0;
 	}
-	li {
+	ol {
+		list-style: decimal;
+	}
+	.skill__item {
 		list-style: none;
 		margin-right: 10px;
 		padding: 0;
 		display: inline-block;
-	} 
-	.skill__item {
 		&.skill__item--tag {
 			background: #EAEAEA;
 			padding: 4px 7px;
 			border-radius: 2px;
 			border: 1px solid #CCC;
+			display: block;
+		}
+		&.skill__item--row {
+			// border-bottom: 1px solid #EAEAEA;
+			// padding: 3px;
+			display: block;
+			margin-bottom: 5px;
+		}
+		&.skill__item--verified {
+			list-style: decimal;
+			margin-right: 10px;
+			padding: 0;
+			display: list-item;
 		}
 		.skill__name {
+			display: inline-block;
 			border:1px solid #CCCCCC;
 			box-shadow: #FEFFFF 0px 1px 1px ; 
-			border-top-left-radius: 3px;
-			border-bottom-left-radius: 3px;
-			padding: 10px 10px 10px 10px; 
+			padding: 6px;
 			text-decoration:none; 
 			text-shadow: 0px 1px 0 rgba(255,255,255,1);
-			font-weight:bold; 
 			color: #4A4A4A;
 		 	background-color: #F7F5F6; 
 		 	background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
 		}
-		.skill__id {
-
+		.skill__weight {
+			display: inline-block;
+			border:1px solid #CCCCCC;
+			border-right: none;
+			box-shadow: #FEFFFF 0px 1px 1px ; 
+			border-top-left-radius: 3px;
+			border-bottom-left-radius: 3px;
+			padding: 6px;
+			text-decoration:none; 
+			text-shadow: 0px 1px 0 rgba(255,255,255,1);
+			color: #4A4A4A;
+		 	background-color: #F7F5F6; 
+		 	background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
 		}
 		.skill__remove {
-
+			display: inline-block;
+			border: 1px solid #CCCCCC;
+			border-left: none;
+			box-shadow: #FEFFFF 0px 1px 1px ; 
+			border-top-right-radius: 3px;
+			border-bottom-right-radius: 3px;
+			padding: 6px;
+			text-decoration:none; 
+			text-shadow: 0px 1px 0 rgba(255,255,255,1);
+			color: #4A4A4A;
+		 	background-color: #F7F5F6; 
+		 	background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
 		}
+	}
+	.skills__heading {
+		font-weight: normal;
+		span {
+			font-weight: bold;
+		}
+	}
+	.skills__heading-myskills {
 	}
 } 
