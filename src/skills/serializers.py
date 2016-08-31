@@ -8,8 +8,8 @@ class SkillSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Skill
-        fields = ('id', 'name', 'description', 'verified', 'skillset_id',
-                  'created_at', 'updated_at')
+        fields = ('id', 'name', 'description', 'verified', 'weight',
+                  'skillset_id', 'created_at', 'updated_at')
         read_only_fields = ('id', 'created_at', 'updated_at')
 
     skillset_id = serializers.IntegerField()
@@ -21,8 +21,8 @@ class SkillUpdateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Skill
-        fields = ('id', 'name', 'description', 'verified', 'skillset_id',
-                  'created_at', 'updated_at')
+        fields = ('id', 'name', 'description', 'verified', 'weight',
+                  'skillset_id', 'created_at', 'updated_at')
         read_only_fields = ('id', 'skillset_id', 'created_at', 'updated_at')
 
     skillset_id = serializers.PrimaryKeyRelatedField(
@@ -30,20 +30,22 @@ class SkillUpdateSerializer(serializers.ModelSerializer):
     name = serializers.CharField(required=False, validators=[
         UniqueValidator(queryset=Skill.objects.all())])
     verified = serializers.BooleanField(required=False)
+    weight = serializers.IntegerField(required=False)
 
 
 class SkillNestedSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Skill
-        fields = ('id', 'name', 'description', 'verified', 'skillset_id',
-                  'created_at', 'updated_at')
+        fields = ('id', 'name', 'description', 'verified', 'weight',
+                  'skillset_id', 'created_at', 'updated_at')
         read_only_fields = (
-            'id', 'name', 'description', 'verified', 'skillset_id',
-            'created_at', 'updated_at')
+            'id', 'name', 'description', 'verified', 'weight',
+            'skillset_id', 'created_at', 'updated_at')
 
     skillset_id = serializers.PrimaryKeyRelatedField(
         many=False, read_only=True)
     name = serializers.CharField(required=False, validators=[
         UniqueValidator(queryset=Skill.objects.all())])
     verified = serializers.BooleanField(required=False)
+    weight = serializers.IntegerField(required=False)
