@@ -522,32 +522,36 @@ var Profile = React.createClass({
             <div className="skillsets">
               <div className="row">
                 <div className="column small-7">
-                  <h3>My Skillsets</h3>
-                  {Object.keys(this.state.mySkillsetsHash).map(function(value, key) {
-                    return (
-                      <MySkillsetItem 
-                        key={key} 
-                        skillset={this.state.mySkillsetsHash[value]} 
-                        activeSkillset={this.state.activeSkillset} 
-                        setActiveSkillset={this.setActiveSkillset} 
-                        onRemove={this.handleSkillsetRemove} 
-                      />
-                    )
-                  }.bind(this))}
+                 <div className="skillsets__panel--my-skillsets">
+                    <h3>My Skillsets</h3>
+                    {Object.keys(this.state.mySkillsetsHash).map(function(value, key) {
+                      return (
+                        <MySkillsetItem 
+                          key={key} 
+                          skillset={this.state.mySkillsetsHash[value]} 
+                          activeSkillset={this.state.activeSkillset} 
+                          setActiveSkillset={this.setActiveSkillset} 
+                          onRemove={this.handleSkillsetRemove} 
+                        />
+                      )
+                    }.bind(this))}
+                  </div>
                 </div>
                 <div className="column small-5">
-                  <h3>All Skillsets</h3>
-                  <AddSkillset onSkillsetSubmit={this.handleSkillsetCreate} />
-                  {Object.keys(this.state.allSkillsetsHash).map(function(value, key) {
-                    return (
-                      <AllSkillsetItem 
-                        key={key}
-                        skillset={this.state.allSkillsetsHash[value]}  
-                        activeSkillset={this.state.activeSkillset} 
-                        onAdd={this.handleSkillsetCreate} 
-                      />
-                    )
-                  }.bind(this))}
+                  <div className="skillsets__panel--all-skillsets">
+                    <h3>All Skillsets</h3>
+                    <AddSkillset onSkillsetSubmit={this.handleSkillsetCreate} />
+                    {Object.keys(this.state.allSkillsetsHash).map(function(value, key) {
+                      return (
+                        <AllSkillsetItem 
+                          key={key}
+                          skillset={this.state.allSkillsetsHash[value]}  
+                          activeSkillset={this.state.activeSkillset} 
+                          onAdd={this.handleSkillsetCreate} 
+                        />
+                      )
+                    }.bind(this))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -560,21 +564,25 @@ var Profile = React.createClass({
             <div className="skills">
               <div className="row">
                 <div className="column small-7">
-                  <h3 className="skills__heading skills__heading-myskills">My <span>{this.state.activeSkillset.name}</span> Skills</h3>
-                  <MySkillItem 
-                    skillsets={this.state.allSkillsetsHash}  
-                    activeSkillset={this.state.activeSkillset} 
-                    onRemove={this.handleSkillRemove} 
-                  />
+                  <div className="skills__panel--my-skills">
+                    <h3 className="skills__heading skills__heading-myskills">My <span>{this.state.activeSkillset.name}</span> Skills</h3>
+                    <MySkillItem 
+                      skillsets={this.state.allSkillsetsHash}  
+                      activeSkillset={this.state.activeSkillset} 
+                      onRemove={this.handleSkillRemove} 
+                    />
+                  </div>
                 </div>
                 <div className="column small-5">
-                   <h3 className="skills__heading skills__heading-myskills">All <span>{this.state.activeSkillset.name}</span> Skills</h3>
-                  <AddSkill skillsets={this.state.skillsets} onSkillSubmit={this.handleSkillCreate} activeSkillset={this.state.activeSkillset}/>
-                  <AllSkillItem 
-                    skillsets={this.state.allSkillsetsHash}  
-                    activeSkillset={this.state.activeSkillset} 
-                    onAdd={this.handleSkillPut} 
-                  />
+                  <div className="skills__panel--all-skills">
+                     <h3 className="skills__heading skills__heading-myskills">All <span>{this.state.activeSkillset.name}</span> Skills</h3>
+                    <AddSkill skillsets={this.state.skillsets} onSkillSubmit={this.handleSkillCreate} activeSkillset={this.state.activeSkillset}/>
+                    <AllSkillItem 
+                      skillsets={this.state.allSkillsetsHash}  
+                      activeSkillset={this.state.activeSkillset} 
+                      onAdd={this.handleSkillPut} 
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -641,7 +649,7 @@ var MySkillsetItem = React.createClass({
   },
   render: function() {
     return (
-      <div className={"skillset__item skillset__item--inline " + (this.props.activeSkillset.id === this.props.skillset.id ? "selected" : "not-selected") } onClick={this.setActive(this.props.skillset)}>
+      <div className={"skillset__item skillset__item--tag " + (this.props.activeSkillset.id === this.props.skillset.id ? "selected" : "not-selected") } onClick={this.setActive(this.props.skillset)}>
         <span className="skillset__weight">1</span>
         <span className="skillset__name">{this.props.skillset.name}</span>
         <a className="skillset__remove" href="#" onClick={this.remove(this.props.skillset)}>X</a>
@@ -659,13 +667,13 @@ var AllSkillsetItem = React.createClass({
   render: function() {
     if (this.props.skillset.active) {
       return (
-        <li className={"skillset__item active " + (this.props.activeSkillset.id === this.props.skillset.id ? "selected" : "not-selected")}>
+        <li className={"skillset__item skillset__item--text active " + (this.props.activeSkillset.id === this.props.skillset.id ? "selected" : "not-selected")}>
           <span>{this.props.skillset.name}</span>
         </li>
       )
     } else {
       return (
-        <li className={"skillset__item inactive"}>
+        <li className={"skillset__item skillset__item--text inactive"}>
           <a href="#" className="skillset__link" onClick={this.add(this.props.skillset)}>{this.props.skillset.name}</a>
         </li>
       )
@@ -692,7 +700,7 @@ var AddSkillset = React.createClass({
   },
   render: function() {
     return (
-      <form className="commentForm" onSubmit={this.handleSubmit}>
+      <form className="skillset__add-skillset-form" onSubmit={this.handleSubmit}>
         <input
           type="text"
           ref="name"
@@ -825,7 +833,7 @@ var AddSkill = React.createClass({
   },
   render: function() {
     return (
-      <form className="commentForm" onSubmit={this.handleSubmit}>
+      <form className="skill__add-skill-form" onSubmit={this.handleSubmit}>
         <input
           type="text"
           ref="name"
