@@ -9,49 +9,30 @@
 		margin-right: 10px;
 		padding: 0;
 		display: inline-block;
-		&.skillset__item {
-			&.selected {
-				background-color: #000;
-				color: #FFF;
-			}
-		}
 	} 
+	.skillsets__panel--all-skillsets {
+		padding: 20px;
+		border: 1px solid #EAEAEA;
+	}
 	.skillset__item {
-		&.selected {
-			.skillset__name {
-				color: #ffffff;
-			    background-color: #484848;
-			    background-image: linear-gradient(to bottom, #484848, #000000);
-			    text-shadow: none;
-			    border-color: #000;
-			}
-			.skillset__weight {
-				color: #ffffff;
-			    background-color: #484848;
-			    background-image: linear-gradient(to bottom, #484848, #000000);
-			    text-shadow: none;
-			    border-color: #000;
-			}
-			.skillset__remove {
-				color: #ffffff;
-			    background-color: #484848;
-			    background-image: linear-gradient(to bottom, #484848, #000000);
-			    text-shadow: none;
-			    border-color: #000;
-			}
-		}
-		&.skillset__item--inline{
+		&.skillset__item--tag {
 			display: inline-block;
 			cursor: pointer;
 			margin: 0 5px 5px 0;
 			font-size: 14px;
 		}
-		&.skillset__item--tag {
-			background: #EAEAEA;
-			padding: 4px 7px;
-			border-radius: 2px;
-			border: 1px solid #CCC;
+		&.skillset__item--text {
+			display: inline-block;
 			cursor: pointer;
+			margin: 0 6px 7px 0;
+			font-size: 14px;
+			&.active {
+				color: #666;
+			}
+			&.selected {
+				background-color: #000;
+				color: #FFF;
+			}
 		}
 		.skillset__name {
 			display: inline-block;
@@ -86,6 +67,49 @@
 			border-top-right-radius: 3px;
 			border-bottom-right-radius: 3px;
 			padding: 6px;
+			text-decoration:none; 
+			text-shadow: 0px 1px 0 rgba(255,255,255,1);
+			color: #4A4A4A;
+		 	background-color: #F7F5F6; 
+		 	background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
+		}
+		// Selected State
+		&.selected {
+			
+			.skillset__name {
+				color: #ffffff;
+			    background-color: #484848;
+			    background-image: linear-gradient(to bottom, #484848, #000000);
+			    text-shadow: none;
+			    border-color: #000;
+			}
+			.skillset__weight {
+				color: #ffffff;
+			    background-color: #484848;
+			    background-image: linear-gradient(to bottom, #484848, #000000);
+			    text-shadow: none;
+			    border-color: #000;
+			}
+			.skillset__remove {
+				color: #ffffff;
+			    background-color: #484848;
+			    background-image: linear-gradient(to bottom, #484848, #000000);
+			    text-shadow: none;
+			    border-color: #000;
+			}
+		}
+	}
+	.skillset__add-skillset-form {
+		input[type="submit"] {
+			cursor: pointer;
+			display: inline-block;
+			border: 1px solid #CCCCCC;
+			border-left: none;
+			box-shadow: #FEFFFF 0px 1px 1px ; 
+			border-top-right-radius: 3px;
+			border-bottom-right-radius: 3px;
+			font-size: 13px;
+			padding: 10px;
 			text-decoration:none; 
 			text-shadow: 0px 1px 0 rgba(255,255,255,1);
 			color: #4A4A4A;
