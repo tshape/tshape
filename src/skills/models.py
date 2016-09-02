@@ -12,6 +12,7 @@ class Skill(BaseModel):
         ordering = ('name',)
         verbose_name = _('skill')
         verbose_name_plural = _('skills')
+        unique_together = ('name', 'skillset',)
 
     # TODO: create unique name + skillset
     name = models.CharField(

@@ -43,6 +43,10 @@ def add_skillsets():
         print('error creating skillsets')
 
 
+def get_weight():
+    return random.randrange(-5, 5)
+
+
 def add_skills():
     skillsets = Skillset.objects.all()
     slice_index = int(len(skillsets) / 2)
@@ -50,20 +54,27 @@ def add_skills():
     try:
         for skillset in skillsets[:slice_index]:
             skills.extend([
-                Skill(skillset=skillset, name=faker.sentence(nb_words=6, variable_nb_words=True),
-                      description=faker.paragraph(nb_sentences=3, variable_nb_sentences=True), verified=True)
-                for i in range(10)
-                ])
+                Skill(
+                    skillset=skillset,
+                    name=faker.sentence(nb_words=6, variable_nb_words=True),
+                    description=faker.paragraph(nb_sentences=3, variable_nb_sentences=True),
+                    verified=True,
+                    weight=get_weight()
+                ) for i in range(10)
+            ])
     except Exception as e:
         print('error creating verified skills!')
         print(e)
     try:
         for skillset in skillsets[slice_index:]:
             skills.extend([
-                Skill(skillset=skillset, name=faker.sentence(nb_words=6, variable_nb_words=True),
-                      description=faker.paragraph(nb_sentences=3, variable_nb_sentences=True), verified=False)
-                for i in range(10)
-                ])
+                Skill(
+                    skillset=skillset,
+                    name=faker.sentence(nb_words=6, variable_nb_words=True),
+                    description=faker.paragraph(nb_sentences=3, variable_nb_sentences=True),
+                    verified=False
+                ) for i in range(10)
+            ])
     except Exception as e:
         print('error creating unverified skills!')
         print(e)
