@@ -12,13 +12,13 @@ class Skill(BaseModel):
         ordering = ('name',)
         verbose_name = _('skill')
         verbose_name_plural = _('skills')
+        unique_together = ('name', 'skillset',)
 
-    # TODO: create unique name + skillset
     name = models.CharField(
         _('name'), null=False, max_length=280)
     description = models.TextField(_('description'), default='')
     verified = models.BooleanField(_('verified'), null=False, default=False)
-    weight = models.IntegerField(_('weight'), null=False, default=0)
+    weight = models.IntegerField(_('weight'), null=True, blank=True)
     skillset = models.ForeignKey(
         Skillset, verbose_name=_('skillset'),
         related_name='skills', on_delete=models.CASCADE, null=False)

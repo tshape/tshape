@@ -19,7 +19,7 @@ class Skillset(BaseModel):
         })
     description = models.TextField(_('description'), default='')
     verified = models.BooleanField(_('verified'), null=False, default=False)
-    weight = models.IntegerField(_('weight'), null=False, default=0)
+    weight = models.IntegerField(_('weight'), null=True, blank=True)
 
     @property
     def skill_ids(self):

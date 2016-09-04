@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -25,8 +27,10 @@ class Profile(BaseModel):
     description = models.TextField(_('description'), blank=True)
     years_experience = models.IntegerField(
         _('years of experience'), blank=True, null=True)
-    skills = models.ManyToManyField(Skill, verbose_name=_('skills'))
-    skillsets = models.ManyToManyField(Skillset, verbose_name=_('skillsets'))
+    skills = models.ManyToManyField(
+        Skill, verbose_name=_('skills'), through='ProfileSkill')
+    skillsets = models.ManyToManyField(
+        Skillset, verbose_name=_('skillsets'), through='ProfileSkillset')
 
     def clean(self):
         if self.skills:
@@ -51,3 +55,33 @@ class Profile(BaseModel):
 
     def __str__(self):
         return '{} {}'.format(self.first_name, self.last_name)
+
+
+class ProfileSkill(BaseModel):
+
+    class Meta:
+        db_table = 'profile_skills'
+        verbose_name = _('profile skill')
+        verbose_name_plural = _('profile skills')
+        unique_together = ('profile', 'skill',)
+
+    # TODO: need to add constraint for profile - skillset_id - weight
+    profile = models.ForeignKey(
+        Profile, on_delete=models.CASCADE, null=False)
+    skill = models.ForeignKey(Skill, on_delete=models.CASCADE, null=False)
+    weight = models.IntegerField(null=True, blank=True)
+
+
+class ProfileSkillset(BaseModel):
+
+    class Meta:
+        db_table = 'profile_skillsets'
+        verbose_name = _('profile skillset')
+        verbose_name_plural = _('profile skillsets')
+        unique_together = (('profile', 'skillset',), ('profile', 'weight',))
+
+    profile = models.ForeignKey(
+        Profile, on_delete=models.CASCADE, null=False)
+    skillset = models.ForeignKey(
+        Skillset, on_delete=models.CASCADE, null=False)
+    weight = models.IntegerField(null=True, blank=True)
