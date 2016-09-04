@@ -30,7 +30,7 @@ docker-ip:
 
 # runs the postgres container and brings up the postgres shell
 docker-postgres:
-	docker-compose run db psql -h 192.168.99.100 -p 5432 -U postgres postgres
+	docker exec -it tshape_db_1 psql -h 0.0.0.0 -p 5432 -U postgres
 
 # forces the containers to be re-built and starts them
 docker-recreate:

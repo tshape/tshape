@@ -3,7 +3,7 @@ import random
 from django.core.management.base import BaseCommand
 from faker import Faker
 
-from profiles.models import Profile
+from profiles.models import Profile, ProfileSkill, ProfileSkillset
 from skills.models import Skill
 from skillsets.models import Skillset
 from users.models import User
@@ -105,13 +105,26 @@ def add_profiles():
 
 
 def add_profile_skillsets():
-    # figure out how to do a bulk update here
     profiles = Profile.objects.all()
-    skillsets = Skillset.objects.all()
+    all_skillsets = Skillset.objects.all()
     for profile in profiles:
-        profile_skillsets = random.sample(set(skillsets), 8)
-        profile.skillsets.set(profile_skillsets)
+        profile_skillsets = random.sample(set(all_skillsets), 8)
+        skillsets = []
         skills = []
         for skillset in profile_skillsets:
-            skills.extend(random.sample(set(skillset.skills.all()), 10))
-        profile.skills.set(skills)
+            skillsets.append(
+                ProfileSkillset(profile=profile, skillset=skillset))
+            skills.extend([
+                ProfileSkill(profile=profile, skill=skill)
+                for skill in random.sample(set(skillset.skills.all()), 10)
+            ])
+        try:
+            ProfileSkillset.objects.bulk_create(skillsets)
+        except Exception as e:
+            print('error with profile skillsets bulk create')
+            print(e)
+        try:
+            ProfileSkill.objects.bulk_create(skills)
+        except Exception as e:
+            print('error with profile skills bulk create')
+            print(e)

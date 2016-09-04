@@ -41,9 +41,9 @@ profiles_router = routers.NestedSimpleRouter(
 profiles_router.register(r'skills', skill_views.SkillViewSet)
 profiles_router.register(r'skillsets', skillset_views.SkillsetViewSet)
 
-# profile_skillsets_router = routers.NestedSimpleRouter(
-#     profiles_router, r'skillsets', lookup='skillset')
-# profile_skillsets_router.register(r'skills', skill_views.SkillViewSet)
+profile_skillsets_router = routers.NestedSimpleRouter(
+    profiles_router, r'skillsets', lookup='skillset')
+profile_skillsets_router.register(r'skills', skill_views.SkillViewSet)
 
 
 # The API URLs are now determined automatically by the router.

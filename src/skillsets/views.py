@@ -6,32 +6,70 @@ from django.views.generic.list import ListView
 from rest_framework import viewsets
 from rest_framework.response import Response
 
-from profiles.models import Profile
+from profiles.models import Profile, ProfileSkillset
 from skillsets.forms import SkillsetForm
 from skillsets.models import Skillset
-from skillsets.serializers import SkillsetSerializer, SkillsetUpdateSerializer
-from tshape.utils import MultiSerializerViewSetMixin
+from skillsets.serializers import (
+    SkillsetSerializer, SkillsetUpdateSerializer, ProfileSkillsetSerializer
+)
 
 
-class SkillsetViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
+class SkillsetViewSet(viewsets.ModelViewSet):
     """
     A simple ViewSet for viewing and editing skillsets.
     """
     queryset = Skillset.objects.all()
     serializer_class = SkillsetSerializer
-    serializer_action_classes = {
-        'list': SkillsetSerializer,
-        'retrieve': SkillsetUpdateSerializer,
-        'update': SkillsetUpdateSerializer,
-        'partial_update': SkillsetUpdateSerializer,
-        'destroy': SkillsetUpdateSerializer
-    }
+
+    def get_object(self):
+        profile_id = self.kwargs.get('profile_pk')
+        skillset_id = self.kwargs.get('pk')
+        if profile_id:
+            return get_object_or_404(
+                ProfileSkillset,
+                profile_id=profile_id, skillset_id=skillset_id)
+        else:
+            return get_object_or_404(Skillset, pk=skillset_id)
 
     def get_queryset(self):
         profile_id = self.kwargs.get('profile_pk')
-        if profile_id:
-            return get_object_or_404(Profile, pk=profile_id).skillsets.all()
+        skillset_id = self.kwargs.get('pk')
+        if profile_id and skillset_id:
+            return get_object_or_404(
+                ProfileSkillset,
+                profile_id=profile_id, skillset_id=skillset_id)
+        elif profile_id:
+            return ProfileSkillset.objects.filter(profile_id=profile_id)
         return super(SkillsetViewSet, self).get_queryset()
+
+    def get_serializer_class(self):
+        if self.kwargs.get('profile_pk'):
+            return ProfileSkillsetSerializer
+        elif not self.kwargs.get('pk'):
+            return SkillsetSerializer
+        else:
+            return SkillsetUpdateSerializer
+
+    def create(self, request, *args, **kwargs):
+        profile_id = self.kwargs.get('profile_id')
+        skillset_id = self.kwargs.get('pk')
+        weight = self.kwargs.get('weight', None)
+        if profile_id:
+            return ProfileSkillset.objects.create(
+                profile_id=profile_id, skillset_id=skillset_id, weight=weight)
+        return super(SkillsetViewSet, self).create(request, *args, **kwargs)
+
+    def update(self, request, pk=None, *args, **kwargs):
+        profile_id = self.kwargs.get('profile_id')
+        skillset_id = self.kwargs.get('pk')
+        weight = self.kwargs.get('weight', None)
+        if profile_id:
+            profile_skillset = get_object_or_404(
+                ProfileSkillset,
+                profile_id=profile_id, skillset_id=skillset_id)
+            profile_skillset.weight = weight
+            return profile_skillset.save()
+        return super(SkillsetViewSet, self).update(request, *args, **kwargs)
 
     # def list(self, request, *args, **kwargs):
     #     profile_id = self.kwargs.get('profile_pk')
