@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -65,11 +63,27 @@ class ProfileSkill(BaseModel):
         verbose_name_plural = _('profile skills')
         unique_together = ('profile', 'skill',)
 
-    # TODO: need to add constraint for profile - skillset_id - weight
     profile = models.ForeignKey(
         Profile, on_delete=models.CASCADE, null=False)
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE, null=False)
     weight = models.IntegerField(null=True, blank=True)
+
+    def clean(self):
+        if not self.id:
+            existing = ProfileSkill.objects.filter(
+                profile=self.profile,
+                skill__skillset_id=self.skill.skillset_id,
+                weight=self.weight)
+            if existing:
+                raise ValidationError(
+                    {'profile_skills': _(
+                        'A profile skill in that skillset with that weight already exists.')})
+
+    def save(self, *args, **kwargs):
+        skill = Skill.objects.get(pk=self.skill_id)
+        if skill.verified:
+            self.weight = skill.weight
+        super(ProfileSkill, self).save(*args, **kwargs)
 
 
 class ProfileSkillset(BaseModel):

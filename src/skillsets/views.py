@@ -12,64 +12,48 @@ from skillsets.models import Skillset
 from skillsets.serializers import (
     SkillsetSerializer, SkillsetUpdateSerializer, ProfileSkillsetSerializer
 )
+from tshape.utils import MultiSerializerViewSetMixin
 
 
-class SkillsetViewSet(viewsets.ModelViewSet):
+class SkillsetViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
     """
     A simple ViewSet for viewing and editing skillsets.
     """
     queryset = Skillset.objects.all()
     serializer_class = SkillsetSerializer
+    serializer_action_classes = {
+        'list': SkillsetSerializer,
+        'update': SkillsetUpdateSerializer,
+        'partial_update': SkillsetUpdateSerializer,
+        'destroy': SkillsetUpdateSerializer
+    }
 
-    def get_object(self):
-        profile_id = self.kwargs.get('profile_pk')
-        skillset_id = self.kwargs.get('pk')
-        if profile_id:
-            return get_object_or_404(
-                ProfileSkillset,
-                profile_id=profile_id, skillset_id=skillset_id)
-        else:
-            return get_object_or_404(Skillset, pk=skillset_id)
+    def get_serializer_context(self):
+        context = super(SkillsetViewSet, self).get_serializer_context()
+        if self.request.method in ['POST', 'PUT']:
+            context['request'].data['id'] = self.kwargs.get(
+                'pk', context['request'].data.get('id'))
+        return context
 
-    def get_queryset(self):
-        profile_id = self.kwargs.get('profile_pk')
-        skillset_id = self.kwargs.get('pk')
-        if profile_id and skillset_id:
-            return get_object_or_404(
-                ProfileSkillset,
-                profile_id=profile_id, skillset_id=skillset_id)
-        elif profile_id:
-            return ProfileSkillset.objects.filter(profile_id=profile_id)
-        return super(SkillsetViewSet, self).get_queryset()
+    # def get_object(self):
+    #     skillset_id = self.kwargs.get('pk')
+    #     return get_object_or_404(Skillset, pk=skillset_id)
 
-    def get_serializer_class(self):
-        if self.kwargs.get('profile_pk'):
-            return ProfileSkillsetSerializer
-        elif not self.kwargs.get('pk'):
-            return SkillsetSerializer
-        else:
-            return SkillsetUpdateSerializer
+    # def get_queryset(self):
+    #     skillset_id = self.kwargs.get('pk')
+    #         return ProfileSkillset.objects.filter(profile_id=profile_id)
+    #     return super(SkillsetViewSet, self).get_queryset()
 
-    def create(self, request, *args, **kwargs):
-        profile_id = self.kwargs.get('profile_id')
-        skillset_id = self.kwargs.get('pk')
-        weight = self.kwargs.get('weight', None)
-        if profile_id:
-            return ProfileSkillset.objects.create(
-                profile_id=profile_id, skillset_id=skillset_id, weight=weight)
-        return super(SkillsetViewSet, self).create(request, *args, **kwargs)
+    # def create(self, request, *args, **kwargs):
+    #     skillset_id = self.kwargs.get('pk')
+    #     skillset = Skillset.objects.get(pk=skillset_id)
+    #     weight = self.kwargs.get('weight')
+    #     return super(SkillsetViewSet, self).create(request, *args, **kwargs)
 
-    def update(self, request, pk=None, *args, **kwargs):
-        profile_id = self.kwargs.get('profile_id')
-        skillset_id = self.kwargs.get('pk')
-        weight = self.kwargs.get('weight', None)
-        if profile_id:
-            profile_skillset = get_object_or_404(
-                ProfileSkillset,
-                profile_id=profile_id, skillset_id=skillset_id)
-            profile_skillset.weight = weight
-            return profile_skillset.save()
-        return super(SkillsetViewSet, self).update(request, *args, **kwargs)
+    # def update(self, request, pk=None, *args, **kwargs):
+    #     skillset_id = self.kwargs.get('pk')
+    #     weight = self.kwargs.get('weight', None)
+    #     return super(SkillsetViewSet, self).update(request, *args, **kwargs)
 
     # def list(self, request, *args, **kwargs):
     #     profile_id = self.kwargs.get('profile_pk')
@@ -110,6 +94,56 @@ class SkillsetViewSet(viewsets.ModelViewSet):
     #     headers = self.get_success_headers(serializer.data)
     #     return Response(serializer.data, status=status.HTTP_200_OK,
     #                     headers=headers)
+
+
+class ProfileSkillsetViewSet(viewsets.ModelViewSet):
+    """
+    A simple ViewSet for viewing and editing skillsets.
+    """
+    queryset = ProfileSkillset.objects.all()
+    serializer_class = ProfileSkillsetSerializer
+
+    def get_object(self):
+        profile_id = self.kwargs.get('profile_pk')
+        skillset_id = self.kwargs.get('pk')
+        return get_object_or_404(
+            ProfileSkillset,
+            profile_id=profile_id, skillset_id=skillset_id)
+
+    def get_queryset(self):
+        profile_id = self.kwargs.get('profile_pk')
+        return ProfileSkillset.objects.filter(profile_id=profile_id)
+
+    def get_serializer_context(self):
+        context = super(ProfileSkillsetViewSet, self).get_serializer_context()
+        if self.request.method in ['POST', 'PUT']:
+            context['request'].data['profile_id'] = self.kwargs.get(
+                'profile_pk', context['request'].data.get('profile_id'))
+            context['request'].data['skillset_id'] = self.kwargs.get(
+                'pk', context['request'].data.get('skillset_id'))
+        return context
+
+    def create(self, request, *args, **kwargs):
+        profile_id = self.kwargs.get('profile_pk')
+        skillset_id = self.request.data.get('skillset_id')
+        weight = self.request.data.get('weight')
+        profile_skillset = ProfileSkillset.objects.create(
+            profile_id=profile_id, skillset_id=skillset_id, weight=weight)
+        serializer_cls = self.get_serializer_class()
+        serializer = serializer_cls(profile_skillset, many=False)
+        return Response(serializer.data)
+
+    # def update(self, request, pk=None, *args, **kwargs):
+    #     profile_id = self.kwargs.get('profile_id')
+    #     skillset_id = self.kwargs.get('pk')
+    #     skillset = get_object_or_404(Skillset, pk=skillset_id)
+    #     weight = self.kwargs.get('weight', skillset.weight)
+    #     profile_skillset = get_object_or_404(
+    #         ProfileSkillset,
+    #         profile_id=profile_id, skillset_id=skillset_id)
+    #     profile_skillset.weight = weight
+    #     # return profile_skillset.save()
+    #     return super(SkillsetViewSet, self).update(request, *args, **kwargs)
 
 
 class SkillsetCreateView(CreateView):

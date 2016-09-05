@@ -1,6 +1,6 @@
 var pathArray = window.location.pathname.split( '/' );
 var userId = pathArray[2];
-var profileApi = "http://dev.tshape.com:8000/api/profiles/" + userId + "/";
+var profileApi = "http://localhost:8000/api/profiles/" + userId + "/";
 var csrfToken = Cookies.get('csrftoken');
 
 console.log("User ID:", userId);
@@ -26,37 +26,50 @@ var Profile = React.createClass({
       var profile = a1[0];
       var mySkills = a2[0];
       var mySkillsets = a3[0];
-      var allSkills = a4[0];
-      var allSkillsets = a5[0];
+      var ajaxAllSkills = a4[0];
+      var ajaxAllSkillsets = a5[0];
 
       // New Maps
-      var allSkillsetsHash = {};   
+      var xHash = {};   
       var mySkillsetsHash = {};
       var mySkillsHash = {};
       var allSkillsHash = {};
 
-      //Create mySkillsetsHash 
-      _.forEach(mySkillsets, function(v, k) {
-        v.active = true;
-        mySkillsetsHash[v.id] = v;
-        delete mySkillsetsHash[v.id].skill_ids
-        mySkillsetsHash[v.id].skills = [];
-      });
-
-
-      // Add my skills to mySkillsetsHash
-      _.forEach(mySkills, function(v, k) {
-        if (mySkillsetsHash[v.skillset_id]){
-          mySkillsetsHash[v.skillset_id].skills.push(v)
-        }
-      });
-
       //Create allSkillsetsHash 
-      _.forEach(allSkillsets, function(v, k) {
-        allSkillsetsHash[v.id] = v;
-        delete allSkillsetsHash[v.id].skill_ids
-        allSkillsetsHash[v.id].skills = [];
-      });
+      for (var i = 0; i < ajaxAllSkillsets.length; i++) {
+        xHash[ajaxAllSkillsets[i].id] = ajaxAllSkillsets[i];
+        xHash[ajaxAllSkillsets[i].id].skillsHash = {};
+        for (var y = 0; y < ajaxAllSkills.length; y++) {
+          if (ajaxAllSkills[y].skillset_id === ajaxAllSkillsets[i].id) {
+            xHash[ajaxAllSkillsets[i].id].skillsHash[ajaxAllSkills[y].id] = ajaxAllSkills[y];
+          }
+        }
+      }
+
+      console.log(xHash);
+      console.log(profile);
+
+      var tshape = {};
+      for (var i = 0; i < profile.skillset_ids.length; i++) {
+        tshape[profile.skillset_ids[i]] = [];
+        console.log("tshape skillset id", tshape[profile.skillset_ids[i]]);
+        for (var y = 0; y < 9; y++) {
+          console.log("y", y);
+          _.forEach(xHash[profile.skillset_ids[i]].skillsHash, function(v, k) {
+             console.log("weight", v.weight);
+            if (v.weight === y) {
+              console.log("match found");
+              return shape[profile.skillset_ids[i]][y] = v.id;
+            } else {
+              tshape[profile.skillset_ids[i]][y] = null;
+            }
+          });
+        }
+      }
+
+      console.log(tshape);
+
+    
 
       // Add all skills to allSkillsetsHash
       _.forEach(allSkills, function(v, k) {
@@ -94,7 +107,7 @@ var Profile = React.createClass({
     // Get the Profile Object
     function ajaxProfile() {
       return $.ajax({
-        url: "http://dev.tshape.com:8000/api/profiles/1/",
+        url: "http://localhost:8000/api/profiles/1/",
         dataType: 'json',
         cache: false,
         success: function(response) {
@@ -108,7 +121,7 @@ var Profile = React.createClass({
     // Get My Skills Object
     function ajaxMySkills() {
       return $.ajax({
-        url: "http://dev.tshape.com:8000/api/profiles/1/skills/",
+        url: "http://localhost:8000/api/profiles/1/skills/",
         dataType: 'json',
         success: function(response) {
 
@@ -121,7 +134,7 @@ var Profile = React.createClass({
     // Get My Skillsets Object
     function ajaxMySkillsets() {
       return $.ajax({
-        url: "http://dev.tshape.com:8000/api/profiles/1/skillsets/",
+        url: "http://localhost:8000/api/profiles/1/skillsets/",
         dataType: 'json',
         success: function(response) {
 
@@ -134,7 +147,7 @@ var Profile = React.createClass({
      // Get All Skills Object
     function ajaxAllSkills() {
       return $.ajax({
-        url: "http://dev.tshape.com:8000/api/skills/",
+        url: "http://localhost:8000/api/skills/",
         dataType: 'json',
         success: function(response) {
 
@@ -147,10 +160,13 @@ var Profile = React.createClass({
     // Get All Skillsets Object
     function ajaxAllSkillsets() {
       return $.ajax({
-        url: "http://dev.tshape.com:8000/api/skillsets/",
-        dataType: 'json',
+        url: "http://localhost:8000/api/skillsets/",
+        headers: {
+          'X-CSRFToken': csrfToken,
+          "content-type": "application/json",
+          "cache-control": "no-cache"
+        },
         success: function(response) {
-
         }.bind(this),
         error: function(xhr, status, err) {
           console.error(this.props.url, status, err.toString());
@@ -190,7 +206,7 @@ var Profile = React.createClass({
       // If the skillset does not exist, POST the skillset to the API
       // On success this will return a new skillset object with a valid ID
       $.ajax({
-        url: "http://dev.tshape.com:8000/api/skillsets/",
+        url: "http://localhost:8000/api/skillsets/",
         type: 'POST',
         headers: {
           'X-CSRFToken': csrfToken,
@@ -319,7 +335,7 @@ var Profile = React.createClass({
     var data = JSON.stringify({"name": skill.name, "skillset_id": skill.skillset_id});
 
     $.ajax({
-      url: "http://dev.tshape.com:8000/api/skills/",
+      url: "http://localhost:8000/api/skills/",
       dataType: 'json',
       type: 'POST',
         headers: {

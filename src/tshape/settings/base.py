@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'profiles',
     'skills',
     'skillsets',
-    'users'
+    'users',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -168,5 +168,8 @@ STATICFILES_FINDERS = (
 # Third party package settings
 
 # REST_FRAMEWORK = {
-#     'TEST_REQUEST_DEFAULT_FORMAT': 'json'
+#     'DEFAULT_FILTER_BACKENDS': (
+#         'rest_framework_filters.backends.DjangoFilterBackend',
+#     )
+    # 'TEST_REQUEST_DEFAULT_FORMAT': 'json'
 # }

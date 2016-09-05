@@ -30,31 +30,14 @@ class SkillUpdateSerializer(serializers.ModelSerializer):
     weight = serializers.IntegerField(required=False)
 
 
-class SkillNestedSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Skill
-        fields = ('id', 'name', 'description', 'verified', 'weight',
-                  'skillset_id', 'created_at', 'updated_at')
-        read_only_fields = (
-            'id', 'name', 'description', 'verified', 'weight',
-            'skillset_id', 'created_at', 'updated_at')
-
-    skillset_id = serializers.PrimaryKeyRelatedField(
-        many=False, read_only=True)
-    name = serializers.CharField(required=False)
-    verified = serializers.BooleanField(required=False)
-    weight = serializers.IntegerField(required=False)
-
-
-class ProfileSkillSerializer(serializers.HyperlinkedModelSerializer):
+class ProfileSkillSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ProfileSkill
         fields = ('id', 'name', 'description', 'verified', 'weight',
                   'skillset_id', 'created_at', 'updated_at')
         read_only_fields = (
-            'id', 'name', 'description', 'verified', 'weight',
+            'id', 'name', 'description', 'verified',
             'skillset_id', 'created_at', 'updated_at')
 
     id = serializers.ReadOnlyField(source='skill_id')
