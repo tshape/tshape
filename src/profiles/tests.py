@@ -4,7 +4,7 @@ from django.test import TestCase, RequestFactory, Client
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from profiles.models import Profile
+from profiles.models import Profile, ProfileSkillset, ProfileSkill
 from skills.models import Skill
 from skillsets.models import Skillset
 from users.models import User
@@ -49,17 +49,17 @@ class TestProfileModel(TestCase):
         self.assertEqual(len(profile.skills.all()), 0)
 
         skillset = Skillset.objects.create(
-            name='python', description='best ever', verified=True, weight=100)
-        profile.skillsets.set([skillset])
-        profile.save()
+            name='python', description='best ever', verified=True, weight=10)
+        ProfileSkillset.objects.create(
+            profile_id=profile.user_id, skillset_id=skillset.id, weight=10)
         self.assertEqual(len(profile.skillsets.all()), 1)
         self.assertEqual(profile.skillsets.first(), skillset)
         self.assertEqual(profile.skillset_ids, [skillset.id])
 
         skill = Skill.objects.create(
-            name='generators', verified=True, skillset_id=skillset.id)
-        profile.skills.set([skill])
-        profile.save()
+            name='loops', verified=True, skillset_id=skillset.id, weight=5)
+        ProfileSkill.objects.create(
+            profile_id=profile.user_id, skill_id=skill.id, weight=5)
         self.assertEqual(len(profile.skills.all()), 1)
         self.assertEqual(profile.skills.first(), skill)
         self.assertEqual(profile.skill_ids, [skill.id])
@@ -71,7 +71,7 @@ class TestProfileModel(TestCase):
         self.assertEqual(len(Skillset.objects.all()), 1)
 
         skill = Skill.objects.create(
-            name='generators', verified=True, skillset_id=skillset.id)
+            name='loops', verified=True, skillset_id=skillset.id)
         profile.skills.set([skill])
         self.assertRaisesMessage(profile.save(),
             '{"skills": _("Corresponding skillset must be attached to profile before skill."")}')

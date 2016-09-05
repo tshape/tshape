@@ -44,7 +44,7 @@ def add_skillsets():
 
 
 def get_weight():
-    return random.randrange(-5, 5)
+    return random.randint(0, 9)
 
 
 def add_skills():
@@ -100,7 +100,7 @@ def add_profiles():
         profile = user.profile
         profile.title = faker.job()
         profile.description = faker.text()
-        profile.years_experience = random.randrange(1, 10)
+        profile.years_experience = random.randint(1, 10)
         profile.save()
 
 

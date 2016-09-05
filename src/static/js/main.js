@@ -1,6 +1,6 @@
 var pathArray = window.location.pathname.split( '/' );
 var userId = pathArray[2];
-var profileApi = "http://dev.tshape.com:8000/api/profiles/" + userId + "/";
+var profileApi = "http://0.0.0.0:8000/api/profiles/" + userId + "/";
 var csrfToken = Cookies.get('csrftoken');
 
 console.log("User ID:", userId);
@@ -21,7 +21,7 @@ var Profile = React.createClass({
   componentDidMount: function() {
     $.when(ajaxProfile(), ajaxMySkills(), ajaxMySkillsets(), ajaxAllSkills(), ajaxAllSkillsets()).done(function(a1,a2,a3,a4,a5) {
       console.log("API Calls Complete");
-
+      console.log(a5[0]);
       // From API
       var profile = a1[0];
       var mySkills = a2[0];
@@ -30,12 +30,12 @@ var Profile = React.createClass({
       var allSkillsets = a5[0];
 
       // New Maps
-      var allSkillsetsHash = {};   
+      var allSkillsetsHash = {};
       var mySkillsetsHash = {};
       var mySkillsHash = {};
       var allSkillsHash = {};
 
-      //Create mySkillsetsHash 
+      //Create mySkillsetsHash
       _.forEach(mySkillsets, function(v, k) {
         v.active = true;
         mySkillsetsHash[v.id] = v;
@@ -51,7 +51,7 @@ var Profile = React.createClass({
         }
       });
 
-      //Create allSkillsetsHash 
+      //Create allSkillsetsHash
       _.forEach(allSkillsets, function(v, k) {
         allSkillsetsHash[v.id] = v;
         delete allSkillsetsHash[v.id].skill_ids
@@ -68,7 +68,7 @@ var Profile = React.createClass({
         allSkillsetsHash[v.id].active = true;
       });
 
-      // Create mySkillsHash 
+      // Create mySkillsHash
       _.forEach(mySkills, function(v, k) {
         v.active = true;
         mySkillsHash[v.id] = v;
@@ -94,7 +94,7 @@ var Profile = React.createClass({
     // Get the Profile Object
     function ajaxProfile() {
       return $.ajax({
-        url: "http://dev.tshape.com:8000/api/profiles/1/",
+        url: "http://0.0.0.0:8000/api/profiles/1/",
         dataType: 'json',
         cache: false,
         success: function(response) {
@@ -108,7 +108,7 @@ var Profile = React.createClass({
     // Get My Skills Object
     function ajaxMySkills() {
       return $.ajax({
-        url: "http://dev.tshape.com:8000/api/profiles/1/skills/",
+        url: "http://0.0.0.0:8000/api/profiles/1/skills/",
         dataType: 'json',
         success: function(response) {
 
@@ -121,7 +121,7 @@ var Profile = React.createClass({
     // Get My Skillsets Object
     function ajaxMySkillsets() {
       return $.ajax({
-        url: "http://dev.tshape.com:8000/api/profiles/1/skillsets/",
+        url: "http://0.0.0.0:8000/api/profiles/1/skillsets/",
         dataType: 'json',
         success: function(response) {
 
@@ -134,7 +134,7 @@ var Profile = React.createClass({
      // Get All Skills Object
     function ajaxAllSkills() {
       return $.ajax({
-        url: "http://dev.tshape.com:8000/api/skills/",
+        url: "http://0.0.0.0:8000/api/skills/",
         dataType: 'json',
         success: function(response) {
 
@@ -147,10 +147,10 @@ var Profile = React.createClass({
     // Get All Skillsets Object
     function ajaxAllSkillsets() {
       return $.ajax({
-        url: "http://dev.tshape.com:8000/api/skillsets/",
+        url: "http://0.0.0.0:8000/api/skillsets/",
         dataType: 'json',
         success: function(response) {
-
+          console.log(response)
         }.bind(this),
         error: function(xhr, status, err) {
           console.error(this.props.url, status, err.toString());
@@ -190,7 +190,7 @@ var Profile = React.createClass({
       // If the skillset does not exist, POST the skillset to the API
       // On success this will return a new skillset object with a valid ID
       $.ajax({
-        url: "http://dev.tshape.com:8000/api/skillsets/",
+        url: "http://0.0.0.0:8000/api/skillsets/",
         type: 'POST',
         headers: {
           'X-CSRFToken': csrfToken,
@@ -319,7 +319,7 @@ var Profile = React.createClass({
     var data = JSON.stringify({"name": skill.name, "skillset_id": skill.skillset_id});
 
     $.ajax({
-      url: "http://dev.tshape.com:8000/api/skills/",
+      url: "http://0.0.0.0:8000/api/skills/",
       dataType: 'json',
       type: 'POST',
         headers: {
@@ -375,7 +375,7 @@ var Profile = React.createClass({
     var newSkillIds = Object.keys(this.state.mySkillsHash).map(function(value, key) {
       return value
     })
-    
+
     var data = JSON.stringify({"skill_ids": newSkillIds});
     console.log("handleSkillPut skill_ids", newSkillIds)
     $.ajax({
@@ -497,11 +497,11 @@ var Profile = React.createClass({
               <div className="tshape__middle">
                 {Object.keys(this.state.mySkillsetsHash).map(function(value, key) {
                   return (
-                    <SkillsetTshape 
-                      key={key} 
-                      skillset={this.state.mySkillsetsHash[value]} 
-                      activeSkillset={this.state.activeSkillset} 
-                      setActiveSkill={this.setActiveSkill} 
+                    <SkillsetTshape
+                      key={key}
+                      skillset={this.state.mySkillsetsHash[value]}
+                      activeSkillset={this.state.activeSkillset}
+                      setActiveSkill={this.setActiveSkill}
                     />
                   )
                 }.bind(this))}
@@ -510,8 +510,8 @@ var Profile = React.createClass({
 
           </div>
           <div className="column small-12">
-            <SkillDescription 
-                activeSkill={this.state.activeSkill} 
+            <SkillDescription
+                activeSkill={this.state.activeSkill}
               />
             </div>
         </div>
@@ -525,12 +525,12 @@ var Profile = React.createClass({
                   <h3>My Skillsets</h3>
                   {Object.keys(this.state.mySkillsetsHash).map(function(value, key) {
                     return (
-                      <MySkillsetItem 
-                        key={key} 
-                        skillset={this.state.mySkillsetsHash[value]} 
-                        activeSkillset={this.state.activeSkillset} 
-                        setActiveSkillset={this.setActiveSkillset} 
-                        onRemove={this.handleSkillsetRemove} 
+                      <MySkillsetItem
+                        key={key}
+                        skillset={this.state.mySkillsetsHash[value]}
+                        activeSkillset={this.state.activeSkillset}
+                        setActiveSkillset={this.setActiveSkillset}
+                        onRemove={this.handleSkillsetRemove}
                       />
                     )
                   }.bind(this))}
@@ -540,11 +540,11 @@ var Profile = React.createClass({
                   <AddSkillset onSkillsetSubmit={this.handleSkillsetCreate} />
                   {Object.keys(this.state.allSkillsetsHash).map(function(value, key) {
                     return (
-                      <AllSkillsetItem 
+                      <AllSkillsetItem
                         key={key}
-                        skillset={this.state.allSkillsetsHash[value]}  
-                        activeSkillset={this.state.activeSkillset} 
-                        onAdd={this.handleSkillsetCreate} 
+                        skillset={this.state.allSkillsetsHash[value]}
+                        activeSkillset={this.state.activeSkillset}
+                        onAdd={this.handleSkillsetCreate}
                       />
                     )
                   }.bind(this))}
@@ -561,19 +561,19 @@ var Profile = React.createClass({
               <div className="row">
                 <div className="column small-7">
                   <h3 className="skills__heading skills__heading-myskills">My <span>{this.state.activeSkillset.name}</span> Skills</h3>
-                  <MySkillItem 
-                    skillsets={this.state.allSkillsetsHash}  
-                    activeSkillset={this.state.activeSkillset} 
-                    onRemove={this.handleSkillRemove} 
+                  <MySkillItem
+                    skillsets={this.state.allSkillsetsHash}
+                    activeSkillset={this.state.activeSkillset}
+                    onRemove={this.handleSkillRemove}
                   />
                 </div>
                 <div className="column small-5">
                    <h3 className="skills__heading skills__heading-myskills">All <span>{this.state.activeSkillset.name}</span> Skills</h3>
                   <AddSkill skillsets={this.state.skillsets} onSkillSubmit={this.handleSkillCreate} activeSkillset={this.state.activeSkillset}/>
-                  <AllSkillItem 
-                    skillsets={this.state.allSkillsetsHash}  
-                    activeSkillset={this.state.activeSkillset} 
-                    onAdd={this.handleSkillPut} 
+                  <AllSkillItem
+                    skillsets={this.state.allSkillsetsHash}
+                    activeSkillset={this.state.activeSkillset}
+                    onAdd={this.handleSkillPut}
                   />
                 </div>
               </div>
@@ -734,7 +734,7 @@ var MySkillItem = React.createClass({
           </div>
         )
       }.bind(this))
-    } 
+    }
     return (
       <div className="skill__my-skills">{items}</div>
     );
@@ -784,7 +784,7 @@ var AllSkillItem = React.createClass({
           )
         }
       }.bind(this))
-    } 
+    }
     return (
       <div>
         <ul>{items}</ul>
@@ -844,7 +844,7 @@ var SkillDescription = React.createClass({
       if (this.props.activeSkill.id === null) {
         var item = <div>Please select a skill</div>
       } else {
-        var item = 
+        var item =
           <div>
             <div className="skill__description">{this.props.activeSkill.name}</div>
             <div className="skill__description">{this.props.activeSkill.description}</div>
