@@ -4,6 +4,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
 from rest_framework import viewsets
+from rest_framework.response import Response
 
 from profiles.models import Profile, ProfileSkill
 from skills.forms import SkillForm
@@ -118,6 +119,17 @@ class ProfileSkillViewSet(viewsets.ModelViewSet):
             context['request'].data['skill_id'] = self.kwargs.get(
                 'pk', context['request'].data.get('skill_id'))
         return context
+
+    def create(self, request, *args, **kwargs):
+        profile_id = self.kwargs.get('profile_pk')
+        skill_id = self.request.data.get('skill_id')
+        profile_weight = self.request.data.get('profile_weight')
+        profile_skill = ProfileSkill.objects.create(
+            profile_id=profile_id, skill_id=skill_id,
+            profile_weight=profile_weight)
+        serializer_cls = self.get_serializer_class()
+        serializer = serializer_cls(profile_skill, many=False)
+        return Response(serializer.data)
 
 
 class SkillCreateView(CreateView):
