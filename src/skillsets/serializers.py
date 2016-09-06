@@ -51,10 +51,10 @@ class ProfileSkillsetSerializer(serializers.ModelSerializer):
     verified = serializers.ReadOnlyField(source='skillset.verified')
     profile_weight = serializers.IntegerField(required=False)
 
-    def __init__(self, *args, **kwargs):
-        print(self.__dict__)
-        print(args)
-        print(kwargs)
-        super(ProfileSkillsetSerializer, self).__init__(*args, **kwargs)
-        print(self.__dict__)
-        # self.fields['profile']
+    # def __init__(self, *args, **kwargs):
+    #     print(self.__dict__)
+    #     print(args)
+    #     print(kwargs)
+    #     super(ProfileSkillsetSerializer, self).__init__(*args, **kwargs)
+    #     print(self.__dict__)
+    #     # self.fields['profile']
