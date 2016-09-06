@@ -19,6 +19,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         add_skillsets()
         add_skills()
+        add_superuser()
         add_users()
         add_profiles()
         add_profile_skillsets()
@@ -57,7 +58,8 @@ def add_skills():
                 Skill(
                     skillset=skillset,
                     name=faker.sentence(nb_words=6, variable_nb_words=True),
-                    description=faker.paragraph(nb_sentences=3, variable_nb_sentences=True),
+                    description=faker.paragraph(
+                        nb_sentences=3, variable_nb_sentences=True),
                     verified=True,
                     weight=get_weight()
                 ) for i in range(10)
@@ -71,7 +73,8 @@ def add_skills():
                 Skill(
                     skillset=skillset,
                     name=faker.sentence(nb_words=6, variable_nb_words=True),
-                    description=faker.paragraph(nb_sentences=3, variable_nb_sentences=True),
+                    description=faker.paragraph(
+                        nb_sentences=3, variable_nb_sentences=True),
                     verified=False
                 ) for i in range(10)
             ])
@@ -83,6 +86,12 @@ def add_skills():
     except Exception as e:
         print('error with skills bulk create')
         print(e)
+
+
+def add_superuser():
+    User.objects.create(
+        email='admin@tshape.com', username='admin',
+        password='cabbage88', is_superuser=True, is_staff=True)
 
 
 def add_users():
@@ -111,11 +120,11 @@ def add_profile_skillsets():
         profile_skillsets = random.sample(set(all_skillsets), 8)
         skillsets = []
         skills = []
-        for skillset in profile_skillsets:
+        for idx, skillset in enumerate(profile_skillsets):
             skillsets.append(
                 ProfileSkillset(profile=profile, skillset=skillset))
             skills.extend([
-                ProfileSkill(profile=profile, skill=skill)
+                ProfileSkill(profile=profile, skill=skill, profile_weight=idx)
                 for skill in random.sample(set(skillset.skills.all()), 10)
             ])
         try:

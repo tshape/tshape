@@ -34,7 +34,7 @@ class ProfileSkillSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ProfileSkill
-        fields = ('id', 'name', 'description', 'verified', 'weight',
+        fields = ('id', 'name', 'description', 'verified', 'profile_weight',
                   'skillset_id', 'created_at', 'updated_at')
         read_only_fields = (
             'id', 'name', 'description', 'verified',
@@ -45,4 +45,4 @@ class ProfileSkillSerializer(serializers.ModelSerializer):
     name = serializers.ReadOnlyField(source='skill.name')
     description = serializers.ReadOnlyField(source='skill.description')
     verified = serializers.ReadOnlyField(source='skill.verified')
-    weight = serializers.IntegerField(required=False)
+    profile_weight = serializers.IntegerField(required=False)
