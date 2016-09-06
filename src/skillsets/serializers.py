@@ -39,7 +39,7 @@ class ProfileSkillsetSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ProfileSkillset
-        fields = ('id', 'name', 'description', 'verified', 'weight',
+        fields = ('id', 'name', 'description', 'verified', 'profile_weight',
                   'created_at', 'updated_at')
         read_only_fields = (
             'id', 'name', 'description', 'verified',
@@ -49,7 +49,7 @@ class ProfileSkillsetSerializer(serializers.ModelSerializer):
     name = serializers.ReadOnlyField(source='skillset.name')
     description = serializers.ReadOnlyField(source='skillset.description')
     verified = serializers.ReadOnlyField(source='skillset.verified')
-    weight = serializers.IntegerField(required=False)
+    profile_weight = serializers.IntegerField(required=False)
 
     def __init__(self, *args, **kwargs):
         print(self.__dict__)

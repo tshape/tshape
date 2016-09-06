@@ -30,19 +30,6 @@ class Profile(BaseModel):
     skillsets = models.ManyToManyField(
         Skillset, verbose_name=_('skillsets'), through='ProfileSkillset')
 
-    def clean(self):
-        if self.skills:
-            orphaned_skills = any(skill.skillset_id not in self.skillset_ids
-                                  for skill in self.skills)
-            if orphaned_skills:
-                raise ValidationError(
-                    {'skills': _(
-                        'Corresponding skillset must be attached to profile before skill.')})
-            elif len(self.skills) > 10:
-                raise ValidationError({'skills': _(
-                    'User cannot have more than 10 skills for a one skillset'
-                    )})
-
     @property
     def skillset_ids(self):
         return [skillset.id for skillset in self.skillsets.all()]
@@ -66,23 +53,42 @@ class ProfileSkill(BaseModel):
     profile = models.ForeignKey(
         Profile, on_delete=models.CASCADE, null=False)
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE, null=False)
-    weight = models.IntegerField(null=True, blank=True)
+    profile_weight = models.IntegerField(null=False)
 
     def clean(self):
         if not self.id:
             existing = ProfileSkill.objects.filter(
                 profile=self.profile,
                 skill__skillset_id=self.skill.skillset_id,
-                weight=self.weight)
+                profile_weight=self.profile_weight)
             if existing:
                 raise ValidationError(
                     {'profile_skills': _(
                         'A profile skill in that skillset with that weight already exists.')})
 
+            profile_skillset = ProfileSkillset.objects.filter(
+                profile_id=self.profile.user_id,
+                skillset_id=self.skill.skillset_id)
+            if not profile_skillset:
+                raise ValidationError(
+                    {'skills': _(
+                        'Corresponding skillset must be attached to profile before skill.')})
+
+            profile_skills = ProfileSkill.objects.filter(
+                profile_id=self.profile.user_id)
+            num_skills = sum(
+                1 for skill in profile_skills
+                if skill.skillset_id == self.skill.skillset_id)
+            if num_skills > 10:
+                raise ValidationError({'skills': _(
+                    'User cannot have more than 10 skills for a one skillset'
+                    )})
+
     def save(self, *args, **kwargs):
         skill = Skill.objects.get(pk=self.skill_id)
         if skill.verified:
-            self.weight = skill.weight
+            self.profile_weight = skill.profile_weight
+        self.full_clean()
         super(ProfileSkill, self).save(*args, **kwargs)
 
 
@@ -92,10 +98,11 @@ class ProfileSkillset(BaseModel):
         db_table = 'profile_skillsets'
         verbose_name = _('profile skillset')
         verbose_name_plural = _('profile skillsets')
-        unique_together = (('profile', 'skillset',), ('profile', 'weight',))
+        unique_together = (('profile', 'skillset',),
+                           ('profile', 'profile_weight',))
 
     profile = models.ForeignKey(
         Profile, on_delete=models.CASCADE, null=False)
     skillset = models.ForeignKey(
         Skillset, on_delete=models.CASCADE, null=False)
-    weight = models.IntegerField(null=True, blank=True)
+    profile_weight = models.IntegerField(null=True, blank=True)
