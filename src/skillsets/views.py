@@ -126,9 +126,10 @@ class ProfileSkillsetViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         profile_id = self.kwargs.get('profile_pk')
         skillset_id = self.request.data.get('skillset_id')
-        weight = self.request.data.get('weight')
+        profile_weight = self.request.data.get('profile_weight')
         profile_skillset = ProfileSkillset.objects.create(
-            profile_id=profile_id, skillset_id=skillset_id, weight=weight)
+            profile_id=profile_id, skillset_id=skillset_id,
+            profile_weight=profile_weight)
         serializer_cls = self.get_serializer_class()
         serializer = serializer_cls(profile_skillset, many=False)
         return Response(serializer.data)
