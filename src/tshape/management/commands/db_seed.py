@@ -116,12 +116,13 @@ def add_profile_skillsets():
         profile_skillsets = random.sample(set(all_skillsets), 8)
         skillsets = []
         skills = []
-        for idx, skillset in enumerate(profile_skillsets):
+        for skillset in profile_skillsets:
             skillsets.append(
                 ProfileSkillset(profile=profile, skillset=skillset))
             skills.extend([
                 ProfileSkill(profile=profile, skill=skill, profile_weight=idx)
-                for skill in random.sample(set(skillset.skills.all()), 10)
+                for idx, skill in enumerate(
+                    random.sample(set(skillset.skills.all()), 10))
             ])
         try:
             ProfileSkillset.objects.bulk_create(skillsets)
