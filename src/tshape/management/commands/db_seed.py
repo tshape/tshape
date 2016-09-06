@@ -19,6 +19,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         add_skillsets()
         add_skills()
+        add_superuser()
         add_users()
         add_profiles()
         add_profile_skillsets()
@@ -83,6 +84,12 @@ def add_skills():
     except Exception as e:
         print('error with skills bulk create')
         print(e)
+
+
+def add_superuser():
+    User.objects.create(
+        email='admin@tshape.com', username='admin',
+        password='cabbage88', is_superuser=True, is_staff=True)
 
 
 def add_users():
