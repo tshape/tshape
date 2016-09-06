@@ -49,7 +49,7 @@ def add_skills():
     slice_index = int(len(skillsets) / 2)
     skills = []
     try:
-        for idx, skillset in enumerate(skillsets[:slice_index]):
+        for skillset in skillsets[:slice_index]:
             skills.extend([
                 Skill(
                     skillset=skillset,
@@ -57,7 +57,7 @@ def add_skills():
                     description=faker.paragraph(
                         nb_sentences=3, variable_nb_sentences=True),
                     verified=True,
-                    weight=idx + 1,
+                    weight=i+1,
                 ) for i in range(10)
             ])
     except Exception as e:

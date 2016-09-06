@@ -65,16 +65,17 @@ var Profile = React.createClass({
         delete mySkillsets[v.id].skills;
         mySkillsets[v.id].skills = [];
         allSkillsets[v.id].active = true;
-        // for (var y = 0; y < 9; y++) {
+        for (var y = 0; y < 10; y++) {
           _.forEach(ajaxMySkills, function(vv, kk) {
-            if (vv.skillset_id === v.id ) {
-              mySkillsets[v.id].skills.push(vv)
+            if (vv.skillset_id === v.id && vv.profile_weight - 1 === y) {
+              mySkillsets[v.id].skills[y] = vv;
               allSkillsets[v.id].skills[vv.id].active = true;
             } 
           });
-          // if (mySkillsets[ajaxMySkillsets[i].id].skills[y] === undefined) {
-            // mySkillsets[ajaxMySkillsets[i].id].skills[y] = {};
-          // }
+          if (mySkillsets[v.id].skills[y] === undefined) {
+            mySkillsets[v.id].skills[y] = {};
+          }
+        }
         // }
       });
 
@@ -253,18 +254,18 @@ var Profile = React.createClass({
     if (this.state.mySkillsets[skillset.id]) {
       console.log("Skillset already added to this profile!");
       return false;
-    } else if (this.state.allSkillsets[skillset.id]) {
-      // Add to mySkillsets
-      newMySkillsets[skillset.id] = skillset
-      newMySkillsets[skillset.id].skills = [];
-      this.setState({
-        mySkillsets: newMySkillsets
-      });
-      // Update allSkillsets
-      newAllSkillsets[skillset.id].active = true;
-      this.setState({
-        allSkillsets: newAllSkillsets
-      });
+    // } else if (this.state.allSkillsets[skillset.id]) {
+    //   // Add to mySkillsets
+    //   newMySkillsets[skillset.id] = skillset
+    //   newMySkillsets[skillset.id].skills = [];
+    //   this.setState({
+    //     mySkillsets: newMySkillsets
+    //   });
+    //   // Update allSkillsets
+    //   newAllSkillsets[skillset.id].active = true;
+    //   this.setState({
+    //     allSkillsets: newAllSkillsets
+    //   });
     } else {
       // Add to mySkillsets
       newMySkillsets[skillset.id] = skillset
@@ -283,19 +284,12 @@ var Profile = React.createClass({
 
     this.setActiveSkillset(skillset);
 
-    // Generate an array of skillset ID's to PUT to API
-    var mySkillsetIds = Object.keys(this.state.mySkillsets).map(function(value, key) {
-      return newMySkillsets[value].id
-    });
-
-    console.log("PUT skillsets", mySkillsetIds);
-    // PUT the new skillset to the users profile via the API
-    // The API accepts this format: {"skillset_ids": [1,2,3]}
-    var data = JSON.stringify({"skillset_ids": mySkillsetIds});
+    var data = JSON.stringify({"skillset_id": skillset.id, "profile_weight": 0});
+    console.log("handleSkillsetPut API", data)
 
     $.ajax({
-      url: profileApi,
-      method: "PUT",
+      url: "http://localhost:8000/api/profiles/1/skillsets/",
+      method: "POST",
       headers: {
         'X-CSRFToken': csrfToken,
         "content-type": "application/json"
@@ -316,32 +310,23 @@ var Profile = React.createClass({
     var newAllSkillsets = this.state.allSkillsets;
 
     delete newMySkillsets[skillset.id]
-    this.setState({
-      mySkillsets: newMySkillsets
-    });
-
     newAllSkillsets[skillset.id].active = false;
+    
     this.setState({
+      mySkillsets: newMySkillsets,
       allSkillsets: newAllSkillsets
     });
 
-    this.setActiveSkillset(null);
+    this.setActiveSkillset({"id": null});
 
-    var mySkillsetIds = Object.keys(this.state.mySkillsets).map(function(value, key) {
-      return newMySkillsets[value].id
-    });
-
-    var data = JSON.stringify({"skillset_ids": mySkillsetIds});
-
-    // POST new skillsets object to API
+    // DELETE new skillsets object from API
     $.ajax({
-      url: profileApi,
-      method: "PUT",
+      url: "http://localhost:8000/api/profiles/1/skillsets/" + skillset.id,
+      method: "DELETE",
       headers: {
         'X-CSRFToken': csrfToken,
         "content-type": "application/json"
       },
-      data: data,
       success: function(data) {
         console.log("handleSkillsetRemove AJAX Success", data);
       }.bind(this),
@@ -395,7 +380,12 @@ var Profile = React.createClass({
     //   });
     } else {
       // add the skill to mySkillsets
-      newMySkillsets[skill.skillset_id].skills.push(skill);
+      if (skill.weight) {
+        newMySkillsets[skill.skillset_id].skills[skill.weight -1] = skill;
+      } else if (skill.profile_weight) {
+        newMySkillsets[skill.skillset_id].skills[skill.profile_weight -1] = skill;
+      }
+      
       newAllSkillsets[skill.skillset_id].skills[skill.id] = skill
 
       this.setState({
@@ -403,17 +393,19 @@ var Profile = React.createClass({
         allSkillsets: newAllSkillsets,
       });
     }
-
-    // add the skill to the skill_ids array on profile
-    var newSkillIds = Object.keys(this.state.mySkillsHash).map(function(value, key) {
-      return value
-    })
     
-    var data = JSON.stringify({"skill_ids": newSkillIds});
-    console.log("handleSkillPut skill_ids", newSkillIds)
+    var weight = 0;
+    var data = null;
+    if (skill.weight) {
+      data = JSON.stringify({"skill_id": skill.id, "profile_weight": skill.weight});
+    } else if (skill.profile_weight) {
+      data = JSON.stringify({"skill_id": skill.id, "profile_weight": skill.profile_weight});
+    }
+
+    console.log("handleSkillPut API", data)
     $.ajax({
-      url: profileApi,
-      method: "PUT",
+      url: "http://localhost:8000/api/profiles/1/skills/",
+      method: "POST",
       headers: {
         'X-CSRFToken': csrfToken,
         "content-type": "application/json"
@@ -434,9 +426,11 @@ var Profile = React.createClass({
     var newAllSkillsets = this.state.allSkillsets;
 
     // Remove the skill from mySkillsets
-    _.remove(newMySkillsets[skill.skillset_id].skills, function(skillToRemove) {
-      return skillToRemove.id === skill.id
-    })
+    if (skill.weight) {
+      newMySkillsets[skill.skillset_id].skills[skill.weight - 1] = {};
+    } else if (skill.profile_weight) {
+      newMySkillsets[skill.skillset_id].skills[skill.profile_weight - 1] = {};
+    }
 
     // Set the skill to inactive in allSkillsets
     newAllSkillsets[skill.skillset_id].skills[skill.id].active = false;
@@ -476,7 +470,7 @@ var Profile = React.createClass({
     });
   },
   render: function() {
-    var skillsetsSorted = _.sortBy(this.state.mySkillsets, ['weight']);
+    var skillsetsSorted = _.sortBy(this.state.mySkillsets, ['profile_weight']);
     return (
       <div>
       <div className="strip">
@@ -659,9 +653,9 @@ var MySkillsetItem = React.createClass({
   },
   render: function() {
     return (
-      <div className={"skillset__item skillset__item--tag " + (this.props.activeSkillset.id === this.props.skillset.id ? "selected" : "not-selected") } onClick={this.setActive(this.props.skillset)}>
+      <div className={"skillset__item skillset__item--tag " + (this.props.activeSkillset.id === this.props.skillset.id ? "selected" : "not-selected") }>
         <span className="skillset__weight">1</span>
-        <span className="skillset__name">{this.props.skillset.name}</span>
+        <span className="skillset__name" onClick={this.setActive(this.props.skillset)}>{this.props.skillset.name}</span>
         <a className="skillset__remove" href="#" onClick={this.remove(this.props.skillset)}>X</a>
       </div>
     )
@@ -795,17 +789,18 @@ var AllSkillItem = React.createClass({
           )
         }
       }.bind(this))
-      var verifiedAllSkillItems = Object.keys(this.props.skillset.skills).map(function(value, key) {
-        if (this.props.skillset.skills[value].active === true && this.props.skillset.skills[value].verified === true) {
+      var verifiedAllSkillItemsSorted = _.sortBy(this.props.skillset.skills, ['weight']);
+      var verifiedAllSkillItems = verifiedAllSkillItemsSorted.map(function(value, key) {
+        if (value.active === true && value.verified === true) {
           return (
             <li className={"skill__item skill__item--verified active"} key={key}>
-              <span>{this.props.skillset.skills[value].name}</span>
+              <span>{value.name} | {value.weight}</span>
             </li>
           )
-        } else if (this.props.skillset.skills[value].active === false && this.props.skillset.skills[value].verified === true) {
+        } else if (value.active === false && value.verified === true) {
           return (
             <li className={"skill__item skill__item--verified inactive"} key={key} >
-               <a href="#" className="skill__link" onClick={this.add(this.props.skillset.skills[value])}>{this.props.skillset.skills[value].name}</a>
+               <a href="#" className="skill__link" onClick={this.add(value)}>{value.name} | {value.weight}</a>
             </li>
           )
         }
