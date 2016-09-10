@@ -44,16 +44,12 @@ def add_skillsets():
         print('error creating skillsets')
 
 
-def get_weight():
-    return random.randint(0, 9)
-
-
 def add_skills():
     skillsets = Skillset.objects.all()
     slice_index = int(len(skillsets) / 2)
     skills = []
     try:
-        for skillset in skillsets[:slice_index]:
+        for idx, skillset in enumerate(skillsets[:slice_index]):
             skills.extend([
                 Skill(
                     skillset=skillset,
@@ -61,7 +57,7 @@ def add_skills():
                     description=faker.paragraph(
                         nb_sentences=3, variable_nb_sentences=True),
                     verified=True,
-                    weight=get_weight()
+                    weight=idx + 1,
                 ) for i in range(10)
             ])
     except Exception as e:
@@ -120,12 +116,13 @@ def add_profile_skillsets():
         profile_skillsets = random.sample(set(all_skillsets), 8)
         skillsets = []
         skills = []
-        for idx, skillset in enumerate(profile_skillsets):
+        for skillset in profile_skillsets:
             skillsets.append(
                 ProfileSkillset(profile=profile, skillset=skillset))
             skills.extend([
                 ProfileSkill(profile=profile, skill=skill, profile_weight=idx)
-                for skill in random.sample(set(skillset.skills.all()), 10)
+                for idx, skill in enumerate(
+                    random.sample(set(skillset.skills.all()), 10))
             ])
         try:
             ProfileSkillset.objects.bulk_create(skillsets)
