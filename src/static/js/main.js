@@ -33,9 +33,6 @@ var Profile = React.createClass({
 
       // New Maps
       var allSkillsets = {};   
-      // var mySkillsets = {};
-      // var mySkillsHash = {};
-      // var allSkillsHash = {};
       var mySkillsets = {};
 
       // Create allSkillsets
@@ -51,14 +48,7 @@ var Profile = React.createClass({
         }
       }
 
-      // Add active properties to allSkillsets
-      for (var i = 0; i < profile.skillset_ids.length; i++) {
-        allSkillsets[profile.skillset_ids[i]].active = true;
-
-      }
-
-      // Create TShape Relationships
-      // for (var i = 0; i < ajaxMySkillsets.length; i++) {
+      // Create mySkillsets
       _.forEach(ajaxMySkillsets, function(v, k) {
         mySkillsets[v.id] = JSON.parse(JSON.stringify(v));
         delete mySkillsets[v.id].skill_ids;
@@ -76,7 +66,6 @@ var Profile = React.createClass({
             mySkillsets[v.id].skills[y] = {};
           }
         }
-        // }
       });
 
       console.log("mySkillsets", mySkillsets);
@@ -174,11 +163,7 @@ var Profile = React.createClass({
     function ajaxAllSkillsets() {
       return $.ajax({
         url: "http://localhost:8000/api/skillsets/",
-        headers: {
-          'X-CSRFToken': csrfToken,
-          "content-type": "application/json",
-          "cache-control": "no-cache"
-        },
+        dataType: 'json',
         success: function(response) {
         }.bind(this),
         error: function(xhr, status, err) {
