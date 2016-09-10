@@ -1,7 +1,7 @@
 version: '2'
 services:
   web:
-    command: bash -c 'tox'
+    command: bash -c 'tox -e docker'
     environment:
       DEBUG: 'true'
     env_file: .ENV

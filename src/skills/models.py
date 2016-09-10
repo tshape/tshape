@@ -17,7 +17,7 @@ class Skill(BaseModel):
 
     name = models.CharField(
         _('name'), null=False, max_length=280)
-    description = models.TextField(_('description'), default='')
+    description = models.TextField(_('description'), blank=True, default='')
     verified = models.BooleanField(_('verified'), null=False, default=False)
     weight = models.IntegerField(_('weight'), null=True, blank=True)
     skillset = models.ForeignKey(
@@ -28,6 +28,10 @@ class Skill(BaseModel):
         if self.verified and not self.weight:
             raise ValidationError(
                 {'skills': _('Verified skills must have a weight.')})
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super(Skill, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name

@@ -17,13 +17,17 @@ class Skillset(BaseModel):
         error_messages={
             'unique': _('A skillset with that name already exists.'),
         })
-    description = models.TextField(_('description'), default='')
+    description = models.TextField(_('description'), blank=True, default='')
     verified = models.BooleanField(_('verified'), null=False, default=False)
     weight = models.IntegerField(_('weight'), null=True, blank=True)
 
     @property
     def skill_ids(self):
         return [skill.id for skill in self.skills.all()]
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super(Skillset, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name

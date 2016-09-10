@@ -30,7 +30,7 @@ class SkillsetUpdateSerializer(serializers.ModelSerializer):
     name = serializers.CharField(required=False, validators=[
         UniqueValidator(queryset=Skillset.objects.all())])
     verified = serializers.BooleanField(required=False)
-    weight = serializers.IntegerField(required=False)
+    weight = serializers.IntegerField(required=False, allow_null=True)
     skill_ids = serializers.ListField(
         child=serializers.IntegerField(), required=False)
 
@@ -50,11 +50,3 @@ class ProfileSkillsetSerializer(serializers.ModelSerializer):
     description = serializers.ReadOnlyField(source='skillset.description')
     verified = serializers.ReadOnlyField(source='skillset.verified')
     profile_weight = serializers.IntegerField(required=False)
-
-    # def __init__(self, *args, **kwargs):
-    #     print(self.__dict__)
-    #     print(args)
-    #     print(kwargs)
-    #     super(ProfileSkillsetSerializer, self).__init__(*args, **kwargs)
-    #     print(self.__dict__)
-    #     # self.fields['profile']

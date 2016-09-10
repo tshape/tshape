@@ -2,13 +2,12 @@ from django.core.urlresolvers import reverse
 from django.db import transaction
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView
-from django.views.generic.list import ListView
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 
 from profiles.forms import ProfileForm
 from profiles.models import Profile
-from profiles.serializers import ProfileSerializer, ProfileListSerializer
+from profiles.serializers import ProfileSerializer
 from skills.models import Skill
 from skillsets.models import Skillset
 from tshape.utils import MultiSerializerViewSetMixin
@@ -20,11 +19,8 @@ class ProfileViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
     """
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
-    # permission_classes = [IsAccountAdminOrReadOnly]
-    serializer_action_classes = {
-        'list': ProfileListSerializer,
-    }
     http_method_names = ['get', 'head', 'put', 'delete']
+    # permission_classes = [IsAccountAdminOrReadOnly]
 
     def update(self, request, pk=None, *args, **kwargs):
         data = request.data
@@ -61,10 +57,10 @@ class ProfileDetailView(DetailView):
         return self.request.user.profile
 
 
-class ProfileListView(ListView):
+# class ProfileListView(ListView):
 
-    model = Profile
-    template_name = 'profiles/list.html'
+#     model = Profile
+#     template_name = 'profiles/list.html'
 
 
 class ProfileUpdateView(UpdateView):

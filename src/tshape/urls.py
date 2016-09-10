@@ -54,13 +54,15 @@ urlpatterns = [
     url(r'^api/', include(skillsets_router.urls)),
     url(r'^api/', include(profiles_router.urls)),
     url(r'^api/', include(profile_skillsets_router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api-auth/', include(
+        'rest_framework.urls', namespace='rest_framework')),
     # regular routes
     url(r'^profiles/', include('profiles.urls', namespace='profiles')),
-    url(r'^skillsets/', include('skillsets.urls'), name='skillsets'),
+    # url(r'^skillsets/', include('skillsets.urls'), name='skillsets'),
     url(r'^admin/', admin.site.urls),
     url(r'^login/', user_views.LoginView.as_view(), name='login'),
-    url(r'^logout/$', user_views.LogoutView.as_view(), {'next_page': '/'}, name='logout'),
+    url(r'^logout/$', user_views.LogoutView.as_view(),
+        {'next_page': '/'}, name='logout'),
     # url(r'^logout/$', django.contrib.auth.views.logout, {'next_page': '/'}),
 
     url(r'^signup/$', user_views.SignupView.as_view(), name='signup'),

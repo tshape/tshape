@@ -61,7 +61,6 @@ class ProfileSkill(BaseModel):
                 profile=self.profile,
                 skill__skillset_id=self.skill.skillset_id,
                 profile_weight=self.profile_weight)
-            print(existing)
             if existing:
                 raise ValidationError(
                     {'profile_skills': _(
@@ -80,7 +79,7 @@ class ProfileSkill(BaseModel):
             num_skills = sum(
                 1 for profile_skill in profile_skills
                 if profile_skill.skill.skillset_id == self.skill.skillset_id)
-            if num_skills > 10:
+            if num_skills >= 10:
                 raise ValidationError({'skills': _(
                     'User cannot have more than 10 skills for a one skillset.'
                     )})

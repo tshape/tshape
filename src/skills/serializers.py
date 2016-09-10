@@ -27,7 +27,7 @@ class SkillUpdateSerializer(serializers.ModelSerializer):
         many=False, read_only=True)
     name = serializers.CharField(required=False)
     verified = serializers.BooleanField(required=False)
-    weight = serializers.IntegerField(required=False)
+    weight = serializers.IntegerField(required=False, allow_null=True)
 
 
 class ProfileSkillSerializer(serializers.ModelSerializer):

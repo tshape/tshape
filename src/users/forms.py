@@ -12,10 +12,6 @@ class UserLoginForm(AuthenticationForm):
     password = forms.CharField(
         widget=forms.PasswordInput, label=_('Password'), required=True)
 
-    def __init__(self, *args, **kwargs):
-        super(UserLoginForm, self).__init__(*args, **kwargs)
-        self.fields.pop('username')
-
     def clean(self):
         cleaned_data = super(UserLoginForm, self).clean()
         email = cleaned_data.get('email')

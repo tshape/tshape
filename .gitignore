@@ -37,11 +37,16 @@ bower_components/
 pip-log.txt
 pip-delete-this-directory.txt
 
+# Other logs
+logfile
+
 # Unit test / coverage reports
 htmlcov/
 .tox/
-*.coverage*
+.coverage
 .coverage.*
+*.coverage
+*.coverage*
 .cache
 nosetests.xml
 coverage.xml

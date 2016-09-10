@@ -31,7 +31,7 @@ class ProfileListSerializer(serializers.ModelSerializer):
         read_only_fields = ('user_id', 'created_at', 'updated_at')
 
     user_id = serializers.PrimaryKeyRelatedField(
-        many=False, read_only=True, required=False)
+        many=False, read_only=True)
     first_name = serializers.CharField(required=False)
     last_name = serializers.CharField(required=False)
     title = serializers.CharField(required=False)

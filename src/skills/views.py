@@ -1,13 +1,8 @@
-from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView
-from django.views.generic.list import ListView
-from rest_framework import viewsets
+from rest_framework import status, viewsets
 from rest_framework.response import Response
 
-from profiles.models import Profile, ProfileSkill
-from skills.forms import SkillForm
+from profiles.models import ProfileSkill
 from skills.models import Skill
 from skills.serializers import (
     SkillSerializer, SkillUpdateSerializer, ProfileSkillSerializer
@@ -129,79 +124,79 @@ class ProfileSkillViewSet(viewsets.ModelViewSet):
             profile_weight=profile_weight)
         serializer_cls = self.get_serializer_class()
         serializer = serializer_cls(profile_skill, many=False)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-class SkillCreateView(CreateView):
+# class SkillCreateView(CreateView):
 
-    form_class = SkillForm
-    template_name = 'skills/new.html'
+#     form_class = SkillForm
+#     template_name = 'skills/new.html'
 
-    def form_valid(self, form, *args, **kwargs):
-        skill = form.save(commit=False)
-        skill.user = self.request.user
-        self.kwargs['skill'] = skill.save()
-        return super(SkillCreateView, self).form_valid(form, *args, **kwargs)
+#     def form_valid(self, form, *args, **kwargs):
+#         skill = form.save(commit=False)
+#         skill.user = self.request.user
+#         self.kwargs['skill'] = skill.save()
+#         return super(SkillCreateView, self).form_valid(form, *args, **kwargs)
 
-    def get_success_url(self, *args, **kwargs):
-        skill = self.kwargs.get('skill')
-        return reverse('skills:detail', kwargs={'pk': skill.id})
-
-
-class SkillDetailView(DetailView):
-
-    model = Skill
-    template_name = 'skills/detail.html'
+#     def get_success_url(self, *args, **kwargs):
+#         skill = self.kwargs.get('skill')
+#         return reverse('skills:detail', kwargs={'pk': skill.id})
 
 
-class SkillListView(ListView):
+# class SkillDetailView(DetailView):
 
-    model = Skill
-    template_name = 'skills/list.html'
-
-    def get_context_data(self, *args, **kwargs):
-        context = super(SkillListView, self).get_context_data(*args, **kwargs)
-        context.update(self.kwargs)
-        context['object_list'] = Skill.objects.filter(skillset_id=self.kwar)
-        return context
+#     model = Skill
+#     template_name = 'skills/detail.html'
 
 
-class SkillUpdateView(UpdateView):
+# class SkillListView(ListView):
 
-    form_class = SkillForm
-    template_name = 'skills/edit.html'
+#     model = Skill
+#     template_name = 'skills/list.html'
 
-    def form_valid(self, form, *args, **kwargs):
-        self.kwargs['skill'] = form.save()
-        return super(SkillCreateView, self).form_valid(form, *args, **kwargs)
-
-    def get_success_url(self, *args, **kwargs):
-        skill = self.kwargs.get('skill')
-        return reverse('skills:detail', kwargs={'pk': skill.id})
+#     def get_context_data(self, *args, **kwargs):
+#         context = super(SkillListView, self).get_context_data(*args, **kwargs)
+#         context.update(self.kwargs)
+#         context['object_list'] = Skill.objects.filter(skillset_id=self.kwar)
+#         return context
 
 
-class MultipleSkillsUpdateView(UpdateView):
+# class SkillUpdateView(UpdateView):
 
-    form_class = SkillForm
-    template_name = 'skills/edit_all.html'
+#     form_class = SkillForm
+#     template_name = 'skills/edit.html'
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(MultipleSkillsUpdateView, self
-                        ).get_context_data(*args, **kwargs)
-        context['profile_id'] = self.kwargs.get('profile_id')
-        return context
+#     def form_valid(self, form, *args, **kwargs):
+#         self.kwargs['skill'] = form.save()
+#         return super(SkillCreateView, self).form_valid(form, *args, **kwargs)
 
-    def get_queryset(self):
-        profile_id = self.kwargs.get('profile_id')
-        profile = Profile.objects.get(pk=profile_id)
-        return super(MultipleSkillsUpdateView, self
-                     ).get_queryset().filter(profile=profile)
+#     def get_success_url(self, *args, **kwargs):
+#         skill = self.kwargs.get('skill')
+#         return reverse('skills:detail', kwargs={'pk': skill.id})
 
-    def form_valid(self, form, *args, **kwargs):
-        form.save()
-        return super(MultipleSkillsUpdateView, self
-                     ).form_valid(form, *args, **kwargs)
 
-    def get_success_url(self, *args, **kwargs):
-        return reverse(
-            'skills:list', kwargs={'profile_id': self.request.user.id})
+# class MultipleSkillsUpdateView(UpdateView):
+
+#     form_class = SkillForm
+#     template_name = 'skills/edit_all.html'
+
+#     def get_context_data(self, *args, **kwargs):
+#         context = super(MultipleSkillsUpdateView, self
+#                         ).get_context_data(*args, **kwargs)
+#         context['profile_id'] = self.kwargs.get('profile_id')
+#         return context
+
+#     def get_queryset(self):
+#         profile_id = self.kwargs.get('profile_id')
+#         profile = Profile.objects.get(pk=profile_id)
+#         return super(MultipleSkillsUpdateView, self
+#                      ).get_queryset().filter(profile=profile)
+
+#     def form_valid(self, form, *args, **kwargs):
+#         form.save()
+#         return super(MultipleSkillsUpdateView, self
+#                      ).form_valid(form, *args, **kwargs)
+
+#     def get_success_url(self, *args, **kwargs):
+#         return reverse(
+#             'skills:list', kwargs={'profile_id': self.request.user.id})

@@ -7,7 +7,9 @@ omit =
     design/*
     doc/*
     env/*
+    src/manage.py
     tmp/*
+    *tests.py
     */migrations/*
     */static/*
     */templates/*
