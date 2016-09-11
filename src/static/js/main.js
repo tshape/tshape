@@ -34,11 +34,12 @@ var Profile = React.createClass({
       // Create allSkillsets
       for (var i = 0; i < ajaxAllSkillsets.length; i++) {
         allSkillsets[ajaxAllSkillsets[i].id] = JSON.parse(JSON.stringify(ajaxAllSkillsets[i]));
+        delete allSkillsets[ajaxAllSkillsets[i].id].skill_ids;
         allSkillsets[ajaxAllSkillsets[i].id].skills = {};
         allSkillsets[ajaxAllSkillsets[i].id].active = false;
         for (var y = 0; y < ajaxAllSkills.length; y++) {
           if (ajaxAllSkills[y].skillset_id === ajaxAllSkillsets[i].id) {
-            allSkillsets[ajaxAllSkillsets[i].id].skills[ajaxAllSkills[y].id] = ajaxAllSkills[y];
+            allSkillsets[ajaxAllSkillsets[i].id].skills[ajaxAllSkills[y].id] = JSON.parse(JSON.stringify(ajaxAllSkills[y]));
             allSkillsets[ajaxAllSkillsets[i].id].skills[ajaxAllSkills[y].id].active = false;
           }
         }
@@ -101,7 +102,7 @@ var Profile = React.createClass({
     // Get the Profile Object
     function ajaxProfile() {
       return $.ajax({
-        url: "http://localhost:8000/api/profiles/1/",
+        url: profileApi,
         dataType: 'json',
         cache: false,
         success: function(response) {
@@ -115,7 +116,7 @@ var Profile = React.createClass({
     // Get My Skills Object
     function ajaxMySkills() {
       return $.ajax({
-        url: "http://localhost:8000/api/profiles/1/skills/",
+        url: profileApi + "skills/",
         dataType: 'json',
         success: function(response) {
 
@@ -128,7 +129,7 @@ var Profile = React.createClass({
     // Get My Skillsets Object
     function ajaxMySkillsets() {
       return $.ajax({
-        url: "http://localhost:8000/api/profiles/1/skillsets/",
+        url: profileApi + "skillsets/",
         dataType: 'json',
         success: function(response) {
 
@@ -249,16 +250,23 @@ var Profile = React.createClass({
       console.log("Skillset already added to this profile!");
       return false;
     } else {
-      // Add to mySkillsets
-      skillset.skills = [];
-      skillset.profile_weight = weight + 1
-
-      newMySkillsets.push(skillset);
-
       // Add to allSkillsets
       newAllSkillsets[skillset.id] = skillset
-      newAllSkillsets[skillset.id].skills = [];
       newAllSkillsets[skillset.id].active = true;
+
+      // Add to mySkillsets
+      var skillsetCopy = _.cloneDeep(skillset);
+      console.log(skillsetCopy);
+      skillsetCopy.skills = [];
+      skillsetCopy.profile_weight = weight + 1;
+
+      for (var y = 0; y < 10; y++) {
+        skillsetCopy.skills[y] = {};
+      }
+
+      newMySkillsets.push(skillsetCopy);
+      console.log(newMySkillsets)
+      
 
       // Set State
       this.setState({
@@ -267,13 +275,13 @@ var Profile = React.createClass({
       });
     }
 
-    this.setActiveSkillset(skillset);
+    this.setActiveSkillset(skillsetCopy);
     
     var data = JSON.stringify({"skillset_id": skillset.id, "profile_weight": weight + 1});
     console.log("handleSkillsetPut API", data)
 
     $.ajax({
-      url: "http://localhost:8000/api/profiles/1/skillsets/",
+      url: profileApi + "skillsets/",
       method: "POST",
       headers: {
         'X-CSRFToken': csrfToken,
@@ -315,7 +323,7 @@ var Profile = React.createClass({
 
     // DELETE new skillsets object from API
     $.ajax({
-      url: "http://localhost:8000/api/profiles/1/skillsets/" + skillset.id,
+      url: profileApi + "skillsets/" + skillset.id,
       method: "DELETE",
       headers: {
         'X-CSRFToken': csrfToken,
@@ -396,7 +404,7 @@ var Profile = React.createClass({
 
     console.log("handleSkillPut API", data)
     $.ajax({
-      url: "http://localhost:8000/api/profiles/1/skills/",
+      url: profileApi + "skills/",
       method: "POST",
       headers: {
         'X-CSRFToken': csrfToken,
@@ -447,7 +455,7 @@ var Profile = React.createClass({
         
     // Update API
     $.ajax({
-      url: "http://localhost:8000/api/profiles/1/skills/" + skill.id,
+      url: profileApi + "skills/" + skill.id,
       method: "DELETE",
       headers: {
         'X-CSRFToken': csrfToken,
@@ -770,7 +778,6 @@ var AllSkillItem = React.createClass({
     } else if(this.props.activeSkillset.id !== null && this.props.skillset === null) {
       var noSkillItems = <li>No all skills</li>
     } else {
-       var allSkillItems = Object.keys(this.props.skillset.skills);
       var allSkillItems = Object.keys(this.props.skillset.skills).map(function(value, key) {
         if (this.props.skillset.skills[value].active === true && this.props.skillset.skills[value].verified === false) {
           return (
