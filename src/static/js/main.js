@@ -482,13 +482,14 @@ var Profile = React.createClass({
     });
   },
   render: function() {
+    var tshapeLength = this.state.mySkillsets.length * 40 + 160;
     return (
       <div>
       <div className="strip">
         <div className="row">
           <div className="column small-12">
 
-            <div className="tshape-horizontal">
+            <div className="tshape-vertical">
               <div className="tshape__header">
                   <div className="tshape__avatar"></div>
                   <h2 className="tshape__role">UI Engineer</h2>
@@ -514,7 +515,9 @@ var Profile = React.createClass({
                    <li>10</li>
                 </ul>
               </div>
-              <div className="tshape__middle">
+              <div className={"tshape__middle tshape-width-" + tshapeLength}>
+                <div className="tshape__wing tshape__wing--left-2"></div>
+                <div className="tshape__wing tshape__wing--left-1"></div>
                 {this.state.mySkillsets.map(function(value, key) {
                   return (
                     <Tshape 
@@ -525,15 +528,17 @@ var Profile = React.createClass({
                     />
                   )
                 }.bind(this))}
+                <div className="tshape__wing tshape__wing--right-1"></div>
+                <div className="tshape__wing tshape__wing--right-2"></div>
+              </div>
+              <div className="tshape__footer">
+                <SkillDescription 
+                  activeSkill={this.state.activeSkill} 
+                />
               </div>
             </div>
-
           </div>
-          <div className="column small-12">
-            <SkillDescription 
-                activeSkill={this.state.activeSkill} 
-              />
-            </div>
+          
         </div>
       </div>
       <div className="strip">
@@ -661,6 +666,7 @@ var MySkillsetItem = React.createClass({
     return (
       <div className={"skillset__item skillset__item--tag " + (this.props.activeSkillset.id === this.props.skillset.id ? "selected" : "not-selected") }>
         <span className="skillset__weight">{this.props.skillset.profile_weight}</span>
+        <span className="skillset__id">{this.props.skillset.id}</span>
         <span className="skillset__name" onClick={this.setActive(this.props.skillset)}>{this.props.skillset.name}</span>
         <a className="skillset__remove" href="#" onClick={this.remove(this.props.skillset)}>X</a>
       </div>
@@ -875,8 +881,8 @@ var SkillDescription = React.createClass({
       } else {
         var item = 
           <div>
-            <div className="skill__description">{this.props.activeSkill.name}</div>
-            <div className="skill__description">{this.props.activeSkill.description}</div>
+            <div className="tshape__skill-name">{this.props.activeSkill.name}</div>
+            <div className="tshape__skill-description">{this.props.activeSkill.description}</div>
           </div>
       }
       return <div>{item}</div>

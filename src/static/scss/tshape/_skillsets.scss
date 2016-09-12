@@ -45,6 +45,18 @@
 		 	background-color: #F7F5F6; 
 		 	background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
 		}
+		.skillset__id {
+			display: inline-block;
+			border:1px solid #CCCCCC;
+			border-right: none;
+			box-shadow: #FEFFFF 0px 1px 1px ; 
+			padding: 6px;
+			text-decoration:none; 
+			text-shadow: 0px 1px 0 rgba(255,255,255,1);
+			color: #4A4A4A;
+		 	background-color: #F7F5F6; 
+		 	background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
+		}
 		.skillset__weight {
 			display: inline-block;
 			border:1px solid #CCCCCC;
@@ -84,6 +96,13 @@
 			    border-color: #000;
 			}
 			.skillset__weight {
+				color: #ffffff;
+			    background-color: #484848;
+			    background-image: linear-gradient(to bottom, #484848, #000000);
+			    text-shadow: none;
+			    border-color: #000;
+			}
+			.skillset__id {
 				color: #ffffff;
 			    background-color: #484848;
 			    background-image: linear-gradient(to bottom, #484848, #000000);
