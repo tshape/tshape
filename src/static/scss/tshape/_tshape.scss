@@ -6,7 +6,6 @@
   // background-position: -50px 151px;
   border: 1px solid #EAEAEA;
   border-radius: 3px;
-  
   // Tshape Header
   .tshape__header {
     @include clearfix;
@@ -16,7 +15,7 @@
     .tshape__role {
       font-weight: bold;
       font-size: 16px;
-      line-height: 30px;
+      line-height: 20px;
       float: left;
       margin: 0;
       margin-right: 5px;
@@ -24,7 +23,7 @@
     .tshape__user {
       font-weight: 300;
       font-size: 16px;
-      line-height: 30px;
+      line-height: 20px;
       float: left;
       margin: 0;
       margin-right: 5px;
@@ -32,7 +31,7 @@
     }
     .tshape__avatar {
       width: 30px;
-      height: 30px;
+      height: 20px;
       border-radius: 15px;
       background-image: url("../images/rob.jpg");
       background-size: contain;
@@ -46,7 +45,7 @@
   // Tshape Guide 1-10
   .tshape__guide {
     display: none;
-    width: 300px;
+    width: 200px;
     margin-left: 210px;
     @include clearfix;
     .tshape__guide-beginner { 
@@ -82,9 +81,8 @@
   .tshape__middle {
     @include clearfix;
     margin: 0 auto;
-    margin-top: 100px;
-    height: 300px;
-    margin-bottom: 30px;
+    margin-top: 80px;
+    height: 200px;
     text-align: center;
     border-top: 1px solid #CCC;
   }
@@ -95,10 +93,10 @@
     text-align: center;
     position: relative;
     width: 30px;
-    height: 300px;
+    height: 200px;
     border-right: 1px dotted #CCC;
     .tshape__skillset-heading {
-      width: 80px;
+      width: 70px;
       text-align: left;
       transform: rotate(270deg);
       position: absolute;
@@ -106,8 +104,9 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      font-size: 14px;
-      top: -10px;
+      font-size: 13px;
+      line-height: 24px;
+      top: -7px;
     }
     .tshape__skill-container {
       @include clearfix;
@@ -115,12 +114,12 @@
     }
     .tshape__skill {
       width: 30px;
-      height: 30px;
+      height: 20px;
     }
     .tshape__skillname {
       width: 30px;
-      height: 30px;
-      line-height: 30px;
+      height: 20px;
+      line-height: 20px;
       color: #FFF;
     }
   }
@@ -131,7 +130,7 @@
     text-align: center;
     position: relative;
     width: 30px;
-    height: 300px;
+    height: 200px;
     border-right: 1px dotted #CCC;
   }
   .tshape__wing--left-2 { border-left: 1px dotted #CCC; border-right: none; height: 200px;}
@@ -141,6 +140,7 @@
 
   // Tshape Footer
   .tshape__footer {
+    display: none;
     border-top: 1px solid #EAEAEA;
     padding: 10px;
     background: white;
@@ -236,7 +236,7 @@
   }
   .tshape__skill {
     width: 30px;
-    height: 30px;
+    height: 20px;
     background: green;
     margin-bottom: 0px;
     border: 1px solid #FFF;

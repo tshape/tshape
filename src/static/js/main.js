@@ -14,6 +14,11 @@ var Profile = React.createClass({
       allSkillsets: {},
       activeSkillset: {"id": null},
       activeSkill: {"id": null},
+      display: {
+        "allSkillsets": {
+          "visible": true
+        }
+      }
     };
   },
   componentDidMount: function() {
@@ -376,6 +381,8 @@ var Profile = React.createClass({
       weightTitle = "profile_weight"
     }
 
+    this.setActiveSkill(skill);
+
     // Check if the skill is already in mySkillsets
     if (this.checkIfSkillAdded(skill)) {
       console.log("Skill already added to this profile!");
@@ -546,7 +553,7 @@ var Profile = React.createClass({
           <div className="column small-12">
             <div className="skillsets">
               <div className="row">
-                <div className="column small-7">
+                <div className="column small-12">
                  <div className="skillsets__panel--my-skillsets">
                     <h3>My Skillsets</h3>
                     {this.state.mySkillsets.map(function(value, key) {
@@ -560,14 +567,7 @@ var Profile = React.createClass({
                         />
                       )
                     }.bind(this))}
-                  </div>
-                </div>
-                <div className="column small-5">
-                  <div className="skillsets__panel--all-skillsets">
-                    <h3>All Skillsets</h3>
-                    <AddSkillset 
-                      onSkillsetSubmit={this.handleSkillsetCreate} 
-                    />
+                    <div className={"skillsets__panel--all-skillsets " + (this.state.display.allSkillsets.visible === true ? "show" : "hide")}>
                     {Object.keys(this.state.allSkillsets).map(function(value, key) {
                       return (
                         <AllSkillsetItem 
@@ -578,6 +578,7 @@ var Profile = React.createClass({
                         />
                       )
                     }.bind(this))}
+                  </div>
                   </div>
                 </div>
               </div>
@@ -593,22 +594,20 @@ var Profile = React.createClass({
                 <div className="column small-7">
                   <div className="skills__panel--my-skills">
                     <h3 className="skills__heading skills__heading-myskills">My <span>{this.state.activeSkillset.name}</span> Skills</h3>
-                    <MySkillItem 
-                      skills={this.state.mySkillsets}  
+                    <SkillList
+                      allSkillset={this.state.allSkillsets[this.state.activeSkillset.id]}  
+                      mySkillset={this.state.mySkillsets[this.state.activeSkillset.id]}  
                       activeSkillset={this.state.activeSkillset} 
-                      onRemove={this.handleSkillRemove} 
-                    />
+                      onAdd={this.handleSkillPut} 
+                      onShow={this.setActiveSkill}
+                    />   
                   </div>
                 </div>
                 <div className="column small-5">
                   <div className="skills__panel--all-skills">
-                     <h3 className="skills__heading skills__heading-myskills">All <span>{this.state.activeSkillset.name}</span> Skills</h3>
-                    
-                    <AllSkillItem 
-                      skillset={this.state.allSkillsets[this.state.activeSkillset.id]}  
-                      activeSkillset={this.state.activeSkillset} 
-                      onAdd={this.handleSkillPut} 
-                    />
+                    <SkillDescription
+                      activeSkill={this.state.activeSkill} 
+                    />     
                   </div>
                 </div>
               </div>
@@ -827,6 +826,50 @@ var AllSkillItem = React.createClass({
     );
   }
 });
+var SkillList = React.createClass({
+  add: function(item) {
+    return function(e) {
+      e.preventDefault();
+      return this.props.onAdd(item);
+    }.bind(this);
+  },
+  show: function(item) {
+    return function(e) {
+      e.preventDefault();
+      return this.props.onShow(item);
+    }.bind(this);
+  },
+  render: function() {
+    var verifiedAllSkillItems = [];
+    if (this.props.activeSkillset.id === null) {
+      var noSkillItems = <li>Please select a skillset</li>
+    } else if(this.props.activeSkillset.id !== null && this.props.skillset === null) {
+      var noSkillItems = <li>No all skills</li>
+    } else {
+      var verifiedAllSkillItemsSorted = _.sortBy(this.props.allSkillset.skills, ['weight']);
+      var verifiedAllSkillItems = verifiedAllSkillItemsSorted.map(function(value, key) {
+        if (value.active === true && value.verified === true) {
+          return (
+            <li className={"skill__item skill__item--verified active"} key={key}>
+              
+              <span>{value.name} | {value.weight}</span>
+            </li>
+          )
+        } else if (value.active === false && value.verified === true) {
+          return (
+            <li className={"skill__item skill__item--verified inactive"} key={key} >
+               <a href="#" className="tickbox" onClick={this.add(value)}>O</a>
+               <a href="#" className="skill__link" onClick={this.show(value)}>{value.name} | {value.weight}</a>
+            </li>
+          )
+        }
+      }.bind(this))
+    }
+    return (
+      <div>{verifiedAllSkillItems}</div>
+    )
+  }
+});
 var AddSkill = React.createClass({
   getInitialState: function() {
     return {
@@ -875,18 +918,18 @@ var AddSkill = React.createClass({
   }
 });
 var SkillDescription = React.createClass({
-    render: function(){
-      if (this.props.activeSkill.id === null) {
-        var item = <div>Please select a skill</div>
-      } else {
-        var item = 
-          <div>
-            <div className="tshape__skill-name">{this.props.activeSkill.name}</div>
-            <div className="tshape__skill-description">{this.props.activeSkill.description}</div>
-          </div>
-      }
-      return <div>{item}</div>
+  render: function(){
+    if (this.props.activeSkill.id === null) {
+      var item = <div>Please select a skill</div>
+    } else {
+      var item = 
+        <div>
+          <div className="tshape__skill-name">{this.props.activeSkill.name}</div>
+          <div className="tshape__skill-description">{this.props.activeSkill.description}</div>
+        </div>
     }
+    return <div>{item}</div>
+  }
 });
 
 ReactDOM.render(
