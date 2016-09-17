@@ -490,6 +490,10 @@ var Profile = React.createClass({
   },
   render: function() {
     var tshapeLength = this.state.mySkillsets.length * 40 + 160;
+    var skillsetNameLowerCase = "";
+    if(this.state.activeSkillset.name) {
+      skillsetNameLowerCase = "skillset-name-" + this.state.activeSkillset.name.toLowerCase();
+    }
     return (
       <div>
       <div className="strip">
@@ -589,7 +593,7 @@ var Profile = React.createClass({
       <div className="strip">
         <div className="row">
           <div className="column small-12">
-            <div className="skills">
+            <div className={"skills " + skillsetNameLowerCase}>
               <div className="row">
                 <div className="column small-7">
                   <div className="skills__panel--my-skills">
@@ -599,6 +603,7 @@ var Profile = React.createClass({
                       mySkillset={this.state.mySkillsets[this.state.activeSkillset.id]}  
                       activeSkillset={this.state.activeSkillset} 
                       onAdd={this.handleSkillPut} 
+                      onRemove={this.handleSkillRemove} 
                       onShow={this.setActiveSkill}
                     />   
                   </div>
@@ -607,6 +612,7 @@ var Profile = React.createClass({
                   <div className="skills__panel--all-skills">
                     <SkillDescription
                       activeSkill={this.state.activeSkill} 
+                      activeSkillset={this.state.activeSkillset} 
                     />     
                   </div>
                 </div>
@@ -833,6 +839,12 @@ var SkillList = React.createClass({
       return this.props.onAdd(item);
     }.bind(this);
   },
+  remove: function(item) {
+    return function(e) {
+      e.preventDefault();
+      return this.props.onRemove(item);
+    }.bind(this);
+  },
   show: function(item) {
     return function(e) {
       e.preventDefault();
@@ -850,17 +862,17 @@ var SkillList = React.createClass({
       var verifiedAllSkillItems = verifiedAllSkillItemsSorted.map(function(value, key) {
         if (value.active === true && value.verified === true) {
           return (
-            <li className={"skill__item skill__item--verified active"} key={key}>
-              
-              <span>{value.name} | {value.weight}</span>
-            </li>
+            <div className={"skill__item skill__item--verified active"} key={key}>
+              <a href="#" className="skill__tickbox skill__tickbox--ticked" onClick={this.remove(value)}></a>
+              <a href="#" className="skill__name" onClick={this.show(value)}>{value.name} | {value.weight}</a>
+            </div>
           )
         } else if (value.active === false && value.verified === true) {
           return (
-            <li className={"skill__item skill__item--verified inactive"} key={key} >
-               <a href="#" className="tickbox" onClick={this.add(value)}>O</a>
-               <a href="#" className="skill__link" onClick={this.show(value)}>{value.name} | {value.weight}</a>
-            </li>
+            <div className={"skill__item skill__item--verified inactive"} key={key} >
+               <a href="#" className="skill__tickbox skill__tickbox--unticked" onClick={this.add(value)}></a>
+               <a href="#" className="skill__name" onClick={this.show(value)}>{value.name} | {value.weight}</a>
+            </div>
           )
         }
       }.bind(this))
@@ -919,13 +931,14 @@ var AddSkill = React.createClass({
 });
 var SkillDescription = React.createClass({
   render: function(){
+    console.log(this.props.activeSkillset);
     if (this.props.activeSkill.id === null) {
       var item = <div>Please select a skill</div>
     } else {
       var item = 
-        <div>
-          <div className="tshape__skill-name">{this.props.activeSkill.name}</div>
-          <div className="tshape__skill-description">{this.props.activeSkill.description}</div>
+        <div className={"skill-info"}>
+          <h3 className="skill-info__name">{this.props.activeSkill.name}</h3>
+          <p className="skill-info__description">{this.props.activeSkill.description}</p>
         </div>
     }
     return <div>{item}</div>
