@@ -51,7 +51,7 @@
 .skill__item {
 	@include clearfix;
 	// padding: 10px;
-	border: 1px solid #EAEAEA;
+	// border: 1px solid #EAEAEA;
 	display: block;
 	font-size: 14px;
 	color: #666;
@@ -84,11 +84,16 @@
 			line-height: 26px;
 			text-decoration: none;
 	    }
-	    &.skill__tickbox--ticked {
+	    &:hover {
 	    	&:before {
-				content: "\f058";
-			}
+	    		color: #333;
+	    	}
 	    }
+	}
+	&.active .skill__tickbox {
+		&:before {
+			content: "\f058";
+		}
 	}
 	.skill__weight {
 		display: inline-block;
@@ -118,9 +123,15 @@
 	}
 	&.inactive .skill__name {
 		color: #333;
+		&:hover {
+			color: #000;
+	    }
 	}
 	&.active .skill__name {
 		color: #999;
+		&:hover {
+			color: #000;
+	    }
 	}
 	.skill__remove {
 		display: inline-block;
@@ -155,4 +166,11 @@
 		    }
 		}
 	}
+	// .skill__item.active {
+	// 	.skill__tickbox:hover {
+	// 		&:before {
+	// 			color: #efa73b;
+	// 		}
+	// 	}
+	// }
 }

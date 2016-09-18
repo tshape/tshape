@@ -496,131 +496,112 @@ var Profile = React.createClass({
     }
     return (
       <div>
-      <div className="strip">
-        <div className="row">
-          <div className="column small-12">
+        <div className="strip">
+          <div className="row">
+            <div className="column small-12">
 
-            <div className="tshape-vertical">
-              <div className="tshape__header">
-                  <div className="tshape__avatar"></div>
-                  <h2 className="tshape__role">UI Engineer</h2>
-                  <h3 className="tshape__user">Robert Austin</h3>
-                  <div className="tshape__badges">
-                      <span className="tshape__github"><a href="#"><i className="fa fa-github" aria-hidden="true"></i></a></span>
-                      <span className="tshape__linkedin"><a href="#"><i className="fa fa-linkedin-square" aria-hidden="true"></i></a></span>
-                  </div>
-              </div>
-              <div className="tshape__guide">
-                 <span className="tshape__guide-beginner">Beginner</span>
-                 <span className="tshape__guide-mastery">Mastery</span>
-                 <ul className="tshape__guide-levels">
-                   <li>1</li>
-                   <li>2</li>
-                   <li>3</li>
-                   <li>4</li>
-                   <li>5</li>
-                   <li>6</li>
-                   <li>7</li>
-                   <li>8</li>
-                   <li>9</li>
-                   <li>10</li>
-                </ul>
-              </div>
-              <div className={"tshape__middle tshape-width-" + tshapeLength}>
-                <div className="tshape__wing tshape__wing--left-2"></div>
-                <div className="tshape__wing tshape__wing--left-1"></div>
-                {this.state.mySkillsets.map(function(value, key) {
-                  return (
-                    <Tshape 
-                      key={key} 
-                      skillset={value} 
-                      activeSkillset={this.state.activeSkillset} 
-                      setActiveSkill={this.setActiveSkill} 
-                    />
-                  )
-                }.bind(this))}
-                <div className="tshape__wing tshape__wing--right-1"></div>
-                <div className="tshape__wing tshape__wing--right-2"></div>
-              </div>
-              <div className="tshape__footer">
-                <SkillDescription 
-                  activeSkill={this.state.activeSkill} 
-                />
+              <div className="tshape-vertical">
+                <div className="tshape__header">
+                    <div className="tshape__avatar"></div>
+                    <h2 className="tshape__role">UI Engineer</h2>
+                    <h3 className="tshape__user">Robert Austin</h3>
+                    <div className="tshape__badges">
+                        <span className="tshape__github"><a href="#"><i className="fa fa-github" aria-hidden="true"></i></a></span>
+                        <span className="tshape__linkedin"><a href="#"><i className="fa fa-linkedin-square" aria-hidden="true"></i></a></span>
+                    </div>
+                </div>
+                <div className="tshape__guide">
+                   <span className="tshape__guide-beginner">Beginner</span>
+                   <span className="tshape__guide-mastery">Mastery</span>
+                   <ul className="tshape__guide-levels">
+                     <li>1</li>
+                     <li>2</li>
+                     <li>3</li>
+                     <li>4</li>
+                     <li>5</li>
+                     <li>6</li>
+                     <li>7</li>
+                     <li>8</li>
+                     <li>9</li>
+                     <li>10</li>
+                  </ul>
+                </div>
+                <div className={"tshape__middle tshape-width-" + tshapeLength}>
+                  <div className="tshape__wing tshape__wing--left-2"></div>
+                  <div className="tshape__wing tshape__wing--left-1"></div>
+                  {this.state.mySkillsets.map(function(value, key) {
+                    return (
+                      <Tshape 
+                        key={key} 
+                        skillset={value} 
+                        activeSkillset={this.state.activeSkillset} 
+                        setActiveSkill={this.setActiveSkill} 
+                      />
+                    )
+                  }.bind(this))}
+                  <div className="tshape__wing tshape__wing--right-1"></div>
+                  <div className="tshape__wing tshape__wing--right-2"></div>
+                </div>
+                <div className="tshape__footer">
+                  <SkillDescription 
+                    activeSkill={this.state.activeSkill} 
+                  />
+                </div>
               </div>
             </div>
+            
           </div>
-          
         </div>
-      </div>
-      <div className="strip">
-        <div className="row">
-          <div className="column small-12">
-            <div className="skillsets">
-              <div className="row">
-                <div className="column small-12">
-                 <div className="skillsets__panel--my-skillsets">
-                    <h3>My Skillsets</h3>
-                    {this.state.mySkillsets.map(function(value, key) {
-                      return (
-                        <MySkillsetItem 
-                          key={key} 
-                          skillset={value}
-                          activeSkillset={this.state.activeSkillset} 
-                          setActiveSkillset={this.setActiveSkillset} 
-                          onRemove={this.handleSkillsetRemove} 
-                        />
-                      )
-                    }.bind(this))}
-                    <div className={"skillsets__panel--all-skillsets " + (this.state.display.allSkillsets.visible === true ? "show" : "hide")}>
-                    {Object.keys(this.state.allSkillsets).map(function(value, key) {
-                      return (
-                        <AllSkillsetItem 
-                          key={key}
-                          skillset={this.state.allSkillsets[value]}
-                          activeSkillset={this.state.activeSkillset} 
-                          onAdd={this.handleSkillsetPut} 
-                        />
-                      )
-                    }.bind(this))}
-                  </div>
+        <div className="strip">
+          <div className="row">
+            <div className="column small-12">
+              <div className="skillsets">
+                <div className="row">
+                  <div className="column small-12">
+                    <div className="skillsets__panel--my-skillsets">
+                      <h3>My Skillsets</h3>
+                      {this.state.mySkillsets.map(function(value, key) {
+                        return (
+                          <MySkillsetItem 
+                            key={key} 
+                            skillset={value}
+                            activeSkillset={this.state.activeSkillset} 
+                            setActiveSkillset={this.setActiveSkillset} 
+                            onRemove={this.handleSkillsetRemove} 
+                          />
+                        )
+                      }.bind(this))}
+                      <div className={"skillsets__panel--all-skillsets " + (this.state.display.allSkillsets.visible === true ? "show" : "hide")}>
+                        {Object.keys(this.state.allSkillsets).map(function(value, key) {
+                          return (
+                            <AllSkillsetItem 
+                              key={key}
+                              skillset={this.state.allSkillsets[value]}
+                              activeSkillset={this.state.activeSkillset} 
+                              onAdd={this.handleSkillsetPut} 
+                            />
+                          )
+                        }.bind(this))}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="strip">
-        <div className="row">
-          <div className="column small-12">
-            <div className={"skills " + skillsetNameLowerCase}>
-              <div className="row">
-                <div className="column small-7">
-                  <div className="skills__panel--my-skills">
-                    <h3 className="skills__heading skills__heading-myskills">My <span>{this.state.activeSkillset.name}</span> Skills</h3>
-                    <SkillList
-                      allSkillset={this.state.allSkillsets[this.state.activeSkillset.id]}  
-                      mySkillset={this.state.mySkillsets[this.state.activeSkillset.id]}  
-                      activeSkillset={this.state.activeSkillset} 
-                      onAdd={this.handleSkillPut} 
-                      onRemove={this.handleSkillRemove} 
-                      onShow={this.setActiveSkill}
-                    />   
-                  </div>
-                </div>
-                <div className="column small-5">
-                  <div className="skills__panel--all-skills">
-                    <SkillDescription
-                      activeSkill={this.state.activeSkill} 
-                      activeSkillset={this.state.activeSkillset} 
-                    />     
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="strip">
+          <Skills
+            key="1"
+            allSkillset={this.state.allSkillsets[this.state.activeSkillset.id]}  
+            mySkillset={this.state.mySkillsets[this.state.activeSkillset.id]}  
+            activeSkillset={this.state.activeSkillset} 
+            activeSkill={this.state.activeSkill} 
+            onAdd={this.handleSkillPut} 
+            onRemove={this.handleSkillRemove} 
+            onShow={this.setActiveSkill}
+          />   
         </div>
-      </div>
       </div>
     );
   }
@@ -634,8 +615,14 @@ var Tshape = React.createClass({
       }.bind(this);
     },
     render: function(){
+      
+      var skillsetNameLowerCase = "";
+      if(this.props.skillset.name) {
+        skillsetNameLowerCase = "skillset-name-" + this.props.skillset.name.toLowerCase();
+      }
+
       return (
-        <div className={"tshape__skillset " + (this.props.activeSkillset.id === this.props.skillset.id ? "active" : "inactive")} id={this.props.skillset.id}>
+        <div className={"tshape__skillset " + skillsetNameLowerCase + " " + (this.props.activeSkillset.id === this.props.skillset.id ? "active" : "inactive")} id={this.props.skillset.id}>
           <div className="tshape__skillset-heading">{this.props.skillset.name}</div>
             <div className="tshape__skill-container">
             {this.props.skillset.skills.map(function(value, key) {
@@ -931,17 +918,106 @@ var AddSkill = React.createClass({
 });
 var SkillDescription = React.createClass({
   render: function(){
-    console.log(this.props.activeSkillset);
     if (this.props.activeSkill.id === null) {
       var item = <div>Please select a skill</div>
     } else {
       var item = 
-        <div className={"skill-info"}>
+        <div className={"skill-info"} >
           <h3 className="skill-info__name">{this.props.activeSkill.name}</h3>
           <p className="skill-info__description">{this.props.activeSkill.description}</p>
         </div>
     }
     return <div>{item}</div>
+  }
+});
+
+var Skills = React.createClass({
+  add: function(item) {
+    return function(e) {
+      e.preventDefault();
+      return this.props.onAdd(item);
+    }.bind(this);
+  },
+  remove: function(item) {
+    return function(e) {
+      e.preventDefault();
+      return this.props.onRemove(item);
+    }.bind(this);
+  },
+  show: function(item) {
+    return function(e) {
+      e.preventDefault();
+      return this.props.onShow(item);
+    }.bind(this);
+  },
+  render: function() {
+
+    var skillsetNameLowerCase = "";
+    if(this.props.activeSkillset.name) {
+      skillsetNameLowerCase = "skillset-name-" + this.props.activeSkillset.name.toLowerCase();
+    }
+
+    var skills = [];
+    var skillsSorted = [];
+
+    if (this.props.activeSkillset.id === null) {
+      skills = <li>Please select a skillset</li>
+    } else if(this.props.activeSkillset.id !== null && this.props.skillset === null) {
+      skills = <li>No all skills</li>
+    } else {
+      skillsSorted = _.sortBy(this.props.allSkillset.skills, ['weight']);
+      skills = skillsSorted.map(function(value, key) {
+        if (value.active === true && value.verified === true) {
+          return (
+            <div className={"skill__item skill__item--verified active"} key={key}>
+              <a href="#" className="skill__tickbox skill__tickbox--ticked" onClick={this.remove(value)}></a>
+              <a href="#" className="skill__name" onClick={this.show(value)} >{value.name} | {value.weight}</a>
+            </div>
+          )
+        } else if (value.active === false && value.verified === true) {
+          return (
+            <div className={"skill__item skill__item--verified inactive"} key={key} >
+               <a href="#" className="skill__tickbox skill__tickbox--unticked" onClick={this.add(value)}></a>
+               <a href="#" className="skill__name" onClick={this.show(value)} >{value.name} | {value.weight}</a>
+            </div>
+          )
+        }
+      }.bind(this))
+    }
+
+    var skillDescription = null;
+
+    if (this.props.activeSkill.id === null) {
+      skillDescription = <div>Please select a skill</div>
+    } else {
+      skillDescription = (
+        <div className={"skill-info"} >
+          <h5 className="skill-info__name">{this.props.activeSkillset.name}</h5>
+          <h3 className="skill-info__name">{this.props.activeSkill.name}</h3>
+          <p className="skill-info__description">{this.props.activeSkill.description}</p>
+        </div>
+      )
+    }
+    
+    return (
+      <div className={"skills " + skillsetNameLowerCase}>
+        <div className="row">
+          <div className="column small-7">
+            <h3 className="skills__heading skills__heading-myskills">My <span>{this.props.activeSkillset.name}</span> Skills</h3>
+            <div className="skills__panel--my-skills">
+              {skills}
+            </div>
+          </div>
+          <div className="column small-5">
+            <div className="skills__panel--all-skills">
+              {skillDescription}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+    
+    
   }
 });
 

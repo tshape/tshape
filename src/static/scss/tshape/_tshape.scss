@@ -154,38 +154,38 @@
       color: #666;
     }
   }
- 
- 
-  $color-1: #6EFF48;
-  $color-2: blue;
+}
+
+.skillset-name-javascript {
+  $color-1: #F0DB4F;
+  $color-2: #efa73b;
 
   $steps: 10;
 
-  // @for $i from 0 to $steps {
-  //   .tshape__skillset {
-  //     &:nth-child(#{$i + 1}) {
-  //       .tshape__skill {
-  //         background: mix($color-1, $color-2, percentage($i / ($steps - 1)));
-  //       }
-  //     }
-  //   }
-  // }
+  @for $i from 0 to $steps {
+    .tshape__skill {
+        &:nth-child(#{$i + 1}) {
+            background-color: mix($color-1, $color-2, percentage($i / ($steps - 1)));
+        }
+    }
+  }
 }
-  .tshape__skill {
-    background: #EAEAEA;
-  }
- .tshape__skill {
-    &:nth-child(1) {background-color: #FCEB9D}
-    &:nth-child(2) {background-color: #FECE90}
-    &:nth-child(3) {background-color: #F8ADA8}
-    &:nth-child(4) {background-color: #E9ADD8}
-    &:nth-child(5) {background-color: #D2A2EA}
-    &:nth-child(6) {background-color: #B5C0E5}
-    &:nth-child(7) {background-color: #B1DDE8}
-    &:nth-child(8) {background-color: #A3E8D8}
-    &:nth-child(9) {background-color: #9AE6B4}
-    &:nth-child(10) {background-color: #ABE686}
-  }
+  
+.tshape__skill {
+  background: #EAEAEA;
+}
+.tshape__skill {
+  &:nth-child(1) {background-color: #FCEB9D}
+  &:nth-child(2) {background-color: #FECE90}
+  &:nth-child(3) {background-color: #F8ADA8}
+  &:nth-child(4) {background-color: #E9ADD8}
+  &:nth-child(5) {background-color: #D2A2EA}
+  &:nth-child(6) {background-color: #B5C0E5}
+  &:nth-child(7) {background-color: #B1DDE8}
+  &:nth-child(8) {background-color: #A3E8D8}
+  &:nth-child(9) {background-color: #9AE6B4}
+  &:nth-child(10) {background-color: #ABE686}
+}
 
 
 .tshape__mask {
