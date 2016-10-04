@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block page_class %}page-profile-new{% endblock %}
+{% block section_class %}section-profile{% endblock %}
+{% load i18n %}
+{% block content %}
+<div class="row ">
+    <div class="column small-12">
+        <h2 style="text-align: center; margin-top: 40px;">Edit Skillsets</h2>
+        <form method="post" action="">
+            {% csrf_token %}
+            {{ formset.management_form }}
+            {% for form in formset %}
+                {{ form }}
+            {% endfor %}
+        </form>
+    </div>
+</div>
+{% endblock content %}
+{% block extra_javascript %}
+{% endblock extra_javascript %}

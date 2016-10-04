@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+    <div class="row ">
+        <div class="column small-12">
+            <form action="" method="post">{% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Save" />
+            </form>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block extra_javascript %}
+{% endblock extra_javascript %}

@@ -1,0 +1,46 @@
+// ==========================================================================
+// Logo
+// ==========================================================================
+.logo__image {
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: block;
+  float: left;
+  margin: 10px 0 10px 0;
+  height: 34px;
+  line-height: 36px;
+  padding-left: 40px;
+  font-size: 18px;
+  img {
+    display: none;
+  }
+  @media #{$medium-up} {
+    // background-image: url("../images/logo-tshape.png");
+    background-size: 30px 34px;
+  }
+  @media #{$small-only} {
+    // background-image: url("../../images/logo-tshape.png");
+    background-size: 30px 34px;
+  }
+  a {
+    color: #333;
+    text-decoration: none;
+    &:hover {
+      color: #000;
+      text-decoration: underline;
+    }
+  }
+}
+
+.logo__text {
+  margin: 10px 0 10px 0;
+  float: left;
+  a {
+    line-height: 36px;
+    font-size: 22px;
+    font-weight: 400;
+    font-family: $custom-font;
+    text-decoration: none;
+    color: #333;
+  }
+}

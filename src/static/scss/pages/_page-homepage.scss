@@ -1,0 +1,13 @@
+body.page-homepage {
+  h1 {
+    margin: 30px 0 30px 0;
+    text-align: center;
+  }
+  .welcome {
+    text-align: center;
+  }
+  .strip {
+    @include clearfix;
+    background: #EAEAEA;
+  }
+}

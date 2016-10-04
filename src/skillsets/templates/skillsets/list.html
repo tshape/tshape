@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block page_class %}page-profile-skillsets{% endblock %}
+{% block section_class %}section-profile{% endblock %}
+{% load i18n %}
+{% block content %}
+{% include "profiles/_subheader.html" %}
+{% include "profiles/_preview.html" %}
+
+<div class="strip">
+    <div class="row">
+        <div class="column small-12">
+            <a class="button right" href="{% url 'profiles:edit' user.id %}">Edit Skillsets</a>
+            <ul class="skillsets skillsets--added">
+                <li><a class="badge empty" href="#">Add Skillset</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row strip--section">
+    <div class="column small-12">
+        <h1>Skillsets</h1>
+        <h3>Verified Skillsets</h3>
+        <ul class="skillsets">
+            {% for skillset in object_list %}
+                {% if skillset.verified %}
+                    <li>{{ skillset.name }}</li>
+                {% endif %}
+            {% endfor %}
+            <li><a id="add-skillset-javascript" href="#">Javascript</a></li>
+            <li>Angular JS</li>
+            <li>React</li>
+            <li>Python</li>
+            <li>Ruby</li>
+            <li>C++</li>
+            <li>PHP</li>
+            <li>Algorithms</li>
+        </ul>
+    </div>
+</div>
+
+<div class="row strip--section">
+    <div class="column small-12">
+        <h3>Trending User Created Skillsets</h3>
+        <ul class="skillsets">
+            <li>methlab</li>
+            <li>react js</li>
+            <li>flux</li>
+            <li>php7</li>
+        </ul>
+    </div>
+</div>
+
+<div class="row strip--section">
+    <div class="column small-12">
+        <h3>My Custom Skillsets</h3>
+        <ul class="skillsets">
+            <li>Mat Lab</li>
+        </ul>
+    </div>
+</div>
+
+<div class="row ">
+    <div class="column small-12">
+        <a class="button disabled" href="#">Add Custom Skillset</a>
+    </div>
+</div>
+
+{% endblock content %}
+{% block extra_javascript %}
+{% endblock extra_javascript %}

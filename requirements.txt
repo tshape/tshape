@@ -1,0 +1,14 @@
+Django
+psycopg2
+ipython
+fake-factory
+django-extensions
+python-dotenv
+djangorestframework
+drf-nested-routers
+graphene[django]
+Sphinx
+django-template-repl
+dj-database-url
+gunicorn
+whitenoise

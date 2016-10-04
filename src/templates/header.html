@@ -1,0 +1,17 @@
+<div class="header">
+    <div class="row">
+        <div class="column small-12">
+            <div class="logo__text"><a href="/">TShape</a></div>
+            <ul class="menu">
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'profiles:detail' user.id %}">Profile</a></li>
+                    {{ user }}
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'signup' %}">Register</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
