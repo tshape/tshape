@@ -2,6 +2,7 @@
   require('load-grunt-tasks')(grunt);
   require('time-grunt')(grunt);
 
+  // test
   // array of custom javascript files to include.
   var jsApp = [
     'src/tshape/static/js/scripts.js',
