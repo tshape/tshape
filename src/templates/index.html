@@ -7,8 +7,9 @@
     <div class="column small-12">
         <div class="welcome">
             <h1>Welcome to TShape</h1>
+            <h2>DEV</h2>
             {% if user.is_authenticated %}
-                <a class="button large center" href="{% url 'skillsets:edit' user.id %}">Create My TShape</a>
+                
             {% elif user %}
                 <a class="button large center" href="{% url 'signup' %}">Create My TShape</a>
             {% else %}
