@@ -488,6 +488,9 @@ var Profile = React.createClass({
       activeSkill: skill
     });
   },
+  toggleAllSkillsets: function(visibility) {
+    console.log("toggleAllSkillsets", visibility);
+  },
   render: function() {
     var tshapeLength = this.state.mySkillsets.length * 40 + 160;
     var skillsetNameLowerCase = "";
@@ -496,7 +499,7 @@ var Profile = React.createClass({
     }
     return (
       <div>
-        <div className="strip">
+        <div className="strip strip--padding strip--yellow strip--pinline">
           <div className="row">
             <div className="column small-12">
 
@@ -552,7 +555,7 @@ var Profile = React.createClass({
             
           </div>
         </div>
-        <div className="strip">
+        <div className="strip strip--padding-small strip--pinline">
           <div className="row">
             <div className="column small-12">
               <div className="skillsets">
@@ -560,6 +563,7 @@ var Profile = React.createClass({
                   <div className="column small-12">
                     <div className="skillsets__panel--my-skillsets">
                       <h3>My Skillsets</h3>
+                      
                       {this.state.mySkillsets.map(function(value, key) {
                         return (
                           <MySkillsetItem 
@@ -571,6 +575,7 @@ var Profile = React.createClass({
                           />
                         )
                       }.bind(this))}
+                      <a className="add-skillset" onClick={this.toggleAllSkillsets(true)}>Add Skillset <i className="fa fa-plus"></i></a>
                       <div className={"skillsets__panel--all-skillsets " + (this.state.display.allSkillsets.visible === true ? "show" : "hide")}>
                         {Object.keys(this.state.allSkillsets).map(function(value, key) {
                           return (
@@ -618,20 +623,20 @@ var Tshape = React.createClass({
       
       var skillsetNameLowerCase = "";
       if(this.props.skillset.name) {
-        skillsetNameLowerCase = "skillset-name-" + this.props.skillset.name.toLowerCase();
+        skillsetNameLowerCase = this.props.skillset.name.toLowerCase();
       }
 
       return (
         <div className={"tshape__skillset " + skillsetNameLowerCase + " " + (this.props.activeSkillset.id === this.props.skillset.id ? "active" : "inactive")} id={this.props.skillset.id}>
           <div className="tshape__skillset-heading">{this.props.skillset.name}</div>
-            <div className="tshape__skill-container">
+            <div className="tshape__skillset-container">
             {this.props.skillset.skills.map(function(value, key) {
               if (_.isEmpty(value)) {
                 return false;
               } else {
                 return (
                   <div className="tshape__skill" key={key} id={value.id} onClick={this.setActive(value)}>
-                    <div className="tshape__skillname">{value.id}</div>
+                    <div className="tshape__skill-name">{value.id}</div>
                   </div>
                 )
               }
@@ -660,7 +665,7 @@ var MySkillsetItem = React.createClass({
         <span className="skillset__weight">{this.props.skillset.profile_weight}</span>
         <span className="skillset__id">{this.props.skillset.id}</span>
         <span className="skillset__name" onClick={this.setActive(this.props.skillset)}>{this.props.skillset.name}</span>
-        <a className="skillset__remove" href="#" onClick={this.remove(this.props.skillset)}>X</a>
+        <a className="skillset__remove" href="#" onClick={this.remove(this.props.skillset)}><i className="fa fa-remove" aria-hidden="true"></i></a>
       </div>
     )
   }

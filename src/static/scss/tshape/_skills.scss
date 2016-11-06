@@ -148,29 +148,3 @@
 	 	background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
 	}
 }
-
-
-.skillset-name {
-
-}
-.skillset-name-javascript {
-	$color-1: #F0DB4F;
-	$color-2: #efa73b;
-
-	$steps: 10;
-
-	@for $i from 0 to $steps {
-		.skill__item {
-		    &:nth-child(#{$i + 1}) {
-	      		border-left: 5px solid mix($color-1, $color-2, percentage($i / ($steps - 1)));
-		    }
-		}
-	}
-	// .skill__item.active {
-	// 	.skill__tickbox:hover {
-	// 		&:before {
-	// 			color: #efa73b;
-	// 		}
-	// 	}
-	// }
-}
