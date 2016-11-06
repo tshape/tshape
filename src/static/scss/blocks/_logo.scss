@@ -16,7 +16,7 @@
     background-image: url("../images/logo.png");
   }
   @media #{$small-only} {
-    background-image: url("../../images/logo.png");
+    background-image: url("../images/logo.png");
   }
   a {
     color: #333;
