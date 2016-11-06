@@ -1587,7 +1587,7 @@ select {
 @media only screen and (min-width: 768px) {
   /* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
   .logo__image {
-    background-image: url("../images/logo.png");
+    background-image: url("../../images/logo.png");
   }
 }
 
@@ -2525,7 +2525,7 @@ hr, .hr {
 @media only screen and (min-width: 768px) {
   /* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
   .logo__image {
-    background-image: url("../images/logo.png");
+    background-image: url("../../images/logo.png");
   }
 }
 
