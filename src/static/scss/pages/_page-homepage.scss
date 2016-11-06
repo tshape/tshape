@@ -1,13 +1,31 @@
 body.page-homepage {
-  h1 {
-    margin: 30px 0 30px 0;
+  background: #FCFDF5;
+  .callout {
+    margin: 0 0 30px 0;
+    font-size: 42px;
+    line-height: 50px;
+    font-weight: 400;
     text-align: center;
+    color: #333;
+    @media #{$small-only} {
+      font-size: 28px;
+      line-height: 34px;
+    }
   }
-  .welcome {
+  .callout--no-margin {
+    margin-bottom: 0;
+  }
+  .callout--sub {
+    margin: 10px 0 30px 0;
+    font-size: 22px;
+    line-height: 36px;
     text-align: center;
-  }
-  .strip {
-    @include clearfix;
-    background: #EAEAEA;
+    color: #666;
+    font-weight: 300;
+    @media #{$small-only} {
+      margin-top: 15px;
+      font-size: 18px;
+      line-height: 24px;
+    }
   }
 }

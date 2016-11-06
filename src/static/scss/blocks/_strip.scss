@@ -1,7 +1,19 @@
 .strip {
-  // border-bottom: 1px solid #CCC;
   padding: 7px 0 7px 0;
+  @include clearfix;
 }
 .strip--section {
   margin-bottom: 20px;
+}
+.strip--pinline {
+  border-bottom: 1px solid #CCC;
+}
+.strip--center {
+	text-align: center;
+}
+.strip--padding {
+	padding: 50px 0 50px 0;
+}
+.strip--white {
+	background: #FFF;
 }

@@ -1,7 +1,7 @@
 // Core
 @import "foundation/functions";
-@import "settings";
 @import "reset";
+@import "settings";
 @import "breakpoints";
 @import "mixins";
 
@@ -19,7 +19,8 @@
 @import "blocks/type";
 @import "blocks/strip";
 @import "blocks/utility";
-// @import "blocks/push-menu";
+@import "blocks/logo";
+@import "blocks/signup"; 
 // @import "blocks/truncate";
 // @import "blocks/tables";
 // @import "blocks/panel";
@@ -46,16 +47,19 @@
 // Layout
 @import "pages/section-profile";
 @import "pages/page-homepage";
+@import "pages/page-signup";
 
 // Modules
-@import "../modules/slick/slick-theme";
-@import "../modules/slick/slick";
+// @import "../modules/slick/slick-theme";
+// @import "../modules/slick/slick";
 
 // Font
-@import url(http://fonts.googleapis.com/css?family=Lato:200,400,700|Open+Sans:400,700|Roboto:400,700);
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700|Lora:400,400i,700|Open+Sans:300,400,600,700);
+// @import url(http://fonts.googleapis.com/css?family=Lato:200,400,700|Open+Sans:400,700|Roboto:400,700);
 @import "fontawesome/font-awesome";
 
 body {
-    @include display-breakpoint;
+    // @include display-breakpoint;
+	// background: #FCFDF5;
 }
 

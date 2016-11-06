@@ -1,19 +1,6 @@
 @charset "UTF-8";
-/* Setup */
-@import url(http://fonts.googleapis.com/css?family=Lato:200,400,700|Open+Sans:400,700|Roboto:400,700);
-/* line 28, /Users/rob/Projects/tshape/src/static/scss/_settings.scss */
-body {
-  font-family: "Lato", "Open Sans", "helvetica", "arial";
-  font-size: 15px;
-  color: #333;
-}
-
-/* line 34, /Users/rob/Projects/tshape/src/static/scss/_settings.scss */
-* {
-  box-sizing: border-box;
-}
-
 /* CSS Mini Reset */
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700|Lora:400,400i,700|Open+Sans:300,400,600,700);
 /* line 2, /Users/rob/Projects/tshape/src/static/scss/_reset.scss */
 body {
   margin: 0;
@@ -64,6 +51,20 @@ button {
 /* line 37, /Users/rob/Projects/tshape/src/static/scss/_reset.scss */
 button:focus {
   outline: none;
+}
+
+/* Setup */
+/* line 28, /Users/rob/Projects/tshape/src/static/scss/_settings.scss */
+body {
+  font-family: "Open Sans", "Lato", "helvetica", "arial";
+  font-size: 15px;
+  color: #333;
+  padding-top: 59px;
+}
+
+/* line 35, /Users/rob/Projects/tshape/src/static/scss/_settings.scss */
+* {
+  box-sizing: border-box;
 }
 
 /* line 421, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
@@ -1569,18 +1570,16 @@ select {
 
 /* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
 .logo__image {
+  margin-top: 17px;
   background-repeat: no-repeat;
   background-size: contain;
   display: block;
   float: left;
-  margin: 10px 0 10px 0;
-  height: 34px;
-  line-height: 36px;
-  padding-left: 40px;
-  font-size: 18px;
+  width: 81px;
+  height: 23px;
 }
 
-/* line 14, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+/* line 12, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
 .logo__image img {
   display: none;
 }
@@ -1588,27 +1587,33 @@ select {
 @media only screen and (min-width: 768px) {
   /* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
   .logo__image {
-    background-size: 30px 34px;
+    background-image: url("../images/logo.png");
   }
 }
 
 @media only screen and (max-width: 767px) {
   /* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
   .logo__image {
-    background-size: 30px 34px;
+    background-image: url("../../images/logo.png");
   }
 }
 
-/* line 25, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+/* line 21, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
 .logo__image a {
   color: #333;
   text-decoration: none;
 }
 
-/* line 28, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+/* line 24, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
 .logo__image a:hover {
   color: #000;
   text-decoration: underline;
+}
+
+/* line 30, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+.logo--absolute {
+  position: absolute;
+  top: 16px;
 }
 
 /* line 35, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
@@ -1622,7 +1627,7 @@ select {
   line-height: 36px;
   font-size: 22px;
   font-weight: 400;
-  font-family: "Lato", "Open Sans", "helvetica", "arial";
+  font-family: "Lato", "helvetica", "arial";
   text-decoration: none;
   color: #333;
 }
@@ -1631,22 +1636,21 @@ select {
 ul.menu {
   padding: 14px 0 14px 0;
   margin: 0;
-  font-family: "Lato", "Open Sans", "helvetica", "arial";
+  font-family: "Open Sans", "Lato", "helvetica", "arial";
   line-height: 30px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 400;
   vertical-align: middle;
   border-bottom: none;
   z-index: 140;
   float: right;
-  text-transform: uppercase;
 }
 
 /* line 16, /Users/rob/Projects/tshape/src/static/scss/blocks/_menu.scss */
 ul.menu li {
   float: left;
   display: block;
-  font-family: "Lato", "Open Sans", "helvetica", "arial";
+  font-family: "Open Sans", "Lato", "helvetica", "arial";
   margin: 0;
   padding: 0;
 }
@@ -1660,20 +1664,20 @@ ul.menu li:first-child a {
 ul.menu li a {
   display: block;
   background: none;
-  color: #1839D6;
+  color: #50E3C2;
   text-decoration: none;
   padding: 0 10px 0 10px;
 }
 
 /* line 31, /Users/rob/Projects/tshape/src/static/scss/blocks/_menu.scss */
 ul.menu li a:hover {
-  color: #1839D6;
+  color: #50E3C2;
   text-decoration: underline;
 }
 
 /* line 35, /Users/rob/Projects/tshape/src/static/scss/blocks/_menu.scss */
 ul.menu li a.active {
-  color: #1839D6;
+  color: #50E3C2;
   text-decoration: underline;
 }
 
@@ -1682,7 +1686,7 @@ ul.menu li span {
   padding: 10px 18px;
   display: block;
   background: none;
-  color: #1839D6;
+  color: #50E3C2;
   cursor: context-menu;
 }
 
@@ -1725,69 +1729,74 @@ ul.menu li.expanded ul ul li a {
 }
 
 /* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
-.button {
+.button, input.button {
   display: inline-block;
   position: relative;
   text-decoration: none;
-  font-weight: 400;
+  font-weight: 500;
   text-align: left;
-  padding: 5px 11px 7px 11px;
+  padding: 6px 12px 8px 12px;
   font-size: 14px;
-  background: #1839D6;
+  background: #50E3C2;
+  color: #FFF;
+  border: none;
+  outline: 0;
+  cursor: pointer;
+  border-radius: 2px;
 }
 
-/* line 13, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 18, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button:link, .button:visited {
   color: #FFF;
 }
 
-/* line 16, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 21, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button:hover, .button:focus {
-  background-color: #132da8;
+  background-color: #24dcb3;
   text-decoration: none;
 }
 
-/* line 21, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 26, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.secondary {
   background-color: #62E35C;
 }
 
-/* line 23, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 28, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.secondary:link, .button.secondary:visited {
   color: #FFF;
 }
 
-/* line 26, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 31, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.secondary:hover, .button.secondary:focus {
   background-color: #38dc30;
   text-decoration: none;
 }
 
-/* line 31, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 36, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.empty {
   background: none;
   border: 1px dashed #CCC;
   color: #999;
 }
 
-/* line 35, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 40, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.empty:hover {
   background-color: #EAEAEA;
   border-color: #333;
 }
 
-/* line 40, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 45, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.disabled {
   background-color: #DDD;
   color: #999;
 }
 
-/* line 43, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 48, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.disabled:hover {
   background-color: #DDD;
 }
 
-/* line 48, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 53, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.full {
   padding: 11px 15px 10px 15px;
   display: block;
@@ -1795,37 +1804,37 @@ ul.menu li.expanded ul ul li a {
   text-align: center;
 }
 
-/* line 54, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 59, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.small {
   padding: 6px 11px 5px 11px;
 }
 
-/* line 57, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 62, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.medium {
-  padding: 11px 15px 10px 15px;
+  padding: 11px 15px 12px 15px;
 }
 
-/* line 60, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 65, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.large {
   padding: 16px 20px 15px 20px;
 }
 
-/* line 64, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 69, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.align-left {
   text-align: left;
 }
 
-/* line 67, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 72, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.center, .button.align-center {
   text-align: center;
 }
 
-/* line 71, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 76, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.button-back, .button.back {
   padding-left: 34px;
 }
 
-/* line 73, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 78, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.button-back:after, .button.back:after {
   position: absolute;
   content: "\f104";
@@ -1840,12 +1849,12 @@ ul.menu li.expanded ul ul li a {
   line-height: 20px;
 }
 
-/* line 87, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 92, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.arrow {
   padding-right: 34px;
 }
 
-/* line 89, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 94, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.arrow:after {
   position: absolute;
   content: "\f105";
@@ -1860,12 +1869,12 @@ ul.menu li.expanded ul ul li a {
   line-height: 20px;
 }
 
-/* line 103, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 108, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.button-external, .button.external {
   padding-right: 40px;
 }
 
-/* line 105, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 110, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.button-external:after, .button.external:after {
   position: absolute;
   content: "\f08e";
@@ -1880,18 +1889,18 @@ ul.menu li.expanded ul ul li a {
   line-height: 20px;
 }
 
-/* line 120, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 125, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.button-right, .button.right {
   float: right;
 }
 
-/* line 123, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 128, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.button-left, .button.left {
   float: left;
 }
 
 @media only screen and (max-width: 767px) {
-  /* line 126, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+  /* line 131, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
   .button.full-on-mobile {
     float: none;
     display: block;
@@ -1900,19 +1909,25 @@ ul.menu li.expanded ul ul li a {
   }
 }
 
-/* line 134, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 139, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.no-margin {
   margin: 0;
 }
 
-/* line 137, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 142, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.no-bottom-margin, .button.no-margin-bottom {
   margin-bottom: 0;
 }
 
-/* line 141, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 146, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button .fa {
   margin-left: 8px;
+}
+
+/* line 156, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+.button--signup {
+  margin: 0;
+  margin-top: 20px;
 }
 
 /* line 3, /Users/rob/Projects/tshape/src/static/scss/blocks/_forms.scss */
@@ -2148,7 +2163,7 @@ select:focus {
 /* line 6, /Users/rob/Projects/tshape/src/static/scss/blocks/_header.scss */
 .header {
   background-color: #FFF;
-  min-height: 58px;
+  min-height: 59px;
   width: 100%;
   border-bottom: 1px solid #CCC;
 }
@@ -2162,13 +2177,13 @@ select:focus {
 
 /* line 18, /Users/rob/Projects/tshape/src/static/scss/blocks/_header.scss */
 body.body-header-fixed {
-  margin-top: 58px;
+  margin-top: 59px;
 }
 
 /* line 7, /Users/rob/Projects/tshape/src/static/scss/blocks/_type.scss */
 p {
   color: #333;
-  font-family: "Lato", "Open Sans", "helvetica", "arial";
+  font-family: "Open Sans", "Lato", "helvetica", "arial";
   font-size: 15px;
   line-height: 24px;
   margin: 0;
@@ -2177,25 +2192,18 @@ p {
 
 /* line 17, /Users/rob/Projects/tshape/src/static/scss/blocks/_type.scss */
 a {
-  color: #1839D6;
+  color: #50E3C2;
   text-decoration: underline;
 }
 
 /* line 20, /Users/rob/Projects/tshape/src/static/scss/blocks/_type.scss */
 a:hover {
-  color: #0e217a;
-}
-
-/* line 25, /Users/rob/Projects/tshape/src/static/scss/blocks/_type.scss */
-img {
-  display: block;
-  width: 100%;
-  height: auto;
+  color: #1cb18f;
 }
 
 /* line 30, /Users/rob/Projects/tshape/src/static/scss/blocks/_type.scss */
 h1 {
-  font-family: "Lato", "Open Sans", "helvetica", "arial";
+  font-family: "Lato", "helvetica", "arial";
   font-size: 56px;
   line-height: 66px;
   font-weight: 300;
@@ -2205,7 +2213,7 @@ h1 {
 
 /* line 38, /Users/rob/Projects/tshape/src/static/scss/blocks/_type.scss */
 h2 {
-  font-family: "Lato", "Open Sans", "helvetica", "arial";
+  font-family: "Lato", "helvetica", "arial";
   font-size: 26px;
   line-height: 32px;
   font-weight: 500;
@@ -2215,7 +2223,7 @@ h2 {
 
 /* line 46, /Users/rob/Projects/tshape/src/static/scss/blocks/_type.scss */
 h3 {
-  font-family: "Lato", "Open Sans", "helvetica", "arial";
+  font-family: "Lato", "helvetica", "arial";
   font-size: 18px;
   line-height: 22px;
   font-weight: 700;
@@ -2225,7 +2233,7 @@ h3 {
 
 /* line 54, /Users/rob/Projects/tshape/src/static/scss/blocks/_type.scss */
 h4 {
-  font-family: "Lato", "Open Sans", "helvetica", "arial";
+  font-family: "Lato", "helvetica", "arial";
   font-size: 16px;
   font-weight: 700;
   color: #333;
@@ -2234,7 +2242,7 @@ h4 {
 
 /* line 61, /Users/rob/Projects/tshape/src/static/scss/blocks/_type.scss */
 h5 {
-  font-family: "Lato", "Open Sans", "helvetica", "arial";
+  font-family: "Lato", "helvetica", "arial";
   font-size: 12px;
   font-weight: 700;
   color: #333;
@@ -2243,7 +2251,7 @@ h5 {
 
 /* line 68, /Users/rob/Projects/tshape/src/static/scss/blocks/_type.scss */
 h6 {
-  font-family: "Lato", "Open Sans", "helvetica", "arial";
+  font-family: "Lato", "helvetica", "arial";
   font-size: 11px;
   font-weight: 700;
   color: #333;
@@ -2287,7 +2295,7 @@ blockquote, .blockquote {
   margin: 0 0 20px 0;
   padding: 14px;
   background: #f2f2f2;
-  color: #1839D6;
+  color: #50E3C2;
   font-size: 18px;
   line-height: 1.5;
   font-weight: 200;
@@ -2442,9 +2450,40 @@ hr, .hr {
   padding: 7px 0 7px 0;
 }
 
+/* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.strip:before, .strip:after {
+  content: " ";
+  display: table;
+}
+
+/* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.strip:after {
+  clear: both;
+}
+
 /* line 5, /Users/rob/Projects/tshape/src/static/scss/blocks/_strip.scss */
 .strip--section {
   margin-bottom: 20px;
+}
+
+/* line 8, /Users/rob/Projects/tshape/src/static/scss/blocks/_strip.scss */
+.strip--pinline {
+  border-bottom: 1px solid #CCC;
+}
+
+/* line 11, /Users/rob/Projects/tshape/src/static/scss/blocks/_strip.scss */
+.strip--center {
+  text-align: center;
+}
+
+/* line 14, /Users/rob/Projects/tshape/src/static/scss/blocks/_strip.scss */
+.strip--padding {
+  padding: 50px 0 50px 0;
+}
+
+/* line 17, /Users/rob/Projects/tshape/src/static/scss/blocks/_strip.scss */
+.strip--white {
+  background: #FFF;
 }
 
 /* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_utility.scss */
@@ -2454,6 +2493,104 @@ hr, .hr {
 
 /* line 7, /Users/rob/Projects/tshape/src/static/scss/blocks/_utility.scss */
 .hide {
+  display: none;
+}
+
+/* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+.logo__image {
+  margin-top: 17px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: block;
+  float: left;
+  width: 81px;
+  height: 23px;
+}
+
+/* line 12, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+.logo__image img {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  /* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+  .logo__image {
+    background-image: url("../images/logo.png");
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  /* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+  .logo__image {
+    background-image: url("../../images/logo.png");
+  }
+}
+
+/* line 21, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+.logo__image a {
+  color: #333;
+  text-decoration: none;
+}
+
+/* line 24, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+.logo__image a:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+/* line 30, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+.logo--absolute {
+  position: absolute;
+  top: 16px;
+}
+
+/* line 35, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+.logo__text {
+  margin: 10px 0 10px 0;
+  float: left;
+}
+
+/* line 38, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+.logo__text a {
+  line-height: 36px;
+  font-size: 22px;
+  font-weight: 400;
+  font-family: "Lato", "helvetica", "arial";
+  text-decoration: none;
+  color: #333;
+}
+
+/* line 1, /Users/rob/Projects/tshape/src/static/scss/blocks/_signup.scss */
+.signup {
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 60px;
+  border: 1px solid #CCC;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+  background: #FFF;
+  padding: 20px;
+}
+
+/* line 12, /Users/rob/Projects/tshape/src/static/scss/blocks/_signup.scss */
+ul.errorlist {
+  padding: 0;
+  margin: 0 0 10px 0;
+  font-size: 12px;
+  color: red;
+}
+
+/* line 17, /Users/rob/Projects/tshape/src/static/scss/blocks/_signup.scss */
+ul.errorlist li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 12px;
+  color: red;
+}
+
+/* line 27, /Users/rob/Projects/tshape/src/static/scss/blocks/_signup.scss */
+.signup .helptext {
   display: none;
 }
 
@@ -4208,338 +4345,56 @@ body.section-profile h1 {
   line-height: 50px;
 }
 
-/* line 2, /Users/rob/Projects/tshape/src/static/scss/pages/_page-homepage.scss */
-body.page-homepage h1 {
-  margin: 30px 0 30px 0;
+/* line 1, /Users/rob/Projects/tshape/src/static/scss/pages/_page-homepage.scss */
+body.page-homepage {
+  background: #FCFDF5;
+}
+
+/* line 3, /Users/rob/Projects/tshape/src/static/scss/pages/_page-homepage.scss */
+body.page-homepage .callout {
+  margin: 0 0 30px 0;
+  font-size: 42px;
+  line-height: 50px;
+  font-weight: 400;
   text-align: center;
+  color: #333;
 }
 
-/* line 6, /Users/rob/Projects/tshape/src/static/scss/pages/_page-homepage.scss */
-body.page-homepage .welcome {
+@media only screen and (max-width: 767px) {
+  /* line 3, /Users/rob/Projects/tshape/src/static/scss/pages/_page-homepage.scss */
+  body.page-homepage .callout {
+    font-size: 28px;
+    line-height: 34px;
+  }
+}
+
+/* line 15, /Users/rob/Projects/tshape/src/static/scss/pages/_page-homepage.scss */
+body.page-homepage .callout--no-margin {
+  margin-bottom: 0;
+}
+
+/* line 18, /Users/rob/Projects/tshape/src/static/scss/pages/_page-homepage.scss */
+body.page-homepage .callout--sub {
+  margin: 10px 0 30px 0;
+  font-size: 22px;
+  line-height: 36px;
   text-align: center;
+  color: #666;
+  font-weight: 300;
 }
 
-/* line 9, /Users/rob/Projects/tshape/src/static/scss/pages/_page-homepage.scss */
-body.page-homepage .strip {
-  background: #EAEAEA;
+@media only screen and (max-width: 767px) {
+  /* line 18, /Users/rob/Projects/tshape/src/static/scss/pages/_page-homepage.scss */
+  body.page-homepage .callout--sub {
+    margin-top: 15px;
+    font-size: 18px;
+    line-height: 24px;
+  }
 }
 
-/* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-body.page-homepage .strip:before, body.page-homepage .strip:after {
-  content: " ";
-  display: table;
-}
-
-/* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-body.page-homepage .strip:after {
-  clear: both;
-}
-
-/* Slider */
-/* Icons */
-@font-face {
-  font-family: "slick";
-  src: url("../modules/slick/fonts/slick.eot");
-  src: url("../modules/slick/fonts/slick.eot?#iefix") format("embedded-opentype"), url("../modules/slick/fonts/slick.woff") format("woff"), url("../modules/slick/fonts/slick.ttf") format("truetype"), url("../modules/slick/fonts/slick.svg#slick") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
-/* Arrows */
-/* line 63, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-prev,
-.slick-next {
-  position: absolute;
-  display: block;
-  height: 20px;
-  width: 20px;
-  line-height: 0px;
-  font-size: 0px;
-  cursor: pointer;
-  background: transparent;
-  color: transparent;
-  top: 50%;
-  -webkit-transform: translate(0, -50%);
-  -ms-transform: translate(0, -50%);
-  transform: translate(0, -50%);
-  padding: 0;
-  border: none;
-  outline: none;
-}
-
-/* line 81, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-prev:hover, .slick-prev:focus,
-.slick-next:hover,
-.slick-next:focus {
-  outline: none;
-  background: transparent;
-  color: transparent;
-}
-
-/* line 85, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-prev:hover:before, .slick-prev:focus:before,
-.slick-next:hover:before,
-.slick-next:focus:before {
-  opacity: 1;
-}
-
-/* line 89, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-prev.slick-disabled:before,
-.slick-next.slick-disabled:before {
-  opacity: 0.25;
-}
-
-/* line 92, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-prev:before,
-.slick-next:before {
-  font-family: "slick";
-  font-size: 20px;
-  line-height: 1;
-  color: #1839D6;
-  opacity: 0.75;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* line 103, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-prev {
-  left: -25px;
-}
-
-/* line 105, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-[dir="rtl"] .slick-prev {
-  left: auto;
-  right: -25px;
-}
-
-/* line 109, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-prev:before {
-  content: "←";
-}
-
-/* line 111, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-[dir="rtl"] .slick-prev:before {
-  content: "→";
-}
-
-/* line 117, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-next {
-  right: -25px;
-}
-
-/* line 119, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-[dir="rtl"] .slick-next {
-  left: -25px;
-  right: auto;
-}
-
-/* line 123, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-next:before {
-  content: "→";
-}
-
-/* line 125, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-[dir="rtl"] .slick-next:before {
-  content: "←";
-}
-
-/* Dots */
-/* line 133, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-dotted.slick-slider {
-  margin-bottom: 30px;
-}
-
-/* line 137, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-dots {
-  position: absolute;
-  bottom: -25px;
-  list-style: none;
-  display: block;
-  text-align: center;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-}
-
-/* line 146, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-dots li {
-  position: relative;
-  display: inline-block;
-  height: 20px;
-  width: 20px;
-  margin: 0 5px;
-  padding: 0;
-  cursor: pointer;
-}
-
-/* line 154, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-dots li button {
-  border: 0;
-  background: transparent;
-  display: block;
-  height: 20px;
-  width: 20px;
-  outline: none;
-  line-height: 0px;
-  font-size: 0px;
-  color: transparent;
-  padding: 5px;
-  cursor: pointer;
-}
-
-/* line 166, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-dots li button:hover, .slick-dots li button:focus {
-  outline: none;
-}
-
-/* line 168, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-dots li button:hover:before, .slick-dots li button:focus:before {
-  opacity: 1;
-}
-
-/* line 172, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-dots li button:before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: "•";
-  width: 20px;
-  height: 20px;
-  font-family: "slick";
-  font-size: 10px;
-  line-height: 20px;
-  text-align: center;
-  color: black;
-  opacity: 0.25;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* line 189, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-dots li.slick-active button:before {
-  color: black;
-  opacity: 0.75;
-}
-
-/* Slider */
-/* line 3, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-slider {
-  position: relative;
-  display: block;
-  box-sizing: border-box;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -ms-touch-action: pan-y;
-  touch-action: pan-y;
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* line 17, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-list {
-  position: relative;
-  overflow: hidden;
-  display: block;
-  margin: 0;
-  padding: 0;
-}
-
-/* line 24, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-list:focus {
-  outline: none;
-}
-
-/* line 28, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-list.dragging {
-  cursor: pointer;
-  cursor: hand;
-}
-
-/* line 33, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-slider .slick-track,
-.slick-slider .slick-list {
-  -webkit-transform: translate3d(0, 0, 0);
-  -moz-transform: translate3d(0, 0, 0);
-  -ms-transform: translate3d(0, 0, 0);
-  -o-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-}
-
-/* line 42, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-track {
-  position: relative;
-  left: 0;
-  top: 0;
-  display: block;
-}
-
-/* line 48, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-track:before, .slick-track:after {
-  content: "";
-  display: table;
-}
-
-/* line 54, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-track:after {
-  clear: both;
-}
-
-/* line 58, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-loading .slick-track {
-  visibility: hidden;
-}
-
-/* line 62, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-slide {
-  float: left;
-  height: 100%;
-  min-height: 1px;
-  display: none;
-}
-
-/* line 66, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-[dir="rtl"] .slick-slide {
-  float: right;
-}
-
-/* line 69, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-slide img {
-  display: block;
-}
-
-/* line 72, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-slide.slick-loading img {
-  display: none;
-}
-
-/* line 78, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-slide.dragging img {
-  pointer-events: none;
-}
-
-/* line 82, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-initialized .slick-slide {
-  display: block;
-}
-
-/* line 86, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-loading .slick-slide {
-  visibility: hidden;
-}
-
-/* line 90, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-vertical .slick-slide {
-  display: block;
-  height: auto;
-  border: 1px solid transparent;
-}
-
-/* line 96, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-arrow.slick-hidden {
-  display: none;
+/* line 1, /Users/rob/Projects/tshape/src/static/scss/pages/_page-signup.scss */
+body.page-signup {
+  background: #FCFDF5;
 }
 
 /*!
@@ -7804,83 +7659,6 @@ body.page-homepage .strip:after {
 /* line 588, /Users/rob/Projects/tshape/src/static/scss/fontawesome/_icons.scss */
 .fa-fonticons:before {
   content: "";
-}
-
-/* line 31, /Users/rob/Projects/tshape/src/static/scss/_breakpoints.scss */
-body:after {
-  background: black;
-  color: #FFFFFF;
-  opacity: 0.8;
-  padding: .5em 1em;
-  position: fixed;
-  text-align: center;
-  bottom: 0;
-  right: 0;
-  z-index: 999;
-}
-
-@media only screen {
-  /* line 31, /Users/rob/Projects/tshape/src/static/scss/_breakpoints.scss */
-  body:after {
-    background: orange;
-    content: "small-up";
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  /* line 31, /Users/rob/Projects/tshape/src/static/scss/_breakpoints.scss */
-  body:after {
-    background: orange;
-    content: "small - 0px, 767px";
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  /* line 31, /Users/rob/Projects/tshape/src/static/scss/_breakpoints.scss */
-  body:after {
-    background: red;
-    content: "medium-up";
-  }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-  /* line 31, /Users/rob/Projects/tshape/src/static/scss/_breakpoints.scss */
-  body:after {
-    background: red;
-    content: "medium - 768px, 1024px)";
-  }
-}
-
-@media only screen and (min-width: 1025px) {
-  /* line 31, /Users/rob/Projects/tshape/src/static/scss/_breakpoints.scss */
-  body:after {
-    background: green;
-    content: "large-up";
-  }
-}
-
-@media only screen and (min-width: 1025px) and (max-width: 1440px) {
-  /* line 31, /Users/rob/Projects/tshape/src/static/scss/_breakpoints.scss */
-  body:after {
-    background: green;
-    content: "large - 1025px, 1440px";
-  }
-}
-
-@media only screen and (min-width: 1441px) {
-  /* line 31, /Users/rob/Projects/tshape/src/static/scss/_breakpoints.scss */
-  body:after {
-    background: blue;
-    content: "xlarge-up";
-  }
-}
-
-@media only screen and (min-width: 1441px) and (max-width: 5000px) {
-  /* line 31, /Users/rob/Projects/tshape/src/static/scss/_breakpoints.scss */
-  body:after {
-    background: blue;
-    content: "xlarge - 1441px, 5000px";
-  }
 }
 
 /*# sourceMappingURL=style.css.map */
