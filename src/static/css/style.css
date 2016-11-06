@@ -1584,45 +1584,31 @@ select {
   display: none;
 }
 
-@media only screen and (min-width: 768px) {
-  /* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
-  .logo__image {
-    background-image: url("../../images/logo.png");
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  /* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
-  .logo__image {
-    background-image: url("../../images/logo.png");
-  }
-}
-
-/* line 21, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+/* line 19, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
 .logo__image a {
   color: #333;
   text-decoration: none;
 }
 
-/* line 24, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+/* line 22, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
 .logo__image a:hover {
   color: #000;
   text-decoration: underline;
 }
 
-/* line 30, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+/* line 28, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
 .logo--absolute {
   position: absolute;
   top: 16px;
 }
 
-/* line 35, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+/* line 33, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
 .logo__text {
   margin: 10px 0 10px 0;
   float: left;
 }
 
-/* line 38, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+/* line 36, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
 .logo__text a {
   line-height: 36px;
   font-size: 22px;
@@ -2522,45 +2508,31 @@ hr, .hr {
   display: none;
 }
 
-@media only screen and (min-width: 768px) {
-  /* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
-  .logo__image {
-    background-image: url("../../images/logo.png");
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  /* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
-  .logo__image {
-    background-image: url("../../images/logo.png");
-  }
-}
-
-/* line 21, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+/* line 19, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
 .logo__image a {
   color: #333;
   text-decoration: none;
 }
 
-/* line 24, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+/* line 22, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
 .logo__image a:hover {
   color: #000;
   text-decoration: underline;
 }
 
-/* line 30, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+/* line 28, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
 .logo--absolute {
   position: absolute;
   top: 16px;
 }
 
-/* line 35, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+/* line 33, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
 .logo__text {
   margin: 10px 0 10px 0;
   float: left;
 }
 
-/* line 38, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+/* line 36, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
 .logo__text a {
   line-height: 36px;
   font-size: 22px;
