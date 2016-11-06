@@ -2,34 +2,32 @@
 // Logo
 // ==========================================================================
 .logo__image {
+  margin-top: 17px;
   background-repeat: no-repeat;
   background-size: contain;
   display: block;
   float: left;
-  margin: 10px 0 10px 0;
-  height: 34px;
-  line-height: 36px;
-  padding-left: 40px;
-  font-size: 18px;
+  width: 81px;
+  height: 23px;
   img {
     display: none;
   }
   @media #{$medium-up} {
-    // background-image: url("../images/logo-tshape.png");
-    background-size: 30px 34px;
   }
   @media #{$small-only} {
-    // background-image: url("../../images/logo-tshape.png");
-    background-size: 30px 34px;
   }
   a {
     color: #333;
-    text-decoration: none;
+    text-decoration: none; 
     &:hover {
       color: #000;
       text-decoration: underline;
     }
   }
+}
+.logo--absolute {
+  position: absolute;
+  top: 16px;
 }
 
 .logo__text {

@@ -180,8 +180,9 @@
 
 // White Box
 @mixin whitebox {
-  background: #FFFFFF;
-  border: 1px solid #EAEAEA;
+  border: 1px solid #dedede;
+  box-shadow: 0px 1px 4px rgba(0,0,0,0.1);
+  border-radius: 2px;
 }
 
 // No Box

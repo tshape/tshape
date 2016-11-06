@@ -1,7 +1,11 @@
 {% extends "base.html" %}
+{% load staticfiles %}
+{% block page_class %}page-signup{% endblock %}
+{% block section_class %}section-signup{% endblock %}
 
 {% block content %}
-
+    <div class="signup">
+    <h2>Signup</h2>
     {% if form.errors %}
         {% for error in field.errors %}
             <div class="alert alert-error">
@@ -17,8 +21,9 @@
 
     <form action='' method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Sign Up">
+        {{ form }}
+        <input type="submit" value="Sign Up" class="button button--signup medium">
     </form>
+    </div>
 
 {% endblock %}

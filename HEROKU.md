@@ -14,12 +14,16 @@ From the project root, the following commands will install the Tshape app locall
 
 ```
 virtualenv venv
+// or
+virtualenv -p python3 venv
 ```
 ```
 source venv/bin/activate
 ```
 ```
 pip install requirements.txt
+// or
+pip install -r requirements.txt
 ```
 ```
 python src/manage.py collectstatic
