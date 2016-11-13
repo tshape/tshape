@@ -4,7 +4,7 @@
   background-image: url("../images/grid.png");
   background-repeat: repeat;
   background-color: #FFF;
-  // background-position: -50px 151px;
+  background-position: 0px 50px;
   @include whitebox;
   // Tshape Header
   .tshape__header {
@@ -12,11 +12,12 @@
     border-bottom: 1px solid #EAEAEA;
     margin-bottom: 10px;
     padding: 10px;
+    height: 50px;
     background-color: #FFF;
     .tshape__role {
       font-weight: bold;
       font-size: 16px;
-      line-height: 20px;
+      line-height: 28px;
       float: left;
       margin: 0;
       margin-right: 5px;
@@ -24,7 +25,7 @@
     .tshape__user {
       font-weight: 300;
       font-size: 16px;
-      line-height: 20px;
+      line-height: 28px;
       float: left;
       margin: 0;
       margin-right: 5px;
@@ -32,12 +33,12 @@
     }
     .tshape__avatar {
       width: 30px;
-      height: 20px;
+      height: 30px;
       border-radius: 15px;
       background-image: url("../images/rob.jpg");
       background-size: contain;
       float: left;
-      margin-right: 5px;
+      margin-right: 8px;
     }
     .tshape__github, .tshape__linkedin {
       display: none;
@@ -83,7 +84,8 @@
     @include clearfix;
     margin: 0 auto;
     margin-top: 80px;
-    // height: 200px;
+    // height: 400px;
+    min-height: 160px;
     height: auto;
     text-align: center;
     // border-top: 1px solid #CCC;
@@ -95,6 +97,7 @@
     text-align: center;
     position: relative;
     width: 40px;
+    min-height: 40px;
     // height: 200px;
     height: auto;
     // border-right: 1px dotted #CCC;

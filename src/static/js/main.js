@@ -16,9 +16,7 @@ var Profile = React.createClass({
       activeSkillset: {"id": null},
       activeSkill: {"id": null},
       display: {
-        "allSkillsets": {
-          "visible": true
-        }
+        "showAllSkillsets": false
       }
     };
   },
@@ -479,7 +477,8 @@ var Profile = React.createClass({
   setActiveSkillset: function(skillset) {
     console.log("setActiveSkillset", skillset.name, skillset.id);
     this.setState({
-      activeSkillset: skillset
+      activeSkillset: skillset,
+      activeSkill: {"id": null}
     });
   },
   setActiveSkill: function(skill) {
@@ -488,8 +487,21 @@ var Profile = React.createClass({
       activeSkill: skill
     });
   },
-  toggleAllSkillsets: function(visibility) {
-    console.log("toggleAllSkillsets", visibility);
+  toggleAllSkillsets: function() {
+    if(this.state.display.showAllSkillsets === true) {
+      this.setState({
+        display: {
+          showAllSkillsets: false
+        }
+      });
+    }
+    else {
+      this.setState({
+        display: {
+          showAllSkillsets: true
+        }
+      });
+    }
   },
   render: function() {
     var tshapeLength = this.state.mySkillsets.length * 40 + 160;
@@ -575,27 +587,29 @@ var Profile = React.createClass({
                           />
                         )
                       }.bind(this))}
-                      <a className="add-skillset" onClick={this.toggleAllSkillsets(true)}>Add Skillset <i className="fa fa-plus"></i></a>
-                      <div className={"skillsets__panel--all-skillsets " + (this.state.display.allSkillsets.visible === true ? "show" : "hide")}>
-                        {Object.keys(this.state.allSkillsets).map(function(value, key) {
-                          return (
-                            <AllSkillsetItem 
-                              key={key}
-                              skillset={this.state.allSkillsets[value]}
-                              activeSkillset={this.state.activeSkillset} 
-                              onAdd={this.handleSkillsetPut} 
-                            />
-                          )
-                        }.bind(this))}
-                      </div>
+                      <a className="add-skillset" onClick={this.toggleAllSkillsets.bind(null, true)}>Add Skillset <i className="fa fa-plus"></i></a>
                     </div>
+
+                    <div className={"skillsets__panel--all-skillsets " + (this.state.display.showAllSkillsets == true ? "show" : "hide")}>
+                      {Object.keys(this.state.allSkillsets).map(function(value, key) {
+                        return (
+                          <AllSkillsetItem 
+                            key={key}
+                            skillset={this.state.allSkillsets[value]}
+                            activeSkillset={this.state.activeSkillset} 
+                            onAdd={this.handleSkillsetPut} 
+                          />
+                        )
+                      }.bind(this))}
+                    </div>
+
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="strip">
+        <div className="strip strip--padding-small">
           <Skills
             key="1"
             allSkillset={this.state.allSkillsets[this.state.activeSkillset.id]}  
@@ -678,6 +692,7 @@ var AllSkillsetItem = React.createClass({
     }.bind(this);
   },
   render: function() {
+
     if (this.props.skillset.active) {
       return (
         <li className={"skillset__item skillset__item--text active " + (this.props.activeSkillset.id === this.props.skillset.id ? "selected" : "not-selected")}>
@@ -928,6 +943,7 @@ var SkillDescription = React.createClass({
     } else {
       var item = 
         <div className={"skill-info"} >
+          <span className="skill-info__weight">{this.props.activeSkill.weight}</span>
           <h3 className="skill-info__name">{this.props.activeSkill.name}</h3>
           <p className="skill-info__description">{this.props.activeSkill.description}</p>
         </div>
@@ -959,14 +975,14 @@ var Skills = React.createClass({
 
     var skillsetNameLowerCase = "";
     if(this.props.activeSkillset.name) {
-      skillsetNameLowerCase = "skillset-name-" + this.props.activeSkillset.name.toLowerCase();
+      skillsetNameLowerCase = "label-" + this.props.activeSkillset.name.toLowerCase();
     }
 
     var skills = [];
     var skillsSorted = [];
 
     if (this.props.activeSkillset.id === null) {
-      skills = <li>Please select a skillset</li>
+      skills = <p>Select or add a skillset above</p>
     } else if(this.props.activeSkillset.id !== null && this.props.skillset === null) {
       skills = <li>No all skills</li>
     } else {
@@ -976,14 +992,14 @@ var Skills = React.createClass({
           return (
             <div className={"skill__item skill__item--verified active"} key={key}>
               <a href="#" className="skill__tickbox skill__tickbox--ticked" onClick={this.remove(value)}></a>
-              <a href="#" className="skill__name" onClick={this.show(value)} >{value.name} | {value.weight}</a>
+              <a href="#" className="skill__name" onClick={this.show(value)} >{value.name}</a>
             </div>
           )
         } else if (value.active === false && value.verified === true) {
           return (
             <div className={"skill__item skill__item--verified inactive"} key={key} >
                <a href="#" className="skill__tickbox skill__tickbox--unticked" onClick={this.add(value)}></a>
-               <a href="#" className="skill__name" onClick={this.show(value)} >{value.name} | {value.weight}</a>
+               <a href="#" className="skill__name" onClick={this.show(value)} >{value.name}</a>
             </div>
           )
         }
@@ -993,13 +1009,15 @@ var Skills = React.createClass({
     var skillDescription = null;
 
     if (this.props.activeSkill.id === null) {
-      skillDescription = <div>Please select a skill</div>
+      skillDescription = <div></div>
     } else {
       skillDescription = (
         <div className={"skill-info"} >
-          <h5 className="skill-info__name">{this.props.activeSkillset.name}</h5>
-          <h3 className="skill-info__name">{this.props.activeSkill.name}</h3>
-          <p className="skill-info__description">{this.props.activeSkill.description}</p>
+           <div className="skill-info__middle">
+            <span className="skill-info__weight label-background">{this.props.activeSkill.weight}</span>
+            <h3 className="skill-info__skill-name">{this.props.activeSkill.name}</h3>
+            <p className="skill-info__description">{this.props.activeSkill.description}</p>
+          </div>
         </div>
       )
     }
@@ -1008,20 +1026,15 @@ var Skills = React.createClass({
       <div className={"skills " + skillsetNameLowerCase}>
         <div className="row">
           <div className="column small-7">
-            <h3 className="skills__heading skills__heading-myskills">My <span>{this.props.activeSkillset.name}</span> Skills</h3>
-            <div className="skills__panel--my-skills">
+            <h3 className="skills__heading skills__heading-myskills">{this.props.activeSkillset.name}</h3>
               {skills}
-            </div>
           </div>
           <div className="column small-5">
-            <div className="skills__panel--all-skills">
               {skillDescription}
-            </div>
           </div>
         </div>
       </div>
     )
-    
     
   }
 });
