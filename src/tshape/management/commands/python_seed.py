@@ -1,10 +1,10 @@
 from skills.models import Skill
 from skillsets.models import Skillset
 
-__all__ = ["JAVASCRIPT_SKILLS"]
+__all__ = ["PYTHON_SKILLS"]
 
 
-JAVASCRIPT_SKILLS = {
+PYTHON_SKILLS = {
     Skillset: {
         Skill: [{
             "name": "skill 1 name",
