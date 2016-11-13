@@ -7,7 +7,7 @@
 <div class="strip strip--pinline strip--center strip--padding">
     <div class="row ">
         <div class="column small-12">
-            <h1 class="callout">Tshape provides a standardised scale to rate and compare your skills.</h1>
+            <h1 class="callout">Highlight your skills, strengths and weaknesses</h1>
             <img src="{% static 'images/tshape.png' %}">
         </div>
         
@@ -17,8 +17,8 @@
 <div class="strip strip--pinline strip--center strip--padding">
     <div class="row ">
         <div class="column small-12">
-            <h1 class="callout callout--no-margin">Report and compare your skills objectively.</h1>
-            <h2 class="callout callout--sub">Tshape SSD’s (Standardized Skillset Definations) create a non-arbitray rating scale from 1 - 10. </h2>
+            <h1 class="callout callout--no-margin">Rate your skills objectively</h1>
+            <h2 class="callout callout--sub">Tshape SSD’s (Standardized Skillset Definitions) create a non-arbitrary rating scale from 1 - 10.</h2>
             <img src="{% static 'images/ssd.png' %}">
         </div>
     </div>
@@ -27,8 +27,8 @@
 <div class="strip strip--pinline strip--center strip--padding">
     <div class="row ">
         <div class="column small-12">
-            <h1 class="callout callout--no-margin">How do you stack up?</h1>
-            <h2 class="callout callout--sub">Compare your profile to other's with relevant roles.</h2>
+            <h1 class="callout callout--no-margin">Compare your profile</h1>
+            <h2 class="callout callout--sub">What's the average skill level for people with similar job titles?</h2>
             <img src="{% static 'images/compare.png' %}">
         </div>
     </div>
@@ -40,12 +40,7 @@
             <h1 class="callout">Create a Tshape, It's Free.</h1>
         </div>
         <div class="column small-12">
-         {% if user.is_authenticated %}
-            {% elif user %}
-                <a class="button large center" href="{% url 'signup' %}">Create My TShape</a>
-            {% else %}
-                <a class="button large center" href="{% url 'login' %}">Create My TShape</a>
-            {% endif %}
+            <a class="button large center" href="{% url 'signup' %}">Create an Account</a>
         </div>
     </div>
 </div>
