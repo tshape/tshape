@@ -16,6 +16,7 @@ Including another URLconf
 import django
 from django.conf.urls import include, url
 from django.contrib import admin
+from graphene_django.views import GraphQLView
 from rest_framework_nested import routers
 
 from profiles import views as profile_views
@@ -23,6 +24,7 @@ from skills import views as skill_views
 from skillsets import views as skillset_views
 from tshape.views import IndexView
 from users import views as user_views
+from .schema import schema
 
 
 # Create a router and register our viewsets with it.
@@ -49,6 +51,7 @@ profile_skillsets_router.register(r'skills', skill_views.ProfileSkillViewSet)
 # The API URLs are now determined automatically by the router.
 # Additionally, we include the login URLs for the browsable API.
 urlpatterns = [
+    url(r'^graphql', GraphQLView.as_view(graphiql=True, schema=schema)),
     # api routes
     url(r'^api/', include(router.urls)),
     url(r'^api/', include(skillsets_router.urls)),

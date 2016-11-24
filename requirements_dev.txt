@@ -8,5 +8,6 @@ python-dotenv
 django-template-repl
 djangorestframework
 drf-nested-routers
-graphene[django]
+graphene_django
+django-filter
 Sphinx

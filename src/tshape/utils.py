@@ -2,6 +2,13 @@
 # from django.template import RequestContext
 
 
+def assign_attrs(attr_map, obj):
+    for key, value in attr_map.items():
+        if not hasattr(obj, key):
+            raise AttributeError
+        setattr(obj, key, value)
+    return obj
+
 # def render_response(req, *args, **kwargs):
 #     kwargs['context_instance'] = RequestContext(req)
 #     return render(*args, **kwargs)

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'graphene_django',
     'rest_framework',
     'template_repl',
     'tshape',
@@ -90,8 +91,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'postgres',
         'USER': 'postgres',
-        'HOST': 'db',
-        'PORT': 5432,
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -172,3 +173,7 @@ STATICFILES_FINDERS = (
 #     )
     # 'TEST_REQUEST_DEFAULT_FORMAT': 'json'
 # }
+
+GRAPHENE = {
+    'SCHEMA': 'app.schema.schema' # Where your Graphene schema lives
+}

@@ -1,4 +1,4 @@
-PYTHON = /usr/local/bin/python
+PYTHON = env/bin/python
 DOCKER = /usr/local/bin/docker
 
 # runs the web and db containers and starts bash
