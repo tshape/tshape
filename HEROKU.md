@@ -1,14 +1,15 @@
-# T-Shape 
+# Tshape Local Environment Setup & Heroku Deployemnt
 
 ```
 git clone https://github.com/tshape/tshape
 ```
 
-## Install Python, Django Locally
+## Install Python & Django on your local
 
 
-Install Python 3, Pip & Postgres. You can check your version of Python using `python -V` and `pip -V`
+Install Python 3, Pip 3 & Postgres. 
 
+You can check your version of Python using `python -V` and `pip -V`
 
 From the project root, the following commands will install the Tshape app locally.
 
@@ -42,17 +43,17 @@ python src/manage.py runserver 0.0.0.0:8000
 
 ## Heroku
 
-#### Download & install Heroku CLI 
-[Download Heroku CLI Installer] (https://devcenter.heroku.com/articles/heroku-command-line#download-and-install)
+First you need to download & install Heroku CLI - [Download Heroku CLI Installer] (https://devcenter.heroku.com/articles/heroku-command-line#download-and-install)
+
+Once installed, login to Heroku via the command line. You will need to use the Tshape login details.
 
 ```
 heroku login
 ```
 
-#### Create a Heroku remote
-[Creating a Heroku remote] (https://devcenter.heroku.com/articles/git#creating-a-heroku-remote)
+#### Connect git to the Heroku remote
 
-Instead of using `heroku create` to provision a new app on Heroku, we will be connecting an existing heroku app to our git remote. 
+Instead of using `heroku create` to provision a new app on Heroku, we will be connecting an existing heroku app to our git remote. [Creating a Heroku remote] (https://devcenter.heroku.com/articles/git#creating-a-heroku-remote)
 
 ```
 heroku git:remote -a tshape
@@ -109,3 +110,16 @@ psql
 ```
 
 To connect to Postgres locally, you will need to add your local postgres username, database name to the .ENV file in the project root.
+
+## Extra Commands
+Seed the database using a skillset template
+
+On your local
+```
+python src/manage.py dump_data --skillset=JavaScript
+```
+
+On Heroku
+```
+heroku run python src/manage.py dump_data --skillset=JavaScript --app tshape
+```
