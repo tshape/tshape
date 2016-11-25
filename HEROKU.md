@@ -1,7 +1,7 @@
 # T-Shape 
 
 ```
-git clone https://github.com/angieellis/tshape.git
+git clone https://github.com/tshape/tshape
 ```
 
 ## Install Python, Django Locally
