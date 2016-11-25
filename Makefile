@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 PYTHON = env/bin/python
+=======
+PYTHON = /usr/local/bin/python
+>>>>>>> master
 DOCKER = /usr/local/bin/docker
 
 # runs the web and db containers and starts bash

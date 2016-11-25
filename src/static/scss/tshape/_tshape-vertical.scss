@@ -1,0 +1,175 @@
+.tshape-vertical {
+  @include clearfix;
+  text-align:center;
+  background-image: url("../images/grid.png");
+  background-repeat: repeat;
+  background-color: #FFF;
+  background-position: 0px 50px;
+  @include whitebox;
+  // Tshape Header
+  .tshape__header {
+    @include clearfix;
+    border-bottom: 1px solid #EAEAEA;
+    margin-bottom: 10px;
+    padding: 10px;
+    height: 50px;
+    background-color: #FFF;
+    .tshape__role {
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 28px;
+      float: left;
+      margin: 0;
+      margin-right: 5px;
+    }
+    .tshape__user {
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 28px;
+      float: left;
+      margin: 0;
+      margin-right: 5px;
+      color: #333;
+    }
+    .tshape__avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 15px;
+      background-image: url("../images/rob.jpg");
+      background-size: contain;
+      float: left;
+      margin-right: 8px;
+    }
+    .tshape__github, .tshape__linkedin {
+      display: none;
+    }
+  }
+  // Tshape Guide 1-10
+  .tshape__guide {
+    display: none;
+    width: 200px;
+    margin-left: 210px;
+    @include clearfix;
+    .tshape__guide-beginner { 
+      float: left;
+      font-size: 11px;
+      color: #CCC;
+      margin-bottom: 10px;
+      font-weight: 400;
+    }
+    .tshape__guide-mastery { 
+      float: right;
+      font-size: 11px;
+      color: #CCC;
+      margin-bottom: 10px;
+      font-weight: 400;
+    }
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      clear: both;
+      display: block;
+      li {
+        float: left;
+        width: 30px;
+        text-align: center;
+        color: #CCC;
+        font-size: 11px;
+      }
+    }
+  }
+  // Tshape Middle
+  .tshape__middle {
+    @include clearfix;
+    margin: 0 auto;
+    margin-top: 80px;
+    // height: 400px;
+    min-height: 160px;
+    height: auto;
+    text-align: center;
+    // border-top: 1px solid #CCC;
+  }
+
+  .tshape__skillset {
+    @include clearfix;
+    float: left;
+    text-align: center;
+    position: relative;
+    width: 40px;
+    min-height: 40px;
+    // height: 200px;
+    height: auto;
+    // border-right: 1px dotted #CCC;
+    .tshape__skillset-heading {
+      width: 80px;
+      padding: 0 7px;
+      text-align: left;
+      transform: rotate(270deg);
+      position: absolute;
+      transform-origin: left top 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 13px;
+      line-height: 36px;
+      // top: -7px;
+      height: 40px;
+      background: #FFF;
+    }
+    .tshape__skillset-container {
+      @include clearfix;
+      width: 40px;
+    }
+    .tshape__skill {
+      width: 40px;
+      height: 40px;
+    }
+    .tshape__skill-name {
+      width: 40px;
+      height: 40px;
+      font-size: 10px;
+      line-height: 38px;
+      color: #FFF;
+    }
+  }
+
+  .tshape__wing {
+    display: none;
+    @include clearfix;
+    float: left;
+    text-align: center;
+    position: relative;
+    width: 30px;
+    height: 200px;
+    border-right: 1px dotted #CCC;
+  }
+  .tshape__wing--left-2 { border-left: 1px dotted #CCC; border-right: none; height: 200px;}
+  .tshape__wing--left-1 { border-left: 1px dotted #CCC;  }
+  .tshape__wing--right-1 { }
+  .tshape__wing--right-2 { height: 200px; }
+
+  // Tshape Footer
+  .tshape__footer {
+    display: none;
+    border-top: 1px solid #EAEAEA;
+    padding: 10px;
+    background: white;
+    text-align: left;
+    .tshape__skill-name {
+      color: #333;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .tshape__skill-description {
+      color: #666;
+    }
+  }
+}
+
+//Tshape Width 
+// @for $i from 0 to 100 {
+//   .tshape-width-#{$i * 40} {
+//     width: $i * 30px
+//   }
+// }

@@ -1,0 +1,62 @@
+
+.tshape__mask {
+  width: 800px;
+  margin: 0 auto;
+  @include clearfix;
+  background: #EAEAEA;
+  overflow-x: scroll;
+}
+.tshape--fixed {
+  width: 600px;
+  margin: 0 auto;
+  @include clearfix;
+  text-align:center;
+  .tshape__header {
+    text-align: center;
+    margin-bottom: 100px;
+  }
+  .tshape__role {
+    margin-bottom: 3px;
+  }
+  .tshape__user {
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .tshape__middle {
+    @include clearfix;
+  }
+  .tshape__skillset {
+    float: left;
+    width: 30px;
+    margin-right: 0;
+    text-align: center;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  .tshape__skillset-heading {
+    text-align: left;
+    transform: rotate(270deg);
+    width: 80px;
+    transform-origin: left top 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+  }
+  .tshape__skill {
+    width: 30px;
+    height: 20px;
+    background: green;
+    margin-bottom: 0px;
+    border: 1px solid #FFF;
+  }
+}
+
+//Tshape Width 
+// @for $i from 0 to 100 {
+//   .tshape-width-#{$i * 40} {
+//     width: $i * 30px
+//   }
+// }

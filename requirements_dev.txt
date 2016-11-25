@@ -5,9 +5,12 @@ ipython
 fake-factory
 django-extensions
 python-dotenv
-django-template-repl
-djangorestframework
-drf-nested-routers
 graphene_django
 django-filter
+djangorestframework
+drf-nested-routers
 Sphinx
+django-template-repl
+dj-database-url
+gunicorn
+whitenoise

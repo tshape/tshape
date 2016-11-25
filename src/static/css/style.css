@@ -1,19 +1,6 @@
 @charset "UTF-8";
-/* Setup */
-@import url(http://fonts.googleapis.com/css?family=Lato:200,400,700|Open+Sans:400,700|Roboto:400,700);
-/* line 28, /Users/rob/Projects/tshape/src/static/scss/_settings.scss */
-body {
-  font-family: "Lato", "Open Sans", "helvetica", "arial";
-  font-size: 15px;
-  color: #333;
-}
-
-/* line 34, /Users/rob/Projects/tshape/src/static/scss/_settings.scss */
-* {
-  box-sizing: border-box;
-}
-
 /* CSS Mini Reset */
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700|Lora:400,400i,700|Open+Sans:300,400,600,700);
 /* line 2, /Users/rob/Projects/tshape/src/static/scss/_reset.scss */
 body {
   margin: 0;
@@ -64,6 +51,20 @@ button {
 /* line 37, /Users/rob/Projects/tshape/src/static/scss/_reset.scss */
 button:focus {
   outline: none;
+}
+
+/* Setup */
+/* line 29, /Users/rob/Projects/tshape/src/static/scss/_settings.scss */
+body {
+  font-family: "Open Sans", "Lato", "helvetica", "arial";
+  font-size: 15px;
+  color: #333;
+  padding-top: 59px;
+}
+
+/* line 36, /Users/rob/Projects/tshape/src/static/scss/_settings.scss */
+* {
+  box-sizing: border-box;
 }
 
 /* line 421, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
@@ -1569,86 +1570,74 @@ select {
 
 /* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
 .logo__image {
+  margin-top: 17px;
   background-repeat: no-repeat;
   background-size: contain;
   display: block;
   float: left;
-  margin: 10px 0 10px 0;
-  height: 34px;
-  line-height: 36px;
-  padding-left: 40px;
-  font-size: 18px;
+  width: 81px;
+  height: 23px;
 }
 
-/* line 14, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+/* line 12, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
 .logo__image img {
   display: none;
 }
 
-@media only screen and (min-width: 768px) {
-  /* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
-  .logo__image {
-    background-image: url("../images/logo-tshape.png");
-    background-size: 30px 34px;
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  /* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
-  .logo__image {
-    background-image: url("../../images/logo-tshape.png");
-    background-size: 30px 34px;
-  }
-}
-
-/* line 25, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+/* line 19, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
 .logo__image a {
   color: #333;
   text-decoration: none;
 }
 
-/* line 28, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+/* line 22, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
 .logo__image a:hover {
   color: #000;
   text-decoration: underline;
 }
 
-/* line 35, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+/* line 28, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+.logo--absolute {
+  position: absolute;
+  top: 16px;
+}
+
+/* line 33, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
 .logo__text {
   margin: 10px 0 10px 0;
   float: left;
 }
 
-/* line 38, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+/* line 36, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
 .logo__text a {
   line-height: 36px;
   font-size: 22px;
   font-weight: 400;
-  font-family: "Lato", "Open Sans", "helvetica", "arial";
+  font-family: "Lato", "helvetica", "arial";
   text-decoration: none;
   color: #333;
+  text-decoration: none;
 }
 
 /* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_menu.scss */
 ul.menu {
   padding: 14px 0 14px 0;
   margin: 0;
-  font-family: "Lato", "Open Sans", "helvetica", "arial";
+  font-family: "Open Sans", "Lato", "helvetica", "arial";
   line-height: 30px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 400;
   vertical-align: middle;
   border-bottom: none;
   z-index: 140;
   float: right;
-  text-transform: uppercase;
 }
 
 /* line 16, /Users/rob/Projects/tshape/src/static/scss/blocks/_menu.scss */
 ul.menu li {
   float: left;
   display: block;
-  font-family: "Lato", "Open Sans", "helvetica", "arial";
+  font-family: "Open Sans", "Lato", "helvetica", "arial";
   margin: 0;
   padding: 0;
 }
@@ -1662,20 +1651,20 @@ ul.menu li:first-child a {
 ul.menu li a {
   display: block;
   background: none;
-  color: #1839D6;
+  color: #222;
   text-decoration: none;
   padding: 0 10px 0 10px;
 }
 
 /* line 31, /Users/rob/Projects/tshape/src/static/scss/blocks/_menu.scss */
 ul.menu li a:hover {
-  color: #1839D6;
+  color: #222;
   text-decoration: underline;
 }
 
 /* line 35, /Users/rob/Projects/tshape/src/static/scss/blocks/_menu.scss */
 ul.menu li a.active {
-  color: #1839D6;
+  color: #222;
   text-decoration: underline;
 }
 
@@ -1684,7 +1673,7 @@ ul.menu li span {
   padding: 10px 18px;
   display: block;
   background: none;
-  color: #1839D6;
+  color: #222;
   cursor: context-menu;
 }
 
@@ -1727,69 +1716,74 @@ ul.menu li.expanded ul ul li a {
 }
 
 /* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
-.button {
+.button, input.button {
   display: inline-block;
   position: relative;
   text-decoration: none;
-  font-weight: 400;
+  font-weight: 500;
   text-align: left;
-  padding: 5px 11px 7px 11px;
+  padding: 6px 12px 8px 12px;
   font-size: 14px;
-  background: #1839D6;
+  background: #222;
+  color: #FFF;
+  border: none;
+  outline: 0;
+  cursor: pointer;
+  border-radius: 2px;
 }
 
-/* line 13, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 18, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button:link, .button:visited {
   color: #FFF;
 }
 
-/* line 16, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 21, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button:hover, .button:focus {
-  background-color: #132da8;
+  background-color: #090909;
   text-decoration: none;
 }
 
-/* line 21, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 26, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.secondary {
   background-color: #62E35C;
 }
 
-/* line 23, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 28, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.secondary:link, .button.secondary:visited {
   color: #FFF;
 }
 
-/* line 26, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 31, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.secondary:hover, .button.secondary:focus {
   background-color: #38dc30;
   text-decoration: none;
 }
 
-/* line 31, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 36, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.empty {
   background: none;
   border: 1px dashed #CCC;
   color: #999;
 }
 
-/* line 35, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 40, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.empty:hover {
   background-color: #EAEAEA;
   border-color: #333;
 }
 
-/* line 40, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 45, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.disabled {
   background-color: #DDD;
   color: #999;
 }
 
-/* line 43, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 48, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.disabled:hover {
   background-color: #DDD;
 }
 
-/* line 48, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 53, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.full {
   padding: 11px 15px 10px 15px;
   display: block;
@@ -1797,37 +1791,37 @@ ul.menu li.expanded ul ul li a {
   text-align: center;
 }
 
-/* line 54, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 59, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.small {
   padding: 6px 11px 5px 11px;
 }
 
-/* line 57, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 62, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.medium {
-  padding: 11px 15px 10px 15px;
+  padding: 11px 15px 12px 15px;
 }
 
-/* line 60, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 65, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.large {
   padding: 16px 20px 15px 20px;
 }
 
-/* line 64, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 69, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.align-left {
   text-align: left;
 }
 
-/* line 67, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 72, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.center, .button.align-center {
   text-align: center;
 }
 
-/* line 71, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 76, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.button-back, .button.back {
   padding-left: 34px;
 }
 
-/* line 73, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 78, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.button-back:after, .button.back:after {
   position: absolute;
   content: "\f104";
@@ -1842,12 +1836,12 @@ ul.menu li.expanded ul ul li a {
   line-height: 20px;
 }
 
-/* line 87, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 92, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.arrow {
   padding-right: 34px;
 }
 
-/* line 89, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 94, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.arrow:after {
   position: absolute;
   content: "\f105";
@@ -1862,12 +1856,12 @@ ul.menu li.expanded ul ul li a {
   line-height: 20px;
 }
 
-/* line 103, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 108, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.button-external, .button.external {
   padding-right: 40px;
 }
 
-/* line 105, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 110, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.button-external:after, .button.external:after {
   position: absolute;
   content: "\f08e";
@@ -1882,18 +1876,18 @@ ul.menu li.expanded ul ul li a {
   line-height: 20px;
 }
 
-/* line 120, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 125, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.button-right, .button.right {
   float: right;
 }
 
-/* line 123, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 128, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.button-left, .button.left {
   float: left;
 }
 
 @media only screen and (max-width: 767px) {
-  /* line 126, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+  /* line 131, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
   .button.full-on-mobile {
     float: none;
     display: block;
@@ -1902,19 +1896,25 @@ ul.menu li.expanded ul ul li a {
   }
 }
 
-/* line 134, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 139, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.no-margin {
   margin: 0;
 }
 
-/* line 137, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 142, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button.no-bottom-margin, .button.no-margin-bottom {
   margin-bottom: 0;
 }
 
-/* line 141, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+/* line 146, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
 .button .fa {
   margin-left: 8px;
+}
+
+/* line 156, /Users/rob/Projects/tshape/src/static/scss/blocks/_buttons.scss */
+.button--signup {
+  margin: 0;
+  margin-top: 20px;
 }
 
 /* line 3, /Users/rob/Projects/tshape/src/static/scss/blocks/_forms.scss */
@@ -2150,7 +2150,7 @@ select:focus {
 /* line 6, /Users/rob/Projects/tshape/src/static/scss/blocks/_header.scss */
 .header {
   background-color: #FFF;
-  min-height: 58px;
+  min-height: 59px;
   width: 100%;
   border-bottom: 1px solid #CCC;
 }
@@ -2164,13 +2164,13 @@ select:focus {
 
 /* line 18, /Users/rob/Projects/tshape/src/static/scss/blocks/_header.scss */
 body.body-header-fixed {
-  margin-top: 58px;
+  margin-top: 59px;
 }
 
 /* line 7, /Users/rob/Projects/tshape/src/static/scss/blocks/_type.scss */
 p {
   color: #333;
-  font-family: "Lato", "Open Sans", "helvetica", "arial";
+  font-family: "Open Sans", "Lato", "helvetica", "arial";
   font-size: 15px;
   line-height: 24px;
   margin: 0;
@@ -2179,25 +2179,18 @@ p {
 
 /* line 17, /Users/rob/Projects/tshape/src/static/scss/blocks/_type.scss */
 a {
-  color: #1839D6;
+  color: #222;
   text-decoration: underline;
 }
 
 /* line 20, /Users/rob/Projects/tshape/src/static/scss/blocks/_type.scss */
 a:hover {
-  color: #0e217a;
-}
-
-/* line 25, /Users/rob/Projects/tshape/src/static/scss/blocks/_type.scss */
-img {
-  display: block;
-  width: 100%;
-  height: auto;
+  color: black;
 }
 
 /* line 30, /Users/rob/Projects/tshape/src/static/scss/blocks/_type.scss */
 h1 {
-  font-family: "Lato", "Open Sans", "helvetica", "arial";
+  font-family: "Lato", "helvetica", "arial";
   font-size: 56px;
   line-height: 66px;
   font-weight: 300;
@@ -2207,7 +2200,7 @@ h1 {
 
 /* line 38, /Users/rob/Projects/tshape/src/static/scss/blocks/_type.scss */
 h2 {
-  font-family: "Lato", "Open Sans", "helvetica", "arial";
+  font-family: "Lato", "helvetica", "arial";
   font-size: 26px;
   line-height: 32px;
   font-weight: 500;
@@ -2217,7 +2210,7 @@ h2 {
 
 /* line 46, /Users/rob/Projects/tshape/src/static/scss/blocks/_type.scss */
 h3 {
-  font-family: "Lato", "Open Sans", "helvetica", "arial";
+  font-family: "Lato", "helvetica", "arial";
   font-size: 18px;
   line-height: 22px;
   font-weight: 700;
@@ -2227,7 +2220,7 @@ h3 {
 
 /* line 54, /Users/rob/Projects/tshape/src/static/scss/blocks/_type.scss */
 h4 {
-  font-family: "Lato", "Open Sans", "helvetica", "arial";
+  font-family: "Lato", "helvetica", "arial";
   font-size: 16px;
   font-weight: 700;
   color: #333;
@@ -2236,7 +2229,7 @@ h4 {
 
 /* line 61, /Users/rob/Projects/tshape/src/static/scss/blocks/_type.scss */
 h5 {
-  font-family: "Lato", "Open Sans", "helvetica", "arial";
+  font-family: "Lato", "helvetica", "arial";
   font-size: 12px;
   font-weight: 700;
   color: #333;
@@ -2245,7 +2238,7 @@ h5 {
 
 /* line 68, /Users/rob/Projects/tshape/src/static/scss/blocks/_type.scss */
 h6 {
-  font-family: "Lato", "Open Sans", "helvetica", "arial";
+  font-family: "Lato", "helvetica", "arial";
   font-size: 11px;
   font-weight: 700;
   color: #333;
@@ -2289,7 +2282,7 @@ blockquote, .blockquote {
   margin: 0 0 20px 0;
   padding: 14px;
   background: #f2f2f2;
-  color: #1839D6;
+  color: #222;
   font-size: 18px;
   line-height: 1.5;
   font-weight: 200;
@@ -2444,9 +2437,50 @@ hr, .hr {
   padding: 7px 0 7px 0;
 }
 
+/* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.strip:before, .strip:after {
+  content: " ";
+  display: table;
+}
+
+/* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.strip:after {
+  clear: both;
+}
+
 /* line 5, /Users/rob/Projects/tshape/src/static/scss/blocks/_strip.scss */
 .strip--section {
   margin-bottom: 20px;
+}
+
+/* line 8, /Users/rob/Projects/tshape/src/static/scss/blocks/_strip.scss */
+.strip--pinline {
+  border-bottom: 1px solid #CCC;
+}
+
+/* line 11, /Users/rob/Projects/tshape/src/static/scss/blocks/_strip.scss */
+.strip--center {
+  text-align: center;
+}
+
+/* line 14, /Users/rob/Projects/tshape/src/static/scss/blocks/_strip.scss */
+.strip--padding {
+  padding: 50px 0 50px 0;
+}
+
+/* line 17, /Users/rob/Projects/tshape/src/static/scss/blocks/_strip.scss */
+.strip--padding-small {
+  padding: 20px 0 20px 0;
+}
+
+/* line 20, /Users/rob/Projects/tshape/src/static/scss/blocks/_strip.scss */
+.strip--white {
+  background: #FFF;
+}
+
+/* line 23, /Users/rob/Projects/tshape/src/static/scss/blocks/_strip.scss */
+.strip--yellow {
+  background: #FCFDF5;
 }
 
 /* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_utility.scss */
@@ -2456,6 +2490,91 @@ hr, .hr {
 
 /* line 7, /Users/rob/Projects/tshape/src/static/scss/blocks/_utility.scss */
 .hide {
+  display: none;
+}
+
+/* line 4, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+.logo__image {
+  margin-top: 17px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: block;
+  float: left;
+  width: 81px;
+  height: 23px;
+}
+
+/* line 12, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+.logo__image img {
+  display: none;
+}
+
+/* line 19, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+.logo__image a {
+  color: #333;
+  text-decoration: none;
+}
+
+/* line 22, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+.logo__image a:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+/* line 28, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+.logo--absolute {
+  position: absolute;
+  top: 16px;
+}
+
+/* line 33, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+.logo__text {
+  margin: 10px 0 10px 0;
+  float: left;
+}
+
+/* line 36, /Users/rob/Projects/tshape/src/static/scss/blocks/_logo.scss */
+.logo__text a {
+  line-height: 36px;
+  font-size: 22px;
+  font-weight: 400;
+  font-family: "Lato", "helvetica", "arial";
+  text-decoration: none;
+  color: #333;
+  text-decoration: none;
+}
+
+/* line 1, /Users/rob/Projects/tshape/src/static/scss/blocks/_signup.scss */
+.signup {
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 60px;
+  border: 1px solid #CCC;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+  background: #FFF;
+  padding: 20px;
+}
+
+/* line 11, /Users/rob/Projects/tshape/src/static/scss/blocks/_signup.scss */
+ul.errorlist {
+  padding: 0;
+  margin: 0 0 10px 0;
+  font-size: 12px;
+  color: red;
+}
+
+/* line 16, /Users/rob/Projects/tshape/src/static/scss/blocks/_signup.scss */
+ul.errorlist li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 12px;
+  color: red;
+}
+
+/* line 25, /Users/rob/Projects/tshape/src/static/scss/blocks/_signup.scss */
+.signup .helptext {
   display: none;
 }
 
@@ -2500,15 +2619,9 @@ hr, .hr {
   color: #666;
 }
 
-/* line 33, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets.scss */
-.skillsets .skillset__item.skillset__item--text.selected {
-  background-color: #000;
-  color: #FFF;
-}
-
-/* line 38, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets.scss */
+/* line 40, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets.scss */
 .skillsets .skillset__item .skillset__weight {
-  display: inline-block;
+  display: none;
   border: 1px solid #CCCCCC;
   border-right: none;
   box-shadow: #FEFFFF 0px 1px 1px;
@@ -2519,12 +2632,11 @@ hr, .hr {
   text-shadow: 0px 1px 0 white;
   color: #4A4A4A;
   background-color: #F7F5F6;
-  background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
 }
 
-/* line 52, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets.scss */
+/* line 55, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets.scss */
 .skillsets .skillset__item .skillset__id {
-  display: inline-block;
+  display: none;
   border: 1px solid #CCCCCC;
   border-right: none;
   box-shadow: #FEFFFF 0px 1px 1px;
@@ -2533,48 +2645,35 @@ hr, .hr {
   text-shadow: 0px 1px 0 white;
   color: #4A4A4A;
   background-color: #F7F5F6;
-  background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
 }
 
-/* line 64, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets.scss */
+/* line 68, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets.scss */
 .skillsets .skillset__item .skillset__name {
   display: inline-block;
-  border: 1px solid #CCCCCC;
   box-shadow: #FEFFFF 0px 1px 1px;
-  padding: 5px;
+  padding: 5px 5px 5px 10px;
   text-decoration: none;
   text-shadow: 0px 1px 0 white;
   color: #4A4A4A;
   background-color: #F7F5F6;
-  background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
 }
 
-/* line 75, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets.scss */
+/* line 81, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets.scss */
 .skillsets .skillset__item .skillset__remove {
   display: inline-block;
-  border: 1px solid #CCCCCC;
-  border-left: none;
   box-shadow: #FEFFFF 0px 1px 1px;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
-  padding: 5px;
+  padding: 8px 10px 7px 5px;
   text-decoration: none;
   text-shadow: 0px 1px 0 white;
-  color: #4A4A4A;
+  color: #ababab;
   background-color: #F7F5F6;
-  background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
 }
 
-/* line 92, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets.scss */
-.skillsets .skillset__item.selected .skillset__name {
-  color: #ffffff;
-  background-color: #484848;
-  background-image: linear-gradient(to bottom, #484848, #000000);
-  text-shadow: none;
-  border-color: #000;
-}
-
-/* line 99, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets.scss */
+/* line 98, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets.scss */
 .skillsets .skillset__item.selected .skillset__weight {
   color: #ffffff;
   background-color: #484848;
@@ -2583,7 +2682,7 @@ hr, .hr {
   border-color: #000;
 }
 
-/* line 106, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets.scss */
+/* line 105, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets.scss */
 .skillsets .skillset__item.selected .skillset__id {
   color: #ffffff;
   background-color: #484848;
@@ -2592,16 +2691,21 @@ hr, .hr {
   border-color: #000;
 }
 
-/* line 113, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets.scss */
-.skillsets .skillset__item.selected .skillset__remove {
+/* line 112, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets.scss */
+.skillsets .skillset__item.selected .skillset__name {
   color: #ffffff;
-  background-color: #484848;
-  background-image: linear-gradient(to bottom, #484848, #000000);
+  background-color: #222;
   text-shadow: none;
-  border-color: #000;
 }
 
-/* line 123, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets.scss */
+/* line 121, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets.scss */
+.skillsets .skillset__item.selected .skillset__remove {
+  color: #ffffff;
+  background-color: #222;
+  text-shadow: none;
+}
+
+/* line 133, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets.scss */
 .skillsets .skillset__add-skillset-form input[type="submit"] {
   cursor: pointer;
   display: inline-block;
@@ -2619,37 +2723,49 @@ hr, .hr {
   background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
 }
 
+/* line 152, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets.scss */
+.add-skillset {
+  display: inline-block;
+  cursor: pointer;
+  margin: 0 5px 5px 0;
+  font-size: 13px;
+  display: inline-block;
+  box-shadow: #FEFFFF 0px 1px 1px;
+  padding: 5px 10px 5px 10px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0 white;
+  color: #4A4A4A;
+  border-radius: 3px;
+  border: 1px dotted #ccc;
+}
+
 /* line 2, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
 .skills .skills__heading {
   font-weight: normal;
+  font-size: 26px;
 }
 
-/* line 4, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
-.skills .skills__heading span {
-  font-weight: bold;
-}
-
-/* line 13, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
+/* line 14, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
 .skills ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-/* line 18, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
+/* line 19, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
 .skills ol {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-/* line 24, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
+/* line 25, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
 .skills .skills__panel--all-skills {
   padding: 20px;
   border-bottom: 1px solid #EAEAEA;
 }
 
-/* line 31, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
+/* line 32, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
 .skills .skill__add-skill-form input[type="submit"] {
   cursor: pointer;
   display: inline-block;
@@ -2667,7 +2783,7 @@ hr, .hr {
   background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
 }
 
-/* line 51, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
+/* line 52, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
 .skill__item {
   display: block;
   font-size: 14px;
@@ -2685,7 +2801,7 @@ hr, .hr {
   clear: both;
 }
 
-/* line 58, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
+/* line 59, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
 .skill__item.skill__item--tag {
   background: #EAEAEA;
   padding: 4px 7px;
@@ -2694,44 +2810,42 @@ hr, .hr {
   display: block;
 }
 
-/* line 65, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
+/* line 66, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
 .skill__item.skill__item--row {
   display: block;
   margin-bottom: 5px;
   font-size: 13px;
 }
 
-/* line 72, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
+/* line 73, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
 .skill__item .skill__tickbox {
-  padding: 10px;
+  background-image: url("/static/images/checkbox-empty.png");
+  width: 22px;
+  height: 22px;
+  background-size: contain;
+  display: inline-block;
   float: left;
-  width: 44px;
-  cursor: pointer;
-  text-decoration: none;
+  margin: 12px 0 12px 0;
+  opacity: 0.7;
 }
 
-/* line 78, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
-.skill__item .skill__tickbox:before {
-  content: "\f10c";
-  color: #666;
-  font-family: "FontAwesome";
-  font-weight: 100;
-  font-size: 26px;
-  line-height: 26px;
-  text-decoration: none;
+/* line 96, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
+.skill__item .skill__tickbox:hover {
+  opacity: 1;
 }
 
-/* line 88, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
+/* line 98, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
 .skill__item .skill__tickbox:hover:before {
   color: #333;
 }
 
-/* line 94, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
-.skill__item.active .skill__tickbox:before {
-  content: "\f058";
+/* line 103, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
+.skill__item.active .skill__tickbox {
+  background-image: url("/static/images/checkbox-full.png");
+  opacity: 1;
 }
 
-/* line 98, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
+/* line 110, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
 .skill__item .skill__weight {
   display: inline-block;
   border: 1px solid #CCCCCC;
@@ -2747,40 +2861,26 @@ hr, .hr {
   background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
 }
 
-/* line 112, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
+/* line 124, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
 .skill__item .skill__name {
-  padding: 10px 10px 10px 0;
+  padding: 10px 10px 10px 10px;
   float: left;
-  width: calc(100% - 46px);
+  width: calc(100% - 36px);
   height: 46px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 26px;
   text-decoration: none;
-}
-
-/* line 124, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
-.skill__item.inactive .skill__name {
-  color: #333;
-}
-
-/* line 126, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
-.skill__item.inactive .skill__name:hover {
-  color: #000;
-}
-
-/* line 130, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
-.skill__item.active .skill__name {
   color: #999;
 }
 
-/* line 132, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
-.skill__item.active .skill__name:hover {
+/* line 135, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
+.skill__item .skill__name:hover {
   color: #000;
 }
 
-/* line 136, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
+/* line 151, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
 .skill__item .skill__remove {
   display: inline-block;
   border: 1px solid #CCCCCC;
@@ -2796,61 +2896,68 @@ hr, .hr {
   background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
 }
 
-/* line 164, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
-.skillset-name-javascript .skill__item:nth-child(1) {
-  border-left: 5px solid #efa73b;
+/* line 167, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
+.skill-info {
+  margin-top: 40px;
 }
 
-/* line 164, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
-.skillset-name-javascript .skill__item:nth-child(2) {
-  border-left: 5px solid #efad3d;
+/* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.skill-info .skill-info__header:before, .skill-info .skill-info__header:after {
+  content: " ";
+  display: table;
 }
 
-/* line 164, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
-.skillset-name-javascript .skill__item:nth-child(3) {
-  border-left: 5px solid #efb33f;
+/* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
+.skill-info .skill-info__header:after {
+  clear: both;
 }
 
-/* line 164, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
-.skillset-name-javascript .skill__item:nth-child(4) {
-  border-left: 5px solid #efb842;
+/* line 174, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
+.skill-info .skill-info__header .skill-info__icon {
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  display: inline-block;
+  float: left;
+  margin-right: 10px;
 }
 
-/* line 164, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
-.skillset-name-javascript .skill__item:nth-child(5) {
-  border-left: 5px solid #efbe44;
+/* line 182, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
+.skill-info .skill-info__header .skill-info__skillset-name {
+  font-family: "Lato", "helvetica", "arial";
+  font-size: 16px;
+  line-height: 38px;
+  color: #333;
+  float: left;
+  margin-right: 10px;
 }
 
-/* line 164, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
-.skillset-name-javascript .skill__item:nth-child(6) {
-  border-left: 5px solid #f0c446;
+/* line 193, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
+.skill-info .skill-info__middle .skill-info__weight {
+  font-family: "Lato", "helvetica", "arial";
+  font-size: 16px;
+  line-height: 30px;
+  color: #333;
+  float: left;
+  font-weight: 300;
+  border-radius: 15px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  font-weight: 500;
+  margin: -3px 0 0 -40px;
 }
 
-/* line 164, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
-.skillset-name-javascript .skill__item:nth-child(7) {
-  border-left: 5px solid #f0ca48;
-}
-
-/* line 164, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
-.skillset-name-javascript .skill__item:nth-child(8) {
-  border-left: 5px solid #f0cf4b;
-}
-
-/* line 164, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
-.skillset-name-javascript .skill__item:nth-child(9) {
-  border-left: 5px solid #f0d54d;
-}
-
-/* line 164, /Users/rob/Projects/tshape/src/static/scss/tshape/_skills.scss */
-.skillset-name-javascript .skill__item:nth-child(10) {
-  border-left: 5px solid #f0db4f;
-}
-
-/* line 1, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+/* line 1, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-vertical.scss */
 .tshape-vertical {
   text-align: center;
-  border: 1px solid #EAEAEA;
-  border-radius: 3px;
+  background-image: url("../images/grid.png");
+  background-repeat: repeat;
+  background-color: #FFF;
+  background-position: 0px 50px;
+  border: 1px solid #dedede;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
 }
 
 /* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
@@ -2864,11 +2971,13 @@ hr, .hr {
   clear: both;
 }
 
-/* line 10, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+/* line 10, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-vertical.scss */
 .tshape-vertical .tshape__header {
   border-bottom: 1px solid #EAEAEA;
   margin-bottom: 10px;
   padding: 10px;
+  height: 50px;
+  background-color: #FFF;
 }
 
 /* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
@@ -2882,44 +2991,44 @@ hr, .hr {
   clear: both;
 }
 
-/* line 15, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+/* line 17, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-vertical.scss */
 .tshape-vertical .tshape__header .tshape__role {
   font-weight: bold;
   font-size: 16px;
-  line-height: 20px;
+  line-height: 28px;
   float: left;
   margin: 0;
   margin-right: 5px;
 }
 
-/* line 23, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+/* line 25, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-vertical.scss */
 .tshape-vertical .tshape__header .tshape__user {
   font-weight: 300;
   font-size: 16px;
-  line-height: 20px;
+  line-height: 28px;
   float: left;
   margin: 0;
   margin-right: 5px;
   color: #333;
 }
 
-/* line 32, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+/* line 34, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-vertical.scss */
 .tshape-vertical .tshape__header .tshape__avatar {
   width: 30px;
-  height: 20px;
+  height: 30px;
   border-radius: 15px;
   background-image: url("../images/rob.jpg");
   background-size: contain;
   float: left;
-  margin-right: 5px;
+  margin-right: 8px;
 }
 
-/* line 41, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+/* line 43, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-vertical.scss */
 .tshape-vertical .tshape__header .tshape__github, .tshape-vertical .tshape__header .tshape__linkedin {
   display: none;
 }
 
-/* line 46, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+/* line 48, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-vertical.scss */
 .tshape-vertical .tshape__guide {
   display: none;
   width: 200px;
@@ -2937,7 +3046,7 @@ hr, .hr {
   clear: both;
 }
 
-/* line 51, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+/* line 53, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-vertical.scss */
 .tshape-vertical .tshape__guide .tshape__guide-beginner {
   float: left;
   font-size: 11px;
@@ -2946,7 +3055,7 @@ hr, .hr {
   font-weight: 400;
 }
 
-/* line 58, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+/* line 60, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-vertical.scss */
 .tshape-vertical .tshape__guide .tshape__guide-mastery {
   float: right;
   font-size: 11px;
@@ -2955,7 +3064,7 @@ hr, .hr {
   font-weight: 400;
 }
 
-/* line 65, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+/* line 67, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-vertical.scss */
 .tshape-vertical .tshape__guide ul {
   list-style: none;
   margin: 0;
@@ -2964,7 +3073,7 @@ hr, .hr {
   display: block;
 }
 
-/* line 71, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+/* line 73, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-vertical.scss */
 .tshape-vertical .tshape__guide ul li {
   float: left;
   width: 30px;
@@ -2973,13 +3082,13 @@ hr, .hr {
   font-size: 11px;
 }
 
-/* line 81, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+/* line 83, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-vertical.scss */
 .tshape-vertical .tshape__middle {
   margin: 0 auto;
   margin-top: 80px;
-  height: 200px;
+  min-height: 160px;
+  height: auto;
   text-align: center;
-  border-top: 1px solid #CCC;
 }
 
 /* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
@@ -2993,14 +3102,14 @@ hr, .hr {
   clear: both;
 }
 
-/* line 90, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+/* line 94, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-vertical.scss */
 .tshape-vertical .tshape__skillset {
   float: left;
   text-align: center;
   position: relative;
-  width: 30px;
-  height: 200px;
-  border-right: 1px dotted #CCC;
+  width: 40px;
+  min-height: 40px;
+  height: auto;
 }
 
 /* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
@@ -3014,9 +3123,10 @@ hr, .hr {
   clear: both;
 }
 
-/* line 98, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+/* line 104, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-vertical.scss */
 .tshape-vertical .tshape__skillset .tshape__skillset-heading {
-  width: 70px;
+  width: 80px;
+  padding: 0 7px;
   text-align: left;
   transform: rotate(270deg);
   position: absolute;
@@ -3025,42 +3135,45 @@ hr, .hr {
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 13px;
-  line-height: 24px;
-  top: -7px;
+  line-height: 36px;
+  height: 40px;
+  background: #FFF;
 }
 
-/* line 111, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-vertical .tshape__skillset .tshape__skill-container {
-  width: 30px;
+/* line 120, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-vertical.scss */
+.tshape-vertical .tshape__skillset .tshape__skillset-container {
+  width: 40px;
 }
 
 /* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-.tshape-vertical .tshape__skillset .tshape__skill-container:before, .tshape-vertical .tshape__skillset .tshape__skill-container:after {
+.tshape-vertical .tshape__skillset .tshape__skillset-container:before, .tshape-vertical .tshape__skillset .tshape__skillset-container:after {
   content: " ";
   display: table;
 }
 
 /* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-.tshape-vertical .tshape__skillset .tshape__skill-container:after {
+.tshape-vertical .tshape__skillset .tshape__skillset-container:after {
   clear: both;
 }
 
-/* line 115, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+/* line 124, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-vertical.scss */
 .tshape-vertical .tshape__skillset .tshape__skill {
-  width: 30px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
 }
 
-/* line 119, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-vertical .tshape__skillset .tshape__skillname {
-  width: 30px;
-  height: 20px;
-  line-height: 20px;
+/* line 128, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-vertical.scss */
+.tshape-vertical .tshape__skillset .tshape__skill-name {
+  width: 40px;
+  height: 40px;
+  font-size: 10px;
+  line-height: 38px;
   color: #FFF;
 }
 
-/* line 127, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+/* line 137, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-vertical.scss */
 .tshape-vertical .tshape__wing {
+  display: none;
   float: left;
   text-align: center;
   position: relative;
@@ -3080,24 +3193,24 @@ hr, .hr {
   clear: both;
 }
 
-/* line 136, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+/* line 147, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-vertical.scss */
 .tshape-vertical .tshape__wing--left-2 {
   border-left: 1px dotted #CCC;
   border-right: none;
   height: 200px;
 }
 
-/* line 137, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+/* line 148, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-vertical.scss */
 .tshape-vertical .tshape__wing--left-1 {
   border-left: 1px dotted #CCC;
 }
 
-/* line 139, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+/* line 150, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-vertical.scss */
 .tshape-vertical .tshape__wing--right-2 {
   height: 200px;
 }
 
-/* line 142, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+/* line 153, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-vertical.scss */
 .tshape-vertical .tshape__footer {
   display: none;
   border-top: 1px solid #EAEAEA;
@@ -3106,721 +3219,16 @@ hr, .hr {
   text-align: left;
 }
 
-/* line 148, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+/* line 159, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-vertical.scss */
 .tshape-vertical .tshape__footer .tshape__skill-name {
   color: #333;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-/* line 153, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
+/* line 164, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-vertical.scss */
 .tshape-vertical .tshape__footer .tshape__skill-description {
   color: #666;
-}
-
-/* line 167, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.skillset-name-javascript .tshape__skill:nth-child(1) {
-  background-color: #efa73b;
-}
-
-/* line 167, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.skillset-name-javascript .tshape__skill:nth-child(2) {
-  background-color: #efad3d;
-}
-
-/* line 167, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.skillset-name-javascript .tshape__skill:nth-child(3) {
-  background-color: #efb33f;
-}
-
-/* line 167, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.skillset-name-javascript .tshape__skill:nth-child(4) {
-  background-color: #efb842;
-}
-
-/* line 167, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.skillset-name-javascript .tshape__skill:nth-child(5) {
-  background-color: #efbe44;
-}
-
-/* line 167, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.skillset-name-javascript .tshape__skill:nth-child(6) {
-  background-color: #f0c446;
-}
-
-/* line 167, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.skillset-name-javascript .tshape__skill:nth-child(7) {
-  background-color: #f0ca48;
-}
-
-/* line 167, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.skillset-name-javascript .tshape__skill:nth-child(8) {
-  background-color: #f0cf4b;
-}
-
-/* line 167, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.skillset-name-javascript .tshape__skill:nth-child(9) {
-  background-color: #f0d54d;
-}
-
-/* line 167, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.skillset-name-javascript .tshape__skill:nth-child(10) {
-  background-color: #f0db4f;
-}
-
-/* line 174, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape__skill {
-  background: #EAEAEA;
-}
-
-/* line 178, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape__skill:nth-child(1) {
-  background-color: #FCEB9D;
-}
-
-/* line 179, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape__skill:nth-child(2) {
-  background-color: #FECE90;
-}
-
-/* line 180, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape__skill:nth-child(3) {
-  background-color: #F8ADA8;
-}
-
-/* line 181, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape__skill:nth-child(4) {
-  background-color: #E9ADD8;
-}
-
-/* line 182, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape__skill:nth-child(5) {
-  background-color: #D2A2EA;
-}
-
-/* line 183, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape__skill:nth-child(6) {
-  background-color: #B5C0E5;
-}
-
-/* line 184, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape__skill:nth-child(7) {
-  background-color: #B1DDE8;
-}
-
-/* line 185, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape__skill:nth-child(8) {
-  background-color: #A3E8D8;
-}
-
-/* line 186, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape__skill:nth-child(9) {
-  background-color: #9AE6B4;
-}
-
-/* line 187, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape__skill:nth-child(10) {
-  background-color: #ABE686;
-}
-
-/* line 191, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape__mask {
-  width: 800px;
-  margin: 0 auto;
-  background: #EAEAEA;
-  overflow-x: scroll;
-}
-
-/* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-.tshape__mask:before, .tshape__mask:after {
-  content: " ";
-  display: table;
-}
-
-/* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-.tshape__mask:after {
-  clear: both;
-}
-
-/* line 198, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape--fixed {
-  width: 600px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-/* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-.tshape--fixed:before, .tshape--fixed:after {
-  content: " ";
-  display: table;
-}
-
-/* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-.tshape--fixed:after {
-  clear: both;
-}
-
-/* line 203, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape--fixed .tshape__header {
-  text-align: center;
-  margin-bottom: 100px;
-}
-
-/* line 207, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape--fixed .tshape__role {
-  margin-bottom: 3px;
-}
-
-/* line 210, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape--fixed .tshape__user {
-  margin-bottom: 0;
-  font-size: 14px;
-  line-height: 20px;
-}
-
-/* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-.tshape--fixed .tshape__middle:before, .tshape--fixed .tshape__middle:after {
-  content: " ";
-  display: table;
-}
-
-/* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-.tshape--fixed .tshape__middle:after {
-  clear: both;
-}
-
-/* line 218, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape--fixed .tshape__skillset {
-  float: left;
-  width: 30px;
-  margin-right: 0;
-  text-align: center;
-}
-
-/* line 223, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape--fixed .tshape__skillset:last-child {
-  margin-right: 0;
-}
-
-/* line 227, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape--fixed .tshape__skillset-heading {
-  text-align: left;
-  transform: rotate(270deg);
-  width: 80px;
-  transform-origin: left top 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 14px;
-}
-
-/* line 237, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape--fixed .tshape__skill {
-  width: 30px;
-  height: 20px;
-  background: green;
-  margin-bottom: 0px;
-  border: 1px solid #FFF;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-0 {
-  width: 0px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-40 {
-  width: 30px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-80 {
-  width: 60px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-120 {
-  width: 90px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-160 {
-  width: 120px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-200 {
-  width: 150px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-240 {
-  width: 180px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-280 {
-  width: 210px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-320 {
-  width: 240px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-360 {
-  width: 270px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-400 {
-  width: 300px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-440 {
-  width: 330px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-480 {
-  width: 360px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-520 {
-  width: 390px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-560 {
-  width: 420px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-600 {
-  width: 450px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-640 {
-  width: 480px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-680 {
-  width: 510px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-720 {
-  width: 540px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-760 {
-  width: 570px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-800 {
-  width: 600px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-840 {
-  width: 630px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-880 {
-  width: 660px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-920 {
-  width: 690px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-960 {
-  width: 720px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-1000 {
-  width: 750px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-1040 {
-  width: 780px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-1080 {
-  width: 810px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-1120 {
-  width: 840px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-1160 {
-  width: 870px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-1200 {
-  width: 900px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-1240 {
-  width: 930px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-1280 {
-  width: 960px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-1320 {
-  width: 990px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-1360 {
-  width: 1020px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-1400 {
-  width: 1050px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-1440 {
-  width: 1080px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-1480 {
-  width: 1110px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-1520 {
-  width: 1140px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-1560 {
-  width: 1170px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-1600 {
-  width: 1200px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-1640 {
-  width: 1230px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-1680 {
-  width: 1260px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-1720 {
-  width: 1290px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-1760 {
-  width: 1320px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-1800 {
-  width: 1350px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-1840 {
-  width: 1380px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-1880 {
-  width: 1410px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-1920 {
-  width: 1440px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-1960 {
-  width: 1470px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-2000 {
-  width: 1500px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-2040 {
-  width: 1530px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-2080 {
-  width: 1560px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-2120 {
-  width: 1590px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-2160 {
-  width: 1620px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-2200 {
-  width: 1650px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-2240 {
-  width: 1680px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-2280 {
-  width: 1710px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-2320 {
-  width: 1740px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-2360 {
-  width: 1770px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-2400 {
-  width: 1800px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-2440 {
-  width: 1830px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-2480 {
-  width: 1860px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-2520 {
-  width: 1890px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-2560 {
-  width: 1920px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-2600 {
-  width: 1950px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-2640 {
-  width: 1980px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-2680 {
-  width: 2010px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-2720 {
-  width: 2040px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-2760 {
-  width: 2070px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-2800 {
-  width: 2100px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-2840 {
-  width: 2130px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-2880 {
-  width: 2160px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-2920 {
-  width: 2190px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-2960 {
-  width: 2220px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-3000 {
-  width: 2250px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-3040 {
-  width: 2280px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-3080 {
-  width: 2310px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-3120 {
-  width: 2340px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-3160 {
-  width: 2370px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-3200 {
-  width: 2400px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-3240 {
-  width: 2430px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-3280 {
-  width: 2460px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-3320 {
-  width: 2490px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-3360 {
-  width: 2520px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-3400 {
-  width: 2550px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-3440 {
-  width: 2580px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-3480 {
-  width: 2610px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-3520 {
-  width: 2640px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-3560 {
-  width: 2670px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-3600 {
-  width: 2700px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-3640 {
-  width: 2730px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-3680 {
-  width: 2760px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-3720 {
-  width: 2790px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-3760 {
-  width: 2820px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-3800 {
-  width: 2850px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-3840 {
-  width: 2880px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-3880 {
-  width: 2910px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-3920 {
-  width: 2940px;
-}
-
-/* line 248, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape.scss */
-.tshape-width-3960 {
-  width: 2970px;
 }
 
 /* line 1, /Users/rob/Projects/tshape/src/static/scss/tshape/_tshape-horizontal.scss */
@@ -4191,16 +3599,114 @@ hr, .hr {
   border: 1px solid #FFF;
 }
 
-/* line 1, /Users/rob/Projects/tshape/src/static/scss/blocks/_preview.scss */
-.preview {
-  display: none;
-  border-bottom: 1px solid #CCC;
-  padding-bottom: 30px;
+/* line 7, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.tshape__skillset .tshape__skill:nth-child(1) {
+  background-color: #cccccc;
 }
 
-/* line 5, /Users/rob/Projects/tshape/src/static/scss/blocks/_preview.scss */
-.preview.open {
-  display: block;
+/* line 7, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.tshape__skillset .tshape__skill:nth-child(2) {
+  background-color: #cfcfcf;
+}
+
+/* line 7, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.tshape__skillset .tshape__skill:nth-child(3) {
+  background-color: lightgray;
+}
+
+/* line 7, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.tshape__skillset .tshape__skill:nth-child(4) {
+  background-color: #d6d6d6;
+}
+
+/* line 7, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.tshape__skillset .tshape__skill:nth-child(5) {
+  background-color: #d9d9d9;
+}
+
+/* line 7, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.tshape__skillset .tshape__skill:nth-child(6) {
+  background-color: #dddddd;
+}
+
+/* line 7, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.tshape__skillset .tshape__skill:nth-child(7) {
+  background-color: #e0e0e0;
+}
+
+/* line 7, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.tshape__skillset .tshape__skill:nth-child(8) {
+  background-color: #e3e3e3;
+}
+
+/* line 7, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.tshape__skillset .tshape__skill:nth-child(9) {
+  background-color: #e7e7e7;
+}
+
+/* line 7, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.tshape__skillset .tshape__skill:nth-child(10) {
+  background-color: #eaeaea;
+}
+
+/* line 38, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.javascript .tshape__skill:nth-child(1) {
+  background-color: #f7da4d;
+}
+
+/* line 38, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.javascript .tshape__skill:nth-child(2) {
+  background-color: #f7d94d;
+}
+
+/* line 38, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.javascript .tshape__skill:nth-child(3) {
+  background-color: #f7d94d;
+}
+
+/* line 38, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.javascript .tshape__skill:nth-child(4) {
+  background-color: #f7d84d;
+}
+
+/* line 38, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.javascript .tshape__skill:nth-child(5) {
+  background-color: #f7d74d;
+}
+
+/* line 38, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.javascript .tshape__skill:nth-child(6) {
+  background-color: #f7d74d;
+}
+
+/* line 38, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.javascript .tshape__skill:nth-child(7) {
+  background-color: #f7d64d;
+}
+
+/* line 38, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.javascript .tshape__skill:nth-child(8) {
+  background-color: #f7d54d;
+}
+
+/* line 38, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.javascript .tshape__skill:nth-child(9) {
+  background-color: #f7d54d;
+}
+
+/* line 38, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.javascript .tshape__skill:nth-child(10) {
+  background-color: #f7d44d;
+}
+
+/* line 46, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.label-javascript .icon {
+  background-image: url("/static/images/logos/javascript-120.png");
+}
+
+/* line 49, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.label-javascript .label-background {
+  background-color: #f7d44d;
 }
 
 /* line 2, /Users/rob/Projects/tshape/src/static/scss/pages/_section-profile.scss */
@@ -4210,343 +3716,56 @@ body.section-profile h1 {
   line-height: 50px;
 }
 
-/* line 2, /Users/rob/Projects/tshape/src/static/scss/pages/_page-homepage.scss */
-body.page-homepage h1 {
-  margin: 30px 0 30px 0;
+/* line 1, /Users/rob/Projects/tshape/src/static/scss/pages/_page-homepage.scss */
+body.page-homepage {
+  background: #FCFDF5;
+}
+
+/* line 3, /Users/rob/Projects/tshape/src/static/scss/pages/_page-homepage.scss */
+body.page-homepage .callout {
+  margin: 0 0 30px 0;
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 300;
   text-align: center;
+  color: #333;
 }
 
-/* line 6, /Users/rob/Projects/tshape/src/static/scss/pages/_page-homepage.scss */
-body.page-homepage .welcome {
+@media only screen and (max-width: 767px) {
+  /* line 3, /Users/rob/Projects/tshape/src/static/scss/pages/_page-homepage.scss */
+  body.page-homepage .callout {
+    font-size: 28px;
+    line-height: 34px;
+  }
+}
+
+/* line 15, /Users/rob/Projects/tshape/src/static/scss/pages/_page-homepage.scss */
+body.page-homepage .callout--no-margin {
+  margin-bottom: 0;
+}
+
+/* line 18, /Users/rob/Projects/tshape/src/static/scss/pages/_page-homepage.scss */
+body.page-homepage .callout--sub {
+  margin: 10px 0 30px 0;
+  font-size: 22px;
+  line-height: 36px;
   text-align: center;
+  color: #666;
+  font-weight: 300;
 }
 
-/* line 9, /Users/rob/Projects/tshape/src/static/scss/pages/_page-homepage.scss */
-body.page-homepage .strip {
-  background: #EAEAEA;
+@media only screen and (max-width: 767px) {
+  /* line 18, /Users/rob/Projects/tshape/src/static/scss/pages/_page-homepage.scss */
+  body.page-homepage .callout--sub {
+    margin-top: 15px;
+    font-size: 18px;
+    line-height: 24px;
+  }
 }
 
-/* line 229, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-body.page-homepage .strip:before, body.page-homepage .strip:after {
-  content: " ";
-  display: table;
-}
-
-/* line 230, /Users/rob/Projects/tshape/src/static/scss/foundation/components/_global.scss */
-body.page-homepage .strip:after {
-  clear: both;
-}
-
-/* Slider */
-/* line 45, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-loading .slick-list {
-  background: #fff url("./ajax-loader.gif") center center no-repeat;
-}
-
-/* Icons */
-@font-face {
-  font-family: "slick";
-  src: url("../modules/slick/fonts/slick.eot");
-  src: url("../modules/slick/fonts/slick.eot?#iefix") format("embedded-opentype"), url("../modules/slick/fonts/slick.woff") format("woff"), url("../modules/slick/fonts/slick.ttf") format("truetype"), url("../modules/slick/fonts/slick.svg#slick") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
-/* Arrows */
-/* line 63, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-prev,
-.slick-next {
-  position: absolute;
-  display: block;
-  height: 20px;
-  width: 20px;
-  line-height: 0px;
-  font-size: 0px;
-  cursor: pointer;
-  background: transparent;
-  color: transparent;
-  top: 50%;
-  -webkit-transform: translate(0, -50%);
-  -ms-transform: translate(0, -50%);
-  transform: translate(0, -50%);
-  padding: 0;
-  border: none;
-  outline: none;
-}
-
-/* line 81, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-prev:hover, .slick-prev:focus,
-.slick-next:hover,
-.slick-next:focus {
-  outline: none;
-  background: transparent;
-  color: transparent;
-}
-
-/* line 85, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-prev:hover:before, .slick-prev:focus:before,
-.slick-next:hover:before,
-.slick-next:focus:before {
-  opacity: 1;
-}
-
-/* line 89, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-prev.slick-disabled:before,
-.slick-next.slick-disabled:before {
-  opacity: 0.25;
-}
-
-/* line 92, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-prev:before,
-.slick-next:before {
-  font-family: "slick";
-  font-size: 20px;
-  line-height: 1;
-  color: #1839D6;
-  opacity: 0.75;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* line 103, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-prev {
-  left: -25px;
-}
-
-/* line 105, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-[dir="rtl"] .slick-prev {
-  left: auto;
-  right: -25px;
-}
-
-/* line 109, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-prev:before {
-  content: "←";
-}
-
-/* line 111, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-[dir="rtl"] .slick-prev:before {
-  content: "→";
-}
-
-/* line 117, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-next {
-  right: -25px;
-}
-
-/* line 119, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-[dir="rtl"] .slick-next {
-  left: -25px;
-  right: auto;
-}
-
-/* line 123, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-next:before {
-  content: "→";
-}
-
-/* line 125, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-[dir="rtl"] .slick-next:before {
-  content: "←";
-}
-
-/* Dots */
-/* line 133, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-dotted.slick-slider {
-  margin-bottom: 30px;
-}
-
-/* line 137, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-dots {
-  position: absolute;
-  bottom: -25px;
-  list-style: none;
-  display: block;
-  text-align: center;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-}
-
-/* line 146, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-dots li {
-  position: relative;
-  display: inline-block;
-  height: 20px;
-  width: 20px;
-  margin: 0 5px;
-  padding: 0;
-  cursor: pointer;
-}
-
-/* line 154, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-dots li button {
-  border: 0;
-  background: transparent;
-  display: block;
-  height: 20px;
-  width: 20px;
-  outline: none;
-  line-height: 0px;
-  font-size: 0px;
-  color: transparent;
-  padding: 5px;
-  cursor: pointer;
-}
-
-/* line 166, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-dots li button:hover, .slick-dots li button:focus {
-  outline: none;
-}
-
-/* line 168, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-dots li button:hover:before, .slick-dots li button:focus:before {
-  opacity: 1;
-}
-
-/* line 172, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-dots li button:before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: "•";
-  width: 20px;
-  height: 20px;
-  font-family: "slick";
-  font-size: 10px;
-  line-height: 20px;
-  text-align: center;
-  color: black;
-  opacity: 0.25;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* line 189, /Users/rob/Projects/tshape/src/static/modules/slick/slick-theme.scss */
-.slick-dots li.slick-active button:before {
-  color: black;
-  opacity: 0.75;
-}
-
-/* Slider */
-/* line 3, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-slider {
-  position: relative;
-  display: block;
-  box-sizing: border-box;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -ms-touch-action: pan-y;
-  touch-action: pan-y;
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* line 17, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-list {
-  position: relative;
-  overflow: hidden;
-  display: block;
-  margin: 0;
-  padding: 0;
-}
-
-/* line 24, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-list:focus {
-  outline: none;
-}
-
-/* line 28, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-list.dragging {
-  cursor: pointer;
-  cursor: hand;
-}
-
-/* line 33, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-slider .slick-track,
-.slick-slider .slick-list {
-  -webkit-transform: translate3d(0, 0, 0);
-  -moz-transform: translate3d(0, 0, 0);
-  -ms-transform: translate3d(0, 0, 0);
-  -o-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-}
-
-/* line 42, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-track {
-  position: relative;
-  left: 0;
-  top: 0;
-  display: block;
-}
-
-/* line 48, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-track:before, .slick-track:after {
-  content: "";
-  display: table;
-}
-
-/* line 54, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-track:after {
-  clear: both;
-}
-
-/* line 58, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-loading .slick-track {
-  visibility: hidden;
-}
-
-/* line 62, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-slide {
-  float: left;
-  height: 100%;
-  min-height: 1px;
-  display: none;
-}
-
-/* line 66, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-[dir="rtl"] .slick-slide {
-  float: right;
-}
-
-/* line 69, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-slide img {
-  display: block;
-}
-
-/* line 72, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-slide.slick-loading img {
-  display: none;
-}
-
-/* line 78, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-slide.dragging img {
-  pointer-events: none;
-}
-
-/* line 82, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-initialized .slick-slide {
-  display: block;
-}
-
-/* line 86, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-loading .slick-slide {
-  visibility: hidden;
-}
-
-/* line 90, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-vertical .slick-slide {
-  display: block;
-  height: auto;
-  border: 1px solid transparent;
-}
-
-/* line 96, /Users/rob/Projects/tshape/src/static/modules/slick/slick.scss */
-.slick-arrow.slick-hidden {
-  display: none;
+/* line 1, /Users/rob/Projects/tshape/src/static/scss/pages/_page-signup.scss */
+body.page-signup {
+  background: #FCFDF5;
 }
 
 /*!
@@ -7811,83 +7030,6 @@ body.page-homepage .strip:after {
 /* line 588, /Users/rob/Projects/tshape/src/static/scss/fontawesome/_icons.scss */
 .fa-fonticons:before {
   content: "";
-}
-
-/* line 31, /Users/rob/Projects/tshape/src/static/scss/_breakpoints.scss */
-body:after {
-  background: black;
-  color: #FFFFFF;
-  opacity: 0.8;
-  padding: .5em 1em;
-  position: fixed;
-  text-align: center;
-  bottom: 0;
-  right: 0;
-  z-index: 999;
-}
-
-@media only screen {
-  /* line 31, /Users/rob/Projects/tshape/src/static/scss/_breakpoints.scss */
-  body:after {
-    background: orange;
-    content: "small-up";
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  /* line 31, /Users/rob/Projects/tshape/src/static/scss/_breakpoints.scss */
-  body:after {
-    background: orange;
-    content: "small - 0px, 767px";
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  /* line 31, /Users/rob/Projects/tshape/src/static/scss/_breakpoints.scss */
-  body:after {
-    background: red;
-    content: "medium-up";
-  }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-  /* line 31, /Users/rob/Projects/tshape/src/static/scss/_breakpoints.scss */
-  body:after {
-    background: red;
-    content: "medium - 768px, 1024px)";
-  }
-}
-
-@media only screen and (min-width: 1025px) {
-  /* line 31, /Users/rob/Projects/tshape/src/static/scss/_breakpoints.scss */
-  body:after {
-    background: green;
-    content: "large-up";
-  }
-}
-
-@media only screen and (min-width: 1025px) and (max-width: 1440px) {
-  /* line 31, /Users/rob/Projects/tshape/src/static/scss/_breakpoints.scss */
-  body:after {
-    background: green;
-    content: "large - 1025px, 1440px";
-  }
-}
-
-@media only screen and (min-width: 1441px) {
-  /* line 31, /Users/rob/Projects/tshape/src/static/scss/_breakpoints.scss */
-  body:after {
-    background: blue;
-    content: "xlarge-up";
-  }
-}
-
-@media only screen and (min-width: 1441px) and (max-width: 5000px) {
-  /* line 31, /Users/rob/Projects/tshape/src/static/scss/_breakpoints.scss */
-  body:after {
-    background: blue;
-    content: "xlarge - 1441px, 5000px";
-  }
 }
 
 /*# sourceMappingURL=style.css.map */

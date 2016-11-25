@@ -31,12 +31,15 @@
 				color: #666;
 			}
 			&.selected {
-				background-color: #000;
-				color: #FFF;
+				// background-color: #000;
+				// color: #FFF;
+				// border-bottom: 1px dotted #333;
+				// text-decoration: underline;
 			}
 		}
 		.skillset__weight {
-			display: inline-block;
+			display: none;
+			// display: inline-block;
 			border: 1px solid #CCCCCC;
 			border-right: none;
 			box-shadow: #FEFFFF 0px 1px 1px ; 
@@ -47,10 +50,11 @@
 			text-shadow: 0px 1px 0 rgba(255,255,255,1);
 			color: #4A4A4A;
 		 	background-color: #F7F5F6; 
-		 	background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
+		 	// background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
 		}
 		.skillset__id {
-			display: inline-block;
+			display: none;
+			// display: inline-block;
 			border:1px solid #CCCCCC;
 			border-right: none;
 			box-shadow: #FEFFFF 0px 1px 1px ; 
@@ -59,43 +63,38 @@
 			text-shadow: 0px 1px 0 rgba(255,255,255,1);
 			color: #4A4A4A;
 		 	background-color: #F7F5F6; 
-		 	background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
+		 	// background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
 		}
 		.skillset__name {
 			display: inline-block;
-			border: 1px solid #CCCCCC;
+			// border: 1px solid #CCCCCC;
 			box-shadow: #FEFFFF 0px 1px 1px ; 
-			padding: 5px;
+			padding: 5px 5px 5px 10px;
 			text-decoration:none; 
 			text-shadow: 0px 1px 0 rgba(255,255,255,1);
 			color: #4A4A4A;
 		 	background-color: #F7F5F6; 
-		 	background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
+		 	border-top-left-radius: 3px;
+			border-bottom-left-radius: 3px;
+		 	// background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
 		}
 		.skillset__remove {
 			display: inline-block;
-			border: 1px solid #CCCCCC;
-			border-left: none;
+			// border: 1px solid #CCCCCC;
+			// border-left: none;
 			box-shadow: #FEFFFF 0px 1px 1px ; 
 			border-top-right-radius: 3px;
 			border-bottom-right-radius: 3px;
-			padding: 5px;
+			padding: 8px 10px 7px 5px;
 			text-decoration:none; 
 			text-shadow: 0px 1px 0 rgba(255,255,255,1);
-			color: #4A4A4A;
+			color: #ababab;
 		 	background-color: #F7F5F6; 
-		 	background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
+		 	// background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
 		}
 		// Selected State
 		&.selected {
 			
-			.skillset__name {
-				color: #ffffff;
-			    background-color: #484848;
-			    background-image: linear-gradient(to bottom, #484848, #000000);
-			    text-shadow: none;
-			    border-color: #000;
-			}
 			.skillset__weight {
 				color: #ffffff;
 			    background-color: #484848;
@@ -110,12 +109,23 @@
 			    text-shadow: none;
 			    border-color: #000;
 			}
+			.skillset__name {
+				color: #ffffff;
+				background-color: $primary-color;
+				// border-color: $primary-color;
+			    // background-color: #484848;
+			    // background-image: linear-gradient(to bottom, #484848, #000000);
+			    // border-color: #000;
+			    text-shadow: none;
+			}
 			.skillset__remove {
 				color: #ffffff;
-			    background-color: #484848;
-			    background-image: linear-gradient(to bottom, #484848, #000000);
+			    background-color: $primary-color;
+			    // border-color: $primary-color;
+			    // background-color: #484848;
+			    // background-image: linear-gradient(to bottom, #484848, #000000);
+			    // border-color: #000;
 			    text-shadow: none;
-			    border-color: #000;
 			}
 		}
 	}
@@ -138,3 +148,18 @@
 		}
 	}
 } 
+
+.add-skillset {
+	display: inline-block;
+	cursor: pointer;
+	margin: 0 5px 5px 0;
+	font-size: 13px;
+	display: inline-block;
+    box-shadow: #FEFFFF 0px 1px 1px;
+    padding: 5px 10px 5px 10px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0 white;
+    color: #4A4A4A;
+    border-radius: 3px;
+    border: 1px dotted #ccc;
+}

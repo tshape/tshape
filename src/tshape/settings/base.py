@@ -11,17 +11,30 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+<<<<<<< HEAD
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+=======
+import dj_database_url
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+>>>>>>> master
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+<<<<<<< HEAD
 SECRET_KEY = os.environ.get('SECRET_KEY')
+=======
+# SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get("SECRET_KEY")
+>>>>>>> master
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -39,7 +52,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+<<<<<<< HEAD
     'graphene_django',
+=======
+>>>>>>> master
     'rest_framework',
     'template_repl',
     'tshape',
@@ -51,6 +67,10 @@ INSTALLED_APPS = [
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
+<<<<<<< HEAD
+=======
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+>>>>>>> master
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -89,10 +109,17 @@ WSGI_APPLICATION = 'tshape.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+<<<<<<< HEAD
         'NAME': 'postgres',
         'USER': 'postgres',
         'HOST': 'localhost',
         'PORT': '',
+=======
+        'NAME': os.environ.get("POSTGRES_LOCAL_DB_NAME"),
+        'USER': os.environ.get("POSTGRES_LOCAL_DB_USER"),
+        'HOST': 'localhost',
+        'PORT': 5432,
+>>>>>>> master
     }
 }
 
@@ -151,13 +178,26 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_ROOT = ''
+# STATIC_ROOT = ''
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+# STATIC_URL = '/static/'
+
+# STATICFILES_DIRS = [
+#     os.path.join(ROOT_DIR, "static/")
+# ]
+
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
+STATIC_ROOT = os.path.join(ROOT_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    os.path.join(ROOT_DIR, "static/")
-]
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(ROOT_DIR, 'static'),
+)
+
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -177,3 +217,15 @@ STATICFILES_FINDERS = (
 GRAPHENE = {
     'SCHEMA': 'app.schema.schema' # Where your Graphene schema lives
 }
+
+# Update database configuration with $DATABASE_URL.
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

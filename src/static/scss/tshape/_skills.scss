@@ -1,8 +1,9 @@
 .skills {
 	.skills__heading {
 		font-weight: normal;
+		font-size: 26px;
 		span {
-			font-weight: bold;
+			// font-weight: bold;
 		}
 	}
 	.skills__heading-myskills {
@@ -70,29 +71,40 @@
 	&.skill__item--verified {
 	}
 	.skill__tickbox {
-		padding: 10px;
+		background-image: url("/static/images/checkbox-empty.png");
+	    width: 22px;
+	    height: 22px;
+	    background-size: contain;
+	    display: inline-block;
 	    float: left;
-	    width: 44px;
-	    cursor: pointer;
-	    text-decoration: none;
-		&:before {
-			content: "\f10c";
-			color: #666;
-			font-family: $font-awesome;
-			font-weight: 100;
-			font-size: 26px;
-			line-height: 26px;
-			text-decoration: none;
-	    }
+        margin: 12px 0 12px 0;
+        opacity: 0.7;
+		// padding: 10px;
+		 //    float: left;
+		 //    width: 44px;
+		 //    cursor: pointer;
+		 //    text-decoration: none;
+		// &:before {
+		// 	content: "\f096";
+		// 	color: #666;
+		// 	font-family: $font-awesome;
+		// 	font-weight: 100;
+		// 	font-size: 26px;
+		// 	line-height: 26px;
+		// 	text-decoration: none;
+	 	//    }
 	    &:hover {
+	    	opacity: 1;
 	    	&:before {
 	    		color: #333;
 	    	}
 	    }
 	}
 	&.active .skill__tickbox {
+		background-image: url("/static/images/checkbox-full.png");
+		opacity: 1;
 		&:before {
-			content: "\f058";
+			// content: "\f046";
 		}
 	}
 	.skill__weight {
@@ -110,29 +122,32 @@
 	 	background-image: linear-gradient(to bottom, #F7F5F6, #DDDDDD);
 	}
 	.skill__name {
-	    padding: 10px 10px 10px 0;
+	    padding: 10px 10px 10px 10px;
 	    float: left;
-	    width: calc(100% - 46px);
+	    width: calc(100% - 36px);
 	    height: 46px;
 	    white-space: nowrap;
 	    overflow: hidden;
 	    text-overflow: ellipsis;
 	    line-height: 26px;
 	    text-decoration: none;
-	    
-	}
-	&.inactive .skill__name {
-		color: #333;
-		&:hover {
-			color: #000;
+	    color: #999;
+	    &:hover {
+	    	color: #000;
 	    }
 	}
-	&.active .skill__name {
-		color: #999;
-		&:hover {
-			color: #000;
-	    }
-	}
+	// &.inactive .skill__name {
+	// 	color: #333;
+	// 	&:hover {
+	// 		color: #000;
+	//     }
+	// }
+	// &.active .skill__name {
+	// 	color: #999;
+	// 	&:hover {
+	// 		color: #000;
+	//     }
+	// }
 	.skill__remove {
 		display: inline-block;
 		border: 1px solid #CCCCCC;
@@ -149,28 +164,48 @@
 	}
 }
 
-
-.skillset-name {
-
-}
-.skillset-name-javascript {
-	$color-1: #F0DB4F;
-	$color-2: #efa73b;
-
-	$steps: 10;
-
-	@for $i from 0 to $steps {
-		.skill__item {
-		    &:nth-child(#{$i + 1}) {
-	      		border-left: 5px solid mix($color-1, $color-2, percentage($i / ($steps - 1)));
-		    }
+.skill-info {
+    // border-left: 4px solid #dedede;
+    margin-top: 40px;
+    // padding-left: 20px;
+	.skill-info__header {
+		@include clearfix;
+		 // border-bottom: 1px solid #CCC;
+		.skill-info__icon {
+		    width: 40px;
+		    height: 40px;
+		    background-size: contain;
+		    display: inline-block;
+		    float: left;
+		    margin-right: 10px;
+		}
+		.skill-info__skillset-name {
+		   font-family: "Lato", "helvetica", "arial";
+		    font-size: 16px;
+		    line-height: 38px;
+		    color: #333;
+		    float: left;
+		    margin-right: 10px;
+		}
+		
+	}
+	.skill-info__middle {
+		.skill-info__weight {
+		    font-family: "Lato", "helvetica", "arial";
+		    font-size: 16px;
+		    line-height: 30px;
+		    color: #333;
+		    float: left;
+		    font-weight: 300;
+		    border-radius: 15px;
+		    width: 30px;
+		    height: 30px;
+	        text-align: center;
+		    font-weight: 500;
+		    margin: -3px 0 0 -40px
 		}
 	}
-	// .skill__item.active {
-	// 	.skill__tickbox:hover {
-	// 		&:before {
-	// 			color: #efa73b;
-	// 		}
-	// 	}
-	// }
+	.skill-info__name {
+
+	}
 }
