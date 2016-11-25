@@ -517,9 +517,8 @@ var Profile = React.createClass({
 
               <div className="tshape-vertical">
                 <div className="tshape__header">
-                    <div className="tshape__avatar"></div>
-                    <h2 className="tshape__role">UI Engineer</h2>
-                    <h3 className="tshape__user">Robert Austin</h3>
+                    <h2 className="tshape__role">{this.state.profile.title} </h2>
+                    <h3 className="tshape__user">{this.state.profile.first_name} {this.state.profile.last_name}</h3>
                     <div className="tshape__badges">
                         <span className="tshape__github"><a href="#"><i className="fa fa-github" aria-hidden="true"></i></a></span>
                         <span className="tshape__linkedin"><a href="#"><i className="fa fa-linkedin-square" aria-hidden="true"></i></a></span>
@@ -992,14 +991,14 @@ var Skills = React.createClass({
           return (
             <div className={"skill__item skill__item--verified active"} key={key}>
               <a href="#" className="skill__tickbox skill__tickbox--ticked" onClick={this.remove(value)}></a>
-              <a href="#" className="skill__name" onClick={this.show(value)} >{value.name}</a>
+              <a href="#" className="skill__name" onMouseEnter={this.show(value)} >{value.name}</a>
             </div>
           )
         } else if (value.active === false && value.verified === true) {
           return (
             <div className={"skill__item skill__item--verified inactive"} key={key} >
                <a href="#" className="skill__tickbox skill__tickbox--unticked" onClick={this.add(value)}></a>
-               <a href="#" className="skill__name" onClick={this.show(value)} >{value.name}</a>
+               <a href="#" className="skill__name" onMouseEnter={this.show(value)} >{value.name}</a>
             </div>
           )
         }
