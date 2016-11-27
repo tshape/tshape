@@ -30,9 +30,7 @@ class Command(BaseCommand):
 
 def add_skillsets():
     skillsets = [
-        'JavaScript', 'Python', 'Ruby', 'Java', 'GO', 'Perl', 'C++', 'C',
-        'Objective C', 'Swift', 'Algorithms', 'Data Structures',
-        'Machine Learning', 'SQL', 'NOSQL', 'Big Data'
+        'Javascript', 'CSS', 'PHP'
     ]
     try:
         Skillset.objects.bulk_create([
@@ -46,10 +44,10 @@ def add_skillsets():
 
 def add_skills():
     skillsets = Skillset.objects.all()
-    slice_index = int(len(skillsets) / 2)
+    # slice_index = int(len(skillsets) / 2)
     skills = []
     try:
-        for skillset in skillsets[:slice_index]:
+        for skillset in skillsets:
             skills.extend([
                 Skill(
                     skillset=skillset,
@@ -63,20 +61,20 @@ def add_skills():
     except Exception as e:
         print('error creating verified skills!')
         print(e)
-    try:
-        for skillset in skillsets[slice_index:]:
-            skills.extend([
-                Skill(
-                    skillset=skillset,
-                    name=faker.sentence(nb_words=6, variable_nb_words=True),
-                    description=faker.paragraph(
-                        nb_sentences=3, variable_nb_sentences=True),
-                    verified=False
-                ) for i in range(10)
-            ])
-    except Exception as e:
-        print('error creating unverified skills!')
-        print(e)
+    # try:
+    #     for skillset in skillsets[slice_index:]:
+    #         skills.extend([
+    #             Skill(
+    #                 skillset=skillset,
+    #                 name=faker.sentence(nb_words=6, variable_nb_words=True),
+    #                 description=faker.paragraph(
+    #                     nb_sentences=3, variable_nb_sentences=True),
+    #                 verified=False
+    #             ) for i in range(10)
+    #         ])
+    # except Exception as e:
+    #     print('error creating unverified skills!')
+    #     print(e)
     try:
         Skill.objects.bulk_create(skills)
     except Exception as e:
