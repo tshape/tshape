@@ -42,6 +42,54 @@
   }
 }
 
+.php {
+  $color-1: #8993BE;
+  $color-2: #8993BE;
+
+  $steps: 10;
+
+  @for $i from 0 to $steps {
+    .tshape__skill {
+        &:nth-child(#{$i + 1}) {
+            background-color: mix($color-1, $color-2, percentage($i / ($steps - 1)));
+        }
+    }
+  }
+}
+
+
+.css {
+  $color-1: #34ACDE;
+  $color-2: #34ACDE;
+
+  $steps: 10;
+
+  @for $i from 0 to $steps {
+    .tshape__skill {
+        &:nth-child(#{$i + 1}) {
+            background-color: mix($color-1, $color-2, percentage($i / ($steps - 1)));
+        }
+    }
+  }
+}
+
+.html {
+  $color-1: #F16529;
+  $color-2: #F16529;
+
+  $steps: 10;
+
+  @for $i from 0 to $steps {
+    .tshape__skill {
+        &:nth-child(#{$i + 1}) {
+            background-color: mix($color-1, $color-2, percentage($i / ($steps - 1)));
+        }
+    }
+  }
+}
+
+
+
 .label-javascript {
   .icon {
     background-image: url("/static/images/logos/javascript-120.png");

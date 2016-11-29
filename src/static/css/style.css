@@ -3699,12 +3699,162 @@ ul.errorlist li {
   background-color: #f7d44d;
 }
 
-/* line 46, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+/* line 53, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.php .tshape__skill:nth-child(1) {
+  background-color: #8993be;
+}
+
+/* line 53, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.php .tshape__skill:nth-child(2) {
+  background-color: #8993be;
+}
+
+/* line 53, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.php .tshape__skill:nth-child(3) {
+  background-color: #8993be;
+}
+
+/* line 53, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.php .tshape__skill:nth-child(4) {
+  background-color: #8993be;
+}
+
+/* line 53, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.php .tshape__skill:nth-child(5) {
+  background-color: #8993be;
+}
+
+/* line 53, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.php .tshape__skill:nth-child(6) {
+  background-color: #8993be;
+}
+
+/* line 53, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.php .tshape__skill:nth-child(7) {
+  background-color: #8993be;
+}
+
+/* line 53, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.php .tshape__skill:nth-child(8) {
+  background-color: #8993be;
+}
+
+/* line 53, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.php .tshape__skill:nth-child(9) {
+  background-color: #8993be;
+}
+
+/* line 53, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.php .tshape__skill:nth-child(10) {
+  background-color: #8993be;
+}
+
+/* line 69, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.css .tshape__skill:nth-child(1) {
+  background-color: #34acde;
+}
+
+/* line 69, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.css .tshape__skill:nth-child(2) {
+  background-color: #34acde;
+}
+
+/* line 69, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.css .tshape__skill:nth-child(3) {
+  background-color: #34acde;
+}
+
+/* line 69, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.css .tshape__skill:nth-child(4) {
+  background-color: #34acde;
+}
+
+/* line 69, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.css .tshape__skill:nth-child(5) {
+  background-color: #34acde;
+}
+
+/* line 69, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.css .tshape__skill:nth-child(6) {
+  background-color: #34acde;
+}
+
+/* line 69, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.css .tshape__skill:nth-child(7) {
+  background-color: #34acde;
+}
+
+/* line 69, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.css .tshape__skill:nth-child(8) {
+  background-color: #34acde;
+}
+
+/* line 69, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.css .tshape__skill:nth-child(9) {
+  background-color: #34acde;
+}
+
+/* line 69, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.css .tshape__skill:nth-child(10) {
+  background-color: #34acde;
+}
+
+/* line 84, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.html .tshape__skill:nth-child(1) {
+  background-color: #f16529;
+}
+
+/* line 84, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.html .tshape__skill:nth-child(2) {
+  background-color: #f16529;
+}
+
+/* line 84, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.html .tshape__skill:nth-child(3) {
+  background-color: #f16529;
+}
+
+/* line 84, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.html .tshape__skill:nth-child(4) {
+  background-color: #f16529;
+}
+
+/* line 84, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.html .tshape__skill:nth-child(5) {
+  background-color: #f16529;
+}
+
+/* line 84, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.html .tshape__skill:nth-child(6) {
+  background-color: #f16529;
+}
+
+/* line 84, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.html .tshape__skill:nth-child(7) {
+  background-color: #f16529;
+}
+
+/* line 84, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.html .tshape__skill:nth-child(8) {
+  background-color: #f16529;
+}
+
+/* line 84, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.html .tshape__skill:nth-child(9) {
+  background-color: #f16529;
+}
+
+/* line 84, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+.html .tshape__skill:nth-child(10) {
+  background-color: #f16529;
+}
+
+/* line 94, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
 .label-javascript .icon {
   background-image: url("/static/images/logos/javascript-120.png");
 }
 
-/* line 49, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
+/* line 97, /Users/rob/Projects/tshape/src/static/scss/tshape/_skillsets-colors.scss */
 .label-javascript .label-background {
   background-color: #f7d44d;
 }

@@ -30,7 +30,7 @@ class Command(BaseCommand):
 
 def add_skillsets():
     skillsets = [
-        'Javascript', 'CSS', 'PHP'
+        'Javascript', 'CSS', 'PHP', 'HTML'
     ]
     try:
         Skillset.objects.bulk_create([
