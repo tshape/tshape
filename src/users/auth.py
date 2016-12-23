@@ -2,7 +2,6 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.backends import ModelBackend
 
 
-# do i need this?
 class UserAuth(ModelBackend):
 
     def authenticate(self, email=None, password=None):

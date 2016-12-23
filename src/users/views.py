@@ -1,20 +1,21 @@
 from django.contrib.auth import authenticate, get_backends, login, logout
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.views.generic import CreateView, FormView, RedirectView
+from django.views.generic import (
+    CreateView, DetailView, FormView, RedirectView, UpdateView
+)
 from rest_framework import viewsets
 
 from tshape.utils import MultiSerializerViewSetMixin
-from users.forms import UserLoginForm, UserCreateForm
+from users.forms import UserLoginForm, UserCreateForm, UserForm
 from users.models import User
 from users.serializers import UserSerializer, UserUpdateSerializer
 
 
 class UserViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
-    """
-    A simple ViewSet for viewing and editing users.
-    """
+
+    """A simple ViewSet for viewing and editing users."""
     queryset = User.objects.all()
     serializer_class = UserSerializer
     serializer_action_classes = {
@@ -72,3 +73,39 @@ class SignupView(CreateView):
 
     def get_success_url(self, user, *args, **kwargs):
         return reverse_lazy('profiles:detail', kwargs={'profile_id': user.id})
+
+
+class UserUpdateView(UpdateView):
+
+    form_class = UserForm
+    template_name = 'users/edit.html'
+
+    def get_object(self, *args, **kwargs):
+        user_id = self.kwargs.get('id')
+        return User.objects.get(pk=user_id)
+
+    def form_valid(self, form, *args, **kwargs):
+        form.save()
+        return super(UserUpdateView, self).form_valid(form, *args, **kwargs)
+
+    def get_success_url(self, *args, **kwargs):
+        return reverse('users:detail',
+                       kwargs={'id': self.request.user.id})
+
+
+class UserDetailView(DetailView):
+
+    form_class = UserForm
+    template_name = 'users/detail.html'
+
+    def get_object(self, *args, **kwargs):
+        user_id = self.kwargs.get('id')
+        return User.objects.get(pk=user_id)
+
+    def form_valid(self, form, *args, **kwargs):
+        form.save()
+        return super(UserDetailView, self).form_valid(form, *args, **kwargs)
+
+    def get_success_url(self, *args, **kwargs):
+        return reverse('users:detail',
+                       kwargs={'id': self.request.user.id})

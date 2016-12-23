@@ -60,6 +60,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         _('first name'), max_length=30, null=True, blank=True)
     last_name = models.CharField(
         _('last name'), max_length=50, null=True, blank=True)
+    title = models.CharField(_('title'), max_length=280, blank=True)
+    description = models.TextField(_('description'), blank=True)
+    years_experience = models.IntegerField(
+        _('years of experience'), blank=True, null=True)
 
     objects = UserManager()
 

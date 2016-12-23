@@ -26,6 +26,9 @@ class TestUserModel(TestCase):
         user.username = 'anotheruser'
         user.first_name = 'ang'
         user.last_name = 'ie'
+        user.title = 'CNO'
+        user.description = 'Chief Nerd Officer'
+        user.years_experience = 100
         user.is_staff = True
         user.is_superuser = True
         user.is_active = False

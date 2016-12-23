@@ -29,8 +29,27 @@ class UserCreateForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('email', 'password1', 'password2')
+        fields = ('first_name', 'last_name', 'title',
+                  'email', 'password1', 'password2')
 
+    title = forms.CharField(label=_('Job Title'))
+    email = forms.EmailField(label=_('E-mail'), max_length=75, required=True)
+
+    def save(self, commit=True):
+        data = dict(self.cleaned_data)
+        data.pop('password2')
+        data['password'] = data.pop('password1')
+        return User.objects.create(**data)
+
+
+class UserForm(forms.Form):
+
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'title',
+                  'email', 'password1', 'password2')
+
+    title = forms.CharField(label=_('Job Title'))
     email = forms.EmailField(label=_('E-mail'), max_length=75, required=True)
 
     def save(self, commit=True):

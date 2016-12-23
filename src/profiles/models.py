@@ -12,19 +12,12 @@ class Profile(BaseModel):
 
     class Meta:
         db_table = 'profiles'
-        ordering = ('last_name',)
         verbose_name = _('profile')
         verbose_name_plural = _('profiles')
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, primary_key=True,
                                 verbose_name=_('user'),
                                 on_delete=models.CASCADE)
-    first_name = models.CharField(_('first name'), max_length=30)
-    last_name = models.CharField(_('last name'), max_length=50)
-    title = models.CharField(_('title'), max_length=280, blank=True)
-    description = models.TextField(_('description'), blank=True)
-    years_experience = models.IntegerField(
-        _('years of experience'), blank=True, null=True)
     skills = models.ManyToManyField(
         Skill, verbose_name=_('skills'), through='ProfileSkill')
     skillsets = models.ManyToManyField(

@@ -25,17 +25,6 @@ class TestProfileModel(TestCase):
         self.assertIsNotNone(self.user.profile.created_at)
         self.assertIsNotNone(self.user.profile.updated_at)
 
-    def test_profile_update(self):
-        profile = self.user.profile
-        profile.first_name = 'ang'
-        profile.last_name = 'ie'
-        profile.title = 'CNO'
-        profile.description = 'Chief Nerd Officer'
-        profile.years_experience = 100
-        profile.save()
-        self.assertEqual(Profile.objects.first(), profile)
-        self.assertEqual(str(self.user.profile), 'ang ie')
-
     def test_profile_skills_skillsets(self):
         profile = self.user.profile
         self.assertEqual(len(profile.skillsets.all()), 0)
@@ -120,20 +109,6 @@ class TestProfileAPI(TestCase):
         profiles = Profile.objects.all()
         expected = ProfileSerializer(profiles, many=True).data
         self.assertEqual(response.data, expected)
-
-    def test_profile_put(self):
-        data = {'first_name': 'angie', 'years_experience': 5}
-        response = self.client.put(
-            '/api/profiles/{}/'.format(self.user_1.id),
-            json.dumps(data), content_type='application/json')
-        self.assertEqual(response.status_code, 200)
-
-        profile = Profile.objects.get(pk=self.user_1.id)
-        expected = ProfileSerializer(profile).data
-        self.assertEqual(response.data, expected)
-        self.assertEqual(response.data['first_name'], data['first_name'])
-        self.assertEqual(
-            response.data['years_experience'], data['years_experience'])
 
 
 class TestProfileSkillsetAPI(TestCase):
