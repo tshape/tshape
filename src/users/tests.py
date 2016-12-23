@@ -82,7 +82,10 @@ class TestUserAPI(TestCase):
         self.assertEqual(response.data, expected)
 
     def test_user_post(self):
-        data = {'email': 'rob@tshape.com', 'password': 'test123'}
+        data = {
+            'email': 'rob@tshape.com', 'password': 'test123',
+            'first_name': 'rob', 'last_name': 'austin',
+            'title': 'frontend'}
         response = self.client.post(
             '/api/users/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, 201)
@@ -91,6 +94,9 @@ class TestUserAPI(TestCase):
         expected = UserSerializer(user).data
         self.assertEqual(response.data, expected)
         self.assertEqual(response.data['email'], data['email'])
+        self.assertEqual(response.data['first_name'], data['first_name'])
+        self.assertEqual(response.data['last_name'], data['last_name'])
+        self.assertEqual(response.data['title'], data['title'])
 
     def test_user_put(self):
         data = {'email': 'angie@tshape.com', 'is_staff': True}
