@@ -1,12 +1,17 @@
 from django.db import transaction
+from django.shortcuts import get_object_or_404
+from django.core.urlresolvers import reverse
+from django.views.generic import DetailView, UpdateView
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 
+from profiles.forms import ProfileForm
 from profiles.models import Profile
 from profiles.serializers import ProfileSerializer
 from skills.models import Skill
 from skillsets.models import Skillset
 from tshape.utils import MultiSerializerViewSetMixin
+from users.models import User
 
 
 class ProfileViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
@@ -38,3 +43,41 @@ class ProfileViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_200_OK,
                         headers=headers)
+
+
+class ProfileDetailView(DetailView):
+
+    model = Profile
+    template_name = 'profiles/detail.html'
+
+    def get_object(self, *args, **kwargs):
+        username = self.kwargs.get('username')
+        if username:
+            user = get_object_or_404(User, username=username)
+            return get_object_or_404(Profile, pk=user.id)
+        return self.request.user.profile
+
+
+# class ProfileListView(ListView):
+
+#     model = Profile
+#     template_name = 'profiles/list.html'
+
+
+class ProfileUpdateView(UpdateView):
+
+    form_class = ProfileForm
+    template_name = 'profiles/edit.html'
+
+    def get_object(self, *args, **kwargs):
+        username = self.kwargs.get('username')
+        user = get_object_or_404(User, username=username)
+        return get_object_or_404(Profile, pk=user.id)
+
+    def form_valid(self, form, *args, **kwargs):
+        form.save()
+        return super(ProfileUpdateView, self).form_valid(form, *args, **kwargs)
+
+    def get_success_url(self, *args, **kwargs):
+        return reverse('profiles:detail',
+                       kwargs={'profile_id': self.request.user.id})

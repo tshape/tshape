@@ -1,14 +1,21 @@
-from django.contrib.auth import authenticate, get_backends, login, logout
+from django.contrib.auth import (
+    authenticate, get_backends, login, logout, update_session_auth_hash
+)
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.views import password_reset, password_reset_confirm
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.template.response import TemplateResponse
 from django.views.generic import (
-    CreateView, DetailView, FormView, RedirectView, UpdateView
+    CreateView, DetailView, FormView, UpdateView
 )
 from rest_framework import viewsets
 
 from tshape.utils import MultiSerializerViewSetMixin
-from users.forms import UserLoginForm, UserCreateForm, UserForm
+from users.forms import (
+    UserCreateForm, UserForm, UserChangePasswordForm
+)
 from users.models import User
 from users.serializers import UserSerializer, UserUpdateSerializer
 
@@ -27,7 +34,7 @@ class UserViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
 
 class LoginView(FormView):
 
-    form_class = UserLoginForm
+    form_class = AuthenticationForm
     template_name = 'users/login.html'
 
     def get(self, request, *args, **kwargs):
@@ -36,25 +43,16 @@ class LoginView(FormView):
         return super(LoginView, self).get(request, *args, **kwargs)
 
     def form_valid(self, form):
-        user = form.cleaned_data['user']
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password')
+        user = authenticate(username=username, password=password)
         if user.is_active:
             login(self.request, user)
             return HttpResponseRedirect(self.get_success_url(user))
-        else:
-            # different action needed here for inactive users
-            return render(self.request, self.template_name, {'form': form})
+        return render(self.request, self.template_name, {'form': form})
 
     def get_success_url(self, user, *args, **kwargs):
-        return reverse_lazy('profiles:detail', kwargs={'profile_id': user.id})
-
-
-class LogoutView(RedirectView):
-
-    success_url = reverse_lazy('index')
-
-    def get(self, request, *args, **kwargs):
-        logout(request)
-        return HttpResponseRedirect(self.success_url)
+        return reverse_lazy('users:detail', kwargs={'username': user.username})
 
 
 class SignupView(CreateView):
@@ -64,15 +62,15 @@ class SignupView(CreateView):
 
     def form_valid(self, form):
         form.save()
-        email = form.cleaned_data.get('email')
+        username = form.cleaned_data.get('username')
         password = form.cleaned_data.get('password1')
         get_backends()
-        user = authenticate(email=email, password=password)
+        user = authenticate(username=username, password=password)
         login(self.request, user)
         return HttpResponseRedirect(self.get_success_url(user))
 
     def get_success_url(self, user, *args, **kwargs):
-        return reverse_lazy('profiles:detail', kwargs={'profile_id': user.id})
+        return reverse_lazy('users:detail', kwargs={'username': user.username})
 
 
 class UserUpdateView(UpdateView):
@@ -81,8 +79,8 @@ class UserUpdateView(UpdateView):
     template_name = 'users/edit.html'
 
     def get_object(self, *args, **kwargs):
-        user_id = self.kwargs.get('id')
-        return User.objects.get(pk=user_id)
+        username = self.kwargs.get('username')
+        return get_object_or_404(User, username=username)
 
     def form_valid(self, form, *args, **kwargs):
         form.save()
@@ -90,7 +88,7 @@ class UserUpdateView(UpdateView):
 
     def get_success_url(self, *args, **kwargs):
         return reverse('users:detail',
-                       kwargs={'id': self.request.user.id})
+                       kwargs={'username': self.request.user.username})
 
 
 class UserDetailView(DetailView):
@@ -99,13 +97,53 @@ class UserDetailView(DetailView):
     template_name = 'users/detail.html'
 
     def get_object(self, *args, **kwargs):
-        user_id = self.kwargs.get('id')
-        return User.objects.get(pk=user_id)
+        username = self.kwargs.get('username')
+        return get_object_or_404(User, username=username)
 
-    def form_valid(self, form, *args, **kwargs):
-        form.save()
-        return super(UserDetailView, self).form_valid(form, *args, **kwargs)
 
-    def get_success_url(self, *args, **kwargs):
-        return reverse('users:detail',
-                       kwargs={'id': self.request.user.id})
+class UserPasswordViews:
+
+    def change_password(request, *args, **kwargs):
+        if request.method == 'POST':
+            form = UserChangePasswordForm(user=request.user, data=request.POST)
+            if form.is_valid():
+                form.save()
+                update_session_auth_hash(request, form.user)
+                return HttpResponseRedirect(reverse('users:detail', kwargs={
+                    'username': request.user.username}))
+        else:
+            form = UserChangePasswordForm(user=request.user)
+        context = {
+            'form': form,
+        }
+        return TemplateResponse(
+            request, 'passwords/change_password.html', context)
+
+    def reset_password(request):
+        template = 'passwords/reset_password_form.html'
+        email_template = 'passwords/reset_password_email.html'
+        subject_template = 'passwords/reset_password_subject.txt'
+        redirect = reverse('passwords:reset_password_done')
+        return password_reset(request,
+                              is_admin_site=False,
+                              template_name=template,
+                              email_template_name=email_template,
+                              subject_template_name=subject_template,
+                              post_reset_redirect=redirect,
+                              from_email='admin@tshape.io',
+                              current_app='TShape')
+
+    def reset_password_done(request):
+        return render(request, 'passwords/reset_password_done.html')
+
+    def reset_confirm(request, username=None, token=None):
+        template = 'passwords/reset_password_confirm.html'
+        redirect = reverse('passwords:reset_confirm_done')
+        return password_reset_confirm(request,
+                                      template_name=template,
+                                      username=username,
+                                      token=token,
+                                      post_reset_redirect=redirect)
+
+    def reset_confirm_done(request):
+        return render(request, 'passwords/reset_password_complete.html')

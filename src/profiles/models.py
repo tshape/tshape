@@ -31,9 +31,6 @@ class Profile(BaseModel):
     def skill_ids(self):
         return [skill.id for skill in self.skills.all()]
 
-    def __str__(self):
-        return '{} {}'.format(self.first_name, self.last_name)
-
 
 class ProfileSkill(BaseModel):
 

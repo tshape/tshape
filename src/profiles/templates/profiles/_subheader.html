@@ -1,9 +1,9 @@
 <div class="strip">
     <div class="row">
         <div class="column small-12">
-            {% if profile_id %}
+            {% if username %}
                 <a id="show-tshape" class="button right" href="#">Toggle TShape <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-                <a class="my-profile-heading" href="{% url 'profiles:detail' profile_id %}">Rob's TShape</a>
+                <a class="my-profile-heading" href="{% url 'users:profiles:detail' username %}">Rob's TShape</a>
             {% endif %}
         </div>
     </div>

@@ -4,10 +4,10 @@ from django.contrib.auth.backends import ModelBackend
 
 class UserAuth(ModelBackend):
 
-    def authenticate(self, email=None, password=None):
+    def authenticate(self, username=None, password=None):
         UserModel = get_user_model()
         try:
-            user = UserModel.objects.get(email=email)
+            user = UserModel.objects.get(username=username)
         except UserModel.DoesNotExist:
             return None
         if user.check_password(password):

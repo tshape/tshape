@@ -12,12 +12,11 @@ from profiles.models import Profile
 
 class UserManager(BaseUserManager):
 
-    def create(self, email, password=None, *args, **kwargs):
+    def create(self, username, email, password=None, *args, **kwargs):
         """
-        Creates and saves a User with the given email, date of
-        birth and password.
+        Creates and saves a User with the given username, email, and password.
         """
-        user = self.model(email=email, **kwargs)
+        user = self.model(username=username, email=email, **kwargs)
         user.set_password(password)
         user.save()
         profile = Profile(
@@ -43,7 +42,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         }
     )
     username = models.CharField(
-        _('username'), max_length=30, unique=True, blank=True, null=True
+        _('username'), max_length=30, unique=True, blank=True, null=True,
+        error_messages={
+            'unique': _('A user with that username already exists.'),
+        }
     )
     is_staff = models.BooleanField(
         _('staff status'), default=False,
@@ -67,7 +69,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = 'username'
 
     def get_full_name(self):
         return '{} {}'.format(self.first_name, self.last_name)
@@ -83,4 +85,4 @@ class User(AbstractBaseUser, PermissionsMixin):
         super(User, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.email
+        return self.username

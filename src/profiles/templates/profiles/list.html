@@ -8,10 +8,10 @@
     <div class="column small-12">
         <h1>Profiles</h1>
         <ul>
-        {% for profile in object_list %}
-            <li>{{ profile.title }} - {{ profile.first_name }} {{ profile.last_name }}</li>
+        {% for user in object_list %}
+            <li>{{ user.title }} - {{ user.first_name }} {{ user.last_name }}</li>
         {% empty %}
-            <li>No profiles yet.</li>
+            <li>No users yet.</li>
         {% endfor %}
         </ul>
     </div>

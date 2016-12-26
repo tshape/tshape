@@ -73,7 +73,7 @@ class ProfileSkillsetViewSet(viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def update(self, request, pk=None, *args, **kwargs):
-        profile_id = self.kwargs.get('profile_id')
+        profile_id = self.kwargs.get('profile_pk')
         skillset_id = self.kwargs.get('pk')
         skillset = get_object_or_404(Skillset, pk=skillset_id)
         weight = self.kwargs.get('weight', skillset.weight)
@@ -81,7 +81,8 @@ class ProfileSkillsetViewSet(viewsets.ModelViewSet):
             ProfileSkillset,
             profile_id=profile_id, skillset_id=skillset_id)
         profile_skillset.weight = weight
-        return super(SkillsetViewSet, self).update(request, *args, **kwargs)
+        return super(
+            ProfileSkillsetViewSet, self).update(request, *args, **kwargs)
 
 
 class SkillsetCreateView(CreateView):

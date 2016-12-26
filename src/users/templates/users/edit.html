@@ -5,7 +5,7 @@
 
 {% block content %}
     <div class="signup">
-    <h2>Login</h2>
+    <h2>Edit User Information</h2>
     {% if form.errors %}
         {% for error in field.errors %}
             <div class="alert alert-error">
@@ -19,23 +19,11 @@
         {% endfor %}
     {% endif %}
 
-    <form method="post" action="{% url 'login' %}">
-        {% csrf_token %}
-        <table>
-            <tr>
-                <td>{{ form.username.label_tag }}</td>
-                <td>{{ form.username }}</td>
-            </tr>
-            <tr>
-                <td>{{ form.password.label_tag }}</td>
-                <td>{{ form.password }}</td>
-            </tr>
-        </table>
-
-        <input type="submit" class="button button--signup medium" value="login" />
-        <input type="hidden" name="next" value="{{ next }}" />
+    <form action="{% url 'users:edit' user.username %}" method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Save" />
     </form>
-    <a href="{% url 'passwords:reset_password' %}">Forgot Password</a>
+    <a href="{% url 'passwords:change_password' %}">Change Password</a>
     </div>
 
 {% endblock %}

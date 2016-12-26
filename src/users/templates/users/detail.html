@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block page_class %}page-signup{% endblock %}
+{% block section_class %}section-signup{% endblock %}
+
+{% block content %}
+    <div class="signup">
+    <h2>User Information</h2>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+    {% if user %}
+        <p>
+            Username: {{ user.username }}<br />
+            Email: {{ user.email }}<br />
+            First Name: {{ user.first_name }}<br />
+            Last Name: {{ user.last_name }}<br />
+            Title: {{ user.title }}<br />
+        </p>
+        <p><a href="{% url 'users:edit' user.username %}">Edit User Information</a></p>
+    {% else %}
+        <p>Error: User does not exist.</p>
+    {% endif %}
+    </div>
+
+{% endblock %}

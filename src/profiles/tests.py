@@ -17,7 +17,7 @@ class TestProfileModel(TestCase):
 
     def setUp(self):
         self.user = User.objects.create(
-            email='test1@tshape.com', password='try$h1s')
+            username='test', email='test1@tshape.com', password='try$h1s')
 
     def test_profile_create(self):
         self.assertIsNotNone(self.user.profile)
@@ -99,9 +99,9 @@ class TestProfileAPI(TestCase):
     def setUp(self):
         self.client = Client()
         self.user_1 = User.objects.create(
-            email='test1@tshape.com', password='try$h1s')
+            username='test1', email='test1@tshape.com', password='try$h1s')
         self.user_2 = User.objects.create(
-            email='test2@tshape.com', password='try$h1s')
+            username='test2', email='test2@tshape.com', password='try$h1s')
 
     def test_profile_get(self):
         response = self.client.get('/api/profiles/')
@@ -116,9 +116,9 @@ class TestProfileSkillsetAPI(TestCase):
     def setUp(self):
         self.client = Client()
         self.user_1 = User.objects.create(
-            email='test1@tshape.com', password='try$h1s')
+            username='test1', email='test1@tshape.com', password='try$h1s')
         self.user_2 = User.objects.create(
-            email='test2@tshape.com', password='try$h1s')
+            username='test2', email='test2@tshape.com', password='try$h1s')
         self.skillset_1 = Skillset.objects.create(
             name='python', description='best ever', verified=True, weight=10)
         self.skillset_2 = Skillset.objects.create(
@@ -174,9 +174,9 @@ class TestProfileSkillAPI(TestCase):
     def setUp(self):
         self.client = Client()
         self.user_1 = User.objects.create(
-            email='test1@tshape.com', password='try$h1s')
+            username='test1', email='test1@tshape.com', password='try$h1s')
         self.user_2 = User.objects.create(
-            email='test2@tshape.com', password='try$h1s')
+            username='test2', email='test2@tshape.com', password='try$h1s')
         self.skillset = Skillset.objects.create(
             name='python', description='best ever', verified=True, weight=10)
         self.skill_1 = Skill.objects.create(
