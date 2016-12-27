@@ -1,8 +1,9 @@
 from django.db import transaction
 from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse
-from django.views.generic import DetailView, UpdateView
+from django.views.generic import DetailView, ListView, UpdateView
 from rest_framework import viewsets, status
+from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
 
 from profiles.forms import ProfileForm
@@ -10,7 +11,9 @@ from profiles.models import Profile
 from profiles.serializers import ProfileSerializer
 from skills.models import Skill
 from skillsets.models import Skillset
-from tshape.utils import MultiSerializerViewSetMixin
+from tshape.utils import (
+    MultiSerializerViewSetMixin, LoggedInMixin, StaffRequiredMixin
+)
 from users.models import User
 
 
@@ -20,7 +23,7 @@ class ProfileViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
     http_method_names = ['get', 'head', 'put', 'delete']
-    # permission_classes = [IsAccountAdminOrReadOnly]
+    permission_classes = [IsAdminUser]
 
     def update(self, request, pk=None, *args, **kwargs):
         data = request.data
@@ -45,7 +48,7 @@ class ProfileViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
                         headers=headers)
 
 
-class ProfileDetailView(DetailView):
+class ProfileDetailView(LoggedInMixin, DetailView):
 
     model = Profile
     template_name = 'profiles/detail.html'
@@ -58,13 +61,13 @@ class ProfileDetailView(DetailView):
         return self.request.user.profile
 
 
-# class ProfileListView(ListView):
+class ProfileListView(StaffRequiredMixin, ListView):
 
-#     model = Profile
-#     template_name = 'profiles/list.html'
+    model = Profile
+    template_name = 'profiles/list.html'
 
 
-class ProfileUpdateView(UpdateView):
+class ProfileUpdateView(LoggedInMixin, UpdateView):
 
     form_class = ProfileForm
     template_name = 'profiles/edit.html'

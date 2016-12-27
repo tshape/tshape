@@ -1,11 +1,15 @@
 from __future__ import unicode_literals
 
-from django.core.mail import send_mail
+from django.conf import settings
 from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager,
                                         PermissionsMixin)
+from django.core.mail import send_mail
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+from rest_framework.authtoken.models import Token
 
 from profiles.models import Profile
 
@@ -86,3 +90,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.username
+
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created and instance.is_staff:
+        Token.objects.create(user=instance)

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'rest_framework',
+    'rest_framework.authtoken',
     'template_repl',
     'tshape',
     'profiles',
@@ -182,6 +183,15 @@ STATICFILES_FINDERS = (
 
 
 # Third party package settings
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
 
 # REST_FRAMEWORK = {
 #     'DEFAULT_FILTER_BACKENDS': (

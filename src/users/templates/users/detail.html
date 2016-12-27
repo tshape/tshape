@@ -11,7 +11,9 @@
     {% if user %}
         <p>
             Username: {{ user.username }}<br />
-            Email: {{ user.email }}<br />
+            {% if permissions %}
+                Email: {{ user.email }}<br />
+            {% endif %}
             First Name: {{ user.first_name }}<br />
             Last Name: {{ user.last_name }}<br />
             Title: {{ user.title }}<br />

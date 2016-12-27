@@ -5,6 +5,7 @@ from django.test import TestCase, Client
 
 from skillsets.models import Skillset
 from skillsets.serializers import SkillsetSerializer
+from users.models import User
 
 
 class TestSkillsetModel(TestCase):
@@ -41,7 +42,11 @@ class TestSkillsetModel(TestCase):
 class TestSkillsetAPI(TestCase):
 
     def setUp(self):
+        password = 'mypassword123'
+        my_admin = User.objects.create_superuser(
+            'myuser', 'myemail@test.com', password)
         self.client = Client()
+        self.client.login(username=my_admin.username, password=password)
         self.skillset_1 = Skillset.objects.create(
             name='python', description='best ever', verified=True, weight=10)
         self.skillset_2 = Skillset.objects.create(

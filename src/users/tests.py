@@ -74,7 +74,11 @@ class TestUserModel(TestCase):
 class TestUserAPI(TestCase):
 
     def setUp(self):
+        password = 'mypassword123'
+        my_admin = User.objects.create_superuser(
+            'myuser', 'myemail@test.com', password)
         self.client = Client()
+        self.client.login(username=my_admin.username, password=password)
         self.user_1 = User.objects.create(
             username='testuser1', email='test1@tshape.com', password='try$h1s')
         self.user_2 = User.objects.create(

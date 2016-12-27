@@ -4,6 +4,7 @@ from django.views.generic import (
     CreateView, DetailView, ListView, UpdateView
 )
 from rest_framework import status, viewsets
+from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
 
 from profiles.models import Profile, ProfileSkill
@@ -13,7 +14,9 @@ from skills.serializers import (
     SkillSerializer, SkillUpdateSerializer, ProfileSkillSerializer
 )
 from skillsets.models import Skillset
-from tshape.utils import MultiSerializerViewSetMixin
+from tshape.utils import (
+    MultiSerializerViewSetMixin, LoggedInMixin, StaffRequiredMixin
+)
 
 
 class SkillViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
@@ -27,6 +30,7 @@ class SkillViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
         'partial_update': SkillUpdateSerializer,
         'destroy': SkillUpdateSerializer
     }
+    permission_classes = [IsAdminUser]
 
     def get_object(self):
         skillset_id = self.kwargs.get('skillset_pk')
@@ -59,6 +63,7 @@ class ProfileSkillViewSet(viewsets.ModelViewSet):
     """A simple ViewSet for viewing and editing profile skills."""
     queryset = ProfileSkill.objects.all()
     serializer_class = ProfileSkillSerializer
+    permission_classes = [IsAdminUser]
 
     def get_object(self):
         profile_id = self.kwargs.get('profile_pk')
@@ -96,7 +101,7 @@ class ProfileSkillViewSet(viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-class SkillCreateView(CreateView):
+class SkillCreateView(LoggedInMixin, CreateView):
 
     form_class = SkillForm
     template_name = 'skills/new.html'
@@ -130,7 +135,7 @@ class SkillListView(ListView):
         return context
 
 
-class SkillUpdateView(UpdateView):
+class SkillUpdateView(StaffRequiredMixin, UpdateView):
 
     form_class = SkillForm
     template_name = 'skills/edit.html'
@@ -144,7 +149,7 @@ class SkillUpdateView(UpdateView):
         return reverse('skills:detail', kwargs={'pk': skill.id})
 
 
-class MultipleSkillsUpdateView(UpdateView):
+class MultipleSkillsUpdateView(StaffRequiredMixin, UpdateView):
 
     form_class = SkillForm
     template_name = 'skills/edit_all.html'

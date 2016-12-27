@@ -38,6 +38,16 @@ class UserForm(forms.ModelForm):
     email = forms.EmailField(label=_('E-mail'), max_length=75, required=True)
 
 
+class UserLimitedForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'title')
+
+    username = forms.CharField(label=_('Username'), required=True)
+    title = forms.CharField(label=_('Job Title'), required=False)
+
+
 class UserChangePasswordForm(forms.Form):
 
     password1 = forms.CharField(

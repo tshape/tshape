@@ -4,6 +4,7 @@ from django.views.generic import (
     CreateView, DetailView, ListView, UpdateView
 )
 from rest_framework import status, viewsets
+from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
 
 from profiles.models import Profile, ProfileSkillset
@@ -12,7 +13,7 @@ from skillsets.models import Skillset
 from skillsets.serializers import (
     SkillsetSerializer, SkillsetUpdateSerializer, ProfileSkillsetSerializer
 )
-from tshape.utils import MultiSerializerViewSetMixin
+from tshape.utils import MultiSerializerViewSetMixin, StaffRequiredMixin
 
 
 class SkillsetViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
@@ -26,6 +27,7 @@ class SkillsetViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
         'partial_update': SkillsetUpdateSerializer,
         'destroy': SkillsetUpdateSerializer
     }
+    permission_classes = [IsAdminUser]
 
     def get_serializer_context(self):
         context = super(SkillsetViewSet, self).get_serializer_context()
@@ -40,6 +42,7 @@ class ProfileSkillsetViewSet(viewsets.ModelViewSet):
     """A simple ViewSet for viewing and editing skillsets."""
     queryset = ProfileSkillset.objects.all()
     serializer_class = ProfileSkillsetSerializer
+    permission_classes = [IsAdminUser]
 
     def get_object(self):
         profile_id = self.kwargs.get('profile_pk')
@@ -85,7 +88,7 @@ class ProfileSkillsetViewSet(viewsets.ModelViewSet):
             ProfileSkillsetViewSet, self).update(request, *args, **kwargs)
 
 
-class SkillsetCreateView(CreateView):
+class SkillsetCreateView(StaffRequiredMixin, CreateView):
 
     form_class = SkillsetForm
     template_name = 'skillsets/new.html'
@@ -128,7 +131,7 @@ class SkillsetListView(ListView):
         return context
 
 
-class SkillsetUpdateView(UpdateView):
+class SkillsetUpdateView(StaffRequiredMixin, UpdateView):
 
     form_class = SkillsetForm
     template_name = 'skillsets/edit.html'

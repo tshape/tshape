@@ -1,18 +1,21 @@
 from django.contrib.auth import (
     authenticate, get_backends, login, logout, update_session_auth_hash
 )
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import password_reset, password_reset_confirm
+from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.template.response import TemplateResponse
 from django.views.generic import (
-    CreateView, DetailView, FormView, UpdateView
+    CreateView, DetailView, FormView, RedirectView, UpdateView
 )
 from rest_framework import viewsets
+from rest_framework.permissions import IsAdminUser
 
-from tshape.utils import MultiSerializerViewSetMixin
+from tshape.utils import MultiSerializerViewSetMixin, LoggedInMixin
 from users.forms import (
     UserCreateForm, UserForm, UserChangePasswordForm
 )
@@ -30,6 +33,7 @@ class UserViewSet(MultiSerializerViewSetMixin, viewsets.ModelViewSet):
         'partial_update': UserUpdateSerializer,
         'destroy': UserUpdateSerializer
     }
+    permission_classes = [IsAdminUser]
 
 
 class LoginView(FormView):
@@ -55,6 +59,15 @@ class LoginView(FormView):
         return reverse_lazy('users:detail', kwargs={'username': user.username})
 
 
+class LogoutView(RedirectView):
+
+    success_url = reverse_lazy('index')
+
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return HttpResponseRedirect(self.success_url)
+
+
 class SignupView(CreateView):
 
     form_class = UserCreateForm
@@ -73,13 +86,16 @@ class SignupView(CreateView):
         return reverse_lazy('users:detail', kwargs={'username': user.username})
 
 
-class UserUpdateView(UpdateView):
+class UserUpdateView(LoggedInMixin, UpdateView):
 
     form_class = UserForm
     template_name = 'users/edit.html'
 
     def get_object(self, *args, **kwargs):
         username = self.kwargs.get('username')
+        if (not self.request.user.is_authenticated() or
+                self.request.user.username != username):
+            raise PermissionDenied
         return get_object_or_404(User, username=username)
 
     def form_valid(self, form, *args, **kwargs):
@@ -91,18 +107,26 @@ class UserUpdateView(UpdateView):
                        kwargs={'username': self.request.user.username})
 
 
+# only allow account owner to see email address
 class UserDetailView(DetailView):
 
-    form_class = UserForm
     template_name = 'users/detail.html'
 
     def get_object(self, *args, **kwargs):
         username = self.kwargs.get('username')
         return get_object_or_404(User, username=username)
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(UserDetailView, self).get_context_data(**kwargs)
+        if (not self.request.user.is_authenticated() or
+                self.request.user.username != context['user']['username']):
+            context['permissions'] = True
+        return context
+
 
 class UserPasswordViews:
 
+    @login_required()
     def change_password(request, *args, **kwargs):
         if request.method == 'POST':
             form = UserChangePasswordForm(user=request.user, data=request.POST)
