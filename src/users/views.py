@@ -119,7 +119,7 @@ class UserDetailView(DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super(UserDetailView, self).get_context_data(**kwargs)
         if (not self.request.user.is_authenticated() or
-                self.request.user.username != context['user']['username']):
+                self.request.user.username != context['user'].username):
             context['permissions'] = True
         return context
 
@@ -154,7 +154,7 @@ class UserPasswordViews:
                               email_template_name=email_template,
                               subject_template_name=subject_template,
                               post_reset_redirect=redirect,
-                              from_email='admin@tshape.io',
+                              from_email='info@tshape.io',
                               current_app='TShape')
 
     def reset_password_done(request):
